@@ -7,7 +7,7 @@
 
 <meta
   name="viewport"
-  content="width=device-width, initial-scale=1.0"
+  content="width=device-width,initial-scale=1.0"
 >
 
 <title>
@@ -16,7 +16,7 @@ Based Moer | Pixel Art, Moe AI & Onchain Experiences on Base
 
 <meta
   name="description"
-  content="Based Moer is a creator-led pixel art and technology ecosystem built on Base. Explore the Moerverse, Bald Moe, Based Ape Punks, Moe AI market intelligence, Moe Academy, the Based Moer Art Generator and future onchain experiences."
+  content="Based Moer is a creator-led pixel art and technology ecosystem built on Base. Explore the Moerverse, Moe AI market intelligence, Moe Academy and creator-built onchain experiences."
 >
 
 <meta
@@ -29,2014 +29,552 @@ Based Moer | Pixel Art, Moe AI & Onchain Experiences on Base
   href="https://basedmoer.com/"
 >
 
+<link
+  rel="stylesheet"
+  href="/shared.css"
+>
+
 <meta
   name="theme-color"
   content="#070910"
 >
 
-<meta
-  property="og:type"
-  content="website"
->
-
-<meta
-  property="og:title"
-  content="Based Moer | Pixel Art & Onchain Intelligence"
->
-
-<meta
-  property="og:description"
-  content="Original pixel art, Moe AI market intelligence, education and creator-built onchain experiences on Base."
->
-
-<meta
-  property="og:url"
-  content="https://basedmoer.com/"
->
-
-<meta
-  property="og:image"
-  content="https://basedmoer.com/assets/moerverse-preview.png"
->
-
-<meta
-  name="twitter:card"
-  content="summary_large_image"
->
-
 <style>
 
-:root {
-
-  --base:#0052ff;
-  --base-hover:#2468ff;
-
-  --bg:#070910;
-  --bg-soft:#0a0d15;
-
-  --panel:#10131d;
-  --panel-2:#151925;
-
-  --border:#282f42;
-  --border-light:#374058;
-
-  --white:#f8f9ff;
-  --muted:#9da7c3;
-  --muted-dark:#75809d;
-
-  --green:#68f49b;
-  --yellow:#ffd96b;
-
-  --radius:22px;
-
-  --shadow:
-    0 25px 70px
-    rgba(
-      0,
-      0,
-      0,
-      .40
-    );
-
-}
-
-* {
-
-  box-sizing:border-box;
-
-}
-
-html {
-
-  scroll-behavior:smooth;
-
-}
-
-body {
-
-  margin:0;
-
-  overflow-x:hidden;
-
-  color:var(--white);
-
-  background:
-
-    radial-gradient(
-      circle at 12% -3%,
-      rgba(
-        0,
-        82,
-        255,
-        .25
-      ),
-      transparent 37rem
-    ),
-
-    radial-gradient(
-      circle at 100% 25%,
-      rgba(
-        93,
-        71,
-        255,
-        .12
-      ),
-      transparent 30rem
-    ),
-
-    var(--bg);
-
-  font-family:
-    Inter,
-    Arial,
-    Helvetica,
-    sans-serif;
-
-}
-
-a {
-
-  color:inherit;
-
-  text-decoration:none;
-
-}
-
-button {
-
-  font:inherit;
-
-}
-
-img,
-video,
-svg {
-
-  display:block;
-
-  max-width:100%;
-
-}
-
-.pixel {
-
-  image-rendering:pixelated;
-  image-rendering:crisp-edges;
-
-}
-
-.container {
-
-  width:min(
-    1180px,
-    calc(
-      100% - 36px
-    )
-  );
-
-  margin:auto;
-
-}
-
-section {
-
-  padding:
-    105px 0;
-
-}
-
-.section-head {
-
-  max-width:900px;
-
-  margin:
-    0 auto 42px;
-
-  text-align:center;
-
-}
-
-.section-label {
-
-  color:#7381ac;
-
-  font-size:12px;
-
-  font-weight:900;
-
-  letter-spacing:.17em;
-
-  text-transform:uppercase;
-
-}
-
-h1,
-h2,
-h3,
-h4 {
-
-  margin-top:0;
-
-}
-
-h2 {
-
-  margin:
-    13px 0 22px;
-
-  font-size:
-    clamp(
-      42px,
-      6vw,
-      76px
-    );
-
-  line-height:.94;
-
-  letter-spacing:-.055em;
-
-}
-
-.blue {
-
-  color:var(--base);
-
-}
-
-.section-description {
-
-  max-width:790px;
-
-  margin-left:auto;
-
-  margin-right:auto;
-
-  color:var(--muted);
-
-  font-size:17px;
-
-  line-height:1.75;
-
-}
-
-.card {
-
-  overflow:hidden;
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:
-    var(--radius);
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #11141e,
-      #0d0f17
-    );
-
-  box-shadow:
-    var(--shadow);
-
-}
-
-
-/* =====================================================
-   GLOBAL NAVIGATION
-   ===================================================== */
-
-.navbar {
-
-  position:sticky;
-
-  top:0;
-
-  z-index:1000;
-
-  background:
-    rgba(
-      7,
-      9,
-      16,
-      .88
-    );
-
-  backdrop-filter:
-    blur(18px);
-
-  border-bottom:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .07
-    );
-
-}
-
-.nav-shell {
-
-  position:relative;
-
-  min-height:76px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-}
-
-.brand {
-
-  position:relative;
-
-  z-index:10;
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-}
-
-.brand img {
-
-  width:53px;
-
-  height:53px;
-
-  object-fit:cover;
-
-  border-radius:12px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .13
-    );
-
-}
-
-.brand-name {
-
-  font-size:14px;
-
-  font-weight:1000;
-
-  letter-spacing:.10em;
-
-}
-
-.desktop-nav {
-
-  position:absolute;
-
-  left:50%;
-
-  transform:
-    translateX(-50%);
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:24px;
-
-  white-space:nowrap;
-
-  color:#c8cee3;
-
-  font-size:13px;
-
-  font-weight:800;
-
-}
-
-.desktop-nav a {
-
-  transition:
-    color .18s ease;
-
-}
-
-.desktop-nav a:hover {
-
-  color:#fff;
-
-}
-
-.nav-right {
-
-  position:relative;
-
-  z-index:10;
-
-}
-
-.follow-button {
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:9px;
-
-  min-height:46px;
-
-  padding:
-    11px 17px;
-
-  border-radius:12px;
-
-  background:var(--base);
-
-  color:#fff;
-
-  font-size:13px;
-
-  font-weight:900;
-
-  box-shadow:
-    0 8px 28px
-    rgba(
-      0,
-      82,
-      255,
-      .28
-    );
-
-}
-
-.follow-button:hover {
-
-  background:
-    var(--base-hover);
-
-}
-
-.x-icon {
-
-  width:16px;
-
-  height:16px;
-
-  fill:currentColor;
-
-}
-
-.mobile-toggle {
-
-  display:none;
-
-  width:45px;
-
-  height:45px;
-
-  align-items:center;
-
-  justify-content:center;
-
-  border:
-    1px solid
-    #31394d;
-
-  border-radius:11px;
-
-  background:#11151f;
-
-  color:white;
-
-  cursor:pointer;
-
-}
-
-.mobile-menu {
-
-  display:none;
-
-  padding:
-    0 0 18px;
-
-}
-
-.mobile-menu.open {
-
-  display:grid;
-
-  gap:8px;
-
-}
-
-.mobile-menu a {
-
-  padding:
-    12px 14px;
-
-  border:
-    1px solid
-    #272e40;
-
-  border-radius:10px;
-
-  background:#0e1119;
-
-  color:#cbd2e5;
-
-  font-size:13px;
-
-  font-weight:800;
-
-}
-
-
-/* =====================================================
-   BUTTONS
-   ===================================================== */
-
-.button {
-
-  display:inline-flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  gap:9px;
-
-  min-height:47px;
-
-  padding:
-    12px 19px;
-
-  border:0;
-
-  border-radius:13px;
-
-  background:var(--base);
-
-  color:#fff;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-  box-shadow:
-    0 9px 30px
-    rgba(
-      0,
-      82,
-      255,
-      .27
-    );
-
-  transition:
-    transform .18s ease,
-    background .18s ease;
-
-}
-
-.button:hover {
-
-  transform:
-    translateY(-2px);
-
-  background:
-    var(--base-hover);
-
-}
-
-.button.secondary {
-
-  background:#151925;
-
-  border:
-    1px solid
-    #30374c;
-
-  box-shadow:none;
-
-}
-
-.button.disabled {
-
-  cursor:default;
-
-  background:#181b25;
-
-  border:
-    1px solid
-    #2d3344;
-
-  color:#858da5;
-
-  box-shadow:none;
-
-}
-
-.button.disabled:hover {
-
-  transform:none;
-
-  background:#181b25;
-
-}
-
-
-/* =====================================================
-   HERO
-   ===================================================== */
-
 .hero {
-
-  min-height:
-    calc(
-      100vh - 76px
-    );
-
+  min-height:calc(100vh - 76px);
   display:grid;
-
-  grid-template-columns:
-    1.04fr .96fr;
-
+  grid-template-columns:1.04fr .96fr;
   gap:60px;
-
   align-items:center;
-
-  padding:
-    78px 0 95px;
-
+  padding:78px 0 95px;
 }
 
 .hero-copy {
-
   text-align:center;
-
 }
 
 .hero-tag {
-
   display:inline-flex;
-
   align-items:center;
-
   gap:9px;
-
-  padding:
-    8px 12px;
-
+  padding:8px 12px;
   border-radius:999px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .12
-    );
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .04
-    );
-
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
   color:#d0d5e9;
-
   font-size:12px;
-
   font-weight:900;
-
   letter-spacing:.09em;
-
   text-transform:uppercase;
-
 }
 
 .hero-dot {
-
   width:8px;
-
   height:8px;
-
   border-radius:50%;
-
   background:var(--base);
-
-  box-shadow:
-    0 0 18px
-    var(--base);
-
+  box-shadow:0 0 18px var(--base);
 }
 
 .hero h1 {
-
-  margin:
-    23px 0 25px;
-
-  font-size:
-    clamp(
-      57px,
-      8vw,
-      102px
-    );
-
+  margin:23px 0 25px;
+  font-size:clamp(57px,8vw,102px);
   line-height:.87;
-
   letter-spacing:-.066em;
-
 }
 
 .hero-description {
-
   max-width:700px;
-
   margin:auto;
-
   color:#bac2da;
-
   font-size:19px;
-
   line-height:1.74;
-
 }
 
 .hero-actions {
-
   display:flex;
-
   justify-content:center;
-
   flex-wrap:wrap;
-
   gap:12px;
-
   margin-top:31px;
-
 }
 
 .hero-note {
-
   margin-top:22px;
-
   color:#79839f;
-
   font-size:13px;
-
   font-weight:700;
-
 }
 
 .hero-art {
-
   position:relative;
-
   min-height:520px;
-
   display:grid;
-
   place-items:center;
-
 }
 
 .hero-glow {
-
   position:absolute;
-
   width:430px;
-
   height:430px;
-
   border-radius:50%;
-
   background:
-
     radial-gradient(
       circle,
-      rgba(
-        31,
-        89,
-        255,
-        .72
-      ),
-      rgba(
-        15,
-        36,
-        105,
-        .26
-      ) 45%,
+      rgba(31,89,255,.72),
+      rgba(15,36,105,.26) 45%,
       transparent 70%
     );
-
-  filter:
-    blur(9px);
-
+  filter:blur(9px);
 }
 
 .hero-frame {
-
   position:relative;
-
-  width:min(
-    100%,
-    520px
-  );
-
+  width:min(100%,520px);
   aspect-ratio:1/1;
-
   padding:24px;
-
   display:grid;
-
   place-items:center;
-
   overflow:hidden;
-
   border-radius:32px;
-
-  border:
-    1px solid
-    #303956;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #161a2a,
-      #0a0c14
-    );
-
-  box-shadow:
-    var(--shadow);
-
+  border:1px solid #303956;
+  background:linear-gradient(145deg,#161a2a,#0a0c14);
+  box-shadow:var(--shadow);
 }
 
 .hero-frame::after {
-
   content:"BASE";
-
   position:absolute;
-
   right:-6px;
-
   bottom:5px;
-
-  color:
-    rgba(
-      255,
-      255,
-      255,
-      .035
-    );
-
+  color:rgba(255,255,255,.035);
   font-size:92px;
-
   font-weight:1000;
-
   letter-spacing:-.08em;
-
 }
 
 .hero-frame img {
-
   position:relative;
-
   z-index:3;
-
   width:100%;
-
   height:100%;
-
   object-fit:contain;
-
 }
 
-
-/* =====================================================
-   PROJECT STRIP
-   ===================================================== */
-
 .project-bar {
-
-  padding:
-    35px 0;
-
-  border-top:
-    1px solid
-    #22283a;
-
-  border-bottom:
-    1px solid
-    #22283a;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .018
-    );
-
+  padding:35px 0;
+  border-top:1px solid #22283a;
+  border-bottom:1px solid #22283a;
+  background:rgba(255,255,255,.018);
 }
 
 .project-bar-grid {
-
   display:grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
-
+  grid-template-columns:repeat(4,1fr);
   gap:20px;
-
 }
 
 .project-stat {
-
   padding:12px;
-
   text-align:center;
-
 }
 
 .project-stat strong {
-
   display:block;
-
   margin-bottom:6px;
-
   font-size:21px;
-
 }
 
 .project-stat span {
-
   color:#858fac;
-
   font-size:13px;
-
   line-height:1.5;
-
 }
 
-
-/* =====================================================
-   PREVIEW CARD
-   ===================================================== */
-
 .preview-card {
-
   max-width:1000px;
-
   margin:auto;
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
 }
 
 .preview-media {
-
-  min-height:440px;
-
+  min-height:430px;
   display:grid;
-
   place-items:center;
-
   padding:18px;
-
   background:#06070b;
-
 }
 
 .preview-media img {
-
   width:100%;
-
   height:100%;
-
-  max-height:440px;
-
+  max-height:430px;
   object-fit:contain;
-
 }
 
 .preview-copy {
-
   padding:42px;
-
   display:flex;
-
   flex-direction:column;
-
   justify-content:center;
-
 }
 
 .preview-copy h3 {
-
   margin-bottom:14px;
-
   font-size:36px;
-
 }
 
 .preview-copy p {
-
   color:var(--muted);
-
   line-height:1.75;
-
 }
 
-
-/* =====================================================
-   MOE AI
-   ===================================================== */
-
 .ai-layout {
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1.08fr;
-
+  grid-template-columns:1fr 1.08fr;
   gap:30px;
-
   align-items:stretch;
-
 }
 
 .ai-features {
-
   display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  grid-template-rows:
-    1fr 1fr;
-
+  grid-template-columns:1fr 1fr;
+  grid-template-rows:1fr 1fr;
   gap:12px;
-
 }
 
 .ai-feature {
-
   display:flex;
-
   flex-direction:column;
-
   justify-content:center;
-
   padding:22px;
-
-  border:
-    1px solid
-    #272e41;
-
+  border:1px solid #272e41;
   border-radius:15px;
-
   background:#10131c;
-
 }
 
 .ai-number {
-
   width:31px;
-
   height:31px;
-
   display:grid;
-
   place-items:center;
-
   margin-bottom:15px;
-
   border-radius:8px;
-
   background:#12318f;
-
   font-size:12px;
-
   font-weight:900;
-
 }
 
 .ai-feature strong {
-
   margin-bottom:7px;
-
 }
 
 .ai-feature span {
-
   color:#8993af;
-
   font-size:14px;
-
   line-height:1.55;
-
 }
 
 .video-frame {
-
   min-height:620px;
-
   height:100%;
-
   padding:12px;
-
   display:flex;
-
   align-items:center;
-
-  border:
-    1px solid
-    #2b3550;
-
+  border:1px solid #2b3550;
   border-radius:28px;
-
   background:#05060a;
-
-  box-shadow:
-    var(--shadow);
-
+  box-shadow:var(--shadow);
 }
 
 .video-frame video {
-
   width:100%;
-
   height:100%;
-
   max-height:650px;
-
   object-fit:contain;
-
   border-radius:18px;
-
-  background:#000;
-
+  background:black;
 }
 
-
-/* =====================================================
-   THREE-COLUMN PRODUCT CARDS
-   ===================================================== */
-
 .feature-grid {
-
   display:grid;
-
-  grid-template-columns:
-    repeat(
-      3,
-      1fr
-    );
-
+  grid-template-columns:repeat(3,1fr);
   gap:18px;
-
 }
 
 .feature-card {
-
   padding:28px;
-
   text-align:center;
-
 }
 
 .feature-icon {
-
   width:48px;
-
   height:48px;
-
   display:grid;
-
   place-items:center;
-
-  margin:
-    0 auto 16px;
-
+  margin:0 auto 16px;
   border-radius:14px;
-
-  background:
-    rgba(
-      0,
-      82,
-      255,
-      .14
-    );
-
-  border:
-    1px solid
-    rgba(
-      0,
-      82,
-      255,
-      .30
-    );
-
+  background:rgba(0,82,255,.14);
+  border:1px solid rgba(0,82,255,.30);
   color:#9dbaff;
-
   font-weight:1000;
-
 }
 
 .feature-card p {
-
   margin:0;
-
   color:#8f99b6;
-
   font-size:14px;
-
   line-height:1.7;
-
 }
 
-
-/* =====================================================
-   FLIP GAME
-   ===================================================== */
-
 .flip-coming {
-
   min-height:500px;
-
   display:grid;
-
-  grid-template-columns:
-    .85fr 1.15fr;
-
+  grid-template-columns:.85fr 1.15fr;
 }
 
 .flip-visual {
-
   position:relative;
-
   min-height:500px;
-
   display:grid;
-
   place-items:center;
-
   background:
-
-    radial-gradient(
-      circle at 50% 45%,
-      rgba(
-        0,
-        82,
-        255,
-        .34
-      ),
-      transparent 45%
-    ),
-
+    radial-gradient(circle at 50% 45%,rgba(0,82,255,.34),transparent 45%),
     #090b12;
-
 }
 
 .flip-visual img {
-
   width:230px;
-
   height:230px;
-
   object-fit:contain;
-
 }
 
 .soon-badge {
-
   position:absolute;
-
   top:25px;
-
   left:25px;
-
-  padding:
-    8px 11px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .16
-    );
-
+  padding:8px 11px;
+  border:1px solid rgba(255,255,255,.16);
   border-radius:999px;
-
-  background:
-    rgba(
-      255,
-      255,
-      255,
-      .06
-    );
-
+  background:rgba(255,255,255,.06);
   font-size:11px;
-
   font-weight:900;
-
   letter-spacing:.08em;
-
-  text-transform:uppercase;
-
 }
 
 .flip-copy {
-
   padding:45px;
-
   display:flex;
-
   flex-direction:column;
-
   justify-content:center;
-
 }
 
 .flip-copy h3 {
-
   margin-bottom:13px;
-
   font-size:44px;
-
 }
 
 .flip-copy p {
-
   color:#9da6c2;
-
   line-height:1.75;
-
 }
-
-
-/* =====================================================
-   EXPLORE
-   ===================================================== */
-
-.explore-layout {
-
-  display:grid;
-
-  grid-template-columns:
-    .9fr 1.1fr;
-
-  gap:28px;
-
-  align-items:stretch;
-
-}
-
-.explore-links {
-
-  display:grid;
-
-  grid-template-columns:
-    1fr 1fr;
-
-  gap:13px;
-
-}
-
-.link-card {
-
-  min-height:145px;
-
-  padding:22px;
-
-  display:flex;
-
-  flex-direction:column;
-
-  justify-content:center;
-
-  border:
-    1px solid
-    #2a3042;
-
-  border-radius:15px;
-
-  background:#10121b;
-
-  transition:
-    border .18s ease,
-    transform .18s ease;
-
-}
-
-.link-card:hover {
-
-  border-color:#485575;
-
-  transform:
-    translateY(-2px);
-
-}
-
-.link-card strong {
-
-  display:block;
-
-  margin-bottom:7px;
-
-}
-
-.link-card span {
-
-  color:#858fac;
-
-  font-size:13px;
-
-  line-height:1.5;
-
-}
-
-.explore-art {
-
-  min-height:480px;
-
-  padding:12px;
-
-  display:grid;
-
-  place-items:center;
-
-  overflow:hidden;
-
-  border:
-    1px solid
-    #293148;
-
-  border-radius:24px;
-
-  background:#06070b;
-
-}
-
-.explore-art img {
-
-  width:100%;
-
-  height:100%;
-
-  max-height:550px;
-
-  object-fit:contain;
-
-}
-
-
-/* =====================================================
-   TECHNOLOGY
-   ===================================================== */
-
-.tech-grid {
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(
-      4,
-      1fr
-    );
-
-  gap:14px;
-
-}
-
-.tech-card {
-
-  min-height:160px;
-
-  padding:22px;
-
-  text-align:center;
-
-  border:
-    1px solid
-    #293044;
-
-  border-radius:16px;
-
-  background:
-    linear-gradient(
-      145deg,
-      #10141e,
-      #0c0f17
-    );
-
-}
-
-.tech-mark {
-
-  min-height:42px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:center;
-
-  margin-bottom:15px;
-
-  color:#b6c7ff;
-
-  font-size:15px;
-
-  font-weight:1000;
-
-  letter-spacing:.04em;
-
-}
-
-.tech-card strong {
-
-  display:block;
-
-  margin-bottom:7px;
-
-}
-
-.tech-card p {
-
-  margin:0;
-
-  color:#7f8aa6;
-
-  font-size:12px;
-
-  line-height:1.55;
-
-}
-
-.language-row {
-
-  margin-top:22px;
-
-  display:flex;
-
-  justify-content:center;
-
-  flex-wrap:wrap;
-
-  gap:9px;
-
-}
-
-.language-badge {
-
-  padding:
-    9px 13px;
-
-  border:
-    1px solid
-    #30394e;
-
-  border-radius:999px;
-
-  background:#0d1119;
-
-  color:#abb5d0;
-
-  font-size:12px;
-
-  font-weight:800;
-
-}
-
-
-/* =====================================================
-   CREATOR
-   ===================================================== */
 
 .founder-card {
-
   max-width:920px;
-
   margin:auto;
-
   display:grid;
-
-  grid-template-columns:
-    145px 1fr;
-
+  grid-template-columns:145px 1fr;
   gap:25px;
-
   align-items:center;
-
   padding:28px;
-
 }
 
 .founder-card img {
-
   width:125px;
-
   height:125px;
-
   object-fit:contain;
-
   border-radius:21px;
-
 }
 
-
-/* =====================================================
-   GLOBAL FOOTER
-   ===================================================== */
-
-.site-footer {
-
-  padding:
-    54px 0 36px;
-
-  border-top:
-    1px solid
-    #22283a;
-
-  background:#06080d;
-
-}
-
-.footer-grid {
-
+.tech-grid {
   display:grid;
-
-  grid-template-columns:
-    1.1fr .9fr .9fr;
-
-  gap:40px;
-
+  grid-template-columns:repeat(7,1fr);
+  gap:13px;
 }
 
-.footer-brand {
-
+.tech-item {
+  min-height:145px;
+  padding:18px 10px;
   display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  margin-bottom:15px;
-
-}
-
-.footer-brand img {
-
-  width:52px;
-
-  height:52px;
-
-  object-fit:cover;
-
-  border-radius:12px;
-
-}
-
-.footer-brand strong {
-
-  letter-spacing:.08em;
-
-}
-
-.footer-copy {
-
-  max-width:380px;
-
-  color:#77829d;
-
-  font-size:13px;
-
-  line-height:1.7;
-
-}
-
-.footer-column h4 {
-
-  margin-bottom:14px;
-
-  color:#d5daea;
-
-  font-size:12px;
-
-  letter-spacing:.10em;
-
-  text-transform:uppercase;
-
-}
-
-.footer-column {
-
-  display:flex;
-
   flex-direction:column;
-
+  justify-content:center;
+  align-items:center;
+  gap:14px;
+  text-align:center;
+  border:1px solid #293044;
+  border-radius:15px;
+  background:#0e121b;
 }
 
-.footer-column a {
-
-  width:fit-content;
-
-  margin:
-    6px 0;
-
-  color:#828da8;
-
-  font-size:13px;
-
+.tech-logo-wrap {
+  width:62px;
+  height:62px;
+  display:grid;
+  place-items:center;
 }
 
-.footer-column a:hover {
-
-  color:white;
-
+.tech-logo-wrap img {
+  width:54px;
+  height:54px;
+  object-fit:contain;
 }
 
-.footer-bottom {
+.tech-logo-wrap svg {
+  width:50px;
+  height:50px;
+}
 
-  margin-top:36px;
+.tech-item strong {
+  font-size:12px;
+  letter-spacing:.02em;
+}
 
-  padding-top:20px;
+.explore-layout {
+  display:grid;
+  grid-template-columns:.9fr 1.1fr;
+  gap:28px;
+}
 
-  border-top:
-    1px solid
-    #1c2230;
+.explore-links {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:13px;
+}
 
+.link-card {
+  min-height:145px;
+  padding:22px;
   display:flex;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-  flex-wrap:wrap;
-
-  color:#5e6880;
-
-  font-size:11px;
-
-  line-height:1.6;
-
+  flex-direction:column;
+  justify-content:center;
+  border:1px solid #2a3042;
+  border-radius:15px;
+  background:#10121b;
+  transition:.18s ease;
 }
 
-.footer-disclaimer {
-
-  max-width:760px;
-
+.link-card:hover {
+  border-color:#485575;
+  transform:translateY(-2px);
 }
 
+.link-card strong {
+  margin-bottom:7px;
+}
 
-/* =====================================================
-   RESPONSIVE
-   ===================================================== */
+.link-card span {
+  color:#858fac;
+  font-size:13px;
+  line-height:1.5;
+}
 
-@media(max-width:1050px) {
+.explore-art {
+  min-height:480px;
+  padding:12px;
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  border:1px solid #293148;
+  border-radius:24px;
+  background:#06070b;
+}
 
-  .desktop-nav {
+.explore-art img {
+  width:100%;
+  height:100%;
+  max-height:540px;
+  object-fit:contain;
+}
 
-    gap:15px;
+@media(max-width:1000px) {
 
+  .tech-grid {
+    grid-template-columns:repeat(4,1fr);
   }
 
-  .brand-name {
-
-    display:none;
-
-  }
-
 }
-
 
 @media(max-width:900px) {
 
-  .desktop-nav,
-  .follow-button {
-
-    display:none;
-
-  }
-
-  .mobile-toggle {
-
-    display:flex;
-
-  }
-
-  .nav-right {
-
-    display:flex;
-
-  }
-
-  .hero {
-
-    grid-template-columns:1fr;
-
-    min-height:auto;
-
-  }
-
-  .project-bar-grid {
-
-    grid-template-columns:
-      1fr 1fr;
-
-  }
-
+  .hero,
   .preview-card,
   .ai-layout,
   .flip-coming,
   .explore-layout {
-
     grid-template-columns:1fr;
+  }
 
+  .project-bar-grid {
+    grid-template-columns:1fr 1fr;
   }
 
   .feature-grid {
-
     grid-template-columns:1fr;
-
-  }
-
-  .tech-grid {
-
-    grid-template-columns:
-      1fr 1fr;
-
-  }
-
-  .footer-grid {
-
-    grid-template-columns:
-      1fr 1fr;
-
-  }
-
-  .footer-grid > :first-child {
-
-    grid-column:
-      1 / -1;
-
   }
 
 }
 
-
 @media(max-width:620px) {
 
-  .container {
-
-    width:
-      calc(
-        100% - 22px
-      );
-
-  }
-
-  section {
-
-    padding:
-      75px 0;
-
-  }
-
-  h2 {
-
-    font-size:45px;
-
-  }
-
   .hero {
-
-    padding:
-      50px 0 70px;
-
+    padding:50px 0 70px;
   }
 
   .hero h1 {
-
-    font-size:54px;
-
+    font-size:53px;
   }
 
   .hero-art {
-
-    min-height:360px;
-
-  }
-
-  .hero-frame {
-
-    width:100%;
-
-    padding:13px;
-
+    min-height:350px;
   }
 
   .project-bar-grid,
   .ai-features,
   .explore-links,
-  .tech-grid,
-  .footer-grid {
-
+  .tech-grid {
     grid-template-columns:1fr;
-
   }
 
   .ai-features {
-
     grid-template-rows:auto;
-
   }
 
   .preview-media {
-
-    min-height:310px;
-
+    min-height:300px;
   }
 
-  .preview-copy {
-
+  .preview-copy,
+  .flip-copy {
     padding:27px;
-
   }
 
   .video-frame {
-
-    min-height:370px;
-
-  }
-
-  .video-frame video {
-
-    max-height:420px;
-
-  }
-
-  .flip-copy {
-
-    padding:28px;
-
-  }
-
-  .flip-visual {
-
-    min-height:350px;
-
-  }
-
-  .explore-art {
-
-    min-height:330px;
-
+    min-height:360px;
   }
 
   .founder-card {
-
     grid-template-columns:1fr;
-
     text-align:center;
-
   }
 
   .founder-card img {
-
     margin:auto;
-
   }
 
-  .footer-grid > :first-child {
-
-    grid-column:auto;
-
+  .tech-item {
+    min-height:115px;
   }
 
 }
@@ -2045,163 +583,17 @@ h2 {
 
 </head>
 
-
 <body>
 
-
-<!-- =====================================================
-     NAVIGATION
-     ===================================================== -->
-
-<header class="navbar">
-
-<div class="container nav-shell">
-
-
-<a
-  class="brand"
-  href="/"
->
-
-<img
-  src="/assets/based-moer-logo.jpg"
-  alt="Based Moer logo"
->
-
-<span class="brand-name">
-
-BASED MOER
-
-</span>
-
-</a>
-
-
-<nav class="desktop-nav">
-
-<a href="/moerverse/">
-Moerverse
-</a>
-
-<a href="/live/">
-Live
-</a>
-
-<a href="/academy/">
-Academy
-</a>
-
-<a href="/generator/">
-Generator
-</a>
-
-<a href="#explore">
-Explore
-</a>
-
-</nav>
-
-
-<div class="nav-right">
-
-
-<a
-  class="follow-button"
-  href="https://x.com/basedmoer"
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-<svg
-  class="x-icon"
-  viewBox="0 0 24 24"
-  aria-hidden="true"
->
-
-<path
-  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"
-/>
-
-</svg>
-
-FOLLOW
-
-</a>
-
-
-<button
-  class="mobile-toggle"
-  id="mobileToggle"
-  aria-label="Open navigation"
->
-
-☰
-
-</button>
-
-
-</div>
-
-
-</div>
-
-
-<div class="container mobile-menu"
-     id="mobileMenu">
-
-<a href="/">
-Home
-</a>
-
-<a href="/moerverse/">
-Moerverse
-</a>
-
-<a href="/live/">
-Live
-</a>
-
-<a href="/academy/">
-Academy
-</a>
-
-<a href="/generator/">
-Generator
-</a>
-
-<a href="#explore">
-Explore
-</a>
-
-<a
-  href="https://x.com/basedmoer"
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-Follow on X ↗
-
-</a>
-
-</div>
-
-</header>
-
+<div id="globalHeader"></div>
 
 <main>
-
-
-<!-- =====================================================
-     HERO
-     ===================================================== -->
 
 <section style="padding:0">
 
 <div class="container hero">
 
-
 <div class="hero-copy">
-
 
 <div class="hero-tag">
 
@@ -2211,7 +603,6 @@ PIXEL ART & ONCHAIN EXPERIENCES ON BASE
 
 </div>
 
-
 <h1>
 
 PIXEL ART.
@@ -2219,9 +610,7 @@ PIXEL ART.
 <br>
 
 <span class="blue">
-
 ONCHAIN
-
 </span>
 
 <br>
@@ -2229,7 +618,6 @@ ONCHAIN
 INTELLIGENCE.
 
 </h1>
-
 
 <p class="hero-description">
 
@@ -2239,49 +627,36 @@ and technology ecosystem built on Base.
 Explore original Bald Moe characters,
 Based Ape Punks,
 Moe AI market intelligence,
-Moe Academy,
-the Based Moer Art Generator
+Moe Academy
 and future onchain experiences
 inside one evolving universe.
 
 </p>
 
-
 <div class="hero-actions">
-
 
 <a
   class="button"
   href="/moerverse/"
 >
-
 EXPLORE MOERVERSE
-
 </a>
-
 
 <a
   class="button secondary"
   href="/live/"
 >
-
 OPEN LIVE ENGINE
-
 </a>
-
 
 <a
   class="button secondary"
-  href="/generator/"
+  href="/academy/"
 >
-
-ART GENERATOR
-
+MOE ACADEMY
 </a>
 
-
 </div>
-
 
 <div class="hero-note">
 
@@ -2289,18 +664,13 @@ Pixel-first • Built on Base
 
 </div>
 
-
 </div>
-
 
 <div class="hero-art">
 
-
 <div class="hero-glow"></div>
 
-
 <div class="hero-frame">
-
 
 <img
   class="pixel"
@@ -2308,26 +678,17 @@ Pixel-first • Built on Base
   alt="Animated Bald Moe pixel art"
 >
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     PROJECT STRIP
-     ===================================================== -->
-
 <div class="project-bar">
 
 <div class="container project-bar-grid">
-
 
 <div class="project-stat">
 
@@ -2336,15 +697,11 @@ MOERVERSE
 </strong>
 
 <span>
-
 Original pixel characters,
-stories
-and digital collectibles.
-
+stories and digital collectibles.
 </span>
 
 </div>
-
 
 <div class="project-stat">
 
@@ -2353,14 +710,10 @@ MOE AI
 </strong>
 
 <span>
-
-Explainable crypto market
-structure intelligence.
-
+Explainable market structure intelligence.
 </span>
 
 </div>
-
 
 <div class="project-stat">
 
@@ -2369,14 +722,11 @@ CREATE
 </strong>
 
 <span>
-
-Build custom Bald Moe
-pixel-art combinations.
-
+Build custom Bald Moe combinations
+from the navigation.
 </span>
 
 </div>
-
 
 <div class="project-stat">
 
@@ -2385,286 +735,201 @@ LEARN
 </strong>
 
 <span>
-
-Understand the concepts
-behind Moe AI.
-
+Understand the concepts behind Moe AI.
 </span>
 
 </div>
 
-
 </div>
 
 </div>
-
-
-<!-- =====================================================
-     MOERVERSE
-     ===================================================== -->
 
 <section>
 
 <div class="container">
 
-
 <div class="section-head">
 
-
 <div class="section-label">
-
 PIXEL ART UNIVERSE
-
 </div>
-
 
 <h2>
 
 MEET THE
 
 <span class="blue">
-
 MOERVERSE.
-
 </span>
 
 </h2>
 
-
 <p class="section-description">
 
-Moerverse is the creative world
-behind Based Moer.
-
-Original Bald Moe characters,
+Bald Moe,
 Based Ape Punks,
 Singular Fragments,
 animated art,
-digital collectibles
+stories
 and future onchain experiences
-share one expanding pixel universe.
+share one expanding pixel-art universe.
 
 </p>
 
-
 </div>
-
 
 <div class="card preview-card">
 
-
 <div class="preview-media">
-
 
 <img
   class="pixel"
   src="/assets/moerverse-preview.png"
-  alt="Moerverse Bald Moe pixel art"
+  alt="Moerverse Bald Moe pixel artwork"
 >
-
 
 </div>
 
-
 <div class="preview-copy">
 
-
 <h3>
-
 ENTER THE MOERVERSE
-
 </h3>
-
 
 <p>
 
 Explore Bald Moe Genesis,
 Based Ape Punks,
 collection details,
-gallery links
+gallery destinations
 and mint information
 on the dedicated Moerverse page.
 
 </p>
 
-
 <a
   class="button"
   href="/moerverse/"
 >
-
 EXPLORE MOERVERSE
-
 </a>
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     MOE AI
-     ===================================================== -->
-
 <section>
 
 <div class="container">
 
-
 <div class="section-head">
 
-
 <div class="section-label">
-
 MARKET INTELLIGENCE
-
 </div>
-
 
 <h2>
 
 MOE AI
 
 <span class="blue">
-
 SEES THE SETUP.
-
 </span>
 
 </h2>
 
-
 <p class="section-description">
 
-Moe AI is an explainable
-4H crypto market structure scanner
+Moe AI is an explainable 4H market structure scanner
 designed to identify,
-record,
-monitor
-and evaluate systematic setups.
+record
+and monitor systematic market setups.
 
 </p>
 
-
 </div>
-
 
 <div class="ai-layout">
 
-
 <div class="ai-features">
 
-
 <div class="ai-feature">
-
 
 <div class="ai-number">
 01
 </div>
 
-
 <strong>
 SCAN
 </strong>
 
-
 <span>
-
-Evaluate markets using
-repeatable 4H market-structure rules.
-
+Evaluate markets using repeatable
+4H structure rules.
 </span>
-
 
 </div>
 
-
 <div class="ai-feature">
-
 
 <div class="ai-number">
 02
 </div>
 
-
 <strong>
 EXPLAIN
 </strong>
 
-
 <span>
-
 Show structure,
-entry zone,
+entry,
 invalidation
 and target.
-
 </span>
-
 
 </div>
 
-
 <div class="ai-feature">
-
 
 <div class="ai-number">
 03
 </div>
 
-
 <strong>
 LEARN
 </strong>
 
-
 <span>
-
 Preserve signal history
-and evaluate actual outcomes.
-
+and evaluate recorded outcomes.
 </span>
-
 
 </div>
 
-
 <div class="ai-feature">
-
 
 <div class="ai-number">
 04
 </div>
 
-
 <strong>
 EVOLVE
 </strong>
 
-
 <span>
-
 Develop toward decision engines
 and agent-ready infrastructure.
-
 </span>
 
-
 </div>
 
-
 </div>
-
 
 <div class="video-frame">
-
 
 <video
   src="/assets/moe-ai.mp4"
@@ -2673,15 +938,11 @@ and agent-ready infrastructure.
   loop
   playsinline
   controls
-  preload="metadata"
 ></video>
 
-
 </div>
 
-
 </div>
-
 
 <div
   style="
@@ -2690,159 +951,108 @@ and agent-ready infrastructure.
   "
 >
 
-
 <a
   class="button"
   href="/live/"
 >
-
 OPEN LIVE ENGINE
-
 </a>
 
-
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     ACADEMY
-     ===================================================== -->
-
 <section>
 
 <div class="container">
 
-
 <div class="section-head">
 
-
 <div class="section-label">
-
 MOE ACADEMY
-
 </div>
-
 
 <h2>
 
 LEARN BEFORE
 
 <span class="blue">
-
 YOU LEAP.
-
 </span>
 
 </h2>
 
-
 <p class="section-description">
 
-Study the concepts used around Moe AI
-through a structured educational course.
-
-Learn market structure,
+Study market structure,
 Break of Structure,
 Fibonacci retracements,
-entry zones,
 risk,
-signal freshness
-and system architecture.
+signal lifecycle
+and Moe AI architecture
+through a dedicated educational course.
 
 </p>
 
-
 </div>
-
 
 <div class="feature-grid">
 
-
 <div class="card feature-card">
 
-
 <div class="feature-icon">
-
 A
-
 </div>
-
 
 <h3>
 Structured Lessons
 </h3>
 
-
 <p>
-
-Follow a complete
-beginner-to-system learning path.
-
+Follow a complete learning path
+from basic structure
+to understanding the scanner.
 </p>
 
-
 </div>
-
 
 <div class="card feature-card">
 
-
 <div class="feature-icon">
-
 B
-
 </div>
-
 
 <h3>
 Visual Learning
 </h3>
 
-
 <p>
-
-Study project-branded
-charts and market examples.
-
+Study Based Moer-branded charts
+and market examples.
 </p>
 
-
 </div>
-
 
 <div class="card feature-card">
 
-
 <div class="feature-icon">
-
 C
-
 </div>
-
 
 <h3>
 Exams & Progress
 </h3>
 
-
 <p>
-
-Complete chapter exams
-and track lesson progress.
-
+Complete lesson exams
+and track your progress.
 </p>
 
-
 </div>
 
-
 </div>
-
 
 <div
   style="
@@ -2850,243 +1060,58 @@ and track lesson progress.
     margin-top:30px
   "
 >
-
 
 <a
   class="button"
   href="/academy/"
 >
-
 ENTER MOE ACADEMY
-
 </a>
 
-
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     GENERATOR
-     ===================================================== -->
-
 <section>
 
 <div class="container">
 
-
 <div class="section-head">
 
-
 <div class="section-label">
-
-CREATE YOUR MOE
-
-</div>
-
-
-<h2>
-
-BASED MOER
-
-<span class="blue">
-
-ART GENERATOR.
-
-</span>
-
-</h2>
-
-
-<p class="section-description">
-
-Build custom Bald Moe combinations
-using the real Moerverse trait system.
-
-Choose traits,
-preview the character live
-and export the finished pixel artwork.
-
-</p>
-
-
-</div>
-
-
-<div class="feature-grid">
-
-
-<div class="card feature-card">
-
-
-<div class="feature-icon">
-
-A
-
-</div>
-
-
-<h3>
-Choose Traits
-</h3>
-
-
-<p>
-
-Mix backgrounds,
-body,
-eyes,
-accessories
-and head traits.
-
-</p>
-
-
-</div>
-
-
-<div class="card feature-card">
-
-
-<div class="feature-icon">
-
-B
-
-</div>
-
-
-<h3>
-Preview Live
-</h3>
-
-
-<p>
-
-See each selected layer
-combined immediately.
-
-</p>
-
-
-</div>
-
-
-<div class="card feature-card">
-
-
-<div class="feature-icon">
-
-C
-
-</div>
-
-
-<h3>
-Export PNG
-</h3>
-
-
-<p>
-
-Save the generated Bald Moe
-pixel-art preview.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-<div
-  style="
-    text-align:center;
-    margin-top:30px
-  "
->
-
-
-<a
-  class="button"
-  href="/generator/"
->
-
-OPEN ART GENERATOR
-
-</a>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     FLIP GAME
-     ===================================================== -->
-
-<section>
-
-<div class="container">
-
-
-<div class="section-head">
-
-
-<div class="section-label">
-
 FUTURE ONCHAIN GAME
-
 </div>
-
 
 <h2>
 
 BASED MOER
 
 <span class="blue">
-
 FLIP GAME.
-
 </span>
 
 </h2>
-
 
 <p class="section-description">
 
 The Based Moer Flip Game
 is being prepared
 as a future pixel-first experience
-for Base.
+on Base.
 
 </p>
 
-
 </div>
-
 
 <div class="card flip-coming">
 
-
 <div class="flip-visual">
 
-
-<span class="soon-badge">
-
+<div class="soon-badge">
 COMING SOON
-
-</span>
-
+</div>
 
 <img
   class="pixel"
@@ -3094,36 +1119,24 @@ COMING SOON
   alt="Based Moer animated token"
 >
 
-
 </div>
-
 
 <div class="flip-copy">
 
-
 <h3>
-
-BASED MOER
-FLIP GAME
-
+BASED MOER FLIP GAME
 </h3>
-
 
 <p>
 
 The real game will receive
-its own page
-after the smart contract,
+its own page after
+the contract,
 testing
 and product layer
 are ready.
 
-Until then,
-the website shows
-its development status only.
-
 </p>
-
 
 <button class="button disabled">
 
@@ -3131,585 +1144,58 @@ COMING SOON
 
 </button>
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
 </section>
 
-
-<!-- =====================================================
-     EXPLORE
-     ===================================================== -->
-
-<section id="explore">
-
-<div class="container">
-
-
-<div class="section-head">
-
-
-<div class="section-label">
-
-EXPLORE BASED MOER
-
-</div>
-
-
-<h2>
-
-FOLLOW THE
-
-<span class="blue">
-
-RABBIT HOLE.
-
-</span>
-
-</h2>
-
-
-<p class="section-description">
-
-Explore Based Moer through
-project documentation,
-videos,
-artwork
-and community channels.
-
-</p>
-
-
-</div>
-
-
-<div class="explore-layout">
-
-
-<div class="explore-links">
-
-
-<a
-  class="link-card"
-  href="https://www.youtube.com/@BasedMoer"
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-<strong>
-
-YOUTUBE ↗
-
-</strong>
-
-<span>
-
-Watch Based Moer animations,
-videos
-and visual experiments.
-
-</span>
-
-</a>
-
-
-<a
-  class="link-card"
-  href="https://basedmoer.gitbook.io/based-moer"
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-<strong>
-
-PROJECT DOCS ↗
-
-</strong>
-
-<span>
-
-Read Moerverse,
-Moe AI
-and ecosystem documentation.
-
-</span>
-
-</a>
-
-
-<a
-  class="link-card"
-  href="https://x.com/basedmoer"
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-<strong>
-
-X ↗
-
-</strong>
-
-<span>
-
-Follow artwork,
-development
-and project updates.
-
-</span>
-
-</a>
-
-
-<a
-  class="link-card"
-  href="https://discord.gg/B6Pu9fARTX"
-  target="_blank"
-  rel="noopener noreferrer"
->
-
-<strong>
-
-DISCORD ↗
-
-</strong>
-
-<span>
-
-Join the Based Moer community
-and discussions.
-
-</span>
-
-</a>
-
-
-</div>
-
-
-<div class="explore-art">
-
-
-<img
-  class="pixel"
-  src="/assets/art-preview.gif"
-  alt="Based Moer animated pixel art preview"
->
-
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     TECHNOLOGY
-     ===================================================== -->
+<!-- CREATOR -->
 
 <section>
 
 <div class="container">
 
-
 <div class="section-head">
 
-
 <div class="section-label">
-
-BUILT WITH
-
+CREATOR
 </div>
-
 
 <h2>
 
-CREATIVE TECH.
+THE ARTIST BEHIND
 
 <span class="blue">
-
-REAL INFRASTRUCTURE.
-
+BASED MOER.
 </span>
 
 </h2>
 
-
-<p class="section-description">
-
-Based Moer combines pixel art,
-web development,
-market-data infrastructure,
-AI systems
-and onchain technology.
-
-These are tools and technologies used by the project.
-Their inclusion does not imply partnership or endorsement.
-
-</p>
-
-
 </div>
-
-
-<div class="tech-grid">
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-BASE
-
-</div>
-
-
-<strong>
-
-Onchain Ecosystem
-
-</strong>
-
-
-<p>
-
-Blockchain home for
-future contracts,
-collectibles
-and onchain experiences.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-VERCEL
-
-</div>
-
-
-<strong>
-
-Web Deployment
-
-</strong>
-
-
-<p>
-
-Website deployment,
-serverless API routing
-and production hosting.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-RAILWAY
-
-</div>
-
-
-<strong>
-
-Moe AI Backend
-
-</strong>
-
-
-<p>
-
-Runs backend infrastructure
-and Moe AI services.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-SUPABASE
-
-</div>
-
-
-<strong>
-
-Database
-
-</strong>
-
-
-<p>
-
-Stores operational
-Moe AI signal history
-and application data.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-GITHUB
-
-</div>
-
-
-<strong>
-
-Source & Deployment
-
-</strong>
-
-
-<p>
-
-Version control
-and deployment workflow
-for Based Moer products.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-FASTAPI
-
-</div>
-
-
-<strong>
-
-Moe AI API
-
-</strong>
-
-
-<p>
-
-API framework connecting
-scanner data,
-interfaces
-and future systems.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-POSTGRESQL
-
-</div>
-
-
-<strong>
-
-Structured Data
-
-</strong>
-
-
-<p>
-
-Database technology
-used through the
-Supabase infrastructure.
-
-</p>
-
-
-</div>
-
-
-<div class="tech-card">
-
-
-<div class="tech-mark">
-
-DISCORD
-
-</div>
-
-
-<strong>
-
-Signal Distribution
-
-</strong>
-
-
-<p>
-
-Webhook-based signal delivery
-and community communication.
-
-</p>
-
-
-</div>
-
-
-</div>
-
-
-<div class="language-row">
-
-
-<span class="language-badge">
-
-HTML5
-
-</span>
-
-
-<span class="language-badge">
-
-CSS3
-
-</span>
-
-
-<span class="language-badge">
-
-JavaScript
-
-</span>
-
-
-<span class="language-badge">
-
-Python
-
-</span>
-
-
-<span class="language-badge">
-
-SQL
-
-</span>
-
-
-<span class="language-badge">
-
-REST API
-
-</span>
-
-
-<span class="language-badge">
-
-JSON
-
-</span>
-
-
-<span class="language-badge">
-
-Vercel Serverless Functions
-
-</span>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<!-- =====================================================
-     CREATOR
-     ===================================================== -->
-
-<section>
-
-<div class="container">
-
 
 <div class="card founder-card">
 
-
 <img
   src="/assets/moe-founder.png"
-  alt="Moe, founder and pixel storyteller behind Based Moer"
+  alt="Moe, founder of Based Moer"
 >
-
 
 <div>
 
-
-<div class="section-label">
-
-CREATOR
-
-</div>
-
-
 <h3>
 
-— Moe,
-founder & pixel storyteller
+— Moe, founder & pixel storyteller
 
 </h3>
 
-
-<p
-  class="section-description"
-  style="
-    margin-left:0;
-    margin-right:0
-  "
+<p class="section-description"
+   style="
+     margin-left:0;
+     margin-right:0
+   "
 >
 
 Based Moer started with pixel art.
@@ -3725,241 +1211,451 @@ and creator-built technology.
 
 </p>
 
-
 </div>
 
-
 </div>
-
 
 </div>
 
 </section>
 
+<!-- BUILT WITH -->
 
-</main>
-
-
-<!-- =====================================================
-     GLOBAL FOOTER
-     ===================================================== -->
-
-<footer class="site-footer">
+<section>
 
 <div class="container">
 
+<div class="section-head">
 
-<div class="footer-grid">
+<div class="section-label">
+BUILT WITH
+</div>
 
+<h2>
 
-<div>
+CREATIVE TECH.
 
+<span class="blue">
+REAL INFRASTRUCTURE.
+</span>
 
-<div class="footer-brand">
+</h2>
 
+</div>
+
+<div class="tech-grid">
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
 
 <img
-  src="/assets/based-moer-logo.jpg"
-  alt="Based Moer"
+  src="https://raw.githubusercontent.com/base/brand-kit/main/logo/TheSquare/Digital/Base_square_blue.svg"
+  alt="Base"
 >
 
+</div>
 
 <strong>
-
-BASED MOER
-
+Base
 </strong>
 
-
 </div>
 
+<div class="tech-item">
 
-<div class="footer-copy">
+<div class="tech-logo-wrap">
 
-Pixel-first • Built on Base
-
-<br><br>
-
-Original pixel art,
-Moe AI market intelligence,
-education
-and creator-built onchain experiences.
-
-</div>
-
-
-</div>
-
-
-<div class="footer-column">
-
-
-<h4>
-
-Explore
-
-</h4>
-
-
-<a href="/moerverse/">
-
-Moerverse
-
-</a>
-
-
-<a href="/live/">
-
-Live Engine
-
-</a>
-
-
-<a href="/academy/">
-
-Moe Academy
-
-</a>
-
-
-<a href="/generator/">
-
-Art Generator
-
-</a>
-
-
-</div>
-
-
-<div class="footer-column">
-
-
-<h4>
-
-Community
-
-</h4>
-
-
-<a
-  href="https://x.com/basedmoer"
-  target="_blank"
-  rel="noopener noreferrer"
+<img
+  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+  alt="JavaScript"
 >
 
-X
+</div>
 
-</a>
+<strong>
+JavaScript
+</strong>
 
+</div>
 
-<a
-  href="https://discord.gg/B6Pu9fARTX"
-  target="_blank"
-  rel="noopener noreferrer"
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+  alt="CSS3"
 >
 
-Discord
+</div>
 
-</a>
+<strong>
+CSS3
+</strong>
 
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+  alt="Python"
+>
+
+</div>
+
+<strong>
+Python
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<svg
+  viewBox="0 0 64 64"
+  aria-label="SQL"
+>
+
+<ellipse
+  cx="32"
+  cy="15"
+  rx="22"
+  ry="9"
+  fill="#4a7dff"
+/>
+
+<path
+  d="M10 15v30c0 5 10 9 22 9s22-4 22-9V15"
+  fill="none"
+  stroke="#8eacff"
+  stroke-width="5"
+/>
+
+<path
+  d="M10 29c0 5 10 9 22 9s22-4 22-9"
+  fill="none"
+  stroke="#8eacff"
+  stroke-width="4"
+/>
+
+</svg>
+
+</div>
+
+<strong>
+SQL
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<svg
+  viewBox="0 0 64 64"
+  aria-label="REST API"
+>
+
+<rect
+  x="6"
+  y="12"
+  width="52"
+  height="40"
+  rx="9"
+  fill="#121926"
+  stroke="#6e95ff"
+  stroke-width="4"
+/>
+
+<text
+  x="32"
+  y="38"
+  text-anchor="middle"
+  fill="#ffffff"
+  font-size="15"
+  font-family="Arial"
+  font-weight="700"
+>
+API
+</text>
+
+</svg>
+
+</div>
+
+<strong>
+REST API
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg"
+  alt="PostgreSQL"
+>
+
+</div>
+
+<strong>
+PostgreSQL
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.simpleicons.org/fastapi/009688"
+  alt="FastAPI"
+>
+
+</div>
+
+<strong>
+FastAPI
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.simpleicons.org/github/FFFFFF"
+  alt="GitHub"
+>
+
+</div>
+
+<strong>
+GitHub
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.simpleicons.org/supabase/3FCF8E"
+  alt="Supabase"
+>
+
+</div>
+
+<strong>
+Supabase
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.simpleicons.org/railway/FFFFFF"
+  alt="Railway"
+>
+
+</div>
+
+<strong>
+Railway
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.simpleicons.org/vercel/FFFFFF"
+  alt="Vercel"
+>
+
+</div>
+
+<strong>
+Vercel
+</strong>
+
+</div>
+
+<div class="tech-item">
+
+<div class="tech-logo-wrap">
+
+<img
+  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+  alt="HTML5"
+>
+
+</div>
+
+<strong>
+HTML5
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- EXPLORE -->
+
+<section id="explore">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-label">
+EXPLORE BASED MOER
+</div>
+
+<h2>
+
+FOLLOW THE
+
+<span class="blue">
+RABBIT HOLE.
+</span>
+
+</h2>
+
+<p class="section-description">
+
+Explore Based Moer through
+project documentation,
+videos,
+artwork
+and community channels.
+
+</p>
+
+</div>
+
+<div class="explore-layout">
+
+<div class="explore-links">
 
 <a
+  class="link-card"
   href="https://www.youtube.com/@BasedMoer"
   target="_blank"
   rel="noopener noreferrer"
 >
 
-YouTube
+<strong>
+YOUTUBE ↗
+</strong>
+
+<span>
+Watch animations,
+videos
+and visual experiments.
+</span>
 
 </a>
 
-
 <a
+  class="link-card"
   href="https://basedmoer.gitbook.io/based-moer"
   target="_blank"
   rel="noopener noreferrer"
 >
 
-Docs
+<strong>
+PROJECT DOCS ↗
+</strong>
+
+<span>
+Read Moerverse,
+Moe AI
+and ecosystem documentation.
+</span>
 
 </a>
 
+<a
+  class="link-card"
+  href="https://x.com/basedmoer"
+  target="_blank"
+  rel="noopener noreferrer"
+>
 
-</div>
-
-
-</div>
-
-
-<div class="footer-bottom">
-
+<strong>
+X ↗
+</strong>
 
 <span>
-
-© 2026 Based Moer.
-Stay Based.
-
+Follow artwork,
+development
+and project updates.
 </span>
 
+</a>
 
-<div class="footer-disclaimer">
+<a
+  class="link-card"
+  href="https://discord.gg/B6Pu9fARTX"
+  target="_blank"
+  rel="noopener noreferrer"
+>
 
-Based Moer is an independent creator project.
+<strong>
+DISCORD ↗
+</strong>
 
-Moe AI and Moe Academy provide experimental
-market-analysis
-and educational information only.
+<span>
+Join the Based Moer community.
+</span>
 
-Nothing on BasedMoer.com constitutes financial,
-investment
-or trading advice.
+</a>
 
 </div>
 
+<div class="explore-art">
+
+<img
+  class="pixel"
+  src="/assets/art-preview.gif"
+  alt="Based Moer animated artwork"
+>
 
 </div>
 
+</div>
 
 </div>
 
-</footer>
+</section>
 
+</main>
 
-<script>
+<div id="globalFooter"></div>
 
-const mobileToggle =
-  document.getElementById(
-    "mobileToggle"
-  );
-
-const mobileMenu =
-  document.getElementById(
-    "mobileMenu"
-  );
-
-mobileToggle.addEventListener(
-  "click",
-  () => {
-
-    mobileMenu.classList.toggle(
-      "open"
-    );
-
-    mobileToggle.textContent =
-      mobileMenu.classList.contains(
-        "open"
-      )
-      ?
-      "✕"
-      :
-      "☰";
-
-  }
-);
-
-</script>
-
+<script src="/shared.js"></script>
 
 </body>
 
