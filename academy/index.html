@@ -16,7 +16,12 @@ Moe Academy | Learn Market Structure & Moe AI
 
 <meta
   name="description"
-  content="Learn market structure, Break of Structure, Fibonacci retracements, risk management and how Moe AI works through the free Based Moer Academy."
+  content="Learn market structure, swing highs and lows, Break of Structure, Fibonacci retracements, risk management, signal freshness and the core logic behind Moe AI through Based Moer Academy."
+>
+
+<meta
+  name="robots"
+  content="index, follow, max-image-preview:large"
 >
 
 <link
@@ -29,72 +34,150 @@ Moe Academy | Learn Market Structure & Moe AI
   content="#070910"
 >
 
+<meta
+  property="og:type"
+  content="website"
+>
+
+<meta
+  property="og:title"
+  content="Moe Academy | Based Moer"
+>
+
+<meta
+  property="og:description"
+  content="A structured learning course for understanding the concepts behind Moe AI."
+>
+
+<meta
+  property="og:url"
+  content="https://basedmoer.com/academy/"
+>
+
+<meta
+  property="og:image"
+  content="https://basedmoer.com/assets/moerverse-preview.png"
+>
+
 <style>
 
 :root {
+
   --base:#0052ff;
+  --base-light:#3976ff;
+
   --black:#070910;
+
   --panel:#10131d;
+  --panel2:#151925;
+
   --border:#282f42;
+
   --white:#f8f9ff;
   --muted:#9da7c3;
+
   --green:#68f49b;
   --red:#ff7182;
+
+  --shadow:
+    0 25px 70px
+    rgba(
+      0,
+      0,
+      0,
+      .40
+    );
+
 }
 
 * {
+
   box-sizing:border-box;
+
 }
 
 html {
+
   scroll-behavior:smooth;
+
 }
 
 body {
+
   margin:0;
-  background:
-    radial-gradient(
-      circle at top,
-      rgba(0,82,255,.20),
-      transparent 35rem
-    ),
-    #070910;
 
   color:var(--white);
+
+  background:
+
+    radial-gradient(
+      circle at top,
+      rgba(
+        0,
+        82,
+        255,
+        .20
+      ),
+      transparent 35rem
+    ),
+
+    #070910;
 
   font-family:
     Inter,
     Arial,
     Helvetica,
     sans-serif;
+
 }
 
 a {
+
   color:inherit;
+
   text-decoration:none;
+
 }
 
 button {
+
   font:inherit;
+
 }
 
 img,
 svg {
-  max-width:100%;
+
   display:block;
+
+  max-width:100%;
+
 }
 
 .container {
+
   width:min(
     1180px,
-    calc(100% - 30px)
+    calc(
+      100% - 30px
+    )
   );
+
   margin:auto;
+
 }
 
+
+/* ======================================================
+   HEADER
+   ====================================================== */
+
 .header {
+
   position:sticky;
+
   top:0;
+
   z-index:1000;
 
   background:
@@ -102,308 +185,615 @@ svg {
       7,
       9,
       16,
-      .88
+      .90
     );
 
-  backdrop-filter:blur(18px);
+  backdrop-filter:
+    blur(18px);
 
   border-bottom:
     1px solid
-    rgba(255,255,255,.07);
+    rgba(
+      255,
+      255,
+      255,
+      .07
+    );
+
 }
 
 .header-inner {
+
   min-height:76px;
+
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
+
   gap:20px;
+
 }
 
 .brand {
+
   display:flex;
+
   align-items:center;
+
   gap:12px;
+
   font-weight:900;
+
   letter-spacing:.08em;
+
 }
 
 .brand img {
+
   width:52px;
+
   height:52px;
+
   object-fit:cover;
+
   border-radius:12px;
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .12
+    );
+
 }
 
 .nav {
+
   display:flex;
-  gap:18px;
+
   align-items:center;
-  font-size:13px;
-  font-weight:800;
+
+  gap:18px;
+
   color:#c8cee3;
+
+  font-size:13px;
+
+  font-weight:800;
+
+}
+
+.nav a {
+
+  transition:
+    color .18s ease;
+
 }
 
 .nav a:hover {
+
   color:#fff;
+
 }
 
 .button {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
 
-  padding:12px 18px;
+  display:inline-flex;
+
+  align-items:center;
+
+  justify-content:center;
 
   min-height:46px;
 
+  padding:
+    12px 18px;
+
   border:0;
+
   border-radius:13px;
 
   background:var(--base);
-  color:white;
+
+  color:#fff;
 
   font-weight:900;
 
   cursor:pointer;
+
+  transition:
+    transform .18s ease,
+    background .18s ease;
+
+}
+
+.button:hover {
+
+  transform:
+    translateY(-2px);
+
+  background:
+    var(--base-light);
+
 }
 
 .button.secondary {
+
   background:#151925;
-  border:1px solid #30374c;
+
+  border:
+    1px solid
+    #30374c;
+
 }
 
+
+/* ======================================================
+   HERO
+   ====================================================== */
+
 .hero {
-  padding:90px 0 75px;
+
+  padding:
+    90px 0 70px;
+
   text-align:center;
+
 }
 
 .hero-tag {
+
   color:#8faeff;
+
   font-size:12px;
+
   font-weight:900;
+
   letter-spacing:.15em;
+
   text-transform:uppercase;
+
 }
 
 .hero h1 {
-  margin:15px 0 22px;
-  font-size:clamp(50px,8vw,90px);
+
+  margin:
+    15px 0 22px;
+
+  font-size:
+    clamp(
+      50px,
+      8vw,
+      90px
+    );
+
   line-height:.90;
+
   letter-spacing:-.06em;
+
+}
+
+.blue {
+
+  color:var(--base);
+
 }
 
 .hero p {
-  max-width:760px;
+
+  max-width:790px;
+
   margin:auto;
+
   color:#aeb7d0;
+
   font-size:18px;
+
   line-height:1.8;
+
 }
 
 .logo-block {
-  max-width:720px;
-  margin:35px auto 0;
+
+  max-width:760px;
+
+  margin:
+    35px auto 0;
 
   padding:18px;
 
   display:grid;
-  grid-template-columns:auto 1fr;
+
+  grid-template-columns:
+    auto 1fr;
+
   gap:18px;
+
   align-items:center;
 
   text-align:left;
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
+
   border-radius:18px;
 
   background:#10131d;
+
 }
 
 .logo-block img {
+
   width:72px;
+
   height:72px;
+
   object-fit:cover;
+
   border-radius:14px;
+
+}
+
+.logo-block strong {
+
+  display:block;
+
+  margin-bottom:5px;
+
 }
 
 .logo-block span {
+
   color:#919bb8;
+
   font-size:14px;
+
   line-height:1.6;
+
 }
 
+
+/* ======================================================
+   PROGRESS
+   ====================================================== */
+
 .progress-wrap {
+
   max-width:700px;
-  margin:35px auto 0;
+
+  margin:
+    35px auto 0;
+
 }
 
 .progress-label {
+
   display:flex;
+
   justify-content:space-between;
+
   gap:10px;
+
   color:#919bb8;
+
   font-size:13px;
+
 }
 
 .progress-track {
+
   height:10px;
+
   margin-top:10px;
+
   overflow:hidden;
+
   border-radius:999px;
+
   background:#161925;
+
 }
 
 .progress {
+
   width:0%;
+
   height:100%;
+
   background:var(--base);
+
+  transition:
+    width .3s ease;
+
+}
+
+
+/* ======================================================
+   COURSE
+   ====================================================== */
+
+.course-section {
+
+  padding-bottom:100px;
+
 }
 
 .course-layout {
+
   display:grid;
-  grid-template-columns:310px 1fr;
+
+  grid-template-columns:
+    310px 1fr;
+
   gap:22px;
+
   align-items:start;
-  padding-bottom:100px;
+
 }
 
 .sidebar {
+
   position:sticky;
+
   top:95px;
+
   display:grid;
+
   gap:9px;
+
 }
 
 .lesson-button {
+
   width:100%;
+
   padding:14px;
 
   text-align:left;
 
-  border:1px solid #292f41;
+  border:
+    1px solid
+    #292f41;
+
   border-radius:13px;
 
   background:#10121a;
+
   color:#d8ddef;
 
   cursor:pointer;
+
+  transition:
+    border .18s ease,
+    background .18s ease;
+
+}
+
+.lesson-button:hover {
+
+  border-color:#46506d;
+
 }
 
 .lesson-button.active {
+
   border-color:var(--base);
-  box-shadow:0 0 0 2px rgba(0,82,255,.12);
+
+  background:
+    rgba(
+      0,
+      82,
+      255,
+      .08
+    );
+
+  box-shadow:
+    0 0 0 2px
+    rgba(
+      0,
+      82,
+      255,
+      .12
+    );
+
 }
 
 .lesson-button.done::after {
+
   content:"✓";
+
   float:right;
+
   color:var(--green);
+
   font-weight:1000;
+
 }
 
 .lesson-button small {
+
   display:block;
+
   margin-top:4px;
+
   color:#747e9e;
+
 }
 
 .lesson {
+
   padding:38px;
 
-  border:1px solid var(--border);
+  border:
+    1px solid
+    var(--border);
+
   border-radius:22px;
 
   background:
+
     linear-gradient(
       145deg,
       #11141e,
       #0d0f17
     );
+
+  box-shadow:
+    var(--shadow);
+
 }
 
 .lesson-brand {
+
   display:flex;
+
   align-items:center;
+
   gap:14px;
 
   margin-bottom:25px;
+
   padding-bottom:20px;
 
-  border-bottom:1px solid #282f42;
+  border-bottom:
+    1px solid
+    #282f42;
+
 }
 
 .lesson-brand img {
+
   width:64px;
+
   height:64px;
+
   object-fit:cover;
+
   border-radius:13px;
+
 }
 
 .lesson-brand span {
+
   color:#7e89a8;
+
   font-size:12px;
+
   font-weight:900;
+
   letter-spacing:.08em;
+
   text-transform:uppercase;
+
 }
 
 .lesson h2 {
-  margin:0 0 18px;
+
+  margin:
+    0 0 18px;
+
   font-size:40px;
+
   letter-spacing:-.04em;
+
 }
 
 .lesson h3 {
-  margin:30px 0 10px;
+
+  margin:
+    30px 0 10px;
+
   font-size:21px;
+
 }
 
 .lesson p {
+
   color:#b5bdd2;
+
   line-height:1.86;
+
 }
 
 .note {
-  margin:24px 0;
+
+  margin:
+    24px 0;
+
   padding:17px;
 
-  border-left:4px solid var(--base);
-  border-radius:0 12px 12px 0;
+  border-left:
+    4px solid
+    var(--base);
 
-  background:rgba(0,82,255,.08);
+  border-radius:
+    0 12px 12px 0;
+
+  background:
+    rgba(
+      0,
+      82,
+      255,
+      .08
+    );
 
   color:#c7cde0;
+
   line-height:1.7;
+
 }
 
+
+/* ======================================================
+   GRAPHICS
+   ====================================================== */
+
 .graphic {
+
   position:relative;
 
   min-height:320px;
 
-  margin:25px 0 35px;
+  margin:
+    25px 0 35px;
 
   overflow:hidden;
 
-  border:1px solid #2b3450;
+  border:
+    1px solid
+    #2b3450;
+
   border-radius:20px;
 
   background:#080b14;
+
 }
 
 .graphic svg {
+
   width:100%;
+
   height:320px;
+
 }
 
 .graphic-logo {
+
   position:absolute;
+
   z-index:5;
+
   top:15px;
+
   left:15px;
 
   width:50px;
+
   height:50px;
 
   padding:4px;
@@ -414,80 +804,163 @@ svg {
 
   background:#070910;
 
-  border:1px solid rgba(255,255,255,.15);
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .15
+    );
+
 }
 
 .graphic-label {
+
   position:absolute;
+
   z-index:5;
+
   top:28px;
+
   left:80px;
+
   color:#dce2f6;
+
   font-size:11px;
+
   font-weight:900;
+
   letter-spacing:.10em;
+
   text-transform:uppercase;
+
 }
 
+
+/* ======================================================
+   QUIZ
+   ====================================================== */
+
 .quiz {
+
   margin-top:35px;
+
   padding-top:28px;
-  border-top:1px solid #293044;
+
+  border-top:
+    1px solid
+    #293044;
+
 }
 
 .question {
-  margin:24px 0;
+
+  margin:
+    24px 0;
+
 }
 
 .question strong {
+
   display:block;
+
   margin-bottom:10px;
+
 }
 
 .question label {
+
   display:block;
 
-  margin:8px 0;
+  margin:
+    8px 0;
+
   padding:12px;
 
-  border:1px solid #252b3c;
+  border:
+    1px solid
+    #252b3c;
+
   border-radius:10px;
 
   background:#0d0f17;
 
   cursor:pointer;
+
+  transition:
+    border .18s ease;
+
+}
+
+.question label:hover {
+
+  border-color:#3d4866;
+
 }
 
 .question input {
+
   margin-right:9px;
+
 }
 
 .result {
+
   margin-top:16px;
+
   font-weight:900;
+
 }
 
+
+/* ======================================================
+   FOOTER
+   ====================================================== */
+
 footer {
-  padding:38px 0;
-  text-align:center;
-  border-top:1px solid #22283a;
+
+  padding:
+    38px 0;
+
+  border-top:
+    1px solid
+    #22283a;
+
   color:#707a96;
+
+  text-align:center;
+
   font-size:13px;
+
 }
+
+
+/* ======================================================
+   MOBILE
+   ====================================================== */
 
 @media(max-width:900px) {
 
   .nav {
+
     display:none;
+
   }
 
   .course-layout {
+
     grid-template-columns:1fr;
+
   }
 
   .sidebar {
+
     position:static;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+      1fr 1fr;
+
   }
 
 }
@@ -495,32 +968,59 @@ footer {
 @media(max-width:600px) {
 
   .hero {
+
     padding-top:55px;
+
   }
 
   .hero h1 {
+
     font-size:52px;
+
   }
 
   .logo-block {
+
     grid-template-columns:1fr;
+
     text-align:center;
+
   }
 
   .logo-block img {
+
     margin:auto;
+
   }
 
   .sidebar {
+
     grid-template-columns:1fr;
+
   }
 
   .lesson {
+
     padding:22px;
+
   }
 
   .lesson h2 {
+
     font-size:34px;
+
+  }
+
+  .graphic {
+
+    min-height:260px;
+
+  }
+
+  .graphic svg {
+
+    height:260px;
+
   }
 
 }
@@ -529,11 +1029,14 @@ footer {
 
 </head>
 
+
 <body>
+
 
 <header class="header">
 
 <div class="container header-inner">
+
 
 <a
   class="brand"
@@ -551,25 +1054,31 @@ BASED MOER
 
 </a>
 
+
 <nav class="nav">
 
 <a href="/">
 Home
 </a>
 
-<a href="/#moe-ai">
-Moe AI
-</a>
-
 <a href="/generator/">
 Generator
 </a>
 
-<a href="/#flip-game">
-Flip Game
+<a href="/live/">
+Live
+</a>
+
+<a href="/moerverse/">
+Moerverse
+</a>
+
+<a href="/#explore">
+Explore
 </a>
 
 </nav>
+
 
 <a
   class="button secondary"
@@ -580,15 +1089,19 @@ BACK HOME
 
 </a>
 
+
 </div>
 
 </header>
 
+
 <main>
+
 
 <section class="hero">
 
 <div class="container">
+
 
 <div class="hero-tag">
 
@@ -596,61 +1109,94 @@ BASED MOER EDUCATION
 
 </div>
 
+
 <h1>
 
 MOE
-<span style="color:#0052ff">
+
+<span class="blue">
 ACADEMY.
 </span>
 
 </h1>
 
+
 <p>
 
-A free educational course
-for understanding market structure
-and the core concepts behind Moe AI.
+A structured educational course for understanding
+the market structure concepts
+used around Moe AI.
 
-Study each chapter,
-read the charts,
-take the exam
-and build a complete understanding
-of how the scanner evaluates market setups.
+Learn how swing highs and lows,
+Break of Structure,
+breakout legs,
+Fibonacci retracements,
+entry zones,
+risk,
+signal freshness
+and Moe AI infrastructure
+fit together.
 
 </p>
 
+
 <div class="logo-block">
+
 
 <img
   src="/assets/based-moer-logo.jpg"
   alt="Based Moer Academy"
 >
 
+
+<div>
+
+<strong>
+BASED MOER ACADEMY
+</strong>
+
 <span>
 
-Every chart and educational graphic on this course
-is created specifically for Based Moer Academy.
+Every lesson is designed around the actual
+Moe AI framework.
 
-Educational information only.
-Nothing in this course is financial advice.
+The charts are educational examples,
+not live trade recommendations.
+
+Nothing in Moe Academy constitutes financial,
+investment
+or trading advice.
 
 </span>
 
 </div>
+
+
+</div>
+
 
 <div class="progress-wrap">
 
+
 <div class="progress-label">
 
+
 <strong id="progressText">
+
 0 / 10 COMPLETE
+
 </strong>
 
+
 <span id="progressPercent">
+
 0%
+
 </span>
 
+
 </div>
+
 
 <div class="progress-track">
 
@@ -661,31 +1207,39 @@ Nothing in this course is financial advice.
 
 </div>
 
+
 </div>
+
 
 </div>
 
 </section>
 
-<section>
+
+<section class="course-section">
 
 <div class="container course-layout">
+
 
 <div
   class="sidebar"
   id="lessonList"
 ></div>
 
+
 <article
   class="lesson"
   id="lessonView"
 ></article>
 
+
 </div>
 
 </section>
 
+
 </main>
+
 
 <footer>
 
@@ -693,722 +1247,1280 @@ Based Moer Academy • Educational content only • Stay Based.
 
 </footer>
 
+
 <script>
 
 const lessons = [
+
 
 {
   id:"structure",
   title:"Market Structure",
   time:"10 min",
   graphic:"structure",
+
   body:`
+
     <p>
-    Market structure is the foundation of the current Moe AI scanner.
-    Instead of treating every candle as an isolated event,
-    structure studies the relationship between meaningful highs and lows.
+
+    Market structure is the foundation
+    of the current Moe AI scanner.
+
+    Instead of treating every candle
+    as an isolated event,
+    structure studies the relationship
+    between meaningful highs
+    and meaningful lows.
+
     </p>
 
-    <h3>Higher Highs and Higher Lows</h3>
+    <h3>
+    Higher Highs and Higher Lows
+    </h3>
+
     <p>
-    Bullish structure generally forms when important swing highs continue
-    moving higher while meaningful pullbacks form higher lows.
-    The sequence matters more than the color of one candle.
+
+    Bullish structure generally forms
+    when important swing highs
+    continue moving higher
+    while meaningful pullbacks
+    form higher lows.
+
+    The sequence matters more
+    than the color of one candle.
+
     </p>
 
-    <h3>Lower Highs and Lower Lows</h3>
+    <h3>
+    Lower Highs and Lower Lows
+    </h3>
+
     <p>
-    Bearish structure generally produces lower lows while rebounds fail
-    beneath previous meaningful highs.
-    This describes the current sequence rather than guaranteeing the next move.
+
+    Bearish structure generally produces
+    lower lows
+    while rebounds fail beneath
+    previous meaningful highs.
+
+    This describes the current sequence
+    rather than guaranteeing
+    the next market move.
+
     </p>
 
-    <h3>Why Moe AI Uses Structure</h3>
+    <h3>
+    Why Moe AI Uses Structure
+    </h3>
+
     <p>
-    A systematic scanner needs rules that can be applied repeatedly.
-    Market structure provides the framework from which later components
-    such as Break of Structure, breakout legs and retracement zones are measured.
+
+    A systematic scanner needs rules
+    that can be applied repeatedly.
+
+    Market structure provides the framework
+    from which later components
+    such as Break of Structure,
+    breakout legs
+    and retracement zones
+    are measured.
+
     </p>
 
     <div class="note">
-    Moe AI currently evaluates its core setup logic on the 4H timeframe.
+
+    Moe AI currently evaluates
+    its core setup logic
+    on the 4H timeframe.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"Which sequence best describes bullish structure?",
+      q:
+      "Which sequence best describes bullish structure?",
+
       a:[
         "Higher highs and higher lows",
         "Lower highs and lower lows",
         "Random candle colors"
       ],
+
       c:0
     },
+
     {
-      q:"Does one green candle create bullish structure?",
+      q:
+      "Does one green candle create bullish structure?",
+
       a:[
         "Yes",
         "No",
         "Always on Base"
       ],
+
       c:1
     },
+
     {
-      q:"What is structure used for?",
+      q:
+      "What is structure used for?",
+
       a:[
         "A repeatable way to describe price behaviour",
         "Guaranteed prediction",
         "Selecting maximum leverage"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"swings",
   title:"Swing Highs & Lows",
   time:"10 min",
   graphic:"swings",
+
   body:`
+
     <p>
-    Swing highs and swing lows are meaningful turning points.
-    They become reference levels used to describe the structure of the market.
+
+    Swing highs and swing lows
+    are meaningful turning points.
+
+    They become reference levels
+    used to describe
+    the structure of the market.
+
     </p>
 
-    <h3>Swing High</h3>
+    <h3>
+    Swing High
+    </h3>
+
     <p>
-    A swing high is a meaningful peak where price rises,
-    turns and begins moving lower.
-    Every tiny fluctuation should not automatically become a structural swing.
+
+    A swing high is a meaningful peak
+    where price rises,
+    turns
+    and begins moving lower.
+
+    Every tiny fluctuation
+    should not automatically become
+    a structural swing.
+
     </p>
 
-    <h3>Swing Low</h3>
+    <h3>
+    Swing Low
+    </h3>
+
     <p>
-    A swing low is a meaningful trough where price moves lower,
-    turns and begins moving higher.
+
+    A swing low is a meaningful trough
+    where price moves lower,
+    turns
+    and begins moving higher.
+
     </p>
 
-    <h3>Filtering Noise</h3>
+    <h3>
+    Filtering Noise
+    </h3>
+
     <p>
-    Crypto markets contain constant small movements.
-    Consistent structural rules prevent every minor fluctuation
-    from being treated as an important signal.
+
+    Crypto markets contain constant
+    small movements.
+
+    Consistent structural rules
+    prevent every minor fluctuation
+    from being treated
+    as an important signal.
+
     </p>
 
     <div class="note">
+
     Once a meaningful swing is identified,
-    that level can become the reference for a later structural break.
+    that level can become
+    the reference
+    for a later structural break.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What is a swing high?",
+      q:
+      "What is a swing high?",
+
       a:[
         "A meaningful price peak",
         "Every green candle",
         "A guaranteed short"
       ],
+
       c:0
     },
+
     {
-      q:"Why filter minor fluctuations?",
+      q:
+      "Why filter minor fluctuations?",
+
       a:[
         "To reduce structural noise",
         "To increase gas fees",
         "To change leverage"
       ],
+
       c:0
     },
+
     {
-      q:"What can a swing become?",
+      q:
+      "What can a swing become?",
+
       a:[
         "A structural reference",
         "A guaranteed target",
         "A wallet"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"bos",
   title:"Break of Structure",
   time:"11 min",
   graphic:"bos",
+
   body:`
+
     <p>
-    A Break of Structure, or BOS,
-    happens when price trades beyond a meaningful previous structural level.
+
+    A Break of Structure,
+    or BOS,
+    happens when price trades beyond
+    a meaningful previous structural level.
+
     </p>
 
-    <h3>Why the Previous Level Matters</h3>
+    <h3>
+    Why the Previous Level Matters
+    </h3>
+
     <p>
-    Breaking an arbitrary price is not enough.
-    The level is meaningful because it previously represented
-    an important swing high or swing low.
+
+    Breaking an arbitrary price
+    is not enough.
+
+    The level is meaningful
+    because it previously represented
+    an important swing high
+    or swing low.
+
     </p>
 
-    <h3>Bullish BOS</h3>
+    <h3>
+    Bullish BOS
+    </h3>
+
     <p>
-    Breaking above an important previous high can confirm
-    continued bullish structural strength.
+
+    Breaking above
+    an important previous high
+    can confirm continued
+    bullish structural strength.
+
     </p>
 
-    <h3>Bearish BOS</h3>
+    <h3>
+    Bearish BOS
+    </h3>
+
     <p>
-    Breaking beneath an important previous low can provide
-    the equivalent bearish structural event.
+
+    Breaking beneath
+    an important previous low
+    can provide the equivalent
+    bearish structural event.
+
     </p>
 
     <div class="note">
-    Moe AI searches for the latest valid Break of Structure
+
+    Moe AI searches
+    for the latest valid
+    Break of Structure
     inside its defined 4H framework.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What does BOS mean?",
+      q:
+      "What does BOS mean?",
+
       a:[
         "Break of Structure",
         "Base Order System",
         "Buy Only Signal"
       ],
+
       c:0
     },
+
     {
-      q:"Why does the broken level matter?",
+      q:
+      "Why does the broken level matter?",
+
       a:[
         "Because it represents earlier structure",
         "All prices are equal",
         "It guarantees profit"
       ],
+
       c:0
     },
+
     {
-      q:"Why should BOS rules remain consistent?",
+      q:
+      "Why should BOS rules remain consistent?",
+
       a:[
         "So signals can be compared",
         "To change results afterward",
         "To increase leverage"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"fib",
   title:"Breakout Leg & Fibonacci",
   time:"12 min",
   graphic:"fib",
+
   body:`
+
     <p>
+
     After a valid structural break,
-    the movement responsible for the break becomes the breakout leg.
+    the movement responsible
+    for the break
+    becomes the breakout leg.
+
     </p>
 
-    <h3>The Breakout Leg</h3>
+    <h3>
+    The Breakout Leg
+    </h3>
+
     <p>
-    The current Moe AI strategy measures the full breakout leg,
+
+    The current Moe AI strategy
+    measures the full breakout leg,
     including its wicks.
-    That measurement creates the reference for the entry zone,
-    stop and target.
+
+    That measurement creates
+    the reference for the entry zone,
+    stop
+    and target.
+
     </p>
 
-    <h3>Fibonacci Retracement</h3>
+    <h3>
+    Fibonacci Retracement
+    </h3>
+
     <p>
-    Fibonacci provides a consistent way to describe
-    how much of the breakout movement price has retraced.
+
+    Fibonacci provides
+    a consistent way
+    to describe how much
+    of the breakout movement
+    price has retraced.
+
     </p>
 
-    <h3>The Current Entry Zone</h3>
+    <h3>
+    The Current Entry Zone
+    </h3>
+
     <p>
-    Moe AI monitors the area between Fib 0.50 and 0.786.
-    It is a zone rather than one guaranteed reversal price.
+
+    Moe AI monitors the area
+    between Fib 0.50
+    and 0.786.
+
+    It is a zone
+    rather than one guaranteed
+    reversal price.
+
     </p>
 
     <div class="note">
+
     Fibonacci is a measurement framework.
-    It does not force markets to reverse.
+
+    It does not force markets
+    to reverse.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What does Moe AI measure?",
+      q:
+      "What does Moe AI measure?",
+
       a:[
         "The full breakout leg including wicks",
         "Only one random candle",
         "Only volume"
       ],
+
       c:0
     },
+
     {
-      q:"What is the current entry zone?",
+      q:
+      "What is the current entry zone?",
+
       a:[
         "0.50–0.786",
         "0.01–0.05",
         "2.0–3.0"
       ],
+
       c:0
     },
+
     {
-      q:"Does Fibonacci guarantee reversal?",
+      q:
+      "Does Fibonacci guarantee reversal?",
+
       a:[
         "No",
         "Yes",
         "Only on BTC"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"entry",
   title:"The Entry Zone",
   time:"9 min",
   graphic:"entry",
+
   body:`
+
     <p>
-    Moe AI does not treat every detected breakout
+
+    Moe AI does not treat
+    every detected breakout
     as an immediate market entry.
-    The strategy waits for price to interact
+
+    The strategy waits
+    for price to interact
     with its defined retracement area.
+
     </p>
 
-    <h3>Zone, Not Exact Price</h3>
+    <h3>
+    Zone, Not Exact Price
+    </h3>
+
     <p>
-    The current 0.50–0.786 range creates an area of interest.
-    Price may interact with different parts of that zone.
+
+    The current 0.50–0.786 range
+    creates an area of interest.
+
+    Price may interact
+    with different parts
+    of that zone.
+
     </p>
 
-    <h3>Price Must Still Be Relevant</h3>
+    <h3>
+    Price Must Still Be Relevant
+    </h3>
+
     <p>
-    If price has already moved far away from the valid setup area,
-    the original opportunity should not simply be chased.
+
+    If price has already moved
+    far away from the valid setup area,
+    the original opportunity
+    should not simply be chased.
+
     </p>
 
-    <h3>Systematic Execution</h3>
+    <h3>
+    Systematic Execution
+    </h3>
+
     <p>
-    Changing entry rules after the market moves
-    creates a different trade than the original scanner setup.
+
+    Changing entry rules
+    after the market moves
+    creates a different trade
+    than the original scanner setup.
+
     </p>
 
     <div class="note">
+
     Define the setup first.
-    Then observe what price does.
+
+    Then observe
+    what price does.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"Is entry one guaranteed price?",
+      q:
+      "Is entry one guaranteed price?",
+
       a:[
         "No, it is a zone",
         "Yes",
         "Always market price"
       ],
+
       c:0
     },
+
     {
-      q:"What if price has already moved away?",
+      q:
+      "What if price has already moved away?",
+
       a:[
         "The setup may be gone",
         "Always chase it",
         "Double leverage"
       ],
+
       c:0
     },
+
     {
-      q:"Why avoid rewriting entry rules?",
+      q:
+      "Why avoid rewriting entry rules?",
+
       a:[
         "It changes the original setup",
         "It changes Base",
         "It deletes the chart"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"stop",
   title:"Invalidation & Stop Loss",
   time:"10 min",
   graphic:"stop",
+
   body:`
+
     <p>
-    A complete setup needs a point where
-    the original thesis is considered invalid.
+
+    A complete setup needs
+    a point where
+    the original thesis
+    is considered invalid.
+
     </p>
 
-    <h3>Invalidation</h3>
+    <h3>
+    Invalidation
+    </h3>
+
     <p>
-    Invalidation means the assumptions behind the setup
-    no longer meet the strategy's conditions.
+
+    Invalidation means
+    the assumptions behind the setup
+    no longer meet
+    the strategy's conditions.
+
     </p>
 
-    <h3>Current Moe AI Reference</h3>
+    <h3>
+    Current Moe AI Reference
+    </h3>
+
     <p>
+
     The origin of the breakout leg
-    provides the current structural stop reference.
+    provides the current
+    structural stop reference.
+
     </p>
 
-    <h3>Why Stops Matter</h3>
+    <h3>
+    Why Stops Matter
+    </h3>
+
     <p>
+
     No setup is guaranteed.
-    A predefined invalidation point prevents risk
+
+    A predefined invalidation point
+    prevents risk
     from becoming undefined.
+
     </p>
 
     <div class="note">
-    Risk management does not eliminate losing trades.
+
+    Risk management does not eliminate
+    losing trades.
+
     It defines them.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What is invalidation?",
+      q:
+      "What is invalidation?",
+
       a:[
         "The point where the setup no longer meets its rules",
         "A guaranteed reversal",
         "A random number"
       ],
+
       c:0
     },
+
     {
-      q:"What is Moe AI's current stop reference?",
+      q:
+      "What is Moe AI's current stop reference?",
+
       a:[
         "The breakout-leg origin",
         "Any candle",
         "Wallet balance"
       ],
+
       c:0
     },
+
     {
-      q:"Do stops eliminate losses?",
+      q:
+      "Do stops eliminate losses?",
+
       a:[
         "No",
         "Yes",
         "Always"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"rr",
   title:"Risk / Reward",
   time:"10 min",
   graphic:"rr",
+
   body:`
+
     <p>
-    Risk/reward compares the planned potential loss
+
+    Risk/reward compares
+    the planned potential loss
     with the planned potential reward.
+
     </p>
 
-    <h3>Understanding R</h3>
+    <h3>
+    Understanding R
+    </h3>
+
     <p>
-    One unit of planned risk is commonly described as 1R.
-    A target twice the size of that risk represents 2R.
+
+    One unit of planned risk
+    is commonly described as 1R.
+
+    A target twice the size
+    of that risk
+    represents 2R.
+
     </p>
 
-    <h3>Moe AI Target</h3>
+    <h3>
+    Moe AI Target
+    </h3>
+
     <p>
-    The current strategy uses Fib 1.59 as its target.
+
+    The current strategy uses
+    Fib 1.59
+    as its target.
+
     </p>
 
-    <h3>Risk/Reward Is Not Probability</h3>
+    <h3>
+    Risk/Reward Is Not Probability
+    </h3>
+
     <p>
+
     A larger reward relative to risk
-    does not mean the setup is more likely to win.
+    does not mean
+    the setup is more likely to win.
+
     </p>
 
     <div class="note">
-    Strategy evaluation requires a meaningful sample,
+
+    Strategy evaluation requires
+    a meaningful sample,
     not one winning screenshot.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What does 1R represent?",
+      q:
+      "What does 1R represent?",
+
       a:[
         "One unit of planned risk",
         "Guaranteed profit",
         "One Bitcoin"
       ],
+
       c:0
     },
+
     {
-      q:"What target does the current strategy use?",
+      q:
+      "What target does the current strategy use?",
+
       a:[
         "Fib 1.59",
         "Fib 10",
         "Fib 0.1"
       ],
+
       c:0
     },
+
     {
-      q:"Does high R:R guarantee success?",
+      q:
+      "Does high R:R guarantee success?",
+
       a:[
         "No",
         "Yes",
         "Only on Base"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"fresh",
   title:"Signal Freshness",
   time:"10 min",
   graphic:"fresh",
+
   body:`
+
     <p>
-    A valid setup does not remain relevant forever.
-    New candles form and market context changes.
+
+    A valid setup does not remain
+    relevant forever.
+
+    New candles form
+    and market context changes.
+
     </p>
 
-    <h3>Setup Age</h3>
+    <h3>
+    Setup Age
+    </h3>
+
     <p>
-    Moe AI tracks setup age in four-hour candles.
+
+    Moe AI tracks setup age
+    in four-hour candles.
+
     </p>
 
-    <h3>Maximum Detection Age</h3>
+    <h3>
+    Maximum Detection Age
+    </h3>
+
     <p>
-    The current strategy limits setup age to ten 4H candles.
+
+    The current strategy limits
+    setup age
+    to ten 4H candles.
+
     </p>
 
-    <h3>Expiration</h3>
+    <h3>
+    Expiration
+    </h3>
+
     <p>
-    Unfilled setups can expire instead of remaining open indefinitely.
-    This keeps the active signal set focused on current situations.
+
+    Unfilled setups can expire
+    instead of remaining open indefinitely.
+
+    This keeps the active signal set
+    focused on current situations.
+
     </p>
 
     <div class="note">
+
     Time is part of the setup.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"Why does freshness matter?",
+      q:
+      "Why does freshness matter?",
+
       a:[
         "Market context changes",
         "It guarantees profit",
         "It changes the blockchain"
       ],
+
       c:0
     },
+
     {
-      q:"What is the current maximum detection age?",
+      q:
+      "What is the current maximum detection age?",
+
       a:[
         "10 4H candles",
         "100 weeks",
         "Unlimited"
       ],
+
       c:0
     },
+
     {
-      q:"Should unresolved setups remain open forever?",
+      q:
+      "Should unresolved setups remain open forever?",
+
       a:[
         "No",
         "Yes",
         "Only shorts"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"signal",
   title:"Reading a Moe AI Signal",
   time:"12 min",
   graphic:"signal",
+
   body:`
+
     <p>
-    A Moe AI signal is designed to describe
+
+    A Moe AI signal is designed
+    to describe
     a complete structured setup,
-    not simply display BUY or SELL.
+    not simply display BUY
+    or SELL.
+
     </p>
 
-    <h3>Symbol & Direction</h3>
+    <h3>
+    Symbol & Direction
+    </h3>
+
     <p>
+
     The symbol identifies the market.
-    Direction explains whether the detected setup
-    is structurally long or short.
+
+    Direction explains
+    whether the detected setup
+    is structurally long
+    or short.
+
     </p>
 
-    <h3>Entry & Stop</h3>
+    <h3>
+    Entry & Stop
+    </h3>
+
     <p>
-    The entry represents the planned retracement area.
-    The stop represents structural invalidation.
+
+    The entry represents
+    the planned retracement area.
+
+    The stop represents
+    structural invalidation.
+
     </p>
 
-    <h3>Target & Status</h3>
+    <h3>
+    Target & Status
+    </h3>
+
     <p>
-    The target represents the planned objective.
-    Status tells the user where the setup currently exists
+
+    The target represents
+    the planned objective.
+
+    Status tells the user
+    where the setup currently exists
     in its lifecycle.
+
     </p>
 
     <div class="note">
-    Direction alone is not a complete setup.
+
+    Direction alone
+    is not a complete setup.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What belongs in a complete signal?",
+      q:
+      "What belongs in a complete signal?",
+
       a:[
         "Entry, stop, target and status",
         "Only direction",
         "Only leverage"
       ],
+
       c:0
     },
+
     {
-      q:"Does every posted signal mean entry has already filled?",
+      q:
+      "Does every posted signal mean entry has already filled?",
+
       a:[
         "No",
         "Yes",
         "Always"
       ],
+
       c:0
     },
+
     {
-      q:"Why is status important?",
+      q:
+      "Why is status important?",
+
       a:[
         "It describes the signal lifecycle",
         "It changes token supply",
         "It guarantees target"
       ],
+
       c:0
     }
+
   ]
+
 },
+
 
 {
   id:"system",
   title:"How Moe AI Works",
   time:"14 min",
   graphic:"system",
+
   body:`
+
     <p>
-    Moe AI is composed of several connected layers.
-    Each layer has a separate responsibility.
+
+    Moe AI is composed
+    of several connected layers.
+
+    Each layer has
+    a separate responsibility.
+
     </p>
 
-    <h3>Market Data</h3>
+    <h3>
+    Market Data
+    </h3>
+
     <p>
-    Four-hour crypto market candles provide
-    the raw information evaluated by the scanner.
+
+    Four-hour crypto market candles
+    provide the raw information
+    evaluated by the scanner.
+
     </p>
 
-    <h3>Scanner & Strategy</h3>
+    <h3>
+    Scanner & Strategy
+    </h3>
+
     <p>
-    The scanner applies the locked structure
+
+    The scanner applies
+    the locked structure
     and breakout-leg rules.
-    This remains the source of truth for trade logic.
+
+    This remains
+    the source of truth
+    for trade logic.
+
     </p>
 
-    <h3>API</h3>
+    <h3>
+    API
+    </h3>
+
     <p>
-    The Moe AI API acts as the communication layer
-    between signals, the database and interfaces.
+
+    The Moe AI API acts
+    as the communication layer
+    between signals,
+    the database
+    and interfaces.
+
     </p>
 
-    <h3>Database</h3>
+    <h3>
+    Database
+    </h3>
+
     <p>
-    Supabase preserves operational signal history
+
+    Supabase preserves
+    operational signal history
     so results can survive deployments
     and support longer-term analysis.
+
     </p>
 
-    <h3>Interfaces</h3>
+    <h3>
+    Interfaces
+    </h3>
+
     <p>
-    The Based Moer website and Discord
+
+    The Based Moer website
+    and Discord
     are presentation layers.
-    They display the information
-    but should not redefine the strategy.
+
+    They display information
+    but should not redefine
+    the strategy.
+
     </p>
 
-    <h3>Future Layers</h3>
+    <h3>
+    Future Layers
+    </h3>
+
     <p>
-    Future development may connect memory,
+
+    Future development may connect
+    memory,
     decision engines,
     execution
-    and Base-native agent infrastructure.
-    These layers are not presented as live today.
+    and Base-native
+    agent infrastructure.
+
+    These layers are not presented
+    as live today.
+
     </p>
 
     <div class="note">
-    Strategy decides → API communicates → database remembers → interfaces explain.
+
+    Strategy decides →
+    API communicates →
+    database remembers →
+    interfaces explain.
+
     </div>
+
   `,
+
   quiz:[
+
     {
-      q:"What is the source of truth for trade logic?",
+      q:
+      "What is the source of truth for trade logic?",
+
       a:[
         "The scanner strategy",
         "Website design",
         "Discord colors"
       ],
+
       c:0
     },
+
     {
-      q:"What does the API do?",
+      q:
+      "What does the API do?",
+
       a:[
         "Communicates structured information",
         "Draws NFTs",
         "Changes every strategy rule"
       ],
+
       c:0
     },
+
     {
-      q:"Is autonomous execution live today?",
+      q:
+      "Is autonomous execution live today?",
+
       a:[
         "No",
         "Yes",
         "Completely"
       ],
+
       c:0
     }
+
   ]
+
 }
 
 ];
 
-let activeLesson = 0;
+
+let activeLesson =
+  0;
+
 
 const completed =
   new Set(
+
     JSON.parse(
+
       localStorage.getItem(
         "basedMoerAcademyV2"
       )
+
       ||
+
       "[]"
+
     )
+
   );
+
 
 function graphic(type) {
 
+
   const logo = `
+
     <img
       class="graphic-logo"
       src="/assets/based-moer-logo.jpg"
       alt=""
     >
+
   `;
 
-  const label =
-    `<div class="graphic-label">
+
+  const label = `
+
+    <div class="graphic-label">
+
       BASED MOER ACADEMY
-    </div>`;
+
+    </div>
+
+  `;
+
 
   if (
     type ===
@@ -1416,9 +2528,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1430,10 +2546,15 @@ function graphic(type) {
           <g
             stroke="#1d2638"
           >
+
             <line x1="0" y1="100" x2="760" y2="100"/>
+
             <line x1="0" y1="160" x2="760" y2="160"/>
+
             <line x1="0" y1="220" x2="760" y2="220"/>
+
             <line x1="0" y1="280" x2="760" y2="280"/>
+
           </g>
 
           <polyline
@@ -1482,10 +2603,13 @@ function graphic(type) {
           </g>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1493,9 +2617,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1554,10 +2682,13 @@ function graphic(type) {
           </text>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1565,9 +2696,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1615,10 +2750,13 @@ function graphic(type) {
           </text>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1626,9 +2764,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1649,11 +2791,17 @@ function graphic(type) {
           <g
             stroke="#39445f"
           >
+
             <line x1="80" y1="80" x2="680" y2="80"/>
+
             <line x1="80" y1="150" x2="680" y2="150"/>
+
             <line x1="80" y1="196" x2="680" y2="196"/>
+
             <line x1="80" y1="242" x2="680" y2="242"/>
+
             <line x1="80" y1="285" x2="680" y2="285"/>
+
           </g>
 
           <polyline
@@ -1684,10 +2832,13 @@ function graphic(type) {
           </text>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1695,9 +2846,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1743,10 +2898,13 @@ function graphic(type) {
           </text>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1754,9 +2912,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1810,10 +2972,13 @@ function graphic(type) {
           />
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1821,9 +2986,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1882,10 +3051,13 @@ function graphic(type) {
           </text>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1893,9 +3065,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -1907,6 +3083,7 @@ function graphic(type) {
           ${Array.from(
             {length:10},
             (_,i) => `
+
               <rect
                 x="${95+i*57}"
                 y="${130+(i%3)*7}"
@@ -1915,6 +3092,7 @@ function graphic(type) {
                 fill="#0052ff"
                 opacity="${1-i*.07}"
               />
+
               <text
                 x="${103+i*57}"
                 y="240"
@@ -1924,6 +3102,7 @@ function graphic(type) {
               >
                 ${i+1}
               </text>
+
             `
           ).join("")}
 
@@ -1938,10 +3117,13 @@ function graphic(type) {
           </text>
 
         </svg>
+
       </div>
+
     `;
 
   }
+
 
   if (
     type ===
@@ -1949,9 +3131,13 @@ function graphic(type) {
   ) {
 
     return `
+
       <div class="graphic">
+
         ${logo}
+
         ${label}
+
         <svg viewBox="0 0 760 320">
 
           <rect
@@ -2031,15 +3217,22 @@ function graphic(type) {
           </g>
 
         </svg>
+
       </div>
+
     `;
 
   }
 
+
   return `
+
     <div class="graphic">
+
       ${logo}
+
       ${label}
+
       <svg viewBox="0 0 760 320">
 
         <rect
@@ -2089,17 +3282,23 @@ function graphic(type) {
         >
 
           <line x1="155" y1="174" x2="178" y2="174"/>
+
           <line x1="300" y1="174" x2="323" y2="174"/>
+
           <line x1="445" y1="174" x2="468" y2="174"/>
+
           <line x1="590" y1="174" x2="613" y2="174"/>
 
         </g>
 
       </svg>
+
     </div>
+
   `;
 
 }
+
 
 function flowBox(
   x,
@@ -2109,6 +3308,7 @@ function flowBox(
 ) {
 
   return `
+
     <rect
       x="${x}"
       y="${y}"
@@ -2130,13 +3330,22 @@ function flowBox(
     >
       ${text}
     </text>
+
   `;
 
 }
 
+
 function renderList() {
 
-  lessonList.innerHTML =
+
+  const list =
+    document.getElementById(
+      "lessonList"
+    );
+
+
+  list.innerHTML =
     lessons
     .map(
       (
@@ -2155,8 +3364,6 @@ function renderList() {
 
           <strong>
 
-            ${String(index+1).padStart(2,"0")}
-            —
             ${lesson.title}
 
           </strong>
@@ -2174,17 +3381,28 @@ function renderList() {
     )
     .join("");
 
+
   updateProgress();
 
 }
 
+
 function openLesson(index) {
+
 
   activeLesson =
     index;
 
+
   const lesson =
     lessons[index];
+
+
+  const lessonView =
+    document.getElementById(
+      "lessonView"
+    );
+
 
   lessonView.innerHTML = `
 
@@ -2205,10 +3423,7 @@ function openLesson(index) {
 
         <span>
 
-          LESSON
-          ${String(index+1).padStart(2,"0")}
-          OF
-          ${lessons.length}
+          ${lesson.title}
 
         </span>
 
@@ -2217,7 +3432,9 @@ function openLesson(index) {
     </div>
 
     <h2>
+
       ${lesson.title}
+
     </h2>
 
     ${graphic(
@@ -2302,24 +3519,24 @@ function openLesson(index) {
 
   `;
 
-  renderList();
 
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
+  renderList();
 
 }
 
+
 function gradeLesson() {
+
 
   const lesson =
     lessons[
       activeLesson
     ];
 
+
   let score =
     0;
+
 
   lesson.quiz
   .forEach(
@@ -2328,10 +3545,12 @@ function gradeLesson() {
       qi
     ) => {
 
+
       const selected =
         document.querySelector(
           `input[name="q${qi}"]:checked`
         );
+
 
       if (
         selected &&
@@ -2345,68 +3564,105 @@ function gradeLesson() {
 
       }
 
+
     }
   );
+
+
+  const result =
+    document.getElementById(
+      "result"
+    );
+
 
   if (
     score ===
     lesson.quiz.length
   ) {
 
+
     completed.add(
       lesson.id
     );
 
+
     localStorage.setItem(
+
       "basedMoerAcademyV2",
+
       JSON.stringify(
         [
           ...completed
         ]
       )
+
     );
+
 
     result.style.color =
       "#68f49b";
 
+
     result.textContent =
       "PASSED — LESSON COMPLETE.";
 
+
     renderList();
+
 
   }
 
+
   else {
+
 
     result.style.color =
       "#ff7182";
 
+
     result.textContent =
       `${score}/${lesson.quiz.length} — review the lesson and try again.`;
 
+
   }
 
+
 }
+
 
 function updateProgress() {
 
+
   const percent =
     Math.round(
+
       completed.size /
       lessons.length *
       100
+
     );
 
-  progressText.textContent =
+
+  document.getElementById(
+    "progressText"
+  ).textContent =
     `${completed.size} / ${lessons.length} COMPLETE`;
 
-  progressPercent.textContent =
+
+  document.getElementById(
+    "progressPercent"
+  ).textContent =
     `${percent}%`;
 
-  progress.style.width =
+
+  document.getElementById(
+    "progress"
+  ).style.width =
     `${percent}%`;
+
 
 }
+
 
 renderList();
 
@@ -2414,5 +3670,7 @@ openLesson(0);
 
 </script>
 
+
 </body>
+
 </html>
