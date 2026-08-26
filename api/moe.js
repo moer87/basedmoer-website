@@ -16,8 +16,7 @@ async function handler(
 
     const healthResponse =
       await fetch(
-        MOE_API +
-        "/health",
+        MOE_API + "/health",
         {
           headers:{
             Accept:
@@ -26,9 +25,9 @@ async function handler(
         }
       );
 
-    if (
+    if(
       !healthResponse.ok
-    ) {
+    ){
 
       throw new Error(
         "Moe AI health check failed"
@@ -36,9 +35,13 @@ async function handler(
 
     }
 
-    let signals = [];
+    let signals =
+      [];
 
-    try {
+    let source =
+      null;
+
+    try{
 
       const openResponse =
         await fetch(
@@ -52,9 +55,9 @@ async function handler(
           }
         );
 
-      if (
+      if(
         openResponse.ok
-      ) {
+      ){
 
         const data =
           await openResponse.json();
@@ -64,23 +67,27 @@ async function handler(
             data
           );
 
+        source =
+          "/v1/signals/open";
+
       }
 
     }
 
-    catch(error) {
+    catch(error){
 
       console.log(
+        "v1 endpoint unavailable:",
         error.message
       );
 
     }
 
-    if (
-      signals.length === 0
-    ) {
+    if(
+      !source
+    ){
 
-      const allResponse =
+      const standardResponse =
         await fetch(
           MOE_API +
           "/signals",
@@ -92,12 +99,12 @@ async function handler(
           }
         );
 
-      if (
-        allResponse.ok
-      ) {
+      if(
+        standardResponse.ok
+      ){
 
         const data =
-          await allResponse.json();
+          await standardResponse.json();
 
         const all =
           extractSignals(
@@ -108,27 +115,63 @@ async function handler(
           all.filter(
             signal => {
 
-          const status =
-            String(
-              signal.status ||
-              ""
-            )
-            .toUpperCase();
+              const status =
+                String(
+                  signal.status ||
+                  ""
+                )
+                .toUpperCase();
 
-          return (
-            status ===
-            "OPEN"
-            ||
-            status ===
-            "ACTIVE"
-            ||
-            status ===
-            "ENTERED"
+              return (
+                status === "OPEN" ||
+                status === "ACTIVE" ||
+                status === "ENTERED"
+              );
+
+            }
           );
 
-        });
+        source =
+          "/signals";
 
       }
+
+    }
+
+    let stats =
+      null;
+
+    try{
+
+      const statsResponse =
+        await fetch(
+          MOE_API +
+          "/stats",
+          {
+            headers:{
+              Accept:
+                "application/json"
+            }
+          }
+        );
+
+      if(
+        statsResponse.ok
+      ){
+
+        stats =
+          await statsResponse.json();
+
+      }
+
+    }
+
+    catch(error){
+
+      console.log(
+        "Stats unavailable:",
+        error.message
+      );
 
     }
 
@@ -138,7 +181,21 @@ async function handler(
 
       ok:true,
 
-      signals,
+      service:
+        "Moe AI",
+
+      source,
+
+      signals:
+        Array.isArray(
+          signals
+        )
+        ?
+        signals
+        :
+        [],
+
+      stats,
 
       updated_at:
         new Date()
@@ -148,9 +205,10 @@ async function handler(
 
   }
 
-  catch(error) {
+  catch(error){
 
     console.error(
+      "Moe AI proxy error:",
       error
     );
 
@@ -161,8 +219,7 @@ async function handler(
       ok:false,
 
       error:
-        error.message
-        ||
+        error.message ||
         "Unable to contact Moe AI"
 
     });
@@ -171,51 +228,41 @@ async function handler(
 
 };
 
-function extractSignals(
-  data
-) {
+function extractSignals(data){
 
-  if (
+  if(
     Array.isArray(
       data
     )
-  ) {
-
+  ){
     return data;
-
   }
 
-  if (
+  if(
     data &&
     Array.isArray(
       data.signals
     )
-  ) {
-
+  ){
     return data.signals;
-
   }
 
-  if (
+  if(
     data &&
     Array.isArray(
       data.data
     )
-  ) {
-
+  ){
     return data.data;
-
   }
 
-  if (
+  if(
     data &&
     Array.isArray(
       data.results
     )
-  ) {
-
+  ){
     return data.results;
-
   }
 
   return [];
