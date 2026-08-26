@@ -14,17 +14,14 @@ async function handler(
 
   try {
 
-    /*
-      First make sure the Railway
-      Moe AI service is reachable.
-    */
-
     const healthResponse =
       await fetch(
-        MOE_API + "/health",
+        MOE_API +
+        "/health",
         {
           headers:{
-            "Accept":"application/json"
+            Accept:
+              "application/json"
           }
         }
       );
@@ -39,16 +36,7 @@ async function handler(
 
     }
 
-    /*
-      Try the agent-ready
-      open-signals endpoint first.
-    */
-
-    let signals =
-      [];
-
-    let signalSource =
-      null;
+    let signals = [];
 
     try {
 
@@ -58,8 +46,8 @@ async function handler(
           "/v1/signals/open",
           {
             headers:{
-              "Accept":
-              "application/json"
+              Accept:
+                "application/json"
             }
           }
         );
@@ -76,9 +64,6 @@ async function handler(
             data
           );
 
-        signalSource =
-          "/v1/signals/open";
-
       }
 
     }
@@ -86,122 +71,64 @@ async function handler(
     catch(error) {
 
       console.log(
-        "v1 open endpoint failed:",
         error.message
       );
 
     }
 
-    /*
-      If the v1 endpoint did not
-      return an array,
-      try the standard /signals endpoint.
-    */
-
     if (
-      !signalSource
+      signals.length === 0
     ) {
 
-      const standardResponse =
+      const allResponse =
         await fetch(
           MOE_API +
           "/signals",
           {
             headers:{
-              "Accept":
-              "application/json"
+              Accept:
+                "application/json"
             }
           }
         );
 
       if (
-        standardResponse.ok
+        allResponse.ok
       ) {
 
-        const standardData =
-          await standardResponse.json();
+        const data =
+          await allResponse.json();
 
-        const allSignals =
+        const all =
           extractSignals(
-            standardData
+            data
           );
-
-        /*
-          Keep only currently open
-          signals when possible.
-        */
 
         signals =
-          allSignals.filter(
+          all.filter(
             signal => {
 
-              const status =
-                String(
-                  signal.status ||
-                  ""
-                )
-                .toUpperCase();
+          const status =
+            String(
+              signal.status ||
+              ""
+            )
+            .toUpperCase();
 
-              return (
-                status === "OPEN"
-                ||
-                status === "ACTIVE"
-                ||
-                status === "ENTERED"
-                ||
-                status === ""
-              );
-
-            }
+          return (
+            status ===
+            "OPEN"
+            ||
+            status ===
+            "ACTIVE"
+            ||
+            status ===
+            "ENTERED"
           );
 
-        signalSource =
-          "/signals";
+        });
 
       }
-
-    }
-
-    /*
-      Try to retrieve stats as well.
-      The frontend does not depend
-      on this succeeding.
-    */
-
-    let stats =
-      null;
-
-    try {
-
-      const statsResponse =
-        await fetch(
-          MOE_API +
-          "/stats",
-          {
-            headers:{
-              "Accept":
-              "application/json"
-            }
-          }
-        );
-
-      if (
-        statsResponse.ok
-      ) {
-
-        stats =
-          await statsResponse.json();
-
-      }
-
-    }
-
-    catch(error) {
-
-      console.log(
-        "stats request failed:",
-        error.message
-      );
 
     }
 
@@ -211,22 +138,7 @@ async function handler(
 
       ok:true,
 
-      service:"Moe AI",
-
-      source:
-        signalSource,
-
-      signals:
-        Array.isArray(
-          signals
-        )
-        ?
-        signals
-        :
-        [],
-
-      stats:
-        stats,
+      signals,
 
       updated_at:
         new Date()
@@ -239,7 +151,6 @@ async function handler(
   catch(error) {
 
     console.error(
-      "Moe AI proxy error:",
       error
     );
 
@@ -259,7 +170,6 @@ async function handler(
   }
 
 };
-
 
 function extractSignals(
   data
@@ -299,7 +209,6 @@ function extractSignals(
 
   if (
     data &&
-    data.results &&
     Array.isArray(
       data.results
     )
