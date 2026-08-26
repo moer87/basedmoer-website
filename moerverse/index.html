@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Moerverse | Bald Moe & Based Ape Punks on Base</title>
+
+<meta
+  name="description"
+  content="Explore the Moerverse, Bald Moe Genesis pixel art and Based Ape Punks digital collectibles built around Base."
+>
+
+<link
+  rel="canonical"
+  href="https://basedmoer.com/moerverse/"
+>
+
+<meta name="theme-color" content="#070910">
+
+<style>
+
+:root{
+  --base:#0052ff;
+  --bg:#070910;
+  --panel:#10131d;
+  --border:#282f42;
+  --white:#f8f9ff;
+  --muted:#9da7c3;
+  --yellow:#ffd96b;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top,rgba(0,82,255,.20),transparent 35rem),
+    var(--bg);
+  color:var(--white);
+  font-family:Inter,Arial,sans-serif;
+}
+
+a{color:inherit;text-decoration:none}
+img,iframe{display:block;max-width:100%}
+
+.pixel{
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+
+.container{
+  width:min(1180px,calc(100% - 32px));
+  margin:auto;
+}
+
+.header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(7,9,16,.88);
+  backdrop-filter:blur(18px);
+  border-bottom:1px solid rgba(255,255,255,.07);
+}
+
+.header-inner{
+  min-height:76px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:20px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:.08em;
+}
+
+.brand img{
+  width:52px;
+  height:52px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.nav{
+  display:flex;
+  gap:18px;
+  color:#c8cee3;
+  font-size:13px;
+  font-weight:800;
+}
+
+.nav a:hover{color:white}
+
+.hero{
+  padding:100px 0 70px;
+  text-align:center;
+}
+
+.label{
+  color:#8390b6;
+  font-size:12px;
+  font-weight:900;
+  letter-spacing:.16em;
+  text-transform:uppercase;
+}
+
+.hero h1{
+  margin:14px 0 20px;
+  font-size:clamp(54px,8vw,94px);
+  line-height:.90;
+  letter-spacing:-.06em;
+}
+
+.blue{color:var(--base)}
+
+.hero p{
+  max-width:800px;
+  margin:auto;
+  color:#adb7d0;
+  font-size:18px;
+  line-height:1.8;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:24px;
+  padding-bottom:80px;
+}
+
+.card{
+  overflow:hidden;
+  border:1px solid var(--border);
+  border-radius:22px;
+  background:linear-gradient(145deg,#11141e,#0d0f17);
+}
+
+.media{
+  height:440px;
+  padding:18px;
+  display:grid;
+  place-items:center;
+  background:#06070b;
+  border-bottom:1px solid #252b3b;
+}
+
+.media img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+}
+
+.copy{
+  padding:28px;
+}
+
+.topline{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.topline h2{
+  margin:0;
+  font-size:31px;
+}
+
+.status{
+  padding:6px 9px;
+  border-radius:7px;
+  border:1px solid #3b4258;
+  color:#afb8d0;
+  font-size:10px;
+  font-weight:900;
+}
+
+.paused{
+  color:#ffd57b;
+  border-color:rgba(255,213,123,.35);
+}
+
+.copy p{
+  color:#9ca6c1;
+  line-height:1.75;
+}
+
+.tags{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin:20px 0;
+}
+
+.tag{
+  padding:7px 9px;
+  border:1px solid #333a50;
+  border-radius:8px;
+  color:#b7bfd8;
+  font-size:11px;
+  font-weight:900;
+}
+
+.actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+
+.button{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  min-height:46px;
+  padding:12px 17px;
+  border-radius:12px;
+  border:0;
+  background:var(--base);
+  color:white;
+  font-weight:900;
+}
+
+.button.secondary{
+  background:#151925;
+  border:1px solid #30374c;
+}
+
+.button.disabled{
+  background:#181b25;
+  border:1px solid #303744;
+  color:#8991a7;
+}
+
+.gallery-section{
+  padding:20px 0 100px;
+  text-align:center;
+}
+
+.gallery-section h2{
+  margin-bottom:15px;
+  font-size:50px;
+}
+
+.gallery-section p{
+  max-width:760px;
+  margin:0 auto 30px;
+  color:#9da7c3;
+  line-height:1.75;
+}
+
+.gallery-shell{
+  padding:12px;
+  border:1px solid #293248;
+  border-radius:28px;
+  background:#05060a;
+}
+
+.gallery-shell iframe{
+  width:100%;
+  height:680px;
+  border:0;
+  border-radius:18px;
+}
+
+footer{
+  padding:40px 0;
+  text-align:center;
+  border-top:1px solid #22283a;
+  color:#717b97;
+}
+
+@media(max-width:900px){
+
+  .nav{display:none}
+
+  .grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .media{height:330px}
+
+  .gallery-shell iframe{
+    height:450px;
+  }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+<div class="container header-inner">
+
+<a class="brand" href="/">
+
+<img
+  src="/assets/based-moer-logo.jpg"
+  alt="Based Moer"
+>
+
+<span>
+BASED MOER
+</span>
+
+</a>
+
+<nav class="nav">
+
+<a href="/">
+Home
+</a>
+
+<a href="/academy/">
+Academy
+</a>
+
+<a href="/generator/">
+Generator
+</a>
+
+<a href="/live/">
+Live
+</a>
+
+<a href="/#explore">
+Explore
+</a>
+
+</nav>
+
+</div>
+
+</header>
+
+<main>
+
+<section class="hero">
+
+<div class="container">
+
+<div class="label">
+PIXEL ART UNIVERSE
+</div>
+
+<h1>
+
+MEET THE
+
+<span class="blue">
+MOERVERSE.
+</span>
+
+</h1>
+
+<p>
+
+Moerverse is the creative universe behind Based Moer.
+
+Bald Moe Genesis,
+Based Ape Punks,
+Singular Fragments,
+animated pixel art,
+interactive galleries,
+stories
+and future onchain experiences
+all exist inside the same world.
+
+</p>
+
+</div>
+
+</section>
+
+<section>
+
+<div class="container grid">
+
+<!-- BALD MOE -->
+
+<article class="card">
+
+<div class="media">
+
+<img
+  class="pixel"
+  src="/assets/moerverse-preview.png"
+  alt="Bald Moe Genesis"
+>
+
+</div>
+
+<div class="copy">
+
+<div class="topline">
+
+<h2>
+Bald Moe Genesis
+</h2>
+
+<span class="status">
+COMING
+</span>
+
+</div>
+
+<p>
+
+Bald Moe explores alternate identities,
+dreams,
+parallel worlds
+and strange adventures through original pixel art.
+
+The planned 222-piece Genesis collection
+forms the creative center of the Moerverse
+with Singular Fragment artwork
+expanding the story.
+
+</p>
+
+<div class="tags">
+
+<span class="tag">
+222 GENESIS
+</span>
+
+<span class="tag">
+ORIGINAL PIXEL ART
+</span>
+
+<span class="tag">
+SINGULAR FRAGMENTS
+</span>
+
+<span class="tag">
+BASE
+</span>
+
+</div>
+
+<div class="actions">
+
+<a
+  class="button secondary"
+  href="https://oncyber.io/basedmoer"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+EXPLORE BALD MOE ↗
+
+</a>
+
+<span class="button disabled">
+
+MINTING SOON
+
+</span>
+
+</div>
+
+</div>
+
+</article>
+
+<!-- APE PUNKS -->
+
+<article class="card">
+
+<div class="media">
+
+<img
+  class="pixel"
+  src="/assets/ape-punks.gif"
+  alt="Based Ape Punks"
+>
+
+</div>
+
+<div class="copy">
+
+<div class="topline">
+
+<h2>
+Based Ape Punks
+</h2>
+
+<span class="status paused">
+MINT PAUSED
+</span>
+
+</div>
+
+<p>
+
+Based Ape Punks is the animated Base evolution
+of Polygon Ape Punks.
+
+The 2,222-piece collection follows
+space travelers,
+punks
+and explorers moving between worlds
+throughout the Moerverse.
+
+</p>
+
+<div class="tags">
+
+<span class="tag">
+2,222
+</span>
+
+<span class="tag">
+ANIMATED
+</span>
+
+<span class="tag">
+BASE
+</span>
+
+</div>
+
+<div class="actions">
+
+<a
+  class="button secondary"
+  href="https://oncyber.io/basedapepunks"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+EXPLORE BASED APE PUNKS ↗
+
+</a>
+
+<a
+  class="button"
+  href="https://launchmynft.io/collections/0x8d6fe4D9557C0aAb2a9206eB652E8243fC4e864A/wEzTB3amb90K4xcut8Az"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+LAUNCHMYNFT ↗
+
+</a>
+
+</div>
+
+</div>
+
+</article>
+
+</div>
+
+</section>
+
+<section class="gallery-section">
+
+<div class="container">
+
+<div class="label">
+INTERACTIVE ART GALLERY
+</div>
+
+<h2>
+EXPLORE THE MOERVERSE
+</h2>
+
+<p>
+
+Enter the Based Moer OnCyber gallery
+and explore the artwork inside an interactive environment.
+
+</p>
+
+<div class="gallery-shell">
+
+<iframe
+  src="https://oncyber.io/basedmoer"
+  title="Based Moer OnCyber Gallery"
+  loading="lazy"
+  allow="fullscreen; xr-spatial-tracking"
+></iframe>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+<footer>
+
+Based Moer • Moerverse • Pixel-first • Built on Base
+
+</footer>
+
+</body>
+</html>
