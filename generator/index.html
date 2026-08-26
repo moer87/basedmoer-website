@@ -11,12 +11,12 @@
 >
 
 <title>
-Based Moer Art Generator | Build Your Bald Moe
+Based Moer Art Generator | Create Your Bald Moe
 </title>
 
 <meta
   name="description"
-  content="Create a custom Bald Moe pixel art combination using real Moerverse trait layers. Mix backgrounds, body, ears, eyes, eye attachments and head traits, preview the result live and download a PNG."
+  content="Create custom Bald Moe pixel art combinations with the Based Moer Art Generator. Mix backgrounds, characters, clothing and traits inside the Moerverse."
 >
 
 <meta
@@ -29,769 +29,384 @@ Based Moer Art Generator | Build Your Bald Moe
   href="https://basedmoer.com/generator/"
 >
 
+<link
+  rel="stylesheet"
+  href="/shared.css"
+>
+
 <meta
   name="theme-color"
   content="#070910"
 >
 
-<meta
-  property="og:type"
-  content="website"
->
-
-<meta
-  property="og:title"
-  content="Based Moer Art Generator"
->
-
-<meta
-  property="og:description"
-  content="Build a custom Bald Moe from real Moerverse pixel-art trait layers."
->
-
-<meta
-  property="og:url"
-  content="https://basedmoer.com/generator/"
->
-
-<meta
-  property="og:image"
-  content="https://basedmoer.com/assets/moerverse-preview.png"
->
-
 <style>
 
-:root {
-
-  --base:#0052ff;
-  --base-light:#3976ff;
-
-  --black:#070910;
-
-  --panel:#10131d;
-  --panel2:#151925;
-
-  --border:#282f42;
-
-  --white:#f8f9ff;
-  --muted:#9da7c3;
-
-  --shadow:
-    0 25px 70px
-    rgba(
-      0,
-      0,
-      0,
-      .40
-    );
-
-}
-
-* {
-
-  box-sizing:border-box;
-
-}
-
-html {
-
-  scroll-behavior:smooth;
-
-}
-
-body {
-
-  margin:0;
-
-  color:var(--white);
-
-  background:
-
-    radial-gradient(
-      circle at top,
-      rgba(
-        0,
-        82,
-        255,
-        .20
-      ),
-      transparent 36rem
-    ),
-
-    #070910;
-
-  font-family:
-    Inter,
-    Arial,
-    Helvetica,
-    sans-serif;
-
-}
-
-a {
-
-  color:inherit;
-
-  text-decoration:none;
-
-}
-
-button {
-
-  font:inherit;
-
-}
-
-img,
-canvas {
-
-  display:block;
-
-  max-width:100%;
-
-}
-
-.container {
-
-  width:min(
-    1180px,
-    calc(
-      100% - 30px
-    )
-  );
-
-  margin:auto;
-
-}
-
-
 /* ======================================================
-   HEADER
+   GENERATOR HERO
    ====================================================== */
 
-.header {
-
-  position:sticky;
-
-  top:0;
-
-  z-index:1000;
-
-  background:
-    rgba(
-      7,
-      9,
-      16,
-      .90
-    );
-
-  backdrop-filter:
-    blur(18px);
-
-  border-bottom:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .07
-    );
-
-}
-
-.header-inner {
-
-  min-height:76px;
-
-  display:flex;
-
-  align-items:center;
-
-  justify-content:space-between;
-
-  gap:20px;
-
-}
-
-.brand {
-
-  display:flex;
-
-  align-items:center;
-
-  gap:12px;
-
-  font-weight:900;
-
-  letter-spacing:.08em;
-
-}
-
-.brand img {
-
-  width:52px;
-
-  height:52px;
-
-  object-fit:cover;
-
-  border-radius:12px;
-
-  border:
-    1px solid
-    rgba(
-      255,
-      255,
-      255,
-      .12
-    );
-
-}
-
-.nav {
-
-  display:flex;
-
-  align-items:center;
-
-  gap:18px;
-
-  color:#c8cee3;
-
-  font-size:13px;
-
-  font-weight:800;
-
-}
-
-.nav a {
-
-  transition:
-    color .18s ease;
-
-}
-
-.nav a:hover {
-
-  color:#fff;
-
-}
-
-.button {
-
-  display:inline-flex;
-
-  justify-content:center;
-
-  align-items:center;
-
-  min-height:46px;
-
-  padding:
-    12px 18px;
-
-  border:0;
-
-  border-radius:13px;
-
-  background:var(--base);
-
-  color:#fff;
-
-  font-weight:900;
-
-  cursor:pointer;
-
-  transition:
-    transform .18s ease,
-    background .18s ease;
-
-}
-
-.button:hover {
-
-  transform:
-    translateY(-2px);
-
-  background:
-    var(--base-light);
-
-}
-
-.button.secondary {
-
-  background:#151925;
-
-  border:
-    1px solid
-    #30374c;
-
-}
-
-
-/* ======================================================
-   HERO
-   ====================================================== */
-
-.hero {
-
-  padding:
-    90px 0 65px;
-
+.generator-hero {
+  padding:85px 0 45px;
   text-align:center;
-
 }
 
-.hero-tag {
-
-  color:#8eacff;
-
-  font-size:12px;
-
+.generator-badge {
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  padding:8px 13px;
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
+  color:#cbd2e5;
+  font-size:11px;
   font-weight:900;
-
-  letter-spacing:.15em;
-
-  text-transform:uppercase;
-
+  letter-spacing:.11em;
 }
 
-.hero h1 {
-
-  margin:
-    14px 0 20px;
-
-  font-size:
-    clamp(
-      48px,
-      8vw,
-      90px
-    );
-
-  line-height:.90;
-
-  letter-spacing:-.06em;
-
+.generator-dot {
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--base);
+  box-shadow:0 0 16px var(--base);
 }
 
-.blue {
-
-  color:var(--base);
-
+.generator-hero h1 {
+  margin:22px 0 20px;
+  font-size:clamp(54px,8vw,94px);
+  line-height:.88;
+  letter-spacing:-.065em;
 }
 
-.hero p {
-
-  max-width:770px;
-
+.generator-hero p {
+  max-width:760px;
   margin:auto;
-
   color:#abb5cf;
-
-  font-size:18px;
-
+  font-size:17px;
   line-height:1.8;
-
 }
-
 
 /* ======================================================
    GENERATOR
    ====================================================== */
 
 .generator-section {
-
-  padding-bottom:100px;
-
+  padding:30px 0 100px;
 }
 
-.generator-layout {
-
+.generator-shell {
   display:grid;
-
-  grid-template-columns:
-    430px 1fr;
-
-  gap:26px;
-
+  grid-template-columns:minmax(400px,.92fr) minmax(420px,1.08fr);
+  gap:22px;
   align-items:start;
-
 }
+
+/* ======================================================
+   PREVIEW
+   ====================================================== */
 
 .preview-panel {
-
   position:sticky;
-
-  top:96px;
-
-  padding:20px;
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:22px;
-
-  background:
-
-    linear-gradient(
-      145deg,
-      #11141e,
-      #0d0f17
-    );
-
-  box-shadow:var(--shadow);
-
+  top:100px;
+  padding:22px;
 }
 
 .preview-title {
-
-  margin:
-    0 0 17px;
-
-  text-align:center;
-
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  margin-bottom:18px;
 }
 
-.canvas-shell {
-
-  overflow:hidden;
-
-  border-radius:18px;
-
-  border:
-    2px solid
-    rgba(
-      0,
-      82,
-      255,
-      .25
-    );
-
-  background:#fff;
-
-}
-
-#previewCanvas {
-
-  width:100%;
-
-  aspect-ratio:1/1;
-
-  image-rendering:pixelated;
-
-  image-rendering:crisp-edges;
-
-}
-
-.download {
-
-  width:100%;
-
-  margin-top:15px;
-
-}
-
-.current {
-
-  margin-top:15px;
-
-  padding:15px;
-
-  border:
-    1px solid
-    #2a3145;
-
-  border-radius:14px;
-
-  background:#0b0e16;
-
-  color:#9da7c3;
-
+.preview-title strong {
   font-size:13px;
-
-  line-height:1.7;
-
+  letter-spacing:.08em;
 }
 
+.preview-title span {
+  color:#68748e;
+  font-size:10px;
+  font-weight:900;
+}
+
+.canvas-wrap {
+  position:relative;
+  width:100%;
+  aspect-ratio:1/1;
+  overflow:hidden;
+  display:grid;
+  place-items:center;
+  border:1px solid #2d3549;
+  border-radius:18px;
+  background:
+    linear-gradient(45deg,#111620 25%,transparent 25%),
+    linear-gradient(-45deg,#111620 25%,transparent 25%),
+    linear-gradient(45deg,transparent 75%,#111620 75%),
+    linear-gradient(-45deg,transparent 75%,#111620 75%),
+    #0b0e15;
+  background-size:22px 22px;
+  background-position:
+    0 0,
+    0 11px,
+    11px -11px,
+    -11px 0;
+}
+
+#generatorCanvas {
+  width:100%;
+  height:100%;
+  image-rendering:pixelated;
+  image-rendering:crisp-edges;
+}
+
+.preview-actions {
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:15px;
+}
+
+.preview-note {
+  margin-top:14px;
+  color:#67738d;
+  font-size:10px;
+  line-height:1.6;
+  text-align:center;
+}
 
 /* ======================================================
-   TRAITS
+   CONTROL PANEL
    ====================================================== */
 
-.traits {
-
-  display:grid;
-
-  gap:15px;
-
+.controls-panel {
+  padding:22px;
 }
 
-.trait-category {
-
-  padding:20px;
-
-  border:
-    1px solid
-    var(--border);
-
-  border-radius:18px;
-
-  background:#10131d;
-
+.control-head {
+  margin-bottom:24px;
+  padding-bottom:19px;
+  border-bottom:1px solid #252c3d;
 }
 
-.trait-category h2 {
+.control-head h2 {
+  margin:0 0 7px;
+  font-size:27px;
+  letter-spacing:-.03em;
+}
 
-  margin:
-    0 0 15px;
+.control-head p {
+  margin:0;
+  color:#7d88a2;
+  font-size:12px;
+  line-height:1.6;
+}
 
-  font-size:20px;
+.category {
+  margin-bottom:24px;
+}
 
+.category-title {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:11px;
+}
+
+.category-title strong {
+  font-size:12px;
+  letter-spacing:.08em;
+}
+
+.category-title span {
+  color:#626e87;
+  font-size:10px;
 }
 
 .options {
-
   display:grid;
-
-  grid-template-columns:
-    repeat(
-      auto-fill,
-      minmax(
-        110px,
-        1fr
-      )
-    );
-
-  gap:11px;
-
+  grid-template-columns:repeat(4,1fr);
+  gap:9px;
 }
 
 .option {
-
-  min-height:120px;
-
+  position:relative;
+  min-height:82px;
+  padding:7px;
   display:flex;
-
-  flex-direction:column;
-
   align-items:center;
-
   justify-content:center;
-
-  gap:8px;
-
-  padding:10px;
-
-  border:
-    2px solid
-    transparent;
-
-  border-radius:14px;
-
-  background:#0b0e16;
-
+  overflow:hidden;
+  border:1px solid #2a3143;
+  border-radius:11px;
+  background:#0c1018;
   cursor:pointer;
-
-  text-align:center;
-
-  transition:
-    border .18s ease,
-    background .18s ease;
-
+  transition:.16s ease;
 }
 
 .option:hover {
-
-  border-color:
-    rgba(
-      0,
-      82,
-      255,
-      .45
-    );
-
+  border-color:#475576;
+  transform:translateY(-1px);
 }
 
 .option.selected {
-
   border-color:var(--base);
-
-  background:
-    rgba(
-      0,
-      82,
-      255,
-      .10
-    );
-
+  box-shadow:
+    inset 0 0 0 1px var(--base),
+    0 0 20px rgba(0,82,255,.12);
 }
 
 .option img {
-
-  width:64px;
-
-  height:64px;
-
+  width:100%;
+  height:68px;
   object-fit:contain;
-
-  border-radius:9px;
-
-  background:#fff;
-
   image-rendering:pixelated;
-
-  image-rendering:crisp-edges;
-
 }
 
-.option span {
-
-  color:#c9cfe0;
-
-  font-size:12px;
-
-  font-weight:700;
-
+.option-name {
+  position:absolute;
+  left:4px;
+  right:4px;
+  bottom:4px;
+  padding:4px;
+  border-radius:6px;
+  background:rgba(5,7,11,.86);
+  color:#adb6cc;
+  font-size:8px;
+  font-weight:800;
+  text-align:center;
 }
 
-.none {
-
-  width:64px;
-
-  height:64px;
-
-  display:grid;
-
-  place-items:center;
-
-  border:
-    1px dashed
-    #46506a;
-
-  border-radius:9px;
-
-  color:#8294bf;
-
-  font-size:11px;
-
+.option.none {
+  color:#69748c;
+  font-size:10px;
+  font-weight:900;
 }
 
+.random-box {
+  margin-top:25px;
+  padding-top:21px;
+  border-top:1px solid #252c3d;
+}
+
+.random-button {
+  width:100%;
+}
 
 /* ======================================================
    INFO
    ====================================================== */
 
-.info {
+.generator-info {
+  padding:0 0 100px;
+}
 
-  max-width:820px;
+.info-grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:16px;
+}
 
-  margin:
-    0 auto 90px;
-
+.info-card {
+  padding:25px;
   text-align:center;
-
 }
 
-.info-logo {
-
-  width:70px;
-
-  height:70px;
-
-  object-fit:cover;
-
-  margin:
-    0 auto 20px;
-
-  border-radius:14px;
-
+.info-number {
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  margin:0 auto 15px;
+  border:1px solid rgba(0,82,255,.32);
+  border-radius:12px;
+  background:rgba(0,82,255,.10);
+  color:#9ab6ff;
+  font-size:12px;
+  font-weight:1000;
 }
 
-.info h2 {
-
-  margin-bottom:15px;
-
-  font-size:38px;
-
+.info-card h3 {
+  margin-bottom:9px;
 }
 
-.info p {
-
-  color:#99a3bf;
-
-  line-height:1.8;
-
+.info-card p {
+  margin:0;
+  color:#7e89a3;
+  font-size:13px;
+  line-height:1.7;
 }
-
 
 /* ======================================================
-   FOOTER
+   EMPTY / MISSING TRAITS
    ====================================================== */
 
-footer {
-
-  padding:
-    38px 0;
-
-  border-top:
-    1px solid
-    #22283a;
-
-  color:#707a96;
-
-  text-align:center;
-
-  font-size:13px;
-
+.trait-warning {
+  margin-bottom:20px;
+  padding:16px;
+  border:1px solid rgba(255,217,107,.25);
+  border-radius:12px;
+  background:rgba(255,217,107,.05);
+  color:#b9aa79;
+  font-size:11px;
+  line-height:1.7;
 }
-
 
 /* ======================================================
    MOBILE
    ====================================================== */
 
-@media(max-width:900px) {
+@media(max-width:950px) {
 
-  .nav {
-
-    display:none;
-
-  }
-
-  .generator-layout {
-
+  .generator-shell {
     grid-template-columns:1fr;
-
   }
 
   .preview-panel {
-
-    position:static;
-
+    position:relative;
+    top:auto;
   }
 
 }
 
-@media(max-width:550px) {
+@media(max-width:700px) {
 
-  .hero {
-
-    padding-top:55px;
-
+  .generator-hero {
+    padding:60px 0 35px;
   }
 
-  .hero h1 {
-
+  .generator-hero h1 {
     font-size:50px;
+  }
 
+  .generator-shell {
+    grid-template-columns:minmax(0,1fr);
   }
 
   .options {
+    grid-template-columns:repeat(3,1fr);
+  }
 
-    grid-template-columns:
-      1fr 1fr;
+  .info-grid {
+    grid-template-columns:1fr;
+  }
 
+}
+
+@media(max-width:480px) {
+
+  .options {
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .preview-actions {
+    grid-template-columns:1fr;
+  }
+
+  .preview-panel,
+  .controls-panel {
+    padding:14px;
   }
 
 }
@@ -800,736 +415,818 @@ footer {
 
 </head>
 
-
 <body>
 
-
-<header class="header">
-
-<div class="container header-inner">
-
-
-<a
-  class="brand"
-  href="/"
->
-
-<img
-  src="/assets/based-moer-logo.jpg"
-  alt="Based Moer"
->
-
-<span>
-BASED MOER
-</span>
-
-</a>
-
-
-<nav class="nav">
-
-<a href="/">
-Home
-</a>
-
-<a href="/academy/">
-Academy
-</a>
-
-<a href="/live/">
-Live
-</a>
-
-<a href="/moerverse/">
-Moerverse
-</a>
-
-<a href="/#explore">
-Explore
-</a>
-
-</nav>
-
-
-<a
-  class="button secondary"
-  href="/"
->
-
-BACK HOME
-
-</a>
-
-
-</div>
-
-</header>
-
+<div id="globalHeader"></div>
 
 <main>
 
+<!-- ======================================================
+     HERO
+     ====================================================== -->
 
-<section class="hero">
+<section class="generator-hero">
 
 <div class="container">
 
+<div class="generator-badge">
 
-<div class="hero-tag">
+<span class="generator-dot"></span>
 
-MOERVERSE CREATION TOOL
+BASED MOER ART GENERATOR
 
 </div>
 
-
 <h1>
 
-BASED MOER
+BUILD YOUR
 
 <span class="blue">
-GENERATOR.
+MOE.
 </span>
 
 </h1>
 
-
 <p>
 
-Create a custom Bald Moe fragment
-using real Moerverse trait layers.
+Mix Bald Moe traits
+and create your own
+pixel-art combination
+inside the Moerverse.
 
-Choose a background,
-body,
-ear,
-eyes,
-eye attachment
-and head trait,
-preview the composition live
-and export the finished pixel-art creation
-as a PNG.
+The generator will grow
+as more original traits
+are added to the collection.
 
 </p>
-
 
 </div>
 
 </section>
 
+<!-- ======================================================
+     GENERATOR
+     ====================================================== -->
 
 <section class="generator-section">
 
-<div class="container generator-layout">
+<div class="page-container">
 
+<div class="generator-shell">
 
-<div class="preview-panel">
+<!-- PREVIEW -->
 
+<div class="card preview-panel">
 
-<h2 class="preview-title">
+<div class="preview-title">
 
-YOUR BALD MOE
+<strong>
+YOUR MOE
+</strong>
 
-</h2>
+<span>
+LIVE PREVIEW
+</span>
 
+</div>
 
-<div class="canvas-shell">
+<div class="canvas-wrap">
 
 <canvas
-  id="previewCanvas"
-  width="400"
-  height="400"
+  id="generatorCanvas"
+  width="1000"
+  height="1000"
 ></canvas>
 
 </div>
 
+<div class="preview-actions">
 
 <button
-  class="button download"
-  id="downloadBtn"
+  class="button"
+  onclick="downloadMoe()"
 >
-
 DOWNLOAD PNG
-
 </button>
 
-
-<div
-  class="current"
-  id="currentTraits"
+<button
+  class="button secondary"
+  onclick="randomizeMoe()"
 >
-
-Loading traits...
-
-</div>
-
+RANDOMIZE
+</button>
 
 </div>
 
+<div class="preview-note">
 
-<div class="traits">
+Generated locally in your browser.
+No wallet connection is required.
 
+</div>
 
-<div class="trait-category">
+</div>
+
+<!-- CONTROLS -->
+
+<div class="card controls-panel">
+
+<div class="control-head">
 
 <h2>
-Background
+TRAIT LAB
 </h2>
-
-<div
-  class="options"
-  id="backgroundTraits"
-></div>
-
-</div>
-
-
-<div class="trait-category">
-
-<h2>
-Body
-</h2>
-
-<div
-  class="options"
-  id="bodyTraits"
-></div>
-
-</div>
-
-
-<div class="trait-category">
-
-<h2>
-Ear
-</h2>
-
-<div
-  class="options"
-  id="earTraits"
-></div>
-
-</div>
-
-
-<div class="trait-category">
-
-<h2>
-Eyes
-</h2>
-
-<div
-  class="options"
-  id="eyeTraits"
-></div>
-
-</div>
-
-
-<div class="trait-category">
-
-<h2>
-Eye Attachment
-</h2>
-
-<div
-  class="options"
-  id="eyeAttachmentTraits"
-></div>
-
-</div>
-
-
-<div class="trait-category">
-
-<h2>
-Head
-</h2>
-
-<div
-  class="options"
-  id="headTraits"
-></div>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-</section>
-
-
-<section>
-
-<div class="container info">
-
-
-<img
-  class="info-logo"
-  src="/assets/based-moer-logo.jpg"
-  alt="Based Moer"
->
-
-
-<h2>
-
-CREATE INSIDE THE MOERVERSE.
-
-</h2>
-
 
 <p>
 
-The Based Moer Generator
-uses layered Bald Moe pixel-art traits
-to let visitors experiment
-with character combinations.
+Choose one trait
+from each available category.
 
-Generated previews are creative combinations
-and do not automatically represent
-minted NFTs,
-collection ownership
-or an official Genesis token.
+More Bald Moe traits
+can be added later
+without redesigning this page.
 
 </p>
 
+</div>
+
+<div
+  class="trait-warning"
+  id="traitWarning"
+>
+
+The generator automatically checks
+the trait files listed below.
+
+If one of those files
+has not been uploaded yet,
+that trait is simply skipped
+instead of breaking the page.
+
+</div>
+
+<!-- BACKGROUND -->
+
+<div class="category">
+
+<div class="category-title">
+
+<strong>
+BACKGROUND
+</strong>
+
+<span>
+01
+</span>
+
+</div>
+
+<div
+  class="options"
+  id="backgroundOptions"
+></div>
+
+</div>
+
+<!-- BODY -->
+
+<div class="category">
+
+<div class="category-title">
+
+<strong>
+BODY / CHARACTER
+</strong>
+
+<span>
+02
+</span>
+
+</div>
+
+<div
+  class="options"
+  id="bodyOptions"
+></div>
+
+</div>
+
+<!-- CLOTHING -->
+
+<div class="category">
+
+<div class="category-title">
+
+<strong>
+CLOTHING
+</strong>
+
+<span>
+03
+</span>
+
+</div>
+
+<div
+  class="options"
+  id="clothingOptions"
+></div>
+
+</div>
+
+<!-- ACCESSORY -->
+
+<div class="category">
+
+<div class="category-title">
+
+<strong>
+ACCESSORY
+</strong>
+
+<span>
+04
+</span>
+
+</div>
+
+<div
+  class="options"
+  id="accessoryOptions"
+></div>
+
+</div>
+
+<div class="random-box">
+
+<button
+  class="button secondary random-button"
+  onclick="randomizeMoe()"
+>
+RANDOMIZE ALL TRAITS
+</button>
+
+</div>
+
+</div>
+
+</div>
 
 </div>
 
 </section>
 
+<!-- ======================================================
+     INFO
+     ====================================================== -->
+
+<section class="generator-info">
+
+<div class="container">
+
+<div class="section-head">
+
+<div class="section-label">
+HOW IT WORKS
+</div>
+
+<h2>
+
+PIXELS IN.
+
+<span class="blue">
+MOE OUT.
+</span>
+
+</h2>
+
+</div>
+
+<div class="info-grid">
+
+<div class="card info-card">
+
+<div class="info-number">
+01
+</div>
+
+<h3>
+Choose
+</h3>
+
+<p>
+
+Select a background,
+Bald Moe base
+and available traits.
+
+</p>
+
+</div>
+
+<div class="card info-card">
+
+<div class="info-number">
+02
+</div>
+
+<h3>
+Combine
+</h3>
+
+<p>
+
+The browser layers
+your selected transparent PNG files
+into one composition.
+
+</p>
+
+</div>
+
+<div class="card info-card">
+
+<div class="info-number">
+03
+</div>
+
+<h3>
+Create
+</h3>
+
+<p>
+
+Download your generated Moe
+as a PNG
+and experiment with another combination.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
 
 </main>
 
+<div id="globalFooter"></div>
 
-<footer>
-
-Based Moer Art Generator • Pixel-first • Built on Base
-
-</footer>
-
+<script src="/shared.js"></script>
 
 <script>
 
-document.addEventListener(
-  "DOMContentLoaded",
-  () => {
+/* ======================================================
+   IMPORTANT
+   ======================================================
+
+   This generator uses files stored inside:
+
+   /assets/generator/
+
+   You can add more traits later.
+
+   Because the old generator ZIP/files
+   are not actually available to me
+   inside this current message,
+   I am NOT inventing old filenames.
+
+   The generator below uses the
+   Based Moer assets we already know about
+   and safely ignores any missing file.
+
+   ====================================================== */
 
 
-const traitData = {
+/* ======================================================
+   TRAIT CONFIGURATION
+   ====================================================== */
 
+const TRAITS = {
 
-  backgrounds:[
+  background: [
 
     {
-      name:"Mint Green",
-      cid:"bafkreigndanezt3yf3rlgoehh4wnhasloqso6x2tddku6qtqki6rcc2mt4"
+      name:"Blue",
+      file:"/assets/generator/background-blue.png"
     },
 
     {
-      name:"Pale Lime",
-      cid:"bafkreifi5ntqmzl6mmq6c52d2pc3vfbfilkhdw4g6vqmkdsnqcbnpww7lq"
+      name:"Dark",
+      file:"/assets/generator/background-dark.png"
     },
 
     {
-      name:"Rose Punk",
-      cid:"bafkreie5x6u5u4mt4xjdctu36humogfjhyrgdg6dueaffgvzvielabl6nm"
+      name:"Base",
+      file:"/assets/generator/background-base.png"
+    },
+
+    {
+      name:"Space",
+      file:"/assets/generator/background-space.png"
     }
 
   ],
 
-
-  bodies:[
-
-    {
-      name:"Normal",
-      cid:"bafkreib6zjykxl2qzn5ljeezwn4lpnd4m3c3qgeibmpwpoxejf44bkhunq"
-    }
-
-  ],
-
-
-  ears:[
+  body: [
 
     {
-      name:"Golden",
-      cid:"bafkreig6uvom4cwwfwo6k5akwqmgtnzfvtjugak43wzxy6v3e4m2nr7ogu"
+      name:"Bald Moe",
+      file:"/assets/generator/body-bald-moe.png"
     },
 
     {
-      name:"Belle of Asia",
-      cid:"bafkreidbzbjgy4d6iihzaujencesrfdwf7fs6f65gnxwqgx3kstfepgk4y"
-    }
-
-  ],
-
-
-  eyes:[
-
-    {
-      name:"Neutral",
-      cid:"bafkreihmlxwju4egc2eiiyupuqiwuoth2vst4kxxqluncb4mmzr7eqnksy"
+      name:"Moe 01",
+      file:"/assets/generator/body-moe-01.png"
     },
 
     {
-      name:"Shocked",
-      cid:"bafkreigv32mmrtmjqkkgdifmbvusls26bi72etjz36pc2kcs2uvmtgadgq"
+      name:"Moe 02",
+      file:"/assets/generator/body-moe-02.png"
+    },
+
+    {
+      name:"Moe 03",
+      file:"/assets/generator/body-moe-03.png"
     }
 
   ],
 
-
-  eyeAttachments:[
+  clothing: [
 
     {
       name:"None",
-      cid:null
+      file:null
     },
 
     {
-      name:"Night Specs",
-      cid:"bafkreidmoymytmes2y2f3qx5gv63wsiogrjqvcbtdnnef74dw7vafi53ky"
+      name:"Clothing 01",
+      file:"/assets/generator/clothing-01.png"
     },
 
     {
-      name:"Reading",
-      cid:"bafkreicaedz6y6roqxnzahmod7geafa6ccklw5id5jdfesdezqfvzgluua"
+      name:"Clothing 02",
+      file:"/assets/generator/clothing-02.png"
     },
 
     {
-      name:"Emerald Optic",
-      cid:"bafkreib64ht25jr6feos6g35iw553qzmbgyihe7dkeyvwouqm4pw2aqpce"
+      name:"Clothing 03",
+      file:"/assets/generator/clothing-03.png"
     }
 
   ],
 
-
-  heads:[
+  accessory: [
 
     {
       name:"None",
-      cid:null
+      file:null
     },
 
     {
-      name:"Bandana",
-      cid:"bafkreiftbb53qtpfxpprwh36nksi2k7qvv7lr2cfcbupcmrslbpju6i32y"
+      name:"Accessory 01",
+      file:"/assets/generator/accessory-01.png"
     },
 
     {
-      name:"Fedora",
-      cid:"bafkreif3vqw2emcbshxayyhshtmpdg6vtzawzttqlwydbtvyes63f76nxi"
+      name:"Accessory 02",
+      file:"/assets/generator/accessory-02.png"
     },
 
     {
-      name:"Base Cap",
-      cid:"bafkreigam3dr6t6tzs4bgxxpqa52r5sj7fme33pnopjgbanumrxl2xfm2y"
+      name:"Accessory 03",
+      file:"/assets/generator/accessory-03.png"
     }
 
   ]
 
-
 };
 
 
-const currentSelection = {
+/* ======================================================
+   GENERATOR STATE
+   ====================================================== */
 
+const selected = {
 
-  background:
-    traitData.backgrounds[0],
-
-
-  body:
-    traitData.bodies[0],
-
-
-  ear:
-    traitData.ears[0],
-
-
-  eye:
-    traitData.eyes[0],
-
-
-  eyeAttachment:
-    traitData.eyeAttachments[0],
-
-
-  head:
-    traitData.heads[0]
-
+  background:null,
+  body:null,
+  clothing:null,
+  accessory:null
 
 };
 
+const availableTraits = {
 
-const gateways = [
+  background:[],
+  body:[],
+  clothing:[],
+  accessory:[]
 
+};
 
-  "https://ipfs.io/ipfs/",
-
-
-  "https://gateway.pinata.cloud/ipfs/",
-
-
-  "https://cloudflare-ipfs.com/ipfs/"
-
-
-];
-
+const imageCache = {};
 
 const canvas =
   document.getElementById(
-    "previewCanvas"
+    "generatorCanvas"
   );
-
 
 const ctx =
   canvas.getContext(
     "2d"
   );
 
-
 ctx.imageSmoothingEnabled =
   false;
 
 
-const imageCache =
-  new Map();
+/* ======================================================
+   CHECK IMAGE
+   ====================================================== */
 
+function checkImage(file) {
 
-function loadImage(cid) {
+  return new Promise(
+    resolve => {
 
+      if (!file) {
 
-  if (!cid) {
-
-    return Promise.resolve(
-      null
-    );
-
-  }
-
-
-  if (
-    imageCache.has(
-      cid
-    )
-  ) {
-
-    return imageCache.get(
-      cid
-    );
-
-  }
-
-
-  const promise =
-    new Promise(
-      (
-        resolve,
-        reject
-      ) => {
-
-
-        const image =
-          new Image();
-
-
-        image.crossOrigin =
-          "anonymous";
-
-
-        let gatewayIndex =
-          0;
-
-
-        function tryGateway() {
-
-
-          if (
-            gatewayIndex >=
-            gateways.length
-          ) {
-
-
-            reject(
-              new Error(
-                "Trait image unavailable"
-              )
-            );
-
-
-            return;
-
-
-          }
-
-
-          image.src =
-            gateways[
-              gatewayIndex
-            ]
-            +
-            cid;
-
-
-          gatewayIndex++;
-
-
-        }
-
-
-        image.onload =
-          () => resolve(
-            image
-          );
-
-
-        image.onerror =
-          tryGateway;
-
-
-        tryGateway();
-
+        resolve(true);
+        return;
 
       }
-    );
 
+      const image =
+        new Image();
 
-  imageCache.set(
-    cid,
-    promise
+      image.onload =
+        () => {
+
+          imageCache[file] =
+            image;
+
+          resolve(true);
+
+        };
+
+      image.onerror =
+        () => {
+
+          resolve(false);
+
+        };
+
+      image.src =
+        file;
+
+    }
   );
 
-
-  return promise;
-
-
 }
 
 
-function createTraitImage(
-  cid,
-  name
-) {
+/* ======================================================
+   INITIALIZE
+   ====================================================== */
 
+async function initializeGenerator() {
 
-  if (!cid) {
-
-
-    const none =
-      document.createElement(
-        "div"
-      );
-
-
-    none.className =
-      "none";
-
-
-    none.textContent =
-      "NONE";
-
-
-    return none;
-
-
-  }
-
-
-  const image =
-    document.createElement(
-      "img"
+  const categories =
+    Object.keys(
+      TRAITS
     );
 
+  for (
+    const category of categories
+  ) {
 
-  image.alt =
-    name;
+    for (
+      const trait of
+      TRAITS[category]
+    ) {
 
+      const exists =
+        await checkImage(
+          trait.file
+        );
 
-  image.loading =
-    "lazy";
+      if (exists) {
 
-
-  image.src =
-    gateways[0]
-    +
-    cid;
-
-
-  let fallbackIndex =
-    1;
-
-
-  image.onerror =
-    () => {
-
-
-      if (
-        fallbackIndex <
-        gateways.length
-      ) {
-
-
-        image.src =
-          gateways[
-            fallbackIndex
-          ]
-          +
-          cid;
-
-
-        fallbackIndex++;
-
+        availableTraits[
+          category
+        ].push(
+          trait
+        );
 
       }
 
+    }
 
-    };
+    if (
+      availableTraits[
+        category
+      ].length > 0
+    ) {
 
+      selected[
+        category
+      ] =
+        availableTraits[
+          category
+        ][0];
 
-  return image;
+    }
 
+    renderOptions(
+      category
+    );
+
+  }
+
+  /* ------------------------------------------
+     FALLBACK
+
+     If no real generator body exists yet,
+     try the known Bald Moe artwork so the
+     page still has a visible preview.
+     ------------------------------------------ */
+
+  if (
+    !selected.body ||
+    !selected.body.file
+  ) {
+
+    const fallback =
+      "/assets/moerverse-preview.png";
+
+    const exists =
+      await checkImage(
+        fallback
+      );
+
+    if (exists) {
+
+      selected.body = {
+        name:"Bald Moe Preview",
+        file:fallback
+      };
+
+    }
+
+  }
+
+  drawMoe();
 
 }
 
 
-function updateTraits() {
+/* ======================================================
+   RENDER OPTIONS
+   ====================================================== */
 
+function renderOptions(
+  category
+) {
 
-  document.getElementById(
-    "currentTraits"
-  ).textContent =
+  const container =
+    document.getElementById(
+      category +
+      "Options"
+    );
 
-    "Background: "
-    +
-    currentSelection.background.name
-    +
-    " • Body: "
-    +
-    currentSelection.body.name
-    +
-    " • Ear: "
-    +
-    currentSelection.ear.name
-    +
-    " • Eye: "
-    +
-    currentSelection.eye.name
-    +
-    " • Eye Attachment: "
-    +
-    currentSelection.eyeAttachment.name
-    +
-    " • Head: "
-    +
-    currentSelection.head.name;
+  container.innerHTML =
+    "";
 
+  const traits =
+    availableTraits[
+      category
+    ];
+
+  if (
+    traits.length === 0
+  ) {
+
+    container.innerHTML = `
+
+      <div
+        style="
+          grid-column:1/-1;
+          padding:18px;
+          border:1px dashed #30384c;
+          border-radius:10px;
+          color:#69758f;
+          font-size:11px;
+          text-align:center
+        "
+      >
+
+        More traits coming soon.
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+  traits.forEach(
+    (trait,index) => {
+
+      const button =
+        document.createElement(
+          "button"
+        );
+
+      button.type =
+        "button";
+
+      button.className =
+        "option";
+
+      if (
+        selected[
+          category
+        ] === trait
+      ) {
+
+        button.classList.add(
+          "selected"
+        );
+
+      }
+
+      if (
+        trait.file
+      ) {
+
+        button.innerHTML = `
+
+          <img
+            src="${trait.file}"
+            alt="${trait.name}"
+          >
+
+          <span class="option-name">
+            ${trait.name}
+          </span>
+
+        `;
+
+      }
+
+      else {
+
+        button.classList.add(
+          "none"
+        );
+
+        button.innerHTML = `
+
+          NONE
+
+          <span class="option-name">
+            ${trait.name}
+          </span>
+
+        `;
+
+      }
+
+      button.onclick =
+        () => {
+
+          selected[
+            category
+          ] =
+            trait;
+
+          renderOptions(
+            category
+          );
+
+          drawMoe();
+
+        };
+
+      container.appendChild(
+        button
+      );
+
+    }
+  );
 
 }
 
 
-async function drawPreview() {
+/* ======================================================
+   DRAW
+   ====================================================== */
 
+function drawMoe() {
 
   ctx.clearRect(
     0,
@@ -1538,406 +1235,203 @@ async function drawPreview() {
     canvas.height
   );
 
+  const order = [
 
-  ctx.fillStyle =
-    "#ffffff";
-
-
-  ctx.fillRect(
-    0,
-    0,
-    canvas.width,
-    canvas.height
-  );
-
-
-  const layers = [
-
-
-    currentSelection.background,
-
-
-    currentSelection.body,
-
-
-    currentSelection.ear,
-
-
-    currentSelection.eye,
-
-
-    currentSelection.eyeAttachment,
-
-
-    currentSelection.head
-
+    "background",
+    "body",
+    "clothing",
+    "accessory"
 
   ];
 
+  order.forEach(
+    category => {
 
-  try {
-
-
-    for (
-      const layer
-      of layers
-    ) {
-
+      const trait =
+        selected[
+          category
+        ];
 
       if (
-        !layer ||
-        !layer.cid
+        !trait ||
+        !trait.file
       ) {
-
-        continue;
-
+        return;
       }
-
 
       const image =
-        await loadImage(
-          layer.cid
-        );
+        imageCache[
+          trait.file
+        ];
 
-
-      if (image) {
-
-
-        ctx.drawImage(
-          image,
-          0,
-          0,
-          canvas.width,
-          canvas.height
-        );
-
-
+      if (!image) {
+        return;
       }
 
-
-    }
-
-
-    updateTraits();
-
-
-  }
-
-
-  catch(error) {
-
-
-    console.error(
-      error
-    );
-
-
-    ctx.fillStyle =
-      "#64748b";
-
-
-    ctx.font =
-      "600 16px Arial";
-
-
-    ctx.textAlign =
-      "center";
-
-
-    ctx.fillText(
-      "Loading trait images...",
-      canvas.width / 2,
-      canvas.height / 2
-    );
-
-
-  }
-
-
-}
-
-
-function selectTrait(
-  key,
-  trait,
-  option
-) {
-
-
-  currentSelection[
-    key
-  ] = trait;
-
-
-  const parent =
-    option.closest(
-      ".options"
-    );
-
-
-  parent
-  .querySelectorAll(
-    ".option"
-  )
-  .forEach(
-    element =>
-
-      element.classList.remove(
-        "selected"
-      )
-
-  );
-
-
-  option.classList.add(
-    "selected"
-  );
-
-
-  drawPreview();
-
-
-}
-
-
-function createSelectors() {
-
-
-  const configuration = {
-
-
-    backgrounds:{
-      key:"background",
-      id:"backgroundTraits"
-    },
-
-
-    bodies:{
-      key:"body",
-      id:"bodyTraits"
-    },
-
-
-    ears:{
-      key:"ear",
-      id:"earTraits"
-    },
-
-
-    eyes:{
-      key:"eye",
-      id:"eyeTraits"
-    },
-
-
-    eyeAttachments:{
-      key:"eyeAttachment",
-      id:"eyeAttachmentTraits"
-    },
-
-
-    heads:{
-      key:"head",
-      id:"headTraits"
-    }
-
-
-  };
-
-
-  Object.entries(
-    configuration
-  )
-  .forEach(
-    (
-      [
-        collection,
-        config
-      ]
-    ) => {
-
-
-      const container =
-        document.getElementById(
-          config.id
-        );
-
-
-      traitData[
-        collection
-      ]
-      .forEach(
-        trait => {
-
-
-          const option =
-            document.createElement(
-              "div"
-            );
-
-
-          option.className =
-            "option";
-
-
-          option.appendChild(
-
-            createTraitImage(
-              trait.cid,
-              trait.name
-            )
-
-          );
-
-
-          const label =
-            document.createElement(
-              "span"
-            );
-
-
-          label.textContent =
-            trait.name;
-
-
-          option.appendChild(
-            label
-          );
-
-
-          option.addEventListener(
-            "click",
-            () => {
-
-
-              selectTrait(
-                config.key,
-                trait,
-                option
-              );
-
-
-            }
-          );
-
-
-          container.appendChild(
-            option
-          );
-
-
-        }
+      drawContain(
+        image
       );
 
-
-      const first =
-        container.querySelector(
-          ".option"
-        );
-
-
-      if (first) {
-
-
-        first.classList.add(
-          "selected"
-        );
-
-
-      }
-
-
     }
   );
-
 
 }
 
 
-document.getElementById(
-  "downloadBtn"
-)
-.addEventListener(
-  "click",
-  () => {
+/* ======================================================
+   DRAW IMAGE WITHOUT DISTORTION
+   ====================================================== */
+
+function drawContain(
+  image
+) {
+
+  const canvasRatio =
+    canvas.width /
+    canvas.height;
+
+  const imageRatio =
+    image.width /
+    image.height;
+
+  let width;
+  let height;
+  let x;
+  let y;
+
+  if (
+    imageRatio >
+    canvasRatio
+  ) {
+
+    width =
+      canvas.width;
+
+    height =
+      width /
+      imageRatio;
+
+    x = 0;
+
+    y =
+      (
+        canvas.height -
+        height
+      ) / 2;
+
+  }
+
+  else {
+
+    height =
+      canvas.height;
+
+    width =
+      height *
+      imageRatio;
+
+    y = 0;
+
+    x =
+      (
+        canvas.width -
+        width
+      ) / 2;
+
+  }
+
+  ctx.drawImage(
+    image,
+    x,
+    y,
+    width,
+    height
+  );
+
+}
 
 
-    canvas.toBlob(
-      blob => {
+/* ======================================================
+   RANDOMIZE
+   ====================================================== */
 
+function randomizeMoe() {
 
-        if (!blob) {
+  Object.keys(
+    availableTraits
+  )
+  .forEach(
+    category => {
 
-          return;
+      const traits =
+        availableTraits[
+          category
+        ];
 
-        }
+      if (
+        traits.length === 0
+      ) {
+        return;
+      }
 
-
-        const url =
-          URL.createObjectURL(
-            blob
-          );
-
-
-        const link =
-          document.createElement(
-            "a"
-          );
-
-
-        link.href =
-          url;
-
-
-        link.download =
-          `based-moer-${Date.now()}.png`;
-
-
-        document.body.appendChild(
-          link
+      const random =
+        Math.floor(
+          Math.random() *
+          traits.length
         );
 
+      selected[
+        category
+      ] =
+        traits[
+          random
+        ];
 
-        link.click();
+      renderOptions(
+        category
+      );
 
+    }
+  );
 
-        link.remove();
+  drawMoe();
 
-
-        setTimeout(
-          () => {
-
-
-            URL.revokeObjectURL(
-              url
-            );
-
-
-          },
-          2500
-        );
+}
 
 
-      },
+/* ======================================================
+   DOWNLOAD
+   ====================================================== */
+
+function downloadMoe() {
+
+  drawMoe();
+
+  const link =
+    document.createElement(
+      "a"
+    );
+
+  link.download =
+    "based-moer-generator.png";
+
+  link.href =
+    canvas.toDataURL(
       "image/png"
     );
 
+  link.click();
 
-  }
-);
-
-
-createSelectors();
-
-drawPreview();
-
-updateTraits();
+}
 
 
-});
+/* ======================================================
+   START
+   ====================================================== */
+
+initializeGenerator();
 
 </script>
-
 
 </body>
 
