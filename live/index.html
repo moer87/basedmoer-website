@@ -4,13 +4,19 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>Moe AI Live | Crypto Market Structure Scanner</title>
+<meta
+  name="viewport"
+  content="width=device-width,initial-scale=1.0"
+>
+
+<title>
+Moe AI Live | Market Structure Engine
+</title>
 
 <meta
   name="description"
-  content="View live Moe AI market structure scanner activity, open crypto setups, entry zones, targets and system status."
+  content="View current Moe AI market structure scanner activity, open setups, entry zones, invalidation levels and system status."
 >
 
 <link
@@ -18,115 +24,39 @@
   href="https://basedmoer.com/live/"
 >
 
-<meta name="theme-color" content="#070910">
+<link
+  rel="stylesheet"
+  href="/shared.css"
+>
+
+<meta
+  name="theme-color"
+  content="#070910"
+>
 
 <style>
 
-:root{
-  --base:#0052ff;
-  --bg:#070910;
-  --panel:#0d111b;
-  --panel2:#111622;
-  --border:#283247;
-  --white:#f8f9ff;
-  --muted:#8793ae;
-  --green:#67f398;
-  --yellow:#ffd96b;
-  --red:#ff7182;
-}
-
-*{box-sizing:border-box}
-
-body{
-  margin:0;
-  background:
-    radial-gradient(circle at top,rgba(0,82,255,.16),transparent 36rem),
-    #070910;
-  color:var(--white);
-  font-family:Inter,Arial,sans-serif;
-}
-
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-
-.container{
-  width:min(1250px,calc(100% - 32px));
-  margin:auto;
-}
-
-.header{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(7,9,16,.91);
-  backdrop-filter:blur(18px);
-  border-bottom:1px solid rgba(255,255,255,.07);
-}
-
-.header-inner{
-  min-height:76px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:900;
-  letter-spacing:.08em;
-}
-
-.brand img{
-  width:52px;
-  height:52px;
-  object-fit:cover;
-  border-radius:12px;
-}
-
-.nav{
-  display:flex;
-  gap:18px;
-  color:#c8cee3;
-  font-size:13px;
-  font-weight:800;
-}
-
-.nav a:hover{color:white}
-
-.hero{
+.live-hero {
   padding:85px 0 45px;
   text-align:center;
 }
 
-.label{
-  color:#8390b6;
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:.16em;
-  text-transform:uppercase;
-}
-
-.hero h1{
+.live-hero h1 {
   margin:14px 0 18px;
   font-size:clamp(52px,8vw,92px);
   line-height:.9;
   letter-spacing:-.06em;
 }
 
-.blue{color:var(--base)}
-
-.hero p{
-  max-width:770px;
+.live-hero p {
+  max-width:780px;
   margin:auto;
   color:#aeb7d0;
   font-size:18px;
   line-height:1.8;
 }
 
-.engine-line{
+.engine-line {
   margin-top:28px;
   display:inline-flex;
   align-items:center;
@@ -141,59 +71,58 @@ button{font:inherit}
   letter-spacing:.08em;
 }
 
-.dot{
+.engine-dot {
   width:9px;
   height:9px;
   border-radius:50%;
   background:#6f778a;
 }
 
-.dot.online{
+.engine-dot.online {
   background:var(--green);
   box-shadow:0 0 15px rgba(103,243,152,.70);
 }
 
-.engine{
-  padding-bottom:100px;
+.engine-section {
+  padding:25px 0 100px;
 }
 
-.status-grid{
+.status-grid {
   display:grid;
   grid-template-columns:repeat(5,1fr);
   gap:12px;
   margin-bottom:18px;
 }
 
-.status-card{
+.status-card {
   padding:20px;
-  border:1px solid var(--border);
+  border:1px solid #283247;
   border-radius:15px;
-  background:var(--panel);
+  background:#0d111b;
 }
 
-.status-card span{
+.status-card span {
   display:block;
   margin-bottom:8px;
   color:#73809e;
   font-size:10px;
   font-weight:900;
   letter-spacing:.09em;
-  text-transform:uppercase;
 }
 
-.status-card strong{
+.status-card strong {
   font-size:21px;
 }
 
-.terminal{
+.terminal {
   overflow:hidden;
-  border:1px solid var(--border);
+  border:1px solid #283247;
   border-radius:22px;
   background:linear-gradient(145deg,#0c1019,#080b11);
-  box-shadow:0 25px 70px rgba(0,0,0,.4);
+  box-shadow:var(--shadow);
 }
 
-.terminal-head{
+.terminal-head {
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -202,32 +131,23 @@ button{font:inherit}
   border-bottom:1px solid #242d40;
 }
 
-.terminal-title strong{
+.terminal-title strong {
   display:block;
   font-size:22px;
 }
 
-.terminal-title span{
+.terminal-title span {
   color:#7885a2;
   font-size:12px;
 }
 
-.refresh{
-  border:1px solid #34405b;
-  border-radius:10px;
-  background:#111724;
-  color:white;
-  padding:10px 15px;
-  font-weight:900;
-  cursor:pointer;
-}
-
-.table-wrap{
+.table-wrap {
   width:100%;
   overflow-x:auto;
+  -webkit-overflow-scrolling:touch;
 }
 
-.signal-row{
+.signal-row {
   min-width:1000px;
   display:grid;
   grid-template-columns:
@@ -246,84 +166,72 @@ button{font:inherit}
   font-size:13px;
 }
 
-.signal-row.head{
+.signal-row.head {
   color:#73809e;
   font-size:10px;
   font-weight:900;
   letter-spacing:.08em;
-  text-transform:uppercase;
   background:#0c111a;
 }
 
-.direction{
-  font-weight:900;
-}
-
-.loading{
+.loading {
   padding:55px 25px;
   text-align:center;
   color:#7f8da9;
   line-height:1.8;
 }
 
-.lower-grid{
+.lower-grid {
   display:grid;
   grid-template-columns:1.1fr .9fr;
   gap:18px;
   margin-top:18px;
 }
 
-.panel{
+.engine-panel {
   padding:24px;
-  border:1px solid var(--border);
+  border:1px solid #283247;
   border-radius:18px;
-  background:var(--panel);
+  background:#0d111b;
 }
 
-.panel h2{
+.engine-panel h2 {
   margin:0 0 18px;
   font-size:22px;
 }
 
-.activity{
+.activity,
+.flow {
   display:grid;
   gap:10px;
 }
 
-.activity-item{
+.activity-item,
+.flow-item {
   padding:13px;
   border:1px solid #252e40;
   border-radius:11px;
   background:#090e16;
 }
 
-.activity-item strong{
+.activity-item strong {
   display:block;
   margin-bottom:4px;
   font-size:13px;
 }
 
-.activity-item span{
+.activity-item span {
   color:#7885a2;
   font-size:12px;
 }
 
-.flow{
-  display:grid;
-  gap:10px;
-}
-
-.flow-item{
+.flow-item {
   display:flex;
   align-items:center;
   gap:12px;
-  padding:13px;
-  border:1px solid #252e40;
-  border-radius:11px;
-  background:#090e16;
 }
 
-.flow-number{
+.flow-number {
   width:31px;
   height:31px;
   flex-shrink:0;
@@ -335,13 +243,13 @@ button{font:inherit}
   font-weight:900;
 }
 
-.flow-item span{
+.flow-item span {
   color:#9aa5be;
   font-size:13px;
   line-height:1.5;
 }
 
-.disclaimer{
+.engine-disclaimer {
   margin-top:18px;
   color:#647089;
   font-size:11px;
@@ -349,31 +257,39 @@ button{font:inherit}
   text-align:center;
 }
 
-footer{
-  padding:38px 0;
-  text-align:center;
-  border-top:1px solid #22283a;
-  color:#6f7994;
-}
+@media(max-width:950px) {
 
-@media(max-width:950px){
-
-  .nav{display:none}
-
-  .status-grid{
+  .status-grid {
     grid-template-columns:1fr 1fr;
   }
 
-  .lower-grid{
+  .lower-grid {
     grid-template-columns:1fr;
   }
 
 }
 
-@media(max-width:600px){
+@media(max-width:600px) {
 
-  .status-grid{
+  .live-hero {
+    padding:60px 0 35px;
+  }
+
+  .live-hero h1 {
+    font-size:51px;
+  }
+
+  .status-grid {
     grid-template-columns:1fr;
+  }
+
+  .terminal-head {
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .terminal-head .button {
+    width:100%;
   }
 
 }
@@ -384,58 +300,15 @@ footer{
 
 <body>
 
-<header class="header">
-
-<div class="container header-inner">
-
-<a class="brand" href="/">
-
-<img
-  src="/assets/based-moer-logo.jpg"
-  alt="Based Moer"
->
-
-<span>
-BASED MOER
-</span>
-
-</a>
-
-<nav class="nav">
-
-<a href="/">
-Home
-</a>
-
-<a href="/moerverse/">
-Moerverse
-</a>
-
-<a href="/academy/">
-Academy
-</a>
-
-<a href="/generator/">
-Generator
-</a>
-
-<a href="/#explore">
-Explore
-</a>
-
-</nav>
-
-</div>
-
-</header>
+<div id="globalHeader"></div>
 
 <main>
 
-<section class="hero">
+<section class="live-hero">
 
-<div class="container">
+<div class="page-container">
 
-<div class="label">
+<div class="section-label">
 MOE AI MARKET ENGINE
 </div>
 
@@ -451,18 +324,19 @@ LIVE.
 
 <p>
 
-The Moe AI Live Engine displays current scanner activity
-from the existing 4H market-structure system.
+The Moe AI Live Engine displays
+current scanner activity
+from the existing market-structure system.
 
-Only real data returned by the Moe AI API is shown.
-No fake signals are generated for presentation.
+Only information returned
+by the Moe AI API is shown.
 
 </p>
 
 <div class="engine-line">
 
 <span
-  class="dot"
+  class="engine-dot"
   id="topDot"
 ></span>
 
@@ -476,9 +350,9 @@ CONNECTING TO ENGINE
 
 </section>
 
-<section class="engine">
+<section class="engine-section">
 
-<div class="container">
+<div class="page-container">
 
 <div class="status-grid">
 
@@ -540,9 +414,7 @@ LAST UPDATE
   id="lastUpdate"
   style="font-size:15px"
 >
-
 —
-
 </strong>
 
 </div>
@@ -566,12 +438,10 @@ Waiting for Moe AI...
 </div>
 
 <button
-  class="refresh"
+  class="button secondary"
   onclick="loadEngine()"
 >
-
 REFRESH ENGINE
-
 </button>
 
 </div>
@@ -580,37 +450,14 @@ REFRESH ENGINE
 
 <div class="signal-row head">
 
-<div>
-MARKET
-</div>
-
-<div>
-DIRECTION
-</div>
-
-<div>
-TF
-</div>
-
-<div>
-ENTRY ZONE
-</div>
-
-<div>
-INVALIDATION
-</div>
-
-<div>
-TARGET
-</div>
-
-<div>
-STATUS
-</div>
-
-<div>
-UPDATED
-</div>
+<div>MARKET</div>
+<div>DIRECTION</div>
+<div>TF</div>
+<div>ENTRY ZONE</div>
+<div>INVALIDATION</div>
+<div>TARGET</div>
+<div>STATUS</div>
+<div>UPDATED</div>
 
 </div>
 
@@ -630,7 +477,7 @@ Connecting to Moe AI...
 
 <div class="lower-grid">
 
-<div class="panel">
+<div class="engine-panel">
 
 <h2>
 ENGINE ACTIVITY
@@ -657,7 +504,7 @@ Waiting for API response...
 
 </div>
 
-<div class="panel">
+<div class="engine-panel">
 
 <h2>
 HOW THE ENGINE READS A SETUP
@@ -696,7 +543,7 @@ Detect the latest valid Break of Structure.
 </div>
 
 <span>
-Measure the full breakout leg.
+Measure the breakout leg.
 </span>
 
 </div>
@@ -708,7 +555,7 @@ Measure the full breakout leg.
 </div>
 
 <span>
-Monitor the defined Fibonacci retracement zone.
+Monitor the configured retracement zone.
 </span>
 
 </div>
@@ -734,10 +581,11 @@ and signal lifecycle.
 
 </div>
 
-<div class="disclaimer">
+<div class="engine-disclaimer">
 
 Experimental market analysis only.
-Nothing displayed by Moe AI constitutes financial,
+Nothing displayed by Moe AI constitutes
+financial,
 investment
 or trading advice.
 
@@ -749,15 +597,13 @@ or trading advice.
 
 </main>
 
-<footer>
+<div id="globalFooter"></div>
 
-Moe AI Live • Based Moer • Stay Based.
-
-</footer>
+<script src="/shared.js"></script>
 
 <script>
 
-async function loadEngine(){
+async function loadEngine() {
 
   const engineStatus =
     document.getElementById(
@@ -803,7 +649,7 @@ async function loadEngine(){
     "CHECKING";
 
   topDot.className =
-    "dot";
+    "engine-dot";
 
   topStatus.textContent =
     "CONNECTING TO ENGINE";
@@ -821,7 +667,7 @@ async function loadEngine(){
 
   `;
 
-  try{
+  try {
 
     const response =
       await fetch(
@@ -834,10 +680,10 @@ async function loadEngine(){
     const result =
       await response.json();
 
-    if(
+    if (
       !response.ok ||
       !result.ok
-    ){
+    ) {
 
       throw new Error(
         result.error ||
@@ -850,16 +696,14 @@ async function loadEngine(){
       Array.isArray(
         result.signals
       )
-      ?
-      result.signals
-      :
-      [];
+      ? result.signals
+      : [];
 
     engineStatus.textContent =
       "ONLINE";
 
     topDot.className =
-      "dot online";
+      "engine-dot online";
 
     topStatus.textContent =
       "SYSTEM ONLINE";
@@ -869,26 +713,20 @@ async function loadEngine(){
 
     const now =
       result.updated_at
-      ?
-      new Date(
-        result.updated_at
-      )
-      :
-      new Date();
+      ? new Date(result.updated_at)
+      : new Date();
 
     lastUpdate.textContent =
       now.toLocaleTimeString();
 
     engineMessage.textContent =
       signals.length
-      ?
-      "Live setups received from Moe AI."
-      :
-      "Engine online. No active setups detected.";
+      ? "Live setups received from Moe AI."
+      : "Engine online. No active setups detected.";
 
-    if(
+    if (
       signals.length === 0
-    ){
+    ) {
 
       signalArea.innerHTML = `
 
@@ -936,7 +774,8 @@ async function loadEngine(){
           </strong>
 
           <span>
-            No unresolved open setup returned by the engine.
+            No unresolved setup returned
+            by the engine.
           </span>
 
         </div>
@@ -949,110 +788,86 @@ async function loadEngine(){
 
     signalArea.innerHTML =
       signals
-      .slice(
-        0,
-        20
-      )
+      .slice(0,20)
       .map(
-        signal => {
+        signal => `
 
-          return `
+          <div class="signal-row">
 
-            <div class="signal-row">
-
-              <div>
-                <strong>
-                  ${safe(
-                    signal.symbol ??
-                    "—"
-                  )}
-                </strong>
-              </div>
-
-              <div class="direction">
-
-                ${safe(
-                  signal.direction ??
-                  signal.side ??
-                  "—"
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  signal.timeframe ??
-                  "4H"
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  formatValue(
-                    signal.entry ??
-                    signal.entry_range ??
-                    signal.entry_price ??
-                    "—"
-                  )
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  formatValue(
-                    signal.stop_loss ??
-                    signal.stop ??
-                    signal.invalidation ??
-                    "—"
-                  )
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  formatValue(
-                    signal.take_profit ??
-                    signal.tp1 ??
-                    signal.target ??
-                    "—"
-                  )
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  signal.status ??
-                  "OPEN"
-                )}
-
-              </div>
-
-              <div>
-
-                ${safe(
-                  formatDate(
-                    signal.updated_at ??
-                    signal.created_at ??
-                    ""
-                  )
-                )}
-
-              </div>
-
+            <div>
+              <strong>
+                ${safe(signal.symbol ?? "—")}
+              </strong>
             </div>
 
-          `;
+            <div>
+              ${safe(
+                signal.direction ??
+                signal.side ??
+                "—"
+              )}
+            </div>
 
-        }
+            <div>
+              ${safe(
+                signal.timeframe ??
+                "4H"
+              )}
+            </div>
+
+            <div>
+              ${safe(
+                formatValue(
+                  signal.entry ??
+                  signal.entry_range ??
+                  signal.entry_price ??
+                  "—"
+                )
+              )}
+            </div>
+
+            <div>
+              ${safe(
+                formatValue(
+                  signal.stop_loss ??
+                  signal.stop ??
+                  signal.invalidation ??
+                  "—"
+                )
+              )}
+            </div>
+
+            <div>
+              ${safe(
+                formatValue(
+                  signal.take_profit ??
+                  signal.tp1 ??
+                  signal.target ??
+                  "—"
+                )
+              )}
+            </div>
+
+            <div>
+              ${safe(
+                signal.status ??
+                "OPEN"
+              )}
+            </div>
+
+            <div>
+              ${safe(
+                formatDate(
+                  signal.updated_at ??
+                  signal.created_at ??
+                  ""
+                )
+              )}
+            </div>
+
+          </div>
+
+        `
       )
       .join("");
 
@@ -1073,11 +888,13 @@ async function loadEngine(){
       <div class="activity-item">
 
         <strong>
-          ${signals.length} OPEN SETUP${signals.length === 1 ? "" : "S"}
+          ${signals.length}
+          OPEN SETUP${signals.length === 1 ? "" : "S"}
         </strong>
 
         <span>
-          Current unresolved signals returned by the engine.
+          Current unresolved signals
+          returned by the engine.
         </span>
 
       </div>
@@ -1098,7 +915,7 @@ async function loadEngine(){
 
   }
 
-  catch(error){
+  catch(error) {
 
     engineStatus.textContent =
       "PROBLEM";
@@ -1143,9 +960,7 @@ async function loadEngine(){
         </strong>
 
         <span>
-          ${safe(
-            error.message
-          )}
+          ${safe(error.message)}
         </span>
 
       </div>
@@ -1156,39 +971,43 @@ async function loadEngine(){
 
 }
 
-function formatValue(value){
+function formatValue(value) {
 
-  if(
+  if (
     value === null ||
     value === undefined
-  ){
+  ) {
     return "—";
   }
 
-  if(
+  if (
     typeof value ===
     "object"
-  ){
+  ) {
 
-    if(
+    if (
       value.min !== undefined &&
       value.max !== undefined
-    ){
+    ) {
 
-      return value.min +
-      " – " +
-      value.max;
+      return (
+        value.min +
+        " – " +
+        value.max
+      );
 
     }
 
-    if(
+    if (
       value.low !== undefined &&
       value.high !== undefined
-    ){
+    ) {
 
-      return value.low +
-      " – " +
-      value.high;
+      return (
+        value.low +
+        " – " +
+        value.high
+      );
 
     }
 
@@ -1202,22 +1021,20 @@ function formatValue(value){
 
 }
 
-function formatDate(value){
+function formatDate(value) {
 
-  if(!value){
+  if (!value) {
     return "—";
   }
 
   const date =
-    new Date(
-      value
-    );
+    new Date(value);
 
-  if(
+  if (
     Number.isNaN(
       date.getTime()
     )
-  ){
+  ) {
     return value;
   }
 
@@ -1225,16 +1042,14 @@ function formatDate(value){
 
 }
 
-function safe(value){
+function safe(value) {
 
-  return String(
-    value
-  )
-  .replaceAll("&","&amp;")
-  .replaceAll("<","&lt;")
-  .replaceAll(">","&gt;")
-  .replaceAll('"',"&quot;")
-  .replaceAll("'","&#039;");
+  return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
@@ -1248,4 +1063,5 @@ setInterval(
 </script>
 
 </body>
+
 </html>
