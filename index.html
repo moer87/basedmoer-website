@@ -10,19 +10,107 @@
   content="width=device-width, initial-scale=1.0"
 >
 
+<title>
+Based Moer | Pixel Art, Moe AI & Onchain Experiences on Base
+</title>
+
+<meta
+  name="description"
+  content="Explore Based Moer, a creator-owned pixel art universe built on Base. Discover Bald Moe, Based Ape Punks, Moe AI market intelligence, Moe Academy, digital collectibles, art and future onchain games."
+>
+
+<meta
+  name="robots"
+  content="index, follow, max-image-preview:large"
+>
+
+<link
+  rel="canonical"
+  href="https://basedmoer.com/"
+>
+
 <meta
   name="theme-color"
   content="#070910"
 >
 
-<title>
-Based Moer — Pixel Art. Onchain Intelligence.
-</title>
+<meta
+  property="og:type"
+  content="website"
+>
 
 <meta
-  name="description"
-  content="Based Moer is the home of Moerverse and Moe AI — original pixel art, characters, collectibles, education and onchain intelligence built around Base."
+  property="og:title"
+  content="Based Moer | Pixel Art & Onchain Intelligence on Base"
 >
+
+<meta
+  property="og:description"
+  content="A creator-owned pixel art universe combining original characters, digital collectibles, Moe AI, education and future onchain experiences on Base."
+>
+
+<meta
+  property="og:url"
+  content="https://basedmoer.com/"
+>
+
+<meta
+  property="og:image"
+  content="https://basedmoer.com/assets/moerverse-preview.png"
+>
+
+<meta
+  name="twitter:card"
+  content="summary_large_image"
+>
+
+<meta
+  name="twitter:title"
+  content="Based Moer | Pixel Art & Onchain Intelligence on Base"
+>
+
+<meta
+  name="twitter:description"
+  content="Explore Moerverse, Moe AI, Base digital collectibles, pixel art and Moe Academy."
+>
+
+<meta
+  name="twitter:image"
+  content="https://basedmoer.com/assets/moerverse-preview.png"
+>
+
+<link
+  rel="preload"
+  href="assets/bald-moe-promo.gif"
+  as="image"
+>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://basedmoer.com/#website",
+      "url": "https://basedmoer.com/",
+      "name": "Based Moer",
+      "description": "Creator-owned pixel art, Moe AI, digital collectibles and onchain experiences built on Base."
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://basedmoer.com/#organization",
+      "name": "Based Moer",
+      "url": "https://basedmoer.com/",
+      "logo": "https://basedmoer.com/assets/based-moer-logo.jpg",
+      "sameAs": [
+        "https://x.com/basedmoer",
+        "https://www.youtube.com/@BasedMoer",
+        "https://oncyber.io/basedmoer"
+      ]
+    }
+  ]
+}
+</script>
 
 <style>
 
@@ -30,18 +118,27 @@ Based Moer — Pixel Art. Onchain Intelligence.
 
   --base:#0052ff;
   --base-light:#3976ff;
+
   --black:#070910;
   --black2:#0b0e16;
+
   --panel:#10131d;
   --panel2:#151925;
+
   --border:#282f42;
+
   --white:#f8f9ff;
   --muted:#9da7c3;
+
   --green:#68f49b;
   --red:#ff7182;
   --yellow:#ffd96b;
+
   --radius:22px;
-  --shadow:0 25px 70px rgba(0,0,0,.40);
+
+  --shadow:
+    0 25px 70px
+    rgba(0,0,0,.40);
 
 }
 
@@ -61,28 +158,31 @@ body {
 
   margin:0;
 
+  overflow-x:hidden;
+
+  color:var(--white);
+
   background:
+
     radial-gradient(
       circle at 12% -3%,
       rgba(0,82,255,.25),
       transparent 37rem
     ),
+
     radial-gradient(
       circle at 100% 25%,
       rgba(93,71,255,.12),
       transparent 30rem
     ),
-    var(--black);
 
-  color:var(--white);
+    var(--black);
 
   font-family:
     Inter,
     Arial,
     Helvetica,
     sans-serif;
-
-  overflow-x:hidden;
 
 }
 
@@ -101,7 +201,8 @@ button {
 
 img,
 video,
-iframe {
+iframe,
+svg {
 
   display:block;
   max-width:100%;
@@ -132,12 +233,26 @@ section {
 
 }
 
+.section-head {
+
+  max-width:900px;
+
+  margin:
+    0 auto 42px;
+
+  text-align:center;
+
+}
+
 .section-number {
 
   color:#7381ac;
+
   font-size:12px;
   font-weight:900;
+
   letter-spacing:.17em;
+
   text-transform:uppercase;
 
 }
@@ -162,6 +277,7 @@ h2 {
   );
 
   line-height:.94;
+
   letter-spacing:-.055em;
 
 }
@@ -174,11 +290,15 @@ h2 {
 
 .section-description {
 
-  max-width:760px;
+  max-width:790px;
+
+  margin-left:auto;
+  margin-right:auto;
 
   color:var(--muted);
 
   font-size:17px;
+
   line-height:1.75;
 
 }
@@ -195,6 +315,7 @@ h2 {
     var(--radius);
 
   background:
+
     linear-gradient(
       145deg,
       #11141e,
@@ -206,13 +327,15 @@ h2 {
 }
 
 /* =========================================
-   NAV
+   NAVIGATION
    ========================================= */
 
 .navbar {
 
   position:sticky;
+
   top:0;
+
   z-index:1000;
 
   background:
@@ -220,7 +343,7 @@ h2 {
       7,
       9,
       16,
-      .80
+      .82
     );
 
   backdrop-filter:
@@ -242,7 +365,9 @@ h2 {
   min-height:76px;
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   gap:24px;
@@ -252,7 +377,9 @@ h2 {
 .brand {
 
   display:flex;
+
   align-items:center;
+
   gap:12px;
 
 }
@@ -280,7 +407,9 @@ h2 {
 .brand-name {
 
   font-size:14px;
+
   font-weight:1000;
+
   letter-spacing:.10em;
 
 }
@@ -288,12 +417,15 @@ h2 {
 .nav-links {
 
   display:flex;
+
   align-items:center;
-  gap:22px;
+
+  gap:21px;
 
   color:#c8cee3;
 
   font-size:13px;
+
   font-weight:800;
 
 }
@@ -317,18 +449,24 @@ h2 {
 .button {
 
   display:inline-flex;
+
   align-items:center;
+
   justify-content:center;
+
+  gap:9px;
 
   min-height:47px;
 
-  padding:12px 19px;
+  padding:
+    12px 19px;
 
   border:0;
 
   border-radius:13px;
 
   background:var(--base);
+
   color:white;
 
   font-weight:900;
@@ -336,6 +474,7 @@ h2 {
   cursor:pointer;
 
   box-shadow:
+
     0 9px 30px
     rgba(
       0,
@@ -345,7 +484,8 @@ h2 {
     );
 
   transition:
-    transform .18s ease;
+    transform .18s ease,
+    background .18s ease;
 
 }
 
@@ -353,6 +493,9 @@ h2 {
 
   transform:
     translateY(-2px);
+
+  background:
+    var(--base-light);
 
 }
 
@@ -388,6 +531,18 @@ h2 {
 
   transform:none;
 
+  background:#181b25;
+
+}
+
+.x-icon {
+
+  width:16px;
+
+  height:16px;
+
+  fill:currentColor;
+
 }
 
 /* =========================================
@@ -404,26 +559,35 @@ h2 {
   display:grid;
 
   grid-template-columns:
-    1.06fr .94fr;
+    1.04fr .96fr;
 
-  gap:62px;
+  gap:60px;
 
   align-items:center;
 
-  padding:75px 0 95px;
+  padding:
+    78px 0 95px;
+
+}
+
+.hero-copy {
+
+  text-align:center;
 
 }
 
 .hero-tag {
 
   display:inline-flex;
+
   align-items:center;
 
   gap:9px;
 
-  width:fit-content;
+  margin:auto;
 
-  padding:8px 12px;
+  padding:
+    8px 12px;
 
   border-radius:999px;
 
@@ -447,6 +611,7 @@ h2 {
   color:#d0d5e9;
 
   font-size:12px;
+
   font-weight:900;
 
   letter-spacing:.09em;
@@ -472,7 +637,8 @@ h2 {
 
 .hero h1 {
 
-  margin:23px 0 25px;
+  margin:
+    23px 0 25px;
 
   font-size:clamp(
     57px,
@@ -488,11 +654,14 @@ h2 {
 
 .hero-description {
 
-  max-width:670px;
+  max-width:700px;
+
+  margin:auto;
 
   color:#bac2da;
 
   font-size:19px;
+
   line-height:1.74;
 
 }
@@ -500,6 +669,9 @@ h2 {
 .hero-actions {
 
   display:flex;
+
+  justify-content:center;
+
   flex-wrap:wrap;
 
   gap:12px;
@@ -516,6 +688,8 @@ h2 {
 
   font-size:13px;
 
+  font-weight:700;
+
 }
 
 .hero-art {
@@ -525,6 +699,7 @@ h2 {
   min-height:520px;
 
   display:grid;
+
   place-items:center;
 
 }
@@ -539,6 +714,7 @@ h2 {
   border-radius:50%;
 
   background:
+
     radial-gradient(
       circle,
       rgba(
@@ -574,6 +750,7 @@ h2 {
   padding:24px;
 
   display:grid;
+
   place-items:center;
 
   overflow:hidden;
@@ -613,6 +790,7 @@ h2 {
     );
 
   font-size:92px;
+
   font-weight:1000;
 
   letter-spacing:-.08em;
@@ -622,6 +800,7 @@ h2 {
 .hero-frame img {
 
   position:relative;
+
   z-index:3;
 
   width:100%;
@@ -632,12 +811,12 @@ h2 {
 }
 
 /* =========================================
-   PROJECT BAR
+   ECOSYSTEM STRIP
    ========================================= */
 
 .project-bar {
 
-  padding:34px 0;
+  padding:35px 0;
 
   border-top:
     1px solid
@@ -673,7 +852,9 @@ h2 {
 
 .project-stat {
 
-  padding:11px;
+  padding:12px;
+
+  text-align:center;
 
 }
 
@@ -683,7 +864,7 @@ h2 {
 
   margin-bottom:6px;
 
-  font-size:22px;
+  font-size:21px;
 
 }
 
@@ -692,12 +873,13 @@ h2 {
   color:#858fac;
 
   font-size:13px;
+
   line-height:1.5;
 
 }
 
 /* =========================================
-   MOERVERSE
+   MOERVERSE COLLECTION CARDS
    ========================================= */
 
 .collection-grid {
@@ -709,8 +891,6 @@ h2 {
 
   gap:24px;
 
-  margin-top:40px;
-
   align-items:stretch;
 
 }
@@ -720,6 +900,7 @@ h2 {
   height:100%;
 
   display:flex;
+
   flex-direction:column;
 
 }
@@ -729,6 +910,7 @@ h2 {
   height:420px;
 
   display:grid;
+
   place-items:center;
 
   overflow:hidden;
@@ -756,16 +938,18 @@ h2 {
 
   flex:1;
 
-  padding:28px;
-
   display:flex;
+
   flex-direction:column;
+
+  padding:28px;
 
 }
 
 .collection-info p {
 
   color:#9da6c2;
+
   line-height:1.7;
 
 }
@@ -774,8 +958,9 @@ h2 {
 
   display:flex;
 
-  justify-content:space-between;
   align-items:center;
+
+  justify-content:space-between;
 
   gap:12px;
 
@@ -832,11 +1017,13 @@ h2 {
 .tags {
 
   display:flex;
+
   flex-wrap:wrap;
 
   gap:8px;
 
-  margin:4px 0 24px;
+  margin:
+    5px 0 24px;
 
 }
 
@@ -853,6 +1040,7 @@ h2 {
   color:#b7bfd8;
 
   font-size:11px;
+
   font-weight:900;
 
   letter-spacing:.07em;
@@ -887,7 +1075,14 @@ h2 {
 .ai-left {
 
   display:flex;
+
   flex-direction:column;
+
+}
+
+.ai-intro {
+
+  text-align:center;
 
 }
 
@@ -914,11 +1109,12 @@ h2 {
   min-height:0;
 
   display:flex;
+
   flex-direction:column;
 
-  justify-content:flex-start;
+  justify-content:center;
 
-  padding:18px;
+  padding:21px;
 
   border:
     1px solid
@@ -936,6 +1132,7 @@ h2 {
   height:31px;
 
   display:grid;
+
   place-items:center;
 
   margin-bottom:15px;
@@ -945,6 +1142,7 @@ h2 {
   background:#12318f;
 
   font-size:12px;
+
   font-weight:900;
 
 }
@@ -960,19 +1158,21 @@ h2 {
   color:#8993af;
 
   font-size:14px;
+
   line-height:1.55;
 
 }
 
 .video-frame {
 
-  height:100%;
+  min-height:650px;
 
-  min-height:630px;
+  height:100%;
 
   padding:12px;
 
   display:flex;
+
   align-items:center;
 
   border:
@@ -990,9 +1190,10 @@ h2 {
 .video-frame video {
 
   width:100%;
+
   height:100%;
 
-  max-height:650px;
+  max-height:680px;
 
   object-fit:contain;
 
@@ -1018,7 +1219,7 @@ h2 {
 
   gap:13px;
 
-  margin:35px 0 20px;
+  margin-bottom:20px;
 
 }
 
@@ -1027,6 +1228,8 @@ h2 {
   min-height:125px;
 
   padding:20px;
+
+  text-align:center;
 
   border:
     1px solid
@@ -1047,6 +1250,7 @@ h2 {
   color:#7f89a8;
 
   font-size:11px;
+
   font-weight:900;
 
   letter-spacing:.09em;
@@ -1074,7 +1278,9 @@ h2 {
 .dashboard-header {
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   flex-wrap:wrap;
@@ -1157,9 +1363,10 @@ h2 {
 
   gap:12px;
 
-  padding:13px 12px;
-
   align-items:center;
+
+  padding:
+    13px 12px;
 
   border-bottom:
     1px solid
@@ -1174,6 +1381,7 @@ h2 {
   color:#737f9e;
 
   font-size:10px;
+
   font-weight:900;
 
   letter-spacing:.08em;
@@ -1200,8 +1408,6 @@ h2 {
 
 .oncyber-shell {
 
-  margin-top:38px;
-
   padding:12px;
 
   border:
@@ -1217,8 +1423,6 @@ h2 {
 }
 
 .oncyber-frame {
-
-  position:relative;
 
   width:100%;
 
@@ -1244,14 +1448,17 @@ h2 {
 .oncyber-fallback {
 
   display:flex;
+
   align-items:center;
+
   justify-content:space-between;
 
   flex-wrap:wrap;
 
   gap:15px;
 
-  padding:16px 5px 4px;
+  padding:
+    16px 5px 4px;
 
 }
 
@@ -1264,7 +1471,7 @@ h2 {
 }
 
 /* =========================================
-   NFT UTILITY
+   COLLECTION UTILITY
    ========================================= */
 
 .utility-grid {
@@ -1308,6 +1515,11 @@ h2 {
 
 .academy-top {
 
+  max-width:820px;
+
+  margin:
+    0 auto 30px;
+
   display:grid;
 
   grid-template-columns:
@@ -1316,10 +1528,6 @@ h2 {
   align-items:center;
 
   gap:18px;
-
-  max-width:810px;
-
-  margin-top:28px;
 
   padding:18px;
 
@@ -1366,13 +1574,15 @@ h2 {
 
   max-width:650px;
 
-  margin-top:30px;
+  margin:
+    0 auto 37px;
 
 }
 
 .progress-text {
 
   display:flex;
+
   justify-content:space-between;
 
   gap:10px;
@@ -1418,23 +1628,21 @@ h2 {
 
   gap:22px;
 
-  margin-top:37px;
-
   align-items:start;
 
 }
 
 .lesson-list {
 
+  position:sticky;
+
+  top:96px;
+
   display:grid;
 
   align-content:start;
 
   gap:9px;
-
-  position:sticky;
-
-  top:96px;
 
 }
 
@@ -1451,6 +1659,7 @@ h2 {
   border-radius:13px;
 
   background:#10121a;
+
   color:#d8ddef;
 
   text-align:left;
@@ -1511,6 +1720,7 @@ h2 {
 .lesson-brand {
 
   display:flex;
+
   align-items:center;
 
   gap:15px;
@@ -1541,6 +1751,7 @@ h2 {
   color:#7e89a8;
 
   font-size:12px;
+
   font-weight:900;
 
   letter-spacing:.09em;
@@ -1551,7 +1762,8 @@ h2 {
 
 .lesson-content h3 {
 
-  margin:6px 0 18px;
+  margin:
+    6px 0 18px;
 
   font-size:39px;
 
@@ -1561,7 +1773,8 @@ h2 {
 
 .lesson-content h4 {
 
-  margin:31px 0 10px;
+  margin:
+    31px 0 10px;
 
   font-size:21px;
 
@@ -1599,6 +1812,114 @@ h2 {
   color:#c7cde0;
 
   line-height:1.7;
+
+}
+
+/* =========================================
+   ACADEMY GRAPHICS
+   ========================================= */
+
+.lesson-graphic {
+
+  position:relative;
+
+  width:100%;
+
+  min-height:330px;
+
+  margin:
+    25px 0 35px;
+
+  overflow:hidden;
+
+  border:
+    1px solid
+    #2b3450;
+
+  border-radius:20px;
+
+  background:
+
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(
+        0,
+        82,
+        255,
+        .19
+      ),
+      transparent 35%
+    ),
+
+    #080b14;
+
+}
+
+.lesson-graphic svg {
+
+  width:100%;
+
+  height:330px;
+
+}
+
+.graphic-logo {
+
+  position:absolute;
+
+  z-index:5;
+
+  top:17px;
+
+  left:17px;
+
+  width:51px;
+  height:51px;
+
+  padding:4px;
+
+  border-radius:11px;
+
+  object-fit:cover;
+
+  background:
+    rgba(
+      7,
+      9,
+      16,
+      .88
+    );
+
+  border:
+    1px solid
+    rgba(
+      255,
+      255,
+      255,
+      .14
+    );
+
+}
+
+.graphic-title {
+
+  position:absolute;
+
+  z-index:5;
+
+  top:25px;
+
+  left:82px;
+
+  color:#dce2f6;
+
+  font-size:11px;
+
+  font-weight:900;
+
+  letter-spacing:.11em;
+
+  text-transform:uppercase;
 
 }
 
@@ -1669,12 +1990,10 @@ h2 {
 }
 
 /* =========================================
-   COINFLIP COMING SOON
+   BASED MOER FLIP GAME
    ========================================= */
 
-.coin-coming {
-
-  margin-top:38px;
+.flip-coming {
 
   min-height:520px;
 
@@ -1687,16 +2006,18 @@ h2 {
 
 }
 
-.coin-visual {
+.flip-visual {
 
   position:relative;
 
   min-height:520px;
 
   display:grid;
+
   place-items:center;
 
   background:
+
     radial-gradient(
       circle at 50% 45%,
       rgba(
@@ -1707,11 +2028,12 @@ h2 {
       ),
       transparent 45%
     ),
+
     #090b12;
 
 }
 
-.coin-visual img {
+.flip-visual img {
 
   width:230px;
   height:230px;
@@ -1719,6 +2041,7 @@ h2 {
   object-fit:contain;
 
   filter:
+
     drop-shadow(
       0 20px 38px
       rgba(
@@ -1760,6 +2083,7 @@ h2 {
     );
 
   font-size:11px;
+
   font-weight:900;
 
   letter-spacing:.10em;
@@ -1768,17 +2092,19 @@ h2 {
 
 }
 
-.coin-copy {
+.flip-copy {
 
   padding:45px;
 
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
 
 }
 
-.coin-copy h3 {
+.flip-copy h3 {
 
   margin-bottom:13px;
 
@@ -1788,7 +2114,7 @@ h2 {
 
 }
 
-.coin-copy p {
+.flip-copy p {
 
   max-width:560px;
 
@@ -1807,7 +2133,8 @@ h2 {
 
   gap:10px;
 
-  margin:23px 0 26px;
+  margin:
+    23px 0 26px;
 
 }
 
@@ -1848,8 +2175,17 @@ h2 {
 
 .explore-left {
 
+  min-height:610px;
+
   display:flex;
+
   flex-direction:column;
+
+}
+
+.explore-copy {
+
+  text-align:center;
 
 }
 
@@ -1875,7 +2211,9 @@ h2 {
   padding:19px;
 
   display:flex;
+
   flex-direction:column;
+
   justify-content:center;
 
   border:
@@ -1914,6 +2252,7 @@ h2 {
   color:#858fac;
 
   font-size:13px;
+
   line-height:1.5;
 
 }
@@ -1925,6 +2264,7 @@ h2 {
   height:100%;
 
   display:grid;
+
   place-items:center;
 
   padding:12px;
@@ -1951,6 +2291,87 @@ h2 {
 }
 
 /* =========================================
+   PROJECT PRINCIPLES
+   ========================================= */
+
+.principles-grid {
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(
+      3,
+      1fr
+    );
+
+  gap:16px;
+
+}
+
+.principle {
+
+  padding:26px;
+
+  text-align:center;
+
+}
+
+.principle-number {
+
+  width:42px;
+  height:42px;
+
+  display:grid;
+
+  place-items:center;
+
+  margin:
+    0 auto 16px;
+
+  border-radius:12px;
+
+  background:
+    rgba(
+      0,
+      82,
+      255,
+      .16
+    );
+
+  border:
+    1px solid
+    rgba(
+      0,
+      82,
+      255,
+      .36
+    );
+
+  color:#a8c2ff;
+
+  font-weight:900;
+
+}
+
+.principle h3 {
+
+  margin-bottom:9px;
+
+}
+
+.principle p {
+
+  margin:0;
+
+  color:#8f99b6;
+
+  line-height:1.65;
+
+  font-size:14px;
+
+}
+
+/* =========================================
    FOUNDER
    ========================================= */
 
@@ -1958,11 +2379,15 @@ h2 {
 
   position:relative;
 
-  padding-bottom:285px;
+  padding-bottom:470px;
 
 }
 
 .founder-card {
+
+  max-width:920px;
+
+  margin:auto;
 
   display:grid;
 
@@ -1992,17 +2417,14 @@ h2 {
 
 .founder-card h3 {
 
-  margin:6px 0 9px;
+  margin:
+    6px 0 9px;
 
   font-size:34px;
 
   letter-spacing:-.04em;
 
 }
-
-/* =========================================
-   BOTTOM MOE
-   ========================================= */
 
 .bottom-moe {
 
@@ -2015,17 +2437,19 @@ h2 {
     translateX(-50%);
 
   width:min(
-    480px,
-    72vw
+    800px,
+    96vw
   );
 
-  height:260px;
+  height:440px;
 
   overflow:hidden;
 
   display:flex;
-  justify-content:center;
+
   align-items:flex-end;
+
+  justify-content:center;
 
   pointer-events:none;
 
@@ -2048,7 +2472,8 @@ h2 {
 
 footer {
 
-  padding:36px 0;
+  padding:
+    42px 0;
 
   border-top:
     1px solid
@@ -2072,8 +2497,45 @@ footer {
 
 }
 
+.footer-links {
+
+  display:flex;
+
+  flex-wrap:wrap;
+
+  gap:16px;
+
+}
+
+.footer-links a:hover {
+
+  color:white;
+
+}
+
+.disclaimer {
+
+  max-width:1180px;
+
+  margin:
+    24px auto 0;
+
+  padding-top:20px;
+
+  border-top:
+    1px solid
+    #202638;
+
+  color:#606983;
+
+  font-size:11px;
+
+  line-height:1.65;
+
+}
+
 /* =========================================
-   RESPONSIVE
+   MOBILE
    ========================================= */
 
 @media(max-width:940px) {
@@ -2104,7 +2566,7 @@ footer {
   .collection-grid,
   .ai-layout,
   .utility-grid,
-  .coin-coming,
+  .flip-coming,
   .explore-grid {
 
     grid-template-columns:1fr;
@@ -2145,9 +2607,16 @@ footer {
 
   }
 
+  .explore-left,
   .art-frame {
 
     min-height:500px;
+
+  }
+
+  .principles-grid {
+
+    grid-template-columns:1fr;
 
   }
 
@@ -2254,6 +2723,26 @@ footer {
 
     grid-template-columns:1fr;
 
+    text-align:center;
+
+  }
+
+  .academy-top img {
+
+    margin:auto;
+
+  }
+
+  .lesson-graphic {
+
+    min-height:260px;
+
+  }
+
+  .lesson-graphic svg {
+
+    height:260px;
+
   }
 
   .coming-list {
@@ -2262,13 +2751,13 @@ footer {
 
   }
 
-  .coin-copy {
+  .flip-copy {
 
     padding:28px;
 
   }
 
-  .coin-copy h3 {
+  .flip-copy h3 {
 
     font-size:36px;
 
@@ -2280,6 +2769,7 @@ footer {
 
   }
 
+  .explore-left,
   .art-frame {
 
     min-height:390px;
@@ -2300,35 +2790,59 @@ footer {
 
   }
 
+  .founder-section {
+
+    padding-bottom:330px;
+
+  }
+
+  .bottom-moe {
+
+    height:310px;
+
+  }
+
 }
 
 </style>
 
 </head>
 
+
 <body>
+
 
 <header class="navbar">
 
 <div class="container nav-inner">
 
+
 <a
   class="brand"
   href="#home"
+  aria-label="Based Moer home"
 >
 
 <img
   src="assets/based-moer-logo.jpg"
-  alt="Based Moer Logo"
+  alt="Based Moer pixel art logo"
+  width="53"
+  height="53"
 >
 
 <span class="brand-name">
+
 BASED MOER
+
 </span>
 
 </a>
 
-<nav class="nav-links">
+
+<nav
+  class="nav-links"
+  aria-label="Main navigation"
+>
 
 <a href="#moerverse">
 Moerverse
@@ -2350,8 +2864,8 @@ NFTs
 Academy
 </a>
 
-<a href="#coinflip">
-Coin Flip
+<a href="#flip-game">
+Flip Game
 </a>
 
 <a href="#explore">
@@ -2360,26 +2874,43 @@ Explore
 
 </nav>
 
+
 <a
   class="button"
   href="https://x.com/basedmoer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
+  aria-label="Follow Based Moer on X"
 >
+
+<svg
+  class="x-icon"
+  viewBox="0 0 24 24"
+  aria-hidden="true"
+>
+
+<path
+  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"
+/>
+
+</svg>
 
 FOLLOW
 
 </a>
 
+
 </div>
 
 </header>
 
+
 <main>
 
-<!-- =========================================
+
+<!-- =====================================================
      HERO
-     ========================================= -->
+     ===================================================== -->
 
 <section
   id="home"
@@ -2388,15 +2919,18 @@ FOLLOW
 
 <div class="container hero">
 
-<div>
+
+<div class="hero-copy">
+
 
 <div class="hero-tag">
 
 <span class="hero-dot"></span>
 
-A PIXEL UNIVERSE ON BASE
+PIXEL ART & ONCHAIN EXPERIENCES ON BASE
 
 </div>
+
 
 <h1>
 
@@ -2414,64 +2948,67 @@ INTELLIGENCE.
 
 </h1>
 
+
 <p class="hero-description">
 
-Based Moer is the home of the Moerverse:
+Based Moer is a creator-owned pixel art universe built on Base,
+an Ethereum Layer 2.
 
-original pixel characters,
-collectibles,
-stories,
-education,
-games
-and Moe AI.
-
-One evolving universe where
-independent art
-and onchain technology
-meet.
+Explore original Bald Moe characters,
+Based Ape Punks digital collectibles,
+Moe AI market intelligence,
+Moe Academy
+and future onchain games
+inside one evolving creative ecosystem.
 
 </p>
 
+
 <div class="hero-actions">
+
 
 <a
   class="button"
   href="#moerverse"
 >
 
-ENTER MOERVERSE
+EXPLORE MOERVERSE
 
 </a>
+
 
 <a
   class="button secondary"
   href="#moe-ai"
 >
 
-MEET MOE AI
+DISCOVER MOE AI
 
 </a>
+
 
 <a
   class="button secondary"
   href="#academy"
 >
 
-START ACADEMY
+START MOE ACADEMY
 
 </a>
 
+
 </div>
+
 
 <div class="hero-note">
 
-Creator-owned
-• Pixel-first
-• Built around Base
+Pixel-first • Built on Base
 
 </div>
 
+
 </div>
+
 
 <div class="hero-art">
 
@@ -2482,24 +3019,29 @@ Creator-owned
 <img
   class="pixel"
   src="assets/bald-moe-promo.gif"
-  alt="Based Moe animated promo"
+  alt="Animated Bald Moe pixel art from the Based Moer universe"
+  width="520"
+  height="520"
 >
 
 </div>
 
 </div>
 
+
 </div>
 
 </section>
 
-<!-- =========================================
-     STRIP
-     ========================================= -->
+
+<!-- =====================================================
+     ECOSYSTEM STRIP
+     ===================================================== -->
 
 <div class="project-bar">
 
 <div class="container project-bar-grid">
+
 
 <div class="project-stat">
 
@@ -2509,14 +3051,15 @@ MOERVERSE
 
 <span>
 
-Characters,
-stories,
-collectibles
-and strange pixel worlds.
+An original pixel art world
+of characters,
+stories
+and digital collectibles.
 
 </span>
 
 </div>
+
 
 <div class="project-stat">
 
@@ -2526,12 +3069,13 @@ MOE AI
 
 <span>
 
-Explainable market intelligence
-developing toward autonomous systems.
+Explainable market structure intelligence
+built to evolve toward agent-ready systems.
 
 </span>
 
 </div>
+
 
 <div class="project-stat">
 
@@ -2541,47 +3085,57 @@ BASE
 
 <span>
 
-The onchain home for
-collectibles,
+Our onchain home for collectibles,
+future apps,
 agents
-and future experiences.
+and experiences.
 
 </span>
 
 </div>
+
 
 <div class="project-stat">
 
 <strong>
-PIXEL FIRST
+CREATOR-OWNED
 </strong>
 
 <span>
 
-Technology built inside
-an artist-created universe.
+Independent art,
+technology
+and storytelling
+built from the pixel level up.
 
 </span>
 
 </div>
 
-</div>
 
 </div>
 
-<!-- =========================================
+</div>
+
+
+<!-- =====================================================
      MOERVERSE
-     ========================================= -->
+     ===================================================== -->
 
 <section id="moerverse">
 
 <div class="container">
 
+
+<div class="section-head">
+
+
 <div class="section-number">
 
-01 / THE WORLD
+01 / PIXEL ART UNIVERSE
 
 </div>
+
 
 <h2>
 
@@ -2593,39 +3147,48 @@ MOERVERSE.
 
 </h2>
 
+
 <p class="section-description">
 
-Moerverse is the creative world
-surrounding Based Moer and Moe AI.
+Moerverse is the creative universe behind Based Moer:
+an expanding collection of original pixel art characters,
+animated digital collectibles,
+stories,
+experiments
+and onchain experiences built around Base.
 
-Characters can exist in different
-timelines,
-identities,
-universes
-and strange adventures.
-
-NFTs are part of the universe —
-not the entire universe.
+NFTs are part of the universe,
+but the art,
+characters
+and ideas come first.
 
 </p>
 
+
+</div>
+
+
 <div class="collection-grid">
 
-<!-- BALD MOE -->
 
 <article class="card collection-card">
+
 
 <div class="collection-image">
 
 <img
   class="pixel"
   src="assets/moerverse-preview.png"
-  alt="Bald Moe collection preview"
+  alt="Bald Moe Genesis pixel art character collection preview"
+  loading="lazy"
+  decoding="async"
 >
 
 </div>
 
+
 <div class="collection-info">
+
 
 <div class="collection-topline">
 
@@ -2639,28 +3202,30 @@ GENESIS
 
 </div>
 
+
 <p>
 
-A collection of hand-drawn
-Bald Moe identities,
-alternate realities,
-dream states,
-experiments
-and characters.
+Bald Moe explores alternate identities,
+dreams,
+parallel worlds
+and strange adventures through original pixel art.
 
-The artwork is the visual heart
-of the Moerverse.
+The 222-piece Genesis collection is designed as the creative core
+of the Based Moer universe,
+with deeper character lore
+and Singular Fragment artwork expanding the story.
 
 </p>
+
 
 <div class="tags">
 
 <span class="tag">
-222
+222 GENESIS
 </span>
 
 <span class="tag">
-1/1 ART
+PIXEL ART
 </span>
 
 <span class="tag">
@@ -2668,41 +3233,48 @@ BASE
 </span>
 
 <span class="tag">
-LORE
+1/1 LORE
 </span>
 
 </div>
+
 
 <a
   class="button secondary"
   href="https://oncyber.io/basedmoer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
-EXPLORE ART ↗
+EXPLORE BALD MOE ART ↗
 
 </a>
 
+
 </div>
+
 
 </article>
 
-<!-- APE PUNKS -->
 
 <article class="card collection-card">
+
 
 <div class="collection-image">
 
 <img
   class="pixel"
   src="assets/ape-punks.gif"
-  alt="Based Ape Punks"
+  alt="Animated Based Ape Punks NFT collection on Base"
+  loading="lazy"
+  decoding="async"
 >
 
 </div>
 
+
 <div class="collection-info">
+
 
 <div class="collection-topline">
 
@@ -2716,18 +3288,20 @@ MINT PAUSED
 
 </div>
 
+
 <p>
 
-The animated evolution
+Based Ape Punks is the animated Base evolution
 of Polygon Ape Punks.
 
-Travelers,
+The 2,222-piece collection follows space travelers,
 punks
-and explorers
-crossing different worlds
-inside the Moerverse.
+and explorers moving between worlds in the Moerverse,
+connecting the earlier Ape Punks story
+to a new onchain chapter.
 
 </p>
+
 
 <div class="tags">
 
@@ -2736,7 +3310,7 @@ inside the Moerverse.
 </span>
 
 <span class="tag">
-ANIMATED
+ANIMATED NFTS
 </span>
 
 <span class="tag">
@@ -2745,42 +3319,51 @@ BASE
 
 </div>
 
+
 <a
   class="button secondary"
   href="https://basedapepunks.vercel.app/"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
-EXPLORE APE PUNKS ↗
+EXPLORE BASED APE PUNKS ↗
 
 </a>
 
+
 </div>
+
 
 </article>
 
+
 </div>
+
 
 </div>
 
 </section>
 
-<!-- =========================================
+
+<!-- =====================================================
      MOE AI
-     ========================================= -->
+     ===================================================== -->
 
 <section id="moe-ai">
 
-<div class="container ai-layout">
+<div class="container">
 
-<div class="ai-left">
+
+<div class="section-head">
+
 
 <div class="section-number">
 
-02 / INTELLIGENCE
+02 / ONCHAIN INTELLIGENCE
 
 </div>
+
 
 <h2>
 
@@ -2792,27 +3375,34 @@ SEES THE SETUP.
 
 </h2>
 
+
 <p class="section-description">
 
-Moe AI begins as an explainable
-4H market-structure scanner.
+Moe AI is an explainable 4H market structure scanner
+designed to turn systematic trading logic
+into understandable,
+trackable market data.
 
-It scans,
-evaluates,
-records
-and monitors structured setups.
-
-The long-term direction reaches beyond
-a normal signal bot:
-decision-making,
-learning,
-risk management
-and eventually agent-ready
-onchain interaction.
+The scanner is the first layer of a larger AI-native system
+being developed around Base,
+with future learning,
+decision
+and agent-ready infrastructure.
 
 </p>
 
+
+</div>
+
+
+<div class="ai-layout">
+
+
+<div class="ai-left">
+
+
 <div class="ai-features">
+
 
 <div class="ai-feature">
 
@@ -2826,13 +3416,13 @@ SCAN
 
 <span>
 
-Find structured
-market setups
-using predefined rules.
+Scan crypto markets for structured
+4H setups using repeatable market structure rules.
 
 </span>
 
 </div>
+
 
 <div class="ai-feature">
 
@@ -2846,15 +3436,16 @@ EXPLAIN
 
 <span>
 
-Surface the reasoning,
-structure,
-entry,
-invalidation
-and target.
+Show the structure,
+entry zone,
+invalidation,
+target
+and reasoning behind each setup.
 
 </span>
 
 </div>
+
 
 <div class="ai-feature">
 
@@ -2868,13 +3459,15 @@ LEARN
 
 <span>
 
-Preserve signal history
-so performance can be evaluated
-instead of guessed.
+Record signal history
+so results can be measured,
+reviewed
+and improved using real data.
 
 </span>
 
 </div>
+
 
 <div class="ai-feature">
 
@@ -2888,18 +3481,20 @@ EVOLVE
 
 <span>
 
-Future layers can connect
-decision engines,
-execution
-and Base-native agents.
+Build toward decision engines,
+execution systems
+and Base-native AI agent infrastructure.
 
 </span>
 
 </div>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="video-frame">
 
@@ -2911,27 +3506,38 @@ and Base-native agents.
   playsinline
   controls
   preload="metadata"
+  aria-label="Moe AI animated project video"
 ></video>
 
 </div>
+
+
+</div>
+
 
 </div>
 
 </section>
 
-<!-- =========================================
+
+<!-- =====================================================
      LIVE MOE AI
-     ========================================= -->
+     ===================================================== -->
 
 <section id="live">
 
 <div class="container">
 
+
+<div class="section-head">
+
+
 <div class="section-number">
 
-03 / LIVE SYSTEM
+03 / LIVE MARKET INTELLIGENCE
 
 </div>
+
 
 <h2>
 
@@ -2943,18 +3549,25 @@ LIVE.
 
 </h2>
 
+
 <p class="section-description">
 
-This panel talks to the existing
-Moe AI backend through the website's
-own Vercel API route.
+Follow current Moe AI scanner activity from the website.
 
-When live signals are available,
-they appear below.
+The live interface connects to the existing Moe AI API
+and displays open market structure setups when available.
+
+Experimental market analysis only.
+Not financial advice.
 
 </p>
 
+
+</div>
+
+
 <div class="dashboard-grid">
+
 
 <div class="dashboard-stat">
 
@@ -2968,10 +3581,11 @@ SCANNER
 
 </div>
 
+
 <div class="dashboard-stat">
 
 <span>
-DATA
+MARKET DATA
 </span>
 
 <strong>
@@ -2980,10 +3594,11 @@ KRAKEN
 
 </div>
 
+
 <div class="dashboard-stat">
 
 <span>
-NETWORK
+ECOSYSTEM
 </span>
 
 <strong>
@@ -2992,10 +3607,11 @@ BASE
 
 </div>
 
+
 <div class="dashboard-stat">
 
 <span>
-API
+API STATUS
 </span>
 
 <strong id="apiStatus">
@@ -3004,11 +3620,15 @@ CHECKING
 
 </div>
 
+
 </div>
+
 
 <div class="card dashboard-box">
 
+
 <div class="dashboard-header">
+
 
 <div>
 
@@ -3018,44 +3638,53 @@ CHECKING
   "
 >
 
-OPEN SIGNALS
+CURRENT OPEN SETUPS
 
 </strong>
 
+
 <div class="api-state">
+
 
 <span
   class="api-dot"
   id="apiDot"
 ></span>
 
+
 <span id="apiMessage">
 
-Connecting...
+Connecting to Moe AI...
 
 </span>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <button
   class="button secondary"
   onclick="loadMoeData()"
 >
 
-REFRESH
+REFRESH DATA
 
 </button>
 
+
 </div>
 
+
 <div class="signal-table">
+
 
 <div class="signal-row head">
 
 <div>
-SYMBOL
+MARKET
 </div>
 
 <div>
@@ -3063,11 +3692,11 @@ SIDE
 </div>
 
 <div>
-TF
+TIMEFRAME
 </div>
 
 <div>
-ENTRY
+ENTRY ZONE
 </div>
 
 <div>
@@ -3080,52 +3709,47 @@ STATUS
 
 </div>
 
+
 <div id="signalArea">
 
 <div class="signal-loading">
 
-Connecting to Moe AI...
+Loading live Moe AI data...
 
 </div>
 
 </div>
 
-</div>
 
 </div>
 
-<p
-  style="
-    color:#717b97;
-    font-size:12px;
-    line-height:1.6;
-    margin-top:14px
-  "
->
 
-Experimental market analysis only.
-Nothing displayed here is financial advice.
-DYOR.
+</div>
 
-</p>
 
 </div>
 
 </section>
 
-<!-- =========================================
-     COLLECTION / ONCYBER
-     ========================================= -->
+
+<!-- =====================================================
+     COLLECTIONS / ONCYBER
+     ===================================================== -->
 
 <section id="collections">
 
 <div class="container">
 
+
+<div class="section-head">
+
+
 <div class="section-number">
 
-04 / COLLECTIBLES
+04 / BASE DIGITAL COLLECTIBLES
 
 </div>
+
 
 <h2>
 
@@ -3137,58 +3761,72 @@ THE STORY.
 
 </h2>
 
+
 <p class="section-description">
 
-Explore the artwork first.
+Explore Based Moer pixel art inside the interactive OnCyber gallery
+before discovering the digital collectible collections.
 
-The embedded OnCyber gallery lets
-visitors move directly into the
-Based Moer collection experience
-without leaving the main website.
+Our goal is to connect original artwork,
+character storytelling
+and useful onchain experiences
+rather than treating NFTs as isolated assets.
 
 </p>
 
+
+</div>
+
+
 <div class="oncyber-shell">
+
 
 <div class="oncyber-frame">
 
 <iframe
   src="https://oncyber.io/basedmoer"
-  title="Based Moer OnCyber Gallery"
-  allow="fullscreen; xr-spatial-tracking"
+  title="Interactive Based Moer OnCyber pixel art gallery"
   loading="lazy"
+  allow="fullscreen; xr-spatial-tracking"
 ></iframe>
 
 </div>
 
+
 <div class="oncyber-fallback">
+
 
 <span>
 
-If your browser blocks the embedded
-3D gallery,
-open the full experience directly.
+Interactive gallery not loading?
+Open the full OnCyber experience directly.
 
 </span>
+
 
 <a
   class="button secondary"
   href="https://oncyber.io/basedmoer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
-OPEN ONCYBER ↗
+OPEN FULL GALLERY ↗
 
 </a>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="utility-grid">
 
+
 <div class="card utility-card">
+
 
 <div class="collection-topline">
 
@@ -3202,20 +3840,23 @@ PAUSED
 
 </div>
 
+
 <p>
 
-2,222 animated Ape Punks on Base.
+2,222 animated digital collectibles on Base.
 
 The mint remains paused while
-the wider product and access system
-continues developing.
+the Moe AI product,
+dashboard
+and holder-access infrastructure continue developing.
 
 </p>
+
 
 <div class="tags">
 
 <span class="tag">
-SCANNER ACCESS
+MOE AI ACCESS
 </span>
 
 <span class="tag">
@@ -3223,25 +3864,29 @@ DASHBOARD
 </span>
 
 <span class="tag">
-AIRDROPS
+COMMUNITY
 </span>
 
 </div>
+
 
 <a
   class="button secondary"
   href="https://basedapepunks.vercel.app/"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 VIEW COLLECTION ↗
 
 </a>
 
+
 </div>
 
+
 <div class="card utility-card">
+
 
 <div class="collection-topline">
 
@@ -3255,15 +3900,18 @@ COMING
 
 </div>
 
+
 <p>
 
-222 Genesis Bald Moe pieces
-plus Singular Fragment artwork.
+222 original Bald Moe Genesis artworks
+supported by Singular Fragment 1/1 pieces,
+character lore
+and future Moerverse experiences.
 
-Genesis represents the deeper
-collector layer of the Moerverse.
+The collection is being prepared before deployment.
 
 </p>
+
 
 <div class="tags">
 
@@ -3276,10 +3924,11 @@ SINGULAR FRAGMENTS
 </span>
 
 <span class="tag">
-LORE
+ORIGINAL PIXEL ART
 </span>
 
 </div>
+
 
 <button class="button disabled">
 
@@ -3287,27 +3936,36 @@ NOT DEPLOYED YET
 
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </div>
 
 </section>
 
-<!-- =========================================
+
+<!-- =====================================================
      ACADEMY
-     ========================================= -->
+     ===================================================== -->
 
 <section id="academy">
 
 <div class="container">
 
+
+<div class="section-head">
+
+
 <div class="section-number">
 
-05 / MOE ACADEMY
+05 / CRYPTO MARKET EDUCATION
 
 </div>
+
 
 <h2>
 
@@ -3319,54 +3977,77 @@ YOU LEAP.
 
 </h2>
 
+
 <p class="section-description">
 
-Moe Academy teaches the ideas behind
-the scanner before asking users
-to interpret setups themselves.
+Moe Academy explains the market structure concepts
+used around the Moe AI scanner.
 
-Read every chapter,
-take the exam,
-and pass the lesson to complete it.
+Learn how swings,
+breaks of structure,
+Fibonacci retracements,
+entry zones,
+risk,
+signal lifecycle
+and systematic execution fit together.
+
+Read each lesson,
+study its custom chart,
+then pass the exam to complete the chapter.
 
 </p>
 
+
+</div>
+
+
 <div class="academy-top">
+
 
 <img
   src="assets/based-moer-logo.jpg"
-  alt="Based Moer Academy"
+  alt="Based Moer Academy logo"
 >
 
+
 <div>
+
 
 <strong>
 BASED MOER ACADEMY
 </strong>
 
+
 <span>
 
-Educational material only.
-Lessons explain market concepts
-and the structure used by Moe AI.
-They do not promise profits
-or provide individualized financial advice.
+A project-specific learning path for understanding
+Moe AI market structure concepts.
+
+Educational content only.
+Nothing in Moe Academy is financial advice
+or a promise of trading performance.
 
 </span>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 <div class="academy-progress">
 
+
 <div class="progress-text">
+
 
 <strong id="progressText">
 
-0 / 8 LESSONS COMPLETE
+0 / 10 LESSONS COMPLETE
 
 </strong>
+
 
 <span id="progressPercent">
 
@@ -3374,7 +4055,9 @@ or provide individualized financial advice.
 
 </span>
 
+
 </div>
+
 
 <div class="progress-track">
 
@@ -3385,63 +4068,83 @@ or provide individualized financial advice.
 
 </div>
 
+
 </div>
 
+
 <div class="academy-layout">
+
 
 <div
   id="lessonList"
   class="lesson-list"
 ></div>
 
+
 <article
   id="lessonContent"
   class="card lesson-content"
 ></article>
 
+
 </div>
+
 
 </div>
 
 </section>
 
-<!-- =========================================
-     COIN FLIP
-     ========================================= -->
 
-<section id="coinflip">
+<!-- =====================================================
+     BASED MOER FLIP GAME
+     ===================================================== -->
+
+<section id="flip-game">
 
 <div class="container">
 
+
+<div class="section-head">
+
+
 <div class="section-number">
 
-06 / MOER ARCADE
+06 / FUTURE ONCHAIN GAME
 
 </div>
 
+
 <h2>
 
-FLIP
+BASED MOER
 
 <span class="blue">
-BASED / MOER.
+FLIP GAME.
 </span>
 
 </h2>
 
+
 <p class="section-description">
 
-The real Moer Coin Flip is being prepared
-as a future Base-native game.
+The Based Moer Flip Game is a future pixel-art game
+being designed for the Base ecosystem.
 
-The temporary browser-only version
-has been removed.
+The temporary browser demo has been removed
+so the website represents only the product
+we actually intend to build.
 
 </p>
 
-<div class="card coin-coming">
 
-<div class="coin-visual">
+</div>
+
+
+<div class="card flip-coming">
+
+
+<div class="flip-visual">
+
 
 <span class="soon-badge">
 
@@ -3449,59 +4152,74 @@ COMING SOON
 
 </span>
 
+
 <img
   class="pixel"
   src="assets/basedmoer-token.gif"
-  alt="Based Moer Coin"
+  alt="Animated Based Moer token for the future Based Moer Flip Game"
+  loading="lazy"
 >
+
 
 </div>
 
-<div class="coin-copy">
+
+<div class="flip-copy">
+
 
 <div class="section-number">
 
-FUTURE BASE GAME
+BUILT FOR BASE
 
 </div>
 
+
 <h3>
 
-MOER COIN FLIP
+BASED MOER
+FLIP GAME
 
 </h3>
+
 
 <p>
 
 A simple,
-pixel-first Coin Flip experience
-built around the Based Moer token artwork.
+recognizable Moerverse game built around
+our animated Based Moer token.
 
-The real version will be developed
-separately from this visual preview
-before being connected to the main website.
+The real experience will be developed
+and tested separately
+before being connected to BasedMoer.com.
 
 </p>
 
+
 <div class="coming-list">
 
-<div class="coming-item">
-BASE-NATIVE
-</div>
 
 <div class="coming-item">
-PIXEL TOKEN
+BASE-NATIVE EXPERIENCE
 </div>
+
 
 <div class="coming-item">
-WALLET EXPERIENCE
+PIXEL ART INTERFACE
 </div>
+
 
 <div class="coming-item">
-TESTNET FIRST
+WALLET-READY DESIGN
 </div>
 
+
+<div class="coming-item">
+TESTNET BEFORE MAINNET
 </div>
+
+
+</div>
+
 
 <button class="button disabled">
 
@@ -3509,29 +4227,36 @@ COMING SOON
 
 </button>
 
-</div>
 
 </div>
+
+
+</div>
+
 
 </div>
 
 </section>
 
-<!-- =========================================
+
+<!-- =====================================================
      EXPLORE
-     ========================================= -->
+     ===================================================== -->
 
 <section id="explore">
 
-<div class="container explore-grid">
+<div class="container">
 
-<div class="explore-left">
+
+<div class="section-head">
+
 
 <div class="section-number">
 
-07 / EXPLORE
+07 / EXPLORE BASED MOER
 
 </div>
+
 
 <h2>
 
@@ -3543,44 +4268,58 @@ RABBIT HOLE.
 
 </h2>
 
+
 <p class="section-description">
 
-The main website is only the entrance.
+Explore Based Moer beyond the homepage.
 
-Explore the artwork,
+Visit the interactive pixel art gallery,
 watch animations,
-read the documentation
+read the project documentation,
+experiment with the art generator
 or join the community.
 
 </p>
 
+
+</div>
+
+
+<div class="explore-grid">
+
+
+<div class="explore-left">
+
+
 <div class="link-grid">
+
 
 <a
   class="link-card"
   href="https://oncyber.io/basedmoer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 <strong>
-ONCYBER ↗
+ONCYBER GALLERY ↗
 </strong>
 
 <span>
 
-Explore the interactive
-Based Moer gallery.
+Explore Based Moer
+inside an interactive 3D pixel art gallery.
 
 </span>
 
 </a>
 
+
 <a
   class="link-card"
   href="https://www.youtube.com/@BasedMoer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 <strong>
@@ -3589,40 +4328,42 @@ YOUTUBE ↗
 
 <span>
 
-Watch project videos,
-animations
+Watch Based Moer animations,
+project videos
 and visual experiments.
 
 </span>
 
 </a>
 
+
 <a
   class="link-card"
   href="https://basedmoer.gitbook.io/based-moer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 <strong>
-GITBOOK ↗
+PROJECT DOCS ↗
 </strong>
 
 <span>
 
-Read documentation,
-lore
-and project information.
+Read Moerverse documentation,
+project information
+and evolving lore.
 
 </span>
 
 </a>
 
+
 <a
   class="link-card"
   href="https://based-moer-generator.vercel.app/"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 <strong>
@@ -3632,38 +4373,40 @@ ART GENERATOR ↗
 <span>
 
 Experiment with the
-Based Moer art generator.
+Based Moer pixel art generator.
 
 </span>
 
 </a>
+
 
 <a
   class="link-card"
   href="https://x.com/basedmoer"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 <strong>
-X / TWITTER ↗
+BASED MOER ON X ↗
 </strong>
 
 <span>
 
-Follow new art,
-Moe AI updates
-and announcements.
+Follow new artwork,
+Moe AI development
+and project announcements.
 
 </span>
 
 </a>
 
+
 <a
   class="link-card"
   href="https://discord.gg/B6Pu9fARTX"
   target="_blank"
-  rel="noopener"
+  rel="noopener noreferrer"
 >
 
 <strong>
@@ -3672,34 +4415,221 @@ DISCORD ↗
 
 <span>
 
-Join the Based Moer
-community.
+Join the Based Moer community
+and follow ecosystem development.
 
 </span>
 
 </a>
 
-</div>
+
+<a
+  class="link-card"
+  href="https://www.base.org/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+<strong>
+EXPLORE BASE ↗
+</strong>
+
+<span>
+
+Learn more about Base,
+the Ethereum Layer 2
+where Based Moer is being built.
+
+</span>
+
+</a>
+
+
+<a
+  class="link-card"
+  href="#live"
+>
+
+<strong>
+MOE AI LIVE
+</strong>
+
+<span>
+
+Return to the live
+Moe AI market intelligence interface.
+
+</span>
+
+</a>
+
 
 </div>
+
+
+</div>
+
 
 <div class="art-frame">
+
 
 <img
   class="pixel"
   src="assets/art-preview.gif"
-  alt="Based Moer animated art preview"
+  alt="Animated Based Moer pixel art collection preview"
+  loading="lazy"
 >
 
+
 </div>
+
+
+</div>
+
 
 </div>
 
 </section>
 
-<!-- =========================================
+
+<!-- =====================================================
+     PRINCIPLES
+     ===================================================== -->
+
+<section id="principles">
+
+<div class="container">
+
+
+<div class="section-head">
+
+
+<div class="section-number">
+
+08 / HOW WE BUILD
+
+</div>
+
+
+<h2>
+
+ART FIRST.
+
+<span class="blue">
+UTILITY WITH PURPOSE.
+</span>
+
+</h2>
+
+
+<p class="section-description">
+
+Based Moer is being built as an independent creator project.
+
+The goal is to keep the experience understandable,
+honest
+and useful while experimenting with art,
+AI
+and onchain technology.
+
+</p>
+
+
+</div>
+
+
+<div class="principles-grid">
+
+
+<div class="card principle">
+
+
+<div class="principle-number">
+01
+</div>
+
+
+<h3>
+CLEAR
+</h3>
+
+
+<p>
+
+We describe live products as live,
+experiments as experiments
+and future ideas as future ideas.
+
+</p>
+
+
+</div>
+
+
+<div class="card principle">
+
+
+<div class="principle-number">
+02
+</div>
+
+
+<h3>
+CREATOR-LED
+</h3>
+
+
+<p>
+
+Original pixel art,
+characters
+and storytelling remain the creative foundation
+of the Moerverse.
+
+</p>
+
+
+</div>
+
+
+<div class="card principle">
+
+
+<div class="principle-number">
+03
+</div>
+
+
+<h3>
+ONCHAIN WITH PURPOSE
+</h3>
+
+
+<p>
+
+Blockchain features should make the experience
+more open,
+useful
+or interesting,
+not exist simply because they can.
+
+</p>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+</section>
+
+
+<!-- =====================================================
      FOUNDER
-     ========================================= -->
+     ===================================================== -->
 
 <section
   id="founder"
@@ -3708,20 +4638,26 @@ community.
 
 <div class="container">
 
+
 <div class="card founder-card">
+
 
 <img
   src="assets/moe-founder.png"
-  alt="Moe — Based Moer founder"
+  alt="Moe, founder and pixel storyteller behind Based Moer"
+  loading="lazy"
 >
 
+
 <div>
+
 
 <div class="section-number">
 
 THE CREATOR
 
 </div>
+
 
 <h3>
 
@@ -3730,45 +4666,62 @@ founder & pixel storyteller
 
 </h3>
 
-<p class="section-description">
+
+<p class="section-description"
+   style="
+     margin-left:0;
+     margin-right:0;
+   "
+>
 
 Based Moer started with pixel art.
 
-The Moerverse grows outward from there:
-
-characters,
-stories,
-collectibles,
+The Moerverse grows outward from that foundation:
+original characters,
+digital collectibles,
 community,
-AI,
-tools
-and onchain experiments.
+Moe AI,
+education,
+games
+and experiments built around Base.
 
 </p>
 
-</div>
 
 </div>
 
+
 </div>
+
+
+</div>
+
 
 <div class="bottom-moe">
+
 
 <img
   class="pixel"
   src="assets/bald-moe-looking-up.png"
-  alt="Bald Moe looking upward"
+  alt="Bald Moe character looking upward at the Moerverse"
+  loading="lazy"
 >
+
 
 </div>
 
+
 </section>
+
 
 </main>
 
+
 <footer>
 
+
 <div class="container footer-inner">
+
 
 <span>
 
@@ -3777,369 +4730,1849 @@ Stay Based.
 
 </span>
 
-<span>
 
-BasedMoer.com
-• Moerverse
-• Moe AI
-• Base
+<div class="footer-links">
 
-</span>
+
+<a
+  href="https://x.com/basedmoer"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+X
+
+</a>
+
+
+<a
+  href="https://discord.gg/B6Pu9fARTX"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+Discord
+
+</a>
+
+
+<a
+  href="https://oncyber.io/basedmoer"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+Gallery
+
+</a>
+
+
+<a
+  href="https://www.base.org/"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+Base
+
+</a>
+
 
 </div>
 
+
+</div>
+
+
+<div class="container disclaimer">
+
+Based Moer is an independent creator project built on Base.
+It is not affiliated with,
+sponsored by
+or endorsed by Base,
+Coinbase
+or any exchange.
+
+Moe AI and Moe Academy provide experimental market-analysis
+and educational information only.
+Nothing on this website constitutes financial,
+investment
+or trading advice.
+
+</div>
+
+
 </footer>
+
 
 <script>
 
-/* =========================================
-   LIVE MOE AI DATA
-   ========================================= */
+/* =====================================================
+   MOE AI LIVE DATA
+   ===================================================== */
 
 async function loadMoeData() {
 
-  const status =
-    document.getElementById(
-      "apiStatus"
-    );
 
-  const dot =
-    document.getElementById(
-      "apiDot"
-    );
+const status =
+  document.getElementById(
+    "apiStatus"
+  );
 
-  const message =
-    document.getElementById(
-      "apiMessage"
-    );
 
-  const area =
-    document.getElementById(
-      "signalArea"
-    );
+const dot =
+  document.getElementById(
+    "apiDot"
+  );
 
-  status.textContent =
-    "CHECKING";
 
-  dot.className =
-    "api-dot";
+const message =
+  document.getElementById(
+    "apiMessage"
+  );
 
-  message.textContent =
-    "Connecting to Moe AI...";
 
-  area.innerHTML = `
+const area =
+  document.getElementById(
+    "signalArea"
+  );
 
-    <div class="signal-loading">
 
-      Loading current signal data...
+status.textContent =
+  "CHECKING";
 
-    </div>
 
-  `;
+dot.className =
+  "api-dot";
 
-  try {
 
-    const response =
-      await fetch(
-        "/api/moe",
-        {
-          cache:"no-store"
-        }
-      );
+message.textContent =
+  "Connecting to Moe AI...";
 
-    if (!response.ok) {
 
-      throw new Error(
-        "Website API proxy failed"
-      );
+area.innerHTML = `
 
+<div class="signal-loading">
+
+Loading current Moe AI market data...
+
+</div>
+
+`;
+
+
+try {
+
+
+const response =
+  await fetch(
+    "/api/moe",
+    {
+      cache:"no-store"
     }
+  );
 
-    const result =
-      await response.json();
 
-    if (!result.ok) {
+if (!response.ok) {
 
-      throw new Error(
-        result.error ||
-        "Moe AI API unavailable"
-      );
-
-    }
-
-    status.textContent =
-      "ONLINE";
-
-    dot.className =
-      "api-dot online";
-
-    message.textContent =
-      "Moe AI connected";
-
-    let signals =
-      result.signals || [];
-
-    if (
-      !Array.isArray(
-        signals
-      )
-    ) {
-
-      signals = [];
-
-    }
-
-    if (
-      signals.length === 0
-    ) {
-
-      area.innerHTML = `
-
-        <div class="signal-loading">
-
-          Moe AI is online.
-
-          <br><br>
-
-          There are currently
-          no open signals.
-
-        </div>
-
-      `;
-
-      return;
-
-    }
-
-    area.innerHTML =
-      signals
-      .slice(
-        0,
-        10
-      )
-      .map(
-        signal => {
-
-          const symbol =
-            safe(
-              signal.symbol
-              ?? "—"
-            );
-
-          const direction =
-            safe(
-              signal.direction
-              ?? signal.side
-              ?? "—"
-            );
-
-          const timeframe =
-            safe(
-              signal.timeframe
-              ?? "4H"
-            );
-
-          const entry =
-            safe(
-              formatValue(
-                signal.entry
-                ??
-                signal.entry_range
-                ??
-                signal.entry_price
-                ??
-                "—"
-              )
-            );
-
-          const target =
-            safe(
-              formatValue(
-                signal.take_profit
-                ??
-                signal.tp1
-                ??
-                signal.target
-                ??
-                "—"
-              )
-            );
-
-          const signalStatus =
-            safe(
-              signal.status
-              ?? "OPEN"
-            );
-
-          return `
-
-            <div class="signal-row">
-
-              <div>
-                <strong>
-                  ${symbol}
-                </strong>
-              </div>
-
-              <div>
-                ${direction}
-              </div>
-
-              <div>
-                ${timeframe}
-              </div>
-
-              <div>
-                ${entry}
-              </div>
-
-              <div>
-                ${target}
-              </div>
-
-              <div>
-                ${signalStatus}
-              </div>
-
-            </div>
-
-          `;
-
-        }
-      )
-      .join("");
-
-  }
-
-  catch(error) {
-
-    console.error(
-      error
-    );
-
-    status.textContent =
-      "PROBLEM";
-
-    dot.className =
-      "api-dot problem";
-
-    message.textContent =
-      "Moe AI could not be reached";
-
-    area.innerHTML = `
-
-      <div class="signal-loading">
-
-        The website is online,
-        but live Moe AI data
-        could not be loaded right now.
-
-        <br><br>
-
-        This does not affect
-        the rest of the website.
-
-      </div>
-
-    `;
-
-  }
-
-}
-
-function formatValue(value) {
-
-  if (
-    value === null ||
-    value === undefined
-  ) {
-
-    return "—";
-
-  }
-
-  if (
-    typeof value ===
-    "object"
-  ) {
-
-    if (
-      value.min !== undefined &&
-      value.max !== undefined
-    ) {
-
-      return (
-        value.min +
-        " – " +
-        value.max
-      );
-
-    }
-
-    if (
-      value.low !== undefined &&
-      value.high !== undefined
-    ) {
-
-      return (
-        value.low +
-        " – " +
-        value.high
-      );
-
-    }
-
-    return JSON.stringify(
-      value
-    );
-
-  }
-
-  return value;
-
-}
-
-function safe(value) {
-
-  return String(
-    value
-  )
-  .replaceAll(
-    "&",
-    "&amp;"
-  )
-  .replaceAll(
-    "<",
-    "&lt;"
-  )
-  .replaceAll(
-    ">",
-    "&gt;"
-  )
-  .replaceAll(
-    '"',
-    "&quot;"
-  )
-  .replaceAll(
-    "'",
-    "&#039;"
+  throw new Error(
+    "Website API proxy failed"
   );
 
 }
 
+
+const result =
+  await response.json();
+
+
+if (!result.ok) {
+
+  throw new Error(
+    result.error ||
+    "Moe AI API unavailable"
+  );
+
+}
+
+
+status.textContent =
+  "ONLINE";
+
+
+dot.className =
+  "api-dot online";
+
+
+message.textContent =
+  "Moe AI API connected";
+
+
+let signals =
+  result.signals || [];
+
+
+if (
+  !Array.isArray(
+    signals
+  )
+) {
+
+  signals = [];
+
+}
+
+
+if (
+  signals.length === 0
+) {
+
+
+area.innerHTML = `
+
+<div class="signal-loading">
+
+Moe AI is online.
+
+<br><br>
+
+There are currently
+no open market setups.
+
+</div>
+
+`;
+
+
+return;
+
+
+}
+
+
+area.innerHTML =
+signals
+.slice(
+  0,
+  10
+)
+.map(
+  signal => {
+
+
+const symbol =
+  safe(
+    signal.symbol
+    ?? "—"
+  );
+
+
+const direction =
+  safe(
+    signal.direction
+    ?? signal.side
+    ?? "—"
+  );
+
+
+const timeframe =
+  safe(
+    signal.timeframe
+    ?? "4H"
+  );
+
+
+const entry =
+  safe(
+    formatValue(
+      signal.entry
+      ??
+      signal.entry_range
+      ??
+      signal.entry_price
+      ??
+      "—"
+    )
+  );
+
+
+const target =
+  safe(
+    formatValue(
+      signal.take_profit
+      ??
+      signal.tp1
+      ??
+      signal.target
+      ??
+      "—"
+    )
+  );
+
+
+const signalStatus =
+  safe(
+    signal.status
+    ?? "OPEN"
+  );
+
+
+return `
+
+<div class="signal-row">
+
+<div>
+<strong>
+${symbol}
+</strong>
+</div>
+
+<div>
+${direction}
+</div>
+
+<div>
+${timeframe}
+</div>
+
+<div>
+${entry}
+</div>
+
+<div>
+${target}
+</div>
+
+<div>
+${signalStatus}
+</div>
+
+</div>
+
+`;
+
+
+}
+)
+.join("");
+
+
+}
+
+
+catch(error) {
+
+
+console.error(
+  error
+);
+
+
+status.textContent =
+  "PROBLEM";
+
+
+dot.className =
+  "api-dot problem";
+
+
+message.textContent =
+  "Moe AI could not be reached";
+
+
+area.innerHTML = `
+
+<div class="signal-loading">
+
+The website is online,
+but live Moe AI data
+could not be loaded right now.
+
+<br><br>
+
+The rest of BasedMoer.com
+continues to work normally.
+
+</div>
+
+`;
+
+
+}
+
+
+}
+
+
+function formatValue(value) {
+
+
+if (
+  value === null ||
+  value === undefined
+) {
+
+  return "—";
+
+}
+
+
+if (
+  typeof value ===
+  "object"
+) {
+
+
+if (
+  value.min !== undefined &&
+  value.max !== undefined
+) {
+
+  return (
+    value.min +
+    " – " +
+    value.max
+  );
+
+}
+
+
+if (
+  value.low !== undefined &&
+  value.high !== undefined
+) {
+
+  return (
+    value.low +
+    " – " +
+    value.high
+  );
+
+}
+
+
+return JSON.stringify(
+  value
+);
+
+
+}
+
+
+return value;
+
+
+}
+
+
+function safe(value) {
+
+
+return String(
+  value
+)
+
+.replaceAll(
+  "&",
+  "&amp;"
+)
+
+.replaceAll(
+  "<",
+  "&lt;"
+)
+
+.replaceAll(
+  ">",
+  "&gt;"
+)
+
+.replaceAll(
+  '"',
+  "&quot;"
+)
+
+.replaceAll(
+  "'",
+  "&#039;"
+);
+
+
+}
+
+
 loadMoeData();
+
 
 setInterval(
   loadMoeData,
   60000
 );
 
-/* =========================================
-   ACADEMY DATA
-   ========================================= */
+
+/* =====================================================
+   ACADEMY GRAPHICS
+   ===================================================== */
+
+function lessonGraphic(type) {
+
+
+const logo = `
+
+<img
+  class="graphic-logo"
+  src="assets/based-moer-logo.jpg"
+  alt=""
+>
+
+`;
+
+
+const title = name => `
+
+<div class="graphic-title">
+${name}
+</div>
+
+`;
+
+
+/* MARKET STRUCTURE */
+
+if (
+  type ===
+  "structure"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "MARKET STRUCTURE / 4H"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Market structure chart showing higher highs and higher lows"
+>
+
+<defs>
+
+<linearGradient
+  id="bg1"
+  x1="0"
+  y1="0"
+  x2="1"
+  y2="1"
+>
+
+<stop
+  offset="0%"
+  stop-color="#0d1324"
+/>
+
+<stop
+  offset="100%"
+  stop-color="#060810"
+/>
+
+</linearGradient>
+
+</defs>
+
+<rect
+  width="760"
+  height="330"
+  fill="url(#bg1)"
+/>
+
+<g
+  stroke="#1c263d"
+  stroke-width="1"
+>
+
+<line x1="0" y1="100" x2="760" y2="100"/>
+<line x1="0" y1="160" x2="760" y2="160"/>
+<line x1="0" y1="220" x2="760" y2="220"/>
+<line x1="0" y1="280" x2="760" y2="280"/>
+
+<line x1="150" y1="70" x2="150" y2="330"/>
+<line x1="300" y1="70" x2="300" y2="330"/>
+<line x1="450" y1="70" x2="450" y2="330"/>
+<line x1="600" y1="70" x2="600" y2="330"/>
+
+</g>
+
+<polyline
+
+  points="
+    40,270
+    130,200
+    205,235
+    300,150
+    380,190
+    485,105
+    570,145
+    690,78
+  "
+
+  fill="none"
+
+  stroke="#0052ff"
+
+  stroke-width="7"
+
+  stroke-linecap="square"
+
+  stroke-linejoin="miter"
+
+/>
+
+<g
+  fill="#ffffff"
+  font-size="18"
+  font-family="Arial"
+  font-weight="700"
+>
+
+<text x="108" y="190">
+HH
+</text>
+
+<text x="195" y="260">
+HL
+</text>
+
+<text x="278" y="138">
+HH
+</text>
+
+<text x="370" y="215">
+HL
+</text>
+
+<text x="468" y="92">
+HH
+</text>
+
+<text x="559" y="170">
+HL
+</text>
+
+</g>
+
+<text
+  x="520"
+  y="300"
+  fill="#7082ad"
+  font-size="14"
+  font-family="Arial"
+>
+
+HIGHER HIGHS + HIGHER LOWS
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* SWINGS */
+
+if (
+  type ===
+  "swings"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "SWING HIGHS & LOWS"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Candlestick chart highlighting swing highs and swing lows"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<g
+  stroke="#1d2638"
+>
+
+<line x1="0" y1="110" x2="760" y2="110"/>
+<line x1="0" y1="170" x2="760" y2="170"/>
+<line x1="0" y1="230" x2="760" y2="230"/>
+
+</g>
+
+${candlesGraphic()}
+
+<circle
+  cx="260"
+  cy="83"
+  r="10"
+  fill="#0052ff"
+/>
+
+<line
+  x1="260"
+  y1="72"
+  x2="260"
+  y2="48"
+  stroke="#7ea5ff"
+  stroke-width="2"
+/>
+
+<text
+  x="215"
+  y="38"
+  fill="#ffffff"
+  font-size="16"
+  font-family="Arial"
+>
+
+SWING HIGH
+
+</text>
+
+<circle
+  cx="488"
+  cy="262"
+  r="10"
+  fill="#0052ff"
+/>
+
+<line
+  x1="488"
+  y1="273"
+  x2="488"
+  y2="299"
+  stroke="#7ea5ff"
+  stroke-width="2"
+/>
+
+<text
+  x="445"
+  y="320"
+  fill="#ffffff"
+  font-size="16"
+  font-family="Arial"
+>
+
+SWING LOW
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* BOS */
+
+if (
+  type ===
+  "bos"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "BREAK OF STRUCTURE"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Break of structure chart showing price breaking above previous resistance"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<line
+  x1="80"
+  y1="150"
+  x2="700"
+  y2="150"
+  stroke="#67728d"
+  stroke-width="2"
+  stroke-dasharray="8 8"
+/>
+
+<text
+  x="85"
+  y="137"
+  fill="#7f89a8"
+  font-size="14"
+  font-family="Arial"
+>
+
+PREVIOUS STRUCTURAL HIGH
+
+</text>
+
+<polyline
+
+  points="
+    60,270
+    145,205
+    220,235
+    310,170
+    380,215
+    455,155
+    530,185
+    590,138
+    640,92
+    705,60
+  "
+
+  fill="none"
+
+  stroke="#0052ff"
+
+  stroke-width="7"
+
+/>
+
+<circle
+  cx="602"
+  cy="127"
+  r="13"
+  fill="#ffffff"
+/>
+
+<text
+  x="620"
+  y="120"
+  fill="#ffffff"
+  font-size="18"
+  font-family="Arial"
+  font-weight="700"
+>
+
+BOS
+
+</text>
+
+<line
+  x1="605"
+  y1="138"
+  x2="605"
+  y2="170"
+  stroke="#ffffff"
+  stroke-width="2"
+/>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* BREAKOUT LEG */
+
+if (
+  type ===
+  "fib"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "BREAKOUT LEG + FIBONACCI"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Fibonacci retracement chart showing Moe AI entry zone"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<rect
+  x="80"
+  y="150"
+  width="600"
+  height="92"
+  fill="#0052ff"
+  opacity=".12"
+/>
+
+<g
+  stroke="#33405d"
+  stroke-width="2"
+>
+
+<line x1="80" y1="78" x2="680" y2="78"/>
+<line x1="80" y1="150" x2="680" y2="150"/>
+<line x1="80" y1="196" x2="680" y2="196"/>
+<line x1="80" y1="242" x2="680" y2="242"/>
+<line x1="80" y1="286" x2="680" y2="286"/>
+
+</g>
+
+<g
+  fill="#9eabc9"
+  font-size="14"
+  font-family="Arial"
+>
+
+<text x="690" y="82">
+0
+</text>
+
+<text x="690" y="154">
+0.50
+</text>
+
+<text x="690" y="200">
+0.618
+</text>
+
+<text x="690" y="246">
+0.786
+</text>
+
+<text x="690" y="290">
+1.0
+</text>
+
+</g>
+
+<polyline
+
+  points="
+    120,280
+    180,255
+    245,210
+    310,165
+    375,110
+    445,75
+    510,122
+    565,168
+    625,210
+  "
+
+  fill="none"
+
+  stroke="#ffffff"
+
+  stroke-width="6"
+
+/>
+
+<text
+  x="245"
+  y="227"
+  fill="#78a0ff"
+  font-size="16"
+  font-family="Arial"
+  font-weight="700"
+>
+
+MOE AI ENTRY ZONE
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* ENTRY */
+
+if (
+  type ===
+  "entry"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "ENTRY ZONE"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Trading chart illustrating an entry zone rather than a single entry price"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<rect
+  x="90"
+  y="170"
+  width="580"
+  height="78"
+  fill="#0052ff"
+  opacity=".18"
+/>
+
+<line
+  x1="90"
+  y1="170"
+  x2="670"
+  y2="170"
+  stroke="#4f83ff"
+  stroke-width="2"
+/>
+
+<line
+  x1="90"
+  y1="248"
+  x2="670"
+  y2="248"
+  stroke="#4f83ff"
+  stroke-width="2"
+/>
+
+<polyline
+
+  points="
+    65,90
+    135,112
+    205,136
+    275,160
+    345,190
+    410,215
+    470,232
+    530,210
+    595,172
+    680,120
+  "
+
+  fill="none"
+
+  stroke="#ffffff"
+
+  stroke-width="6"
+
+/>
+
+<text
+  x="278"
+  y="214"
+  fill="#8aafff"
+  font-size="18"
+  font-family="Arial"
+  font-weight="700"
+>
+
+ENTRY AREA
+
+</text>
+
+<text
+  x="241"
+  y="275"
+  fill="#65728f"
+  font-size="14"
+  font-family="Arial"
+>
+
+ZONE, NOT A GUARANTEED REVERSAL
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* INVALIDATION */
+
+if (
+  type ===
+  "stop"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "INVALIDATION + STOP"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Chart showing entry zone and invalidation level"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<rect
+  x="90"
+  y="145"
+  width="580"
+  height="55"
+  fill="#0052ff"
+  opacity=".15"
+/>
+
+<line
+  x1="90"
+  y1="265"
+  x2="670"
+  y2="265"
+  stroke="#ff7182"
+  stroke-width="3"
+  stroke-dasharray="10 8"
+/>
+
+<text
+  x="480"
+  y="254"
+  fill="#ff8c9a"
+  font-size="15"
+  font-family="Arial"
+>
+
+INVALIDATION
+
+</text>
+
+<polyline
+
+  points="
+    70,80
+    150,115
+    225,160
+    300,183
+    370,170
+    440,145
+    520,110
+    610,74
+    690,45
+  "
+
+  fill="none"
+
+  stroke="#ffffff"
+
+  stroke-width="6"
+
+/>
+
+<text
+  x="290"
+  y="180"
+  fill="#80a7ff"
+  font-size="16"
+  font-family="Arial"
+>
+
+ENTRY
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* RISK REWARD */
+
+if (
+  type ===
+  "rr"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "RISK / REWARD"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Risk reward diagram"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<line
+  x1="110"
+  y1="170"
+  x2="650"
+  y2="170"
+  stroke="#ffffff"
+  stroke-width="3"
+/>
+
+<rect
+  x="250"
+  y="65"
+  width="260"
+  height="105"
+  fill="#68f49b"
+  opacity=".16"
+/>
+
+<rect
+  x="250"
+  y="170"
+  width="260"
+  height="85"
+  fill="#ff7182"
+  opacity=".15"
+/>
+
+<line
+  x1="250"
+  y1="65"
+  x2="510"
+  y2="65"
+  stroke="#68f49b"
+  stroke-width="3"
+/>
+
+<line
+  x1="250"
+  y1="255"
+  x2="510"
+  y2="255"
+  stroke="#ff7182"
+  stroke-width="3"
+/>
+
+<text
+  x="520"
+  y="72"
+  fill="#79f6a5"
+  font-size="16"
+  font-family="Arial"
+>
+
+TARGET
+
+</text>
+
+<text
+  x="520"
+  y="177"
+  fill="#ffffff"
+  font-size="16"
+  font-family="Arial"
+>
+
+ENTRY
+
+</text>
+
+<text
+  x="520"
+  y="262"
+  fill="#ff8794"
+  font-size="16"
+  font-family="Arial"
+>
+
+STOP
+
+</text>
+
+<text
+  x="330"
+  y="120"
+  fill="#ffffff"
+  font-size="25"
+  font-family="Arial"
+  font-weight="700"
+>
+
+REWARD
+
+</text>
+
+<text
+  x="350"
+  y="220"
+  fill="#ffffff"
+  font-size="25"
+  font-family="Arial"
+  font-weight="700"
+>
+
+RISK
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* FRESHNESS */
+
+if (
+  type ===
+  "fresh"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "SETUP FRESHNESS"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Signal freshness chart showing setup age in candles"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<g>
+
+${Array.from(
+  {length:10},
+  (_,i) => {
+
+const x =
+  95 +
+  i * 57;
+
+const opacity =
+  1 -
+  i * .075;
+
+return `
+
+<rect
+  x="${x}"
+  y="${135 + (i%3)*8}"
+  width="28"
+  height="${75 - (i%3)*10}"
+  fill="#0052ff"
+  opacity="${opacity}"
+/>
+
+<text
+  x="${x+9}"
+  y="245"
+  fill="#7f89a8"
+  font-size="12"
+  font-family="Arial"
+>
+
+${i+1}
+
+</text>
+
+`;
+
+}
+).join("")}
+
+</g>
+
+<text
+  x="94"
+  y="275"
+  fill="#ffffff"
+  font-size="15"
+  font-family="Arial"
+>
+
+AGE IN 4H CANDLES
+
+</text>
+
+<line
+  x1="608"
+  y1="88"
+  x2="608"
+  y2="225"
+  stroke="#ffd96b"
+  stroke-width="3"
+  stroke-dasharray="8 6"
+/>
+
+<text
+  x="575"
+  y="70"
+  fill="#ffd96b"
+  font-size="15"
+  font-family="Arial"
+>
+
+MAX AGE
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* SIGNAL */
+
+if (
+  type ===
+  "signal"
+) {
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "ANATOMY OF A MOE AI SIGNAL"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Example Moe AI signal card anatomy"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+<rect
+  x="115"
+  y="76"
+  width="530"
+  height="200"
+  rx="18"
+  fill="#111727"
+  stroke="#2c3955"
+  stroke-width="2"
+/>
+
+<text
+  x="145"
+  y="112"
+  fill="#ffffff"
+  font-size="24"
+  font-family="Arial"
+  font-weight="700"
+>
+
+BTCUSDT
+
+</text>
+
+<text
+  x="540"
+  y="112"
+  fill="#8eafff"
+  font-size="16"
+  font-family="Arial"
+  font-weight="700"
+>
+
+4H SETUP
+
+</text>
+
+<g
+  fill="#7d8aa8"
+  font-size="13"
+  font-family="Arial"
+>
+
+<text x="145" y="150">
+DIRECTION
+</text>
+
+<text x="145" y="188">
+ENTRY ZONE
+</text>
+
+<text x="145" y="226">
+STOP / INVALIDATION
+</text>
+
+<text x="145" y="264">
+TARGET
+</text>
+
+</g>
+
+<g
+  fill="#ffffff"
+  font-size="15"
+  font-family="Arial"
+  font-weight="700"
+>
+
+<text x="340" y="150">
+LONG / SHORT
+</text>
+
+<text x="340" y="188">
+DEFINED RANGE
+</text>
+
+<text x="340" y="226">
+STRUCTURAL LEVEL
+</text>
+
+<text x="340" y="264">
+FIB OBJECTIVE
+</text>
+
+</g>
+
+</svg>
+
+</div>
+
+`;
+
+}
+
+
+/* SYSTEM */
+
+return `
+
+<div class="lesson-graphic">
+
+${logo}
+
+${title(
+  "HOW MOE AI FITS TOGETHER"
+)}
+
+<svg
+  viewBox="0 0 760 330"
+  role="img"
+  aria-label="Moe AI system workflow diagram"
+>
+
+<rect
+  width="760"
+  height="330"
+  fill="#080b13"
+/>
+
+${flowBox(
+  40,
+  145,
+  120,
+  58,
+  "MARKET"
+)}
+
+${flowBox(
+  190,
+  145,
+  120,
+  58,
+  "SCANNER"
+)}
+
+${flowBox(
+  340,
+  145,
+  120,
+  58,
+  "MOE AI API"
+)}
+
+${flowBox(
+  490,
+  145,
+  120,
+  58,
+  "DATABASE"
+)}
+
+${flowBox(
+  640,
+  145,
+  80,
+  58,
+  "USER"
+)}
+
+<g
+  stroke="#0052ff"
+  stroke-width="4"
+>
+
+<line x1="160" y1="174" x2="188" y2="174"/>
+<line x1="310" y1="174" x2="338" y2="174"/>
+<line x1="460" y1="174" x2="488" y2="174"/>
+<line x1="610" y1="174" x2="638" y2="174"/>
+
+</g>
+
+<text
+  x="224"
+  y="260"
+  fill="#667390"
+  font-size="15"
+  font-family="Arial"
+>
+
+SCAN → STORE → EXPLAIN → LEARN → EVOLVE
+
+</text>
+
+</svg>
+
+</div>
+
+`;
+
+
+}
+
+
+function candlesGraphic() {
+
+
+const candles = [
+
+[105,210,175,230],
+[142,180,135,205],
+[178,135,105,160],
+[214,125,83,150],
+[250,170,120,195],
+[286,205,160,235],
+[322,190,142,218],
+[358,155,115,190],
+[394,170,130,198],
+[430,215,170,245],
+[466,235,200,262],
+[502,200,168,232],
+[538,165,125,205],
+[574,140,104,174],
+[610,112,84,150],
+[646,92,70,120]
+
+];
+
+
+return candles
+.map(
+  (
+    c,
+    index
+  ) => {
+
+
+const [
+  x,
+  open,
+  high,
+  low
+] = c;
+
+
+const up =
+  index % 3 !== 1;
+
+
+const bodyTop =
+  up
+  ?
+  open - 23
+  :
+  open;
+
+
+const bodyBottom =
+  up
+  ?
+  open
+  :
+  open + 23;
+
+
+const color =
+  up
+  ?
+  "#0052ff"
+  :
+  "#f2f4ff";
+
+
+return `
+
+<line
+  x1="${x}"
+  y1="${high}"
+  x2="${x}"
+  y2="${low}"
+  stroke="${color}"
+  stroke-width="3"
+/>
+
+<rect
+  x="${x-9}"
+  y="${bodyTop}"
+  width="18"
+  height="${bodyBottom-bodyTop}"
+  fill="${color}"
+/>
+
+`;
+
+
+}
+)
+.join("");
+
+
+}
+
+
+function flowBox(
+  x,
+  y,
+  width,
+  height,
+  text
+) {
+
+
+return `
+
+<rect
+  x="${x}"
+  y="${y}"
+  width="${width}"
+  height="${height}"
+  rx="12"
+  fill="#11182a"
+  stroke="#2c3d62"
+  stroke-width="2"
+/>
+
+<text
+  x="${x + width/2}"
+  y="${y + 35}"
+  text-anchor="middle"
+  fill="#ffffff"
+  font-size="13"
+  font-family="Arial"
+  font-weight="700"
+>
+
+${text}
+
+</text>
+
+`;
+
+
+}
+
+
+/* =====================================================
+   MOE ACADEMY CONTENT
+   ===================================================== */
 
 const lessons = [
+
 
 {
 
@@ -4147,145 +6580,114 @@ id:"structure",
 
 title:"Market Structure",
 
-time:"8 MIN READ",
+time:"10 MIN READ",
+
+graphic:"structure",
 
 content:`
 
 <p>
 
-Before using indicators,
-Fibonacci levels
-or entry zones,
-a trader needs a way to describe
+Market structure is the foundation of the current Moe AI scanner.
+
+Before looking at Fibonacci levels,
+entry zones
+or targets,
+we first need a consistent way to describe
 what price itself is doing.
 
-That is the purpose of
-market structure.
-
-Instead of treating every candle
-as an unrelated event,
-market structure studies the sequence
-of meaningful highs
+Instead of treating every candle as an isolated event,
+market structure studies the relationship between
+meaningful highs
 and meaningful lows.
 
 </p>
 
 <h4>
-Swing Highs and Swing Lows
+Higher Highs and Higher Lows
 </h4>
 
 <p>
 
-A swing high is an area where price
-moves upward,
-turns,
-and begins moving lower.
+A market can be described as structurally bullish
+when important swing highs continue moving higher
+and important swing lows also continue moving higher.
 
-A swing low is the opposite:
-price moves lower,
-turns,
-and begins moving higher.
+A higher high means price has moved above
+a previous meaningful peak.
 
-Not every tiny candle movement
-needs to become an important swing.
-
-The objective is to identify
-the points that visibly shape
-the movement of the market.
-
-</p>
-
-<h4>
-Bullish Structure
-</h4>
-
-<p>
-
-A market is generally described
-as structurally bullish
-when it continues creating
-higher highs
-and higher lows.
-
-A higher high means buyers
-managed to push price above
-the previous important high.
-
-A higher low means the next pullback
+A higher low means the following retracement
 stopped above the previous important low.
 
 Together,
-those movements suggest that buyers
-currently control the larger sequence.
+those changes create an upward sequence.
 
 </p>
 
 <h4>
-Bearish Structure
+Lower Highs and Lower Lows
 </h4>
 
 <p>
 
-Bearish structure normally produces
-lower highs
-and lower lows.
+Bearish structure is the inverse.
 
-A lower low shows price breaking
-below a previous important low.
+Price creates lower lows
+while rebounds fail beneath previous important highs.
 
-A lower high shows that a rebound
-failed before reaching the previous
-important high.
+This sequence helps describe
+which side has controlled the larger movement.
+
+It does not guarantee that the next candle
+will move in the same direction.
+
+</p>
+
+<h4>
+Why Moe AI Uses Structure
+</h4>
+
+<p>
+
+Moe AI is intended to be systematic.
+
+That means the scanner should not decide
+that a chart looks bullish
+simply because several green candles appeared.
+
+It needs repeatable conditions
+that can be evaluated across different markets.
+
+Market structure provides that framework.
 
 </p>
 
 <div class="lesson-note">
 
-A bullish candle does not automatically
-mean the market is bullish.
+Moe AI currently focuses on 4H market structure.
 
-A bearish candle does not automatically
-mean the market is bearish.
+A bullish five-minute movement can still exist
+inside a bearish four-hour environment.
 
-Structure is about the sequence,
-not one candle.
+Timeframe is part of the definition.
 
 </div>
 
 <h4>
-Why Timeframe Matters
+Structure Is Description, Not Prediction
 </h4>
 
 <p>
 
-Different timeframes can show
-different structures at the same time.
+The purpose of market structure
+is not to predict the future with certainty.
 
-A fifteen-minute chart may be making
-higher highs
-while the four-hour chart remains
-inside a much larger bearish movement.
+Its purpose is to organize market behaviour
+into a framework that can be tested,
+recorded
+and reviewed.
 
-That is why a systematic scanner
-must define which timeframe
-is being evaluated.
-
-</p>
-
-<h4>
-What Moe AI Uses
-</h4>
-
-<p>
-
-Moe AI's current scanner focuses
-on four-hour market structure.
-
-The scanner examines the relevant
-sequence of price
-and waits for a structural level
-to be broken before considering
-the next stage of the setup.
+That distinction is important throughout Moe Academy.
 
 </p>
 
@@ -4294,206 +6696,187 @@ the next stage of the setup.
 quiz:[
 
 {
-q:
-"Which sequence most clearly represents bullish market structure?",
-
+q:"Which sequence most clearly describes bullish structure?",
 a:[
 "Higher highs and higher lows",
 "Lower highs and lower lows",
-"Random alternating candles"
+"Random candle colors"
 ],
-
 correct:0
 },
 
 {
-q:
-"Does one green candle automatically create bullish structure?",
-
+q:"Does one green candle automatically create bullish structure?",
 a:[
 "Yes",
 "No",
-"Only on the 4H chart"
+"Only on Base"
 ],
-
 correct:1
 },
 
 {
-q:
-"Why does timeframe matter?",
-
+q:"What timeframe does the current Moe AI scanner primarily evaluate?",
 a:[
-"Different timeframes can show different structures",
-"Timeframes guarantee accuracy",
-"Only the daily chart can show structure"
+"1 minute",
+"4 hour",
+"Weekly only"
 ],
-
-correct:0
+correct:1
 }
 
 ]
 
 },
+
 
 {
 
 id:"swings",
 
-title:"Reading Swing Highs & Lows",
+title:"Swing Highs & Swing Lows",
 
-time:"8 MIN READ",
+time:"10 MIN READ",
+
+graphic:"swings",
 
 content:`
 
 <p>
 
-Market structure depends on identifying
-meaningful turning points.
+Market structure cannot exist
+without reference points.
 
-Those turning points are commonly called
-swing highs
+Those reference points are commonly described
+as swing highs
 and swing lows.
 
-</p>
-
-<h4>
-What Makes a Swing Important?
-</h4>
-
-<p>
-
-An important swing is not simply
-the highest or lowest price
-of every few candles.
-
-It should visibly influence
-the movement that follows.
-
-For example,
-if price rises,
-forms a clear peak,
-then sells off strongly,
-that peak may become
-a meaningful swing high.
+They help the scanner understand
+where meaningful changes in direction occurred.
 
 </p>
 
 <h4>
-Avoiding Noise
+What Is a Swing High?
 </h4>
 
 <p>
 
-Very small fluctuations
-can create dozens of minor highs
-and lows.
+A swing high is a meaningful peak
+where price moved upward,
+reached an area of resistance
+and then moved lower.
 
-If every tiny movement
-is treated as important,
-market structure becomes noisy
-and inconsistent.
+The key word is meaningful.
 
-A systematic process therefore needs
-consistent rules for deciding
-which historical levels matter.
+Every tiny candle fluctuation
+does not need to become a structural high.
 
 </p>
 
 <h4>
-Previous Highs and Lows
+What Is a Swing Low?
 </h4>
 
 <p>
 
-Once a relevant swing high
-or swing low has been identified,
-it becomes a reference.
+A swing low is a meaningful trough
+where price moved lower,
+found demand
+and then moved higher.
 
-If price later trades beyond
-that reference,
-the movement may represent
-a structural break.
+These turning points form
+the building blocks of market structure.
+
+</p>
+
+<h4>
+Why Noise Matters
+</h4>
+
+<p>
+
+Crypto charts contain constant minor movement.
+
+If every tiny high
+and every tiny low
+is treated as structurally important,
+the analysis quickly becomes inconsistent.
+
+A scanner therefore needs
+a repeatable lookback
+and a consistent definition
+of meaningful price structure.
+
+</p>
+
+<h4>
+How Swing Levels Become Useful
+</h4>
+
+<p>
+
+After a relevant swing has been identified,
+that price level becomes a structural reference.
+
+If price later moves beyond it,
+the market may have produced
+a Break of Structure.
+
+This is where one lesson
+connects directly to the next.
 
 </p>
 
 <div class="lesson-note">
 
-The purpose is not to identify
-the perfect turning point
-after the fact.
+Moe AI is designed around a repeatable process:
 
-The purpose is to use
-a repeatable definition
-before the future movement is known.
+identify structure →
+find the relevant level →
+observe whether that level breaks →
+measure the breakout movement.
 
 </div>
-
-<h4>
-Why This Matters for Moe AI
-</h4>
-
-<p>
-
-Moe AI does not simply search
-for large green
-or red candles.
-
-The scanner evaluates price
-relative to earlier structural highs
-and lows.
-
-That relationship gives the breakout
-its meaning.
-
-</p>
 
 `,
 
 quiz:[
 
 {
-q:
-"What is a swing high?",
-
+q:"What is a swing high?",
 a:[
 "A meaningful price peak followed by movement lower",
 "Every green candle",
-"A guaranteed short entry"
+"A guaranteed sell signal"
 ],
-
 correct:0
 },
 
 {
-q:
-"Why should every tiny fluctuation not automatically become a swing?",
-
+q:"Why shouldn't every tiny fluctuation automatically become a structural swing?",
 a:[
-"It creates noise and inconsistent structure",
-"It makes the blockchain slower",
-"It changes leverage"
+"It creates noise and inconsistent analysis",
+"It increases gas fees",
+"It prevents wallets from connecting"
 ],
-
 correct:0
 },
 
 {
-q:
-"What can a previous swing become?",
-
+q:"What can a meaningful swing level become?",
 a:[
-"A structural reference level",
+"A structural reference",
 "A guaranteed target",
-"A wallet address"
+"A blockchain address"
 ],
-
 correct:0
 }
 
 ]
 
 },
+
 
 {
 
@@ -4501,153 +6884,141 @@ id:"bos",
 
 title:"Break of Structure",
 
-time:"9 MIN READ",
+time:"11 MIN READ",
+
+graphic:"bos",
 
 content:`
 
 <p>
 
-After meaningful swing levels
-have been identified,
-the next concept is the
-Break of Structure,
-often shortened to BOS.
+A Break of Structure,
+often shortened to BOS,
+happens when price trades through
+a meaningful previous structural level.
+
+This is one of the central events
+used by the current Moe AI strategy.
 
 </p>
 
 <h4>
-The Basic Idea
+Why the Previous Level Matters
 </h4>
 
 <p>
 
-A Break of Structure happens
-when price moves beyond
-an important previous structural high
-or low.
+Breaking an arbitrary price level
+does not automatically mean anything.
 
-In bullish conditions,
-breaking above an important high
-can confirm continued upward structure.
+The break gains meaning
+because the level represented
+an important previous swing high
+or swing low.
 
-In bearish conditions,
-breaking below an important low
-can confirm continued downward structure.
+The market is interacting
+with its own earlier structure.
 
 </p>
 
 <h4>
-Why the Broken Level Matters
+Bullish Break of Structure
 </h4>
 
 <p>
 
-Breaking a random price
-has little meaning.
-
-The importance comes from
-what the price represented.
-
-If the level was a meaningful
-prior swing,
-trading beyond it tells us
-something changed in the
-previous structure.
+When price is forming bullish structure
+and then breaks above
+a meaningful previous high,
+that event can confirm
+continued structural strength.
 
 </p>
 
 <h4>
-Wicks and Breaks
+Bearish Break of Structure
 </h4>
 
 <p>
 
-Markets can briefly trade
-above or below a level
-before immediately reversing.
+When bearish structure exists
+and price breaks beneath
+a meaningful previous low,
+the same logic can apply
+in the opposite direction.
 
-That is why interpreting
-a structural break requires
-consistent rules.
+</p>
 
-A strategy should not redefine
-what counts as a break
-each time the chart looks different.
+<h4>
+Consistency Matters More Than Hindsight
+</h4>
+
+<p>
+
+After a chart has already moved,
+it is easy to redefine
+which level should have mattered.
+
+A systematic strategy cannot work that way.
+
+The same rules need to be applied
+before the result is known.
+
+That allows signals to be compared fairly
+over a larger sample.
 
 </p>
 
 <div class="lesson-note">
 
-The strength of systematic trading
-comes from applying the same definition
-repeatedly,
-not choosing whichever definition
-looks best after the move.
+Moe AI searches for the latest valid
+Break of Structure
+inside its defined 4H framework.
+
+Once the break is identified,
+the movement responsible for that break
+becomes the breakout leg.
 
 </div>
-
-<h4>
-Moe AI Trigger
-</h4>
-
-<p>
-
-Moe AI's current strategy looks for
-the latest structural break
-inside its defined four-hour framework.
-
-Once that event is found,
-the scanner can measure
-the movement responsible for the break.
-
-</p>
 
 `,
 
 quiz:[
 
 {
-q:
-"What does BOS stand for?",
-
+q:"What does BOS mean?",
 a:[
 "Break of Structure",
 "Base Order System",
 "Buy Only Signal"
 ],
-
 correct:0
 },
 
 {
-q:
-"Why is the importance of the broken level relevant?",
-
+q:"Why is the broken level important?",
 a:[
-"Because meaningful structural levels provide context",
-"Because every price is equally important",
-"Because it guarantees profit"
+"It represents meaningful previous structure",
+"Every price level is equally important",
+"It guarantees the trade wins"
 ],
-
 correct:0
 },
 
 {
-q:
-"What should a systematic strategy avoid?",
-
+q:"Why must BOS rules stay consistent?",
 a:[
-"Changing its definition after seeing the result",
-"Using consistent rules",
-"Recording signals"
+"So results can be compared and tested",
+"To increase leverage",
+"To make charts more colorful"
 ],
-
 correct:0
 }
 
 ]
 
 },
+
 
 {
 
@@ -4655,163 +7026,136 @@ id:"fib",
 
 title:"Breakout Leg & Fibonacci",
 
-time:"11 MIN READ",
+time:"12 MIN READ",
+
+graphic:"fib",
 
 content:`
 
 <p>
 
-After Moe AI identifies
-a structural break,
-the breakout movement becomes
-the reference for the next stage
-of the setup.
+After a valid Break of Structure is identified,
+Moe AI needs a consistent object
+from which the rest of the setup can be measured.
 
-This movement is called
-the breakout leg.
+That object is the breakout leg.
 
 </p>
 
 <h4>
-The Breakout Leg
+What Is the Breakout Leg?
 </h4>
 
 <p>
 
-The breakout leg represents
-the directional movement
+The breakout leg is the directional movement
 that produced the structural break.
 
-The current Moe AI framework measures
-the full breakout leg,
+In the current Moe AI framework,
+the full breakout leg is measured,
 including its wicks.
 
+This matters because changing the measurement method
+would change the entry zone,
+stop
+and target.
+
 </p>
 
 <h4>
-Why Measure It?
+Why Fibonacci Is Used
 </h4>
 
 <p>
 
-Markets rarely move
-in perfectly straight lines.
+Markets rarely move in perfectly straight lines.
 
-After a strong directional move,
-price may retrace part
-of that movement.
+After a strong directional movement,
+price may retrace
+before continuing
+or reversing.
 
 Fibonacci retracement levels provide
-a standardized way to describe
-how deep that pullback has become.
+a standardized method
+for describing how much of the previous movement
+has been retraced.
 
 </p>
 
 <h4>
-Important Retracement Levels
+The Current Moe AI Zone
 </h4>
 
 <p>
 
-A Fibonacci retracement converts
-the previous movement into
-a proportional scale.
+The current scanner watches
+the Fibonacci 0.50 to 0.786 range
+as the setup's entry zone.
 
-A shallow retracement means price
-has returned only a small part
-of the prior movement.
+That does not mean
+price is guaranteed to reverse there.
 
-A deeper retracement means
-more of the movement
-has been given back.
+The levels define
+where the strategy is interested.
 
 </p>
 
 <h4>
-Moe AI Entry Zone
+Why 0.50–0.786 Is a Zone
 </h4>
 
 <p>
 
-In the current strategy,
-the monitored entry zone
-runs between Fibonacci
-0.50
-and
-0.786.
+Markets do not need to respect
+one exact decimal.
 
-This is an area,
-not a guaranteed reversal point.
+Using an area rather than
+one perfect entry price
+better represents the way
+real price movement behaves.
 
 </p>
 
 <div class="lesson-note">
 
-Fibonacci is being used as
-a measurement framework.
+Fibonacci is a measurement tool inside Moe AI.
 
-It does not force the market
-to reverse at a particular number.
+It is not treated as magic
+and does not predict the future by itself.
 
 </div>
-
-<h4>
-Why Consistency Matters
-</h4>
-
-<p>
-
-If the strategy measured
-one breakout differently
-from another,
-results would be difficult to compare.
-
-Using the same breakout-leg rules
-creates data that can actually
-be evaluated over time.
-
-</p>
 
 `,
 
 quiz:[
 
 {
-q:
-"What does Moe AI currently use as the Fibonacci object?",
-
+q:"What Fibonacci object does the current Moe AI strategy measure?",
 a:[
 "The full breakout leg including wicks",
-"Only one candle body",
-"Trading volume"
+"One random candle body",
+"Only volume"
 ],
-
 correct:0
 },
 
 {
-q:
-"What is the current entry-zone range?",
-
+q:"What is the current Moe AI entry range?",
 a:[
 "0.50 to 0.786",
-"0.01 to 0.10",
-"1.59 to 2.0"
+"0.01 to 0.05",
+"1.59 to 2.5"
 ],
-
 correct:0
 },
 
 {
-q:
-"Does a Fibonacci level guarantee a reversal?",
-
+q:"Does Fibonacci guarantee price will reverse?",
 a:[
 "Yes",
 "No",
-"Only for BTC"
+"Only for Bitcoin"
 ],
-
 correct:1
 }
 
@@ -4819,24 +7163,158 @@ correct:1
 
 },
 
+
 {
 
-id:"invalidation",
+id:"entry",
 
-title:"Invalidation & Stop Loss",
+title:"Understanding the Entry Zone",
 
-time:"9 MIN READ",
+time:"10 MIN READ",
+
+graphic:"entry",
 
 content:`
 
 <p>
 
-A setup is incomplete
-until the trader knows
-what would make the idea wrong.
+A Moe AI setup does not begin
+with an impulsive market entry.
 
-That concept is called
-invalidation.
+The strategy first identifies structure,
+a structural break
+and the breakout leg.
+
+Only then does the entry zone become relevant.
+
+</p>
+
+<h4>
+An Entry Zone Is an Area
+</h4>
+
+<p>
+
+The current Moe AI framework defines
+the retracement area between
+Fib 0.50
+and
+Fib 0.786.
+
+Price entering that zone
+means the setup has reached
+the area being monitored.
+
+It does not mean
+a successful outcome is guaranteed.
+
+</p>
+
+<h4>
+Price Must Still Be in the Zone
+</h4>
+
+<p>
+
+This is an important rule.
+
+A setup is not supposed to remain advertised
+after price has already travelled far away
+from the valid area.
+
+If price is no longer
+where the strategy requires it to be,
+the opportunity is considered gone.
+
+</p>
+
+<h4>
+Why Chasing Is Different</h4>
+
+<p>
+
+Entering after price has already moved
+well beyond the planned area
+creates a different risk profile.
+
+That would no longer represent
+the original Moe AI setup.
+
+Systematic trading depends
+on respecting the original conditions.
+
+</p>
+
+<div class="lesson-note">
+
+One of the core ideas behind Moe AI is:
+
+define the setup first,
+then observe what the market does.
+
+Do not rewrite the setup
+to match the outcome.
+
+</div>
+
+`,
+
+quiz:[
+
+{
+q:"Is the Moe AI entry represented as an area or one guaranteed price?",
+a:[
+"An area",
+"One guaranteed price",
+"Neither"
+],
+correct:0
+},
+
+{
+q:"What happens if price is no longer in the valid zone?",
+a:[
+"The setup may be considered gone",
+"The strategy must chase price",
+"The target automatically doubles"
+],
+correct:0
+},
+
+{
+q:"Why shouldn't a trader simply chase price after the setup has moved away?",
+a:[
+"It changes the original setup and risk profile",
+"It changes the blockchain",
+"It makes the chart disappear"
+],
+correct:0
+}
+
+]
+
+},
+
+
+{
+
+id:"stop",
+
+title:"Invalidation & Stop Loss",
+
+time:"11 MIN READ",
+
+graphic:"stop",
+
+content:`
+
+<p>
+
+A complete market setup must explain
+not only what could go right,
+but also what would make the original idea invalid.
+
+That is the role of invalidation.
 
 </p>
 
@@ -4846,147 +7324,141 @@ What Invalidation Means
 
 <p>
 
-Invalidation is not simply
-a price where the trader
-becomes uncomfortable.
-
-It represents the level
+Invalidation is the point
 where the assumptions supporting
-the setup are no longer valid
-under the strategy.
+the original setup
+no longer meet the strategy's conditions.
+
+It is different from saying
+the market must reverse
+at that exact price.
 
 </p>
 
 <h4>
-Why Stops Exist
+The Current Moe AI Stop Reference
 </h4>
 
 <p>
 
-No market setup is certain.
+In the current strategy,
+the origin of the breakout leg
+acts as the structural stop reference.
 
-A stop loss defines
-where exposure should end
-if the trade idea fails.
-
-Without an invalidation point,
-risk can expand without
-a predetermined limit.
+This means the entry,
+stop
+and target
+all come from the same measured movement.
 
 </p>
 
 <h4>
-Moe AI's Current Framework
+Why This Is Useful
 </h4>
 
 <p>
 
-In the current setup,
-the stop-loss reference
-is connected to the origin
-of the breakout leg.
+Connecting each component
+to the same structural object
+makes the strategy reproducible.
 
-That makes the stop part
-of the same measured structure
-used to create the entry zone
-and target.
+It prevents the stop
+from being moved randomly
+simply because the market
+is approaching it.
+
+</p>
+
+<h4>
+Losses Are Part of the Dataset
+</h4>
+
+<p>
+
+A stop being reached
+does not automatically mean
+the scanner is broken.
+
+Any real strategy produces losing outcomes.
+
+Those outcomes need to be stored
+and evaluated together
+with wins,
+missed entries
+and expired setups.
 
 </p>
 
 <div class="lesson-note">
 
-A stop loss does not mean
-the market must reverse
-after the stop.
+Risk management is not designed
+to eliminate losing trades.
 
-It means the original setup
-no longer meets the strategy's
-planned conditions.
+It is designed to define them.
 
 </div>
-
-<h4>
-Risk Comes Before Reward
-</h4>
-
-<p>
-
-Before considering possible profit,
-a trader needs to understand
-what can be lost.
-
-That is one reason
-entry,
-stop
-and target
-should be defined as part
-of the same plan.
-
-</p>
 
 `,
 
 quiz:[
 
 {
-q:
-"What should invalidation represent?",
-
+q:"What should invalidation represent?",
 a:[
-"The point where the original trade idea is no longer valid",
+"The point where the original setup is no longer valid",
 "A random percentage",
 "A guaranteed reversal"
 ],
-
 correct:0
 },
 
 {
-q:
-"What is the purpose of a stop loss?",
-
+q:"What currently acts as Moe AI's structural stop reference?",
 a:[
-"To define controlled exit risk",
-"To guarantee profit",
-"To increase leverage"
+"The origin of the breakout leg",
+"Any previous candle",
+"The user's wallet balance"
 ],
-
 correct:0
 },
 
 {
-q:
-"Is a stopped-out trade proof that price must immediately reverse?",
-
+q:"Does reaching a stop prove the entire strategy is invalid?",
 a:[
-"Yes",
 "No",
-"Only on weekends"
+"Yes",
+"Always"
 ],
-
-correct:1
+correct:0
 }
 
 ]
 
 },
 
+
 {
 
 id:"rr",
 
-title:"Risk / Reward",
+title:"Risk / Reward & Targets",
 
-time:"8 MIN READ",
+time:"11 MIN READ",
+
+graphic:"rr",
 
 content:`
 
 <p>
 
-Risk/reward describes the relationship
-between what a trade can lose
-and what it may gain
-if its target is reached.
+Risk/reward compares
+how much a setup risks
+with how much it could potentially return
+if the planned target is reached.
+
+It describes payoff structure.
+
+It does not describe certainty.
 
 </p>
 
@@ -4996,69 +7468,76 @@ Understanding R
 
 <p>
 
-Traders often represent
-risk as one unit,
-or 1R.
+Trading systems often describe
+one unit of planned risk as 1R.
 
-If the planned loss
-is $10,
-then $10 represents 1R
-for that trade.
-
-A $20 target would represent
-2R of potential reward.
+If the amount between entry
+and invalidation
+represents 1R,
+a target twice that distance
+would represent 2R.
 
 </p>
 
 <h4>
-Risk / Reward Is Not Win Probability
+Moe AI Target Logic
 </h4>
 
 <p>
 
-A trade offering a large reward
-relative to risk
-is not automatically
-more likely to win.
+The current strategy uses
+Fib 1.59
+as its primary target.
 
-Likewise,
-a smaller reward target
+Because the entry zone,
+stop
+and target
+all come from the same breakout leg,
+the structural relationship
+can be calculated consistently.
+
+</p>
+
+<h4>
+Risk / Reward Is Not Probability
+</h4>
+
+<p>
+
+A setup with a larger potential reward
 does not automatically
-make a trade safe.
+have a greater chance of winning.
 
-Probability
-and payoff structure
-are different concepts.
+A strategy with an attractive
+risk/reward structure
+still needs sufficient historical
+and live data
+to understand its actual behaviour.
 
 </p>
 
 <h4>
-Moe AI's Structural Calculation
+Why Moe AI Stores Outcomes
 </h4>
 
 <p>
 
-The current Moe AI setup
-defines its entry zone,
-breakout origin
-and target using
-the same measured structure.
+One successful screenshot
+cannot prove a strategy works.
 
-That allows a structural
-risk/reward value
-to be calculated consistently.
+One failed setup
+cannot prove it fails.
+
+The scanner records results
+so performance can eventually
+be evaluated across meaningful samples.
 
 </p>
 
 <div class="lesson-note">
 
-A strategy should be evaluated
-across many trades.
-
-One winning setup
-does not prove the strategy works,
-and one losing setup
-does not prove it fails.
+The objective is measurable behaviour,
+not impressive-looking isolated examples.
 
 </div>
 
@@ -5067,41 +7546,32 @@ does not prove it fails.
 quiz:[
 
 {
-q:
-"What does 1R represent?",
-
+q:"What does risk/reward describe?",
 a:[
-"One unit of planned risk",
-"One guaranteed profit",
-"One Bitcoin"
+"The relationship between potential loss and potential reward",
+"Guaranteed win probability",
+"Blockchain speed"
 ],
-
 correct:0
 },
 
 {
-q:
-"Does high risk/reward guarantee a winning trade?",
-
+q:"What is the current Moe AI target level?",
 a:[
-"Yes",
-"No",
-"Only with low leverage"
+"Fib 1.59",
+"Fib 10",
+"Fib 0.10"
 ],
-
-correct:1
+correct:0
 },
 
 {
-q:
-"What should strategy evaluation use?",
-
+q:"Does a higher risk/reward number guarantee a winning trade?",
 a:[
-"A meaningful sample of trades",
-"One winning screenshot",
-"One losing screenshot"
+"No",
+"Yes",
+"Only on Base"
 ],
-
 correct:0
 }
 
@@ -5109,63 +7579,62 @@ correct:0
 
 },
 
+
 {
 
-id:"freshness",
+id:"fresh",
 
-title:"Setup Freshness",
+title:"Signal Freshness & Lifecycle",
 
-time:"8 MIN READ",
+time:"11 MIN READ",
+
+graphic:"fresh",
 
 content:`
 
 <p>
 
 A technically valid setup
-does not remain valid forever.
+does not remain useful forever.
 
-Markets continue moving,
-new structure forms
-and old information loses relevance.
+Markets continue changing,
+new candles form
+and new structural information appears.
 
-This is why Moe AI tracks
-setup age.
-
-</p>
-
-<h4>
-Why Age Matters
-</h4>
-
-<p>
-
-Imagine a breakout occurs
-and an entry zone is created.
-
-If price never returns
-for a very long time,
-the surrounding market structure
-may change substantially.
-
-The original setup may no longer
-represent the same situation.
+That makes time
+part of the setup.
 
 </p>
 
 <h4>
-Price Must Still Matter
+Setup Age
 </h4>
 
 <p>
 
-A setup can also disappear
-because price has already
-moved through or away
-from the intended area.
+The current Moe AI scanner
+tracks setup age
+in 4H candles.
 
-A scanner should therefore avoid
-continuing to advertise
-an opportunity that no longer exists.
+A setup can remain structurally recognizable
+while still becoming too old
+to represent a fresh opportunity.
+
+</p>
+
+<h4>
+Maximum Setup Age
+</h4>
+
+<p>
+
+The current strategy limits
+setup age to 10 four-hour candles
+during detection.
+
+This protects the scanner
+from continually resurfacing
+very old structures.
 
 </p>
 
@@ -5175,27 +7644,43 @@ Expiration
 
 <p>
 
-Moe AI uses expiration rules
-so unresolved setups
-do not remain open indefinitely.
+A setup that never fills
+does not remain open forever.
 
-This keeps the active signal set
-focused on current opportunities
-rather than historical leftovers.
+Current infrastructure can expire
+unfilled setups after 48 hours.
+
+This keeps active data
+focused on current situations.
+
+</p>
+
+<h4>
+One Open Signal Per Pair
+</h4>
+
+<p>
+
+Moe AI currently allows
+one unresolved signal per trading pair.
+
+This avoids repeatedly posting
+multiple overlapping versions
+of effectively the same market situation.
 
 </p>
 
 <div class="lesson-note">
 
-Time is part of market context.
+Signal lifecycle matters:
 
-A setup is more than
-entry,
-stop
-and target.
-
-It also belongs to
-a particular moment.
+setup found →
+open →
+entry or no entry →
+target,
+stop,
+miss
+or expiration.
 
 </div>
 
@@ -5204,41 +7689,32 @@ a particular moment.
 quiz:[
 
 {
-q:
-"Why does setup freshness matter?",
-
+q:"Why is setup freshness important?",
 a:[
-"Old setups can lose relevance as market context changes",
+"Market context changes over time",
 "It guarantees profit",
-"It changes the blockchain"
+"It changes Base gas fees"
 ],
-
 correct:0
 },
 
 {
-q:
-"Should unresolved setups remain open forever?",
-
+q:"What is the current maximum detection age?",
 a:[
-"Yes",
-"No",
-"Only BTC setups"
+"10 four-hour candles",
+"100 daily candles",
+"Unlimited"
 ],
-
-correct:1
+correct:0
 },
 
 {
-q:
-"What is part of market context?",
-
+q:"How many unresolved signals does Moe AI currently allow per pair?",
 a:[
-"Time",
-"Only candle color",
-"Only trading volume"
+"One",
+"Twenty",
+"Unlimited"
 ],
-
 correct:0
 }
 
@@ -5246,30 +7722,30 @@ correct:0
 
 },
 
+
 {
 
 id:"signal",
 
-title:"Reading a Moe AI Signal",
+title:"How to Read a Moe AI Signal",
 
-time:"12 MIN READ",
+time:"13 MIN READ",
+
+graphic:"signal",
 
 content:`
 
 <p>
 
-The previous lessons can now
-be combined into the structure
-of a Moe AI signal.
+A Moe AI signal is intended
+to describe a complete market setup,
+not merely produce
+a BUY
+or SELL message.
 
-The purpose of the signal
-is not merely to say
-BUY
-or
-SELL.
-
-It is to describe
-a complete setup.
+Understanding the fields
+is essential before interpreting
+what the scanner is showing.
 
 </p>
 
@@ -5280,8 +7756,13 @@ Symbol
 <p>
 
 The symbol identifies
-which market
-the scanner evaluated.
+the market evaluated by the scanner.
+
+For example,
+BTCUSDT
+represents the Bitcoin
+and USDT market pair
+used by the market-data source.
 
 </p>
 
@@ -5291,30 +7772,28 @@ Direction
 
 <p>
 
-Direction describes whether
-the identified setup
-is structurally long
+Direction describes
+whether the detected structural setup
+is long
 or short.
 
-This does not mean
-the market can only move
-in that direction.
+It describes the setup,
+not certainty about future price.
 
 </p>
 
 <h4>
-Entry Zone
+Entry
 </h4>
 
 <p>
 
-The entry represents
-the predefined retracement area
-derived from the breakout leg.
+The entry field represents
+the strategy's defined retracement zone.
 
-A signal does not necessarily
-mean price has already entered
-that zone.
+A newly posted setup
+may exist before price
+has actually entered that area.
 
 </p>
 
@@ -5324,12 +7803,13 @@ Stop Loss
 
 <p>
 
-The stop defines
-the strategy's invalidation level.
+The stop represents
+structural invalidation
+for the strategy.
 
-It should be understood
-before considering
-the target.
+Understanding the stop
+is necessary before evaluating
+the potential target.
 
 </p>
 
@@ -5339,106 +7819,258 @@ Take Profit
 
 <p>
 
-The target defines
-where the strategy plans
-to realize its measured objective
-if the setup succeeds.
+The target represents
+the strategy's planned objective
+if the setup develops successfully.
 
 </p>
 
 <h4>
-Status
+Status and Result
 </h4>
 
 <p>
 
-A signal can move through
-different states.
+Signals move through a lifecycle.
 
-Examples include
-open,
-entered,
-won,
-lost,
-missed
-or expired,
-depending on the system.
+Depending on the outcome,
+records can represent
+open setups,
+missed entries,
+expired setups,
+TP1 wins
+or stop-loss losses.
 
 </p>
 
 <div class="lesson-note">
 
-A complete signal is a structured plan.
-
-Direction alone is not enough.
-
-Always understand
+A direction without
 entry,
 risk,
 invalidation,
 target
-and current status.
+and status
+is not a complete Moe AI setup.
 
 </div>
-
-<h4>
-The Final Principle
-</h4>
-
-<p>
-
-The goal of a systematic scanner
-is not to predict
-every market movement.
-
-The goal is to apply
-the same logic consistently,
-record what happened
-and evaluate the results
-using real data.
-
-</p>
 
 `,
 
 quiz:[
 
 {
-q:
-"What should a complete signal contain besides direction?",
-
+q:"What should a complete Moe AI signal contain besides direction?",
 a:[
 "Entry, invalidation, target and status",
 "Only an emoji",
 "Only leverage"
 ],
-
 correct:0
 },
 
 {
-q:
-"Does an open signal always mean price already entered the zone?",
-
+q:"Does a newly posted setup always mean the entry has already filled?",
 a:[
-"Yes",
 "No",
-"Only for shorts"
+"Yes",
+"Always"
 ],
-
-correct:1
+correct:0
 },
 
 {
-q:
-"What is one major purpose of a systematic scanner?",
-
+q:"Why is signal status important?",
 a:[
-"Apply consistent rules and record results",
-"Predict every candle perfectly",
-"Guarantee profitable trades"
+"It explains where the setup is in its lifecycle",
+"It changes the token supply",
+"It guarantees a target"
 ],
+correct:0
+}
 
+]
+
+},
+
+
+{
+
+id:"system",
+
+title:"How Moe AI Fits Together",
+
+time:"14 MIN READ",
+
+graphic:"system",
+
+content:`
+
+<p>
+
+Moe AI is larger than the chart
+a user sees on the website.
+
+The current project is built
+as connected layers
+with separate responsibilities.
+
+Understanding those layers
+helps explain why
+the system is being developed this way.
+
+</p>
+
+<h4>
+Market Data
+</h4>
+
+<p>
+
+The scanner receives
+4H crypto market data.
+
+That data provides
+the raw candles
+from which structure
+and valid setups are evaluated.
+
+</p>
+
+<h4>
+Scanner & Strategy Engine
+</h4>
+
+<p>
+
+The scanner applies
+the locked market structure
+and breakout-leg rules.
+
+This is the strategy layer.
+
+It decides whether
+a setup exists.
+
+</p>
+
+<h4>
+Moe AI API
+</h4>
+
+<p>
+
+The API acts as
+the communication layer.
+
+Signals,
+statistics
+and future agent-facing information
+can be accessed through
+a structured interface.
+
+The live panel on this website
+uses that layer.
+
+</p>
+
+<h4>
+Supabase Signal History
+</h4>
+
+<p>
+
+The operational database
+stores signal history.
+
+This allows outcomes
+to survive deployments
+and supports
+longer-term performance analysis.
+
+</p>
+
+<h4>
+Discord & Website</h4>
+
+<p>
+
+Signals can be surfaced
+to human users
+through community alerts
+and the BasedMoer.com interface.
+
+These are presentation layers.
+
+They should not redefine
+the strategy itself.
+
+</p>
+
+<h4>
+Future Agent Layer
+</h4>
+
+<p>
+
+The longer-term direction
+is to make the same structured information
+usable by both humans
+and onchain agents.
+
+Future layers may include
+memory,
+decision systems,
+execution
+and Base-native references.
+
+Those systems are not being presented
+as live today.
+
+</p>
+
+<div class="lesson-note">
+
+This separation is intentional:
+
+strategy decides →
+API communicates →
+database remembers →
+interfaces explain.
+
+</div>
+
+`,
+
+quiz:[
+
+{
+q:"Which layer is the source of truth for trade logic?",
+a:[
+"The scanner strategy",
+"The website colors",
+"The Discord logo"
+],
+correct:0
+},
+
+{
+q:"What is the Moe AI API primarily responsible for?",
+a:[
+"Communication between systems and users",
+"Drawing pixel art",
+"Changing the strategy"
+],
+correct:0
+},
+
+{
+q:"Are autonomous execution and full onchain agents live today?",
+a:[
+"No, they are future layers",
+"Yes, completely",
+"They are part of the NFT image"
+],
 correct:0
 }
 
@@ -5446,404 +8078,526 @@ correct:0
 
 }
 
+
 ];
+
+
+/* =====================================================
+   ACADEMY INTERACTION
+   ===================================================== */
 
 let activeLesson =
   0;
 
+
 const completedLessons =
   new Set(
+
     JSON.parse(
+
       localStorage.getItem(
         "basedMoerAcademy"
       )
+
       ||
+
       "[]"
+
     )
+
   );
+
 
 function renderLessonList() {
 
-  const list =
-    document.getElementById(
-      "lessonList"
-    );
 
-  list.innerHTML =
-    lessons
-    .map(
-      (
-        lesson,
-        index
-      ) => {
+const list =
+  document.getElementById(
+    "lessonList"
+  );
 
-        const active =
-          index ===
-          activeLesson
-          ?
-          "active"
-          :
-          "";
 
-        const done =
-          completedLessons.has(
-            lesson.id
-          )
-          ?
-          "done"
-          :
-          "";
+list.innerHTML =
+lessons
+.map(
+  (
+    lesson,
+    index
+  ) => {
 
-        return `
 
-          <button
-            class="
-              lesson-button
-              ${active}
-              ${done}
-            "
-            onclick="
-              openLesson(${index})
-            "
-          >
+const active =
+  index ===
+  activeLesson
+  ?
+  "active"
+  :
+  "";
 
-            <strong>
 
-              ${String(
-                index + 1
-              ).padStart(
-                2,
-                "0"
-              )}
+const done =
+  completedLessons.has(
+    lesson.id
+  )
+  ?
+  "done"
+  :
+  "";
 
-              —
 
-              ${lesson.title}
+return `
 
-            </strong>
+<button
 
-            <small>
+  class="
+    lesson-button
+    ${active}
+    ${done}
+  "
 
-              ${lesson.time}
-              • EXAM
+  onclick="
+    openLesson(${index})
+  "
 
-            </small>
+>
 
-          </button>
+<strong>
 
-        `;
+${String(
+  index + 1
+).padStart(
+  2,
+  "0"
+)}
 
-      }
-    )
-    .join("");
+—
 
-  updateAcademyProgress();
+${lesson.title}
+
+</strong>
+
+<small>
+
+${lesson.time}
+• EXAM
+
+</small>
+
+</button>
+
+`;
+
 
 }
+)
+.join("");
+
+
+updateAcademyProgress();
+
+
+}
+
 
 function openLesson(index) {
 
-  activeLesson =
-    index;
 
-  const lesson =
-    lessons[index];
+activeLesson =
+  index;
 
-  const content =
-    document.getElementById(
-      "lessonContent"
-    );
 
-  content.innerHTML = `
+const lesson =
+  lessons[index];
 
-    <div class="lesson-brand">
 
-      <img
-        class="lesson-logo"
-        src="assets/based-moer-logo.jpg"
-        alt="Based Moer"
-      >
+const content =
+  document.getElementById(
+    "lessonContent"
+  );
 
-      <div>
 
-        <strong>
-          BASED MOER ACADEMY
-        </strong>
+content.innerHTML = `
 
-        <br>
 
-        <span>
+<div class="lesson-brand">
 
-          LESSON
-          ${String(
-            index + 1
-          ).padStart(
-            2,
-            "0"
-          )}
-          OF
-          ${lessons.length}
 
-        </span>
+<img
+  class="lesson-logo"
+  src="assets/based-moer-logo.jpg"
+  alt="Based Moer Academy"
+/>
 
-      </div>
 
-    </div>
+<div>
 
-    <h3>
 
-      ${lesson.title}
+<strong>
+BASED MOER ACADEMY
+</strong>
 
-    </h3>
 
-    ${lesson.content}
+<br>
 
-    <div class="quiz">
 
-      <h4>
-        LESSON EXAM
-      </h4>
+<span>
 
-      <p>
+LESSON
+${String(
+  index + 1
+).padStart(
+  2,
+  "0"
+)}
 
-        Answer all questions correctly
-        to complete this lesson.
+OF
 
-        You can retry the exam
-        as many times as necessary.
+${lessons.length}
 
-      </p>
+</span>
 
-      ${lesson.quiz
-      .map(
-        (
-          question,
-          questionIndex
-        ) => {
 
-          return `
+</div>
 
-            <div class="quiz-question">
 
-              <strong>
+</div>
 
-                ${questionIndex + 1}.
 
-                ${question.q}
+<h3>
 
-              </strong>
+${lesson.title}
 
-              ${question.a
-              .map(
-                (
-                  answer,
-                  answerIndex
-                ) => {
+</h3>
 
-                  return `
 
-                    <label>
+${lessonGraphic(
+  lesson.graphic
+)}
 
-                      <input
-                        type="radio"
-                        name="
-                          quiz-${questionIndex}
-                        "
-                        value="
-                          ${answerIndex}
-                        "
-                      >
 
-                      ${answer}
+${lesson.content}
 
-                    </label>
 
-                  `;
+<div class="quiz">
 
-                }
-              )
-              .join("")}
 
-            </div>
+<h4>
 
-          `;
+LESSON EXAM
 
-        }
-      )
-      .join("")}
+</h4>
 
-      <button
-        class="button"
-        onclick="
-          gradeLesson()
-        "
-      >
 
-        SUBMIT EXAM
+<p>
 
-      </button>
+Answer every question correctly
+to complete this lesson.
 
-      <div
-        id="quizResult"
-        class="quiz-result"
-      ></div>
+You can review the material
+and retake the exam
+as many times as needed.
 
-    </div>
+</p>
 
-  `;
 
-  renderLessonList();
+${lesson.quiz
+.map(
+  (
+    question,
+    questionIndex
+  ) => {
+
+
+return `
+
+
+<div class="quiz-question">
+
+
+<strong>
+
+${questionIndex + 1}.
+
+${question.q}
+
+</strong>
+
+
+${question.a
+.map(
+  (
+    answer,
+    answerIndex
+  ) => {
+
+
+return `
+
+
+<label>
+
+
+<input
+
+  type="radio"
+
+  name="
+    quiz-${questionIndex}
+  "
+
+  value="
+    ${answerIndex}
+  "
+
+>
+
+
+${answer}
+
+
+</label>
+
+
+`;
+
 
 }
+)
+.join("")}
+
+
+</div>
+
+
+`;
+
+
+}
+)
+.join("")}
+
+
+<button
+
+  class="button"
+
+  onclick="
+    gradeLesson()
+  "
+
+>
+
+SUBMIT EXAM
+
+</button>
+
+
+<div
+  id="quizResult"
+  class="quiz-result"
+></div>
+
+
+</div>
+
+
+`;
+
+
+renderLessonList();
+
+
+}
+
 
 function gradeLesson() {
 
-  const lesson =
-    lessons[
-      activeLesson
-    ];
 
-  let score =
-    0;
+const lesson =
+  lessons[
+    activeLesson
+  ];
 
-  lesson.quiz
-  .forEach(
-    (
-      question,
-      questionIndex
-    ) => {
 
-      const selected =
-        document.querySelector(
+let score =
+  0;
 
-          `input[
-            name="quiz-${questionIndex}"
-          ]:checked`
 
-        );
+lesson.quiz
+.forEach(
+  (
+    question,
+    questionIndex
+  ) => {
 
-      if (
-        selected &&
-        Number(
-          selected.value
-        )
-        ===
-        question.correct
-      ) {
 
-        score++;
+const selected =
+  document.querySelector(
 
-      }
+    `input[
+      name="quiz-${questionIndex}"
+    ]:checked`
 
-    }
   );
 
-  const result =
-    document.getElementById(
-      "quizResult"
-    );
 
-  if (
-    score ===
-    lesson.quiz.length
-  ) {
+if (
+  selected &&
+  Number(
+    selected.value
+  )
+  ===
+  question.correct
+) {
 
-    completedLessons.add(
-      lesson.id
-    );
-
-    localStorage.setItem(
-      "basedMoerAcademy",
-      JSON.stringify(
-        [
-          ...completedLessons
-        ]
-      )
-    );
-
-    result.style.color =
-      "#68f49b";
-
-    result.textContent =
-      "PASSED — "
-      +
-      score
-      +
-      "/"
-      +
-      lesson.quiz.length
-      +
-      ". LESSON COMPLETE.";
-
-    renderLessonList();
-
-  }
-
-  else {
-
-    result.style.color =
-      "#ff7182";
-
-    result.textContent =
-      score
-      +
-      "/"
-      +
-      lesson.quiz.length
-      +
-      ". REVIEW THE LESSON AND TRY AGAIN.";
-
-  }
+  score++;
 
 }
+
+
+}
+);
+
+
+const result =
+  document.getElementById(
+    "quizResult"
+  );
+
+
+if (
+  score ===
+  lesson.quiz.length
+) {
+
+
+completedLessons.add(
+  lesson.id
+);
+
+
+localStorage.setItem(
+
+  "basedMoerAcademy",
+
+  JSON.stringify(
+    [
+      ...completedLessons
+    ]
+  )
+
+);
+
+
+result.style.color =
+  "#68f49b";
+
+
+result.textContent =
+
+  "PASSED — "
+  +
+  score
+  +
+  "/"
+  +
+  lesson.quiz.length
+  +
+  ". LESSON COMPLETE.";
+
+
+renderLessonList();
+
+
+}
+
+
+else {
+
+
+result.style.color =
+  "#ff7182";
+
+
+result.textContent =
+
+  score
+  +
+  "/"
+  +
+  lesson.quiz.length
+  +
+  ". REVIEW THE LESSON AND TRY AGAIN.";
+
+
+}
+
+
+}
+
 
 function updateAcademyProgress() {
 
-  const complete =
-    completedLessons.size;
 
-  const total =
-    lessons.length;
+const complete =
+  completedLessons.size;
 
-  const percentage =
-    Math.round(
-      complete /
-      total *
-      100
-    );
 
-  document.getElementById(
-    "progressText"
-  ).textContent =
-    complete
-    +
-    " / "
-    +
-    total
-    +
-    " LESSONS COMPLETE";
+const total =
+  lessons.length;
 
-  document.getElementById(
-    "progressPercent"
-  ).textContent =
-    percentage
-    +
-    "%";
 
-  document.getElementById(
-    "progressBar"
-  ).style.width =
-    percentage
-    +
-    "%";
+const percentage =
+  Math.round(
+
+    complete /
+    total *
+    100
+
+  );
+
+
+document.getElementById(
+  "progressText"
+).textContent =
+
+  complete
+  +
+  " / "
+  +
+  total
+  +
+  " LESSONS COMPLETE";
+
+
+document.getElementById(
+  "progressPercent"
+).textContent =
+
+  percentage
+  +
+  "%";
+
+
+document.getElementById(
+  "progressBar"
+).style.width =
+
+  percentage
+  +
+  "%";
+
 
 }
+
 
 renderLessonList();
 
 openLesson(0);
 
+
 </script>
+
 
 </body>
 
