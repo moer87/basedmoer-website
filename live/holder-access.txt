@@ -1,0 +1,1 @@
+Live is a Based Ape Punks holder surface. Frontend balanceOf gating is UX-level; protected API authorization should later move server-side.
