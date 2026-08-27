@@ -1,342 +1,167 @@
 (function () {
-
-  const currentPath =
-    window.location.pathname;
+  const currentPath = window.location.pathname;
+  const CONTRACT = "0x5CafB7C0181fEd5b6d62AA331699989861c27AE7";
+  const BASE_CHAIN_ID = "0x2105";
+  const HOLDER_PAGES = ["/live/", "/academy/", "/moer-flip/", "/profile/"];
+  let wallet = null;
+  let isHolder = false;
 
   function active(path) {
-    if (path === "/") {
-      return currentPath === "/" ? "active" : "";
-    }
-
-    return currentPath.startsWith(path)
-      ? "active"
-      : "";
+    if (path === "/") return currentPath === "/" ? "active" : "";
+    return currentPath.startsWith(path) ? "active" : "";
   }
 
-  const header = `
+  function shortAddress(address) {
+    return address ? `${address.slice(0, 6)}…${address.slice(-4)}` : "CONNECT WALLET";
+  }
 
-    <header class="site-header">
+  function publicLinks() {
+    return `
+      <a href="/" class="${active("/")}">Home</a>
+      <a href="/moerverse/" class="${active("/moerverse/")}">Moerverse</a>
+    `;
+  }
 
-      <div class="container site-nav-shell">
+  function holderLinks() {
+    if (!isHolder) return "";
+    return `
+      <a href="/live/" class="${active("/live/")}">Live</a>
+      <a href="/academy/" class="${active("/academy/")}">Academy</a>
+      <a href="/moer-flip/" class="${active("/moer-flip/")}">Moer Flip</a>
+      <a href="/profile/" class="${active("/profile/")}">Profile</a>
+    `;
+  }
 
-        <a
-          class="site-brand"
-          href="/"
-          aria-label="Based Moer Home"
-        >
-
-          <img
-            src="/assets/based-moer-logo.jpg"
-            alt="Based Moer logo"
-          >
-
-          <span class="site-brand-name">
-            BASED MOER
-          </span>
-
-        </a>
-
-        <nav
-          class="site-desktop-nav"
-          aria-label="Main navigation"
-        >
-
-          <a
-            href="/"
-            class="${active("/")}"
-          >
-            Home
+  function headerMarkup() {
+    return `
+      <header class="site-header">
+        <div class="container site-nav-shell">
+          <a class="site-brand" href="/" aria-label="Based Moer Home">
+            <img src="/assets/based-moer-logo.jpg" alt="Based Moer logo">
+            <span class="site-brand-name">BASED MOER</span>
           </a>
-
-          <a
-            href="/moerverse/"
-            class="${active("/moerverse/")}"
-          >
-            Moerverse
-          </a>
-
-          <a
-            href="/live/"
-            class="${active("/live/")}"
-          >
-            Live
-          </a>
-
-          <a
-            href="/academy/"
-            class="${active("/academy/")}"
-          >
-            Academy
-          </a>
-
-          <a
-            href="/generator/"
-            class="${active("/generator/")}"
-          >
-            Generator
-          </a>
-
-          <a href="/#explore">
-            Explore
-          </a>
-
-        </nav>
-
-        <a
-          class="site-follow"
-          href="https://x.com/basedmoer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-
-          <svg
-            class="site-x-icon"
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-
-            <path
-              d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817-5.967 6.817H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231 5.45-6.231Zm-1.161 17.52h1.833L7.084 4.126H5.117L17.083 19.77Z"
-            />
-
-          </svg>
-
-          FOLLOW
-
-        </a>
-
-        <button
-          class="site-mobile-toggle"
-          id="siteMobileToggle"
-          aria-label="Open menu"
-        >
-          ☰
-        </button>
-
-      </div>
-
-      <div
-        class="container site-mobile-menu"
-        id="siteMobileMenu"
-      >
-
-        <a href="/">
-          Home
-        </a>
-
-        <a href="/moerverse/">
-          Moerverse
-        </a>
-
-        <a href="/live/">
-          Live
-        </a>
-
-        <a href="/academy/">
-          Academy
-        </a>
-
-        <a href="/generator/">
-          Generator
-        </a>
-
-        <a href="/#explore">
-          Explore
-        </a>
-
-        <a
-          class="site-mobile-follow"
-          href="https://x.com/basedmoer"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Follow on X ↗
-        </a>
-
-      </div>
-
-    </header>
-
-  `;
+          <nav class="site-desktop-nav" aria-label="Main navigation" id="desktopNav">
+            ${publicLinks()}${holderLinks()}
+          </nav>
+          <button class="site-follow site-wallet-button" id="walletButton" type="button">${shortAddress(wallet)}</button>
+          <button class="site-mobile-toggle" id="siteMobileToggle" aria-label="Open menu">☰</button>
+        </div>
+        <div class="container site-mobile-menu" id="siteMobileMenu">
+          <div id="mobileNav">${publicLinks()}${holderLinks()}</div>
+          <button class="site-mobile-follow site-wallet-button" id="mobileWalletButton" type="button">${shortAddress(wallet)}</button>
+        </div>
+      </header>`;
+  }
 
   const footer = `
-
     <footer class="site-footer">
-
       <div class="container">
-
         <div class="footer-grid">
-
           <div>
-
-            <div class="footer-brand">
-
-              <img
-                src="/assets/based-moer-logo.jpg"
-                alt="Based Moer"
-              >
-
-              <strong>
-                BASED MOER
-              </strong>
-
-            </div>
-
-            <div class="footer-copy">
-
-              Pixel-first • Built on Base
-
-              <br><br>
-
-              Original pixel art,
-              Moe AI market intelligence,
-              education
-              and creator-built onchain experiences.
-
-            </div>
-
+            <div class="footer-brand"><img src="/assets/based-moer-logo.jpg" alt="Based Moer"><strong>BASED MOER</strong></div>
+            <div class="footer-copy">Pixel-first • Built on Base<br><br>Original pixel art, Moe AI market intelligence, education and creator-built onchain experiences.</div>
           </div>
-
-          <div class="footer-column">
-
-            <h4>
-              Explore
-            </h4>
-
-            <a href="/moerverse/">
-              Moerverse
-            </a>
-
-            <a href="/live/">
-              Live Engine
-            </a>
-
-            <a href="/academy/">
-              Moe Academy
-            </a>
-
-            <a href="/generator/">
-              Art Generator
-            </a>
-
-          </div>
-
-          <div class="footer-column">
-
-            <h4>
-              Community
-            </h4>
-
-            <a
-              href="https://x.com/basedmoer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              X
-            </a>
-
-            <a
-              href="https://discord.gg/B6Pu9fARTX"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Discord
-            </a>
-
-            <a
-              href="https://www.youtube.com/@BasedMoer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              YouTube
-            </a>
-
-            <a
-              href="https://basedmoer.gitbook.io/based-moer"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Docs
-            </a>
-
-          </div>
-
+          <div class="footer-column"><h4>Explore</h4><a href="/moerverse/">Moerverse</a><a href="/live/">Live Engine</a><a href="/academy/">Moe Academy</a><a href="/moer-flip/">Moer Flip</a></div>
+          <div class="footer-column"><h4>Community</h4><a href="https://x.com/basedmoer" target="_blank" rel="noopener noreferrer">X</a><a href="https://discord.gg/B6Pu9fARTX" target="_blank" rel="noopener noreferrer">Discord</a><a href="https://www.youtube.com/@BasedMoer" target="_blank" rel="noopener noreferrer">YouTube</a><a href="https://basedmoer.gitbook.io/based-moer" target="_blank" rel="noopener noreferrer">Docs</a></div>
         </div>
-
-        <div class="footer-bottom">
-
-          <span>
-            © 2026 Based Moer. Stay Based.
-          </span>
-
-          <div class="footer-disclaimer">
-
-            Based Moer is an independent creator project.
-            Moe AI and Moe Academy provide experimental
-            market-analysis and educational information only.
-            Nothing on BasedMoer.com constitutes financial,
-            investment or trading advice.
-
-          </div>
-
-        </div>
-
+        <div class="footer-bottom"><span>© 2026 Based Moer. Stay Based.</span><div class="footer-disclaimer">Based Moer is an independent creator project. Moe AI and Moe Academy provide experimental market-analysis and educational information only. Nothing on BasedMoer.com constitutes financial, investment or trading advice.</div></div>
       </div>
+    </footer>`;
 
-    </footer>
-
-  `;
-
-  const headerTarget =
-    document.getElementById(
-      "globalHeader"
-    );
-
-  const footerTarget =
-    document.getElementById(
-      "globalFooter"
-    );
-
-  if (headerTarget) {
-    headerTarget.innerHTML =
-      header;
+  function renderHeader() {
+    const target = document.getElementById("globalHeader");
+    if (!target) return;
+    target.innerHTML = headerMarkup();
+    bindHeader();
   }
 
-  if (footerTarget) {
-    footerTarget.innerHTML =
-      footer;
+  function bindHeader() {
+    const toggle = document.getElementById("siteMobileToggle");
+    const menu = document.getElementById("siteMobileMenu");
+    if (toggle && menu) toggle.addEventListener("click", () => {
+      menu.classList.toggle("open");
+      toggle.textContent = menu.classList.contains("open") ? "✕" : "☰";
+    });
+    document.querySelectorAll(".site-wallet-button").forEach(button => button.addEventListener("click", connectWallet));
   }
 
-  const toggle =
-    document.getElementById(
-      "siteMobileToggle"
-    );
-
-  const menu =
-    document.getElementById(
-      "siteMobileMenu"
-    );
-
-  if (toggle && menu) {
-
-    toggle.addEventListener(
-      "click",
-      () => {
-
-        menu.classList.toggle(
-          "open"
-        );
-
-        toggle.textContent =
-          menu.classList.contains(
-            "open"
-          )
-          ? "✕"
-          : "☰";
-
-      }
-    );
-
+  async function rpc(method, params) {
+    return window.ethereum.request({ method, params });
   }
 
+  async function checkHolder(address) {
+    const selector = "0x70a08231";
+    const padded = address.toLowerCase().replace("0x", "").padStart(64, "0");
+    const result = await rpc("eth_call", [{ to: CONTRACT, data: selector + padded }, "latest"]);
+    return BigInt(result || "0x0") > 0n;
+  }
+
+  async function ensureBase() {
+    const chain = await rpc("eth_chainId");
+    if (chain === BASE_CHAIN_ID) return true;
+    try {
+      await rpc("wallet_switchEthereumChain", [{ chainId: BASE_CHAIN_ID }]);
+      return true;
+    } catch (error) {
+      alert("Please switch your wallet to Base to verify Based Ape Punks ownership.");
+      return false;
+    }
+  }
+
+  async function connectWallet() {
+    if (!window.ethereum) {
+      alert("No compatible Ethereum wallet was detected. Install a wallet that supports Base, then try again.");
+      return;
+    }
+    try {
+      const accounts = await rpc("eth_requestAccounts");
+      if (!accounts || !accounts[0]) return;
+      if (!(await ensureBase())) return;
+      wallet = accounts[0];
+      isHolder = await checkHolder(wallet);
+      sessionStorage.setItem("basedMoerWallet", wallet);
+      sessionStorage.setItem("basedMoerHolder", isHolder ? "1" : "0");
+      renderHeader();
+      updateHolderGate();
+      window.dispatchEvent(new CustomEvent("basedmoer:wallet", { detail: { wallet, isHolder } }));
+      if (!isHolder) alert("Wallet connected, but no Based Ape Punks NFT was found in this wallet.");
+    } catch (error) {
+      console.error("Wallet connection failed", error);
+      alert("Wallet connection failed. Please try again.");
+    }
+  }
+
+  function updateHolderGate() {
+    document.querySelectorAll("[data-holder-content]").forEach(el => el.hidden = !isHolder);
+    document.querySelectorAll("[data-holder-lock]").forEach(el => el.hidden = isHolder);
+  }
+
+  async function restoreWallet() {
+    if (!window.ethereum) return;
+    try {
+      const accounts = await rpc("eth_accounts");
+      if (!accounts || !accounts[0]) return;
+      wallet = accounts[0];
+      if (await ensureBase()) isHolder = await checkHolder(wallet);
+      renderHeader();
+      updateHolderGate();
+    } catch (error) {
+      console.warn("Could not restore wallet", error);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const footerTarget = document.getElementById("globalFooter");
+    if (footerTarget) footerTarget.innerHTML = footer;
+    renderHeader();
+    updateHolderGate();
+    restoreWallet();
+
+    if (window.ethereum) {
+      window.ethereum.on?.("accountsChanged", () => location.reload());
+      window.ethereum.on?.("chainChanged", () => location.reload());
+    }
+
+    if (HOLDER_PAGES.some(path => currentPath.startsWith(path))) document.body.classList.add("holder-route");
+  });
 })();
