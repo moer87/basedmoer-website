@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moerverse Passport | Based Moer Holder Profile</title>
+<meta name="description" content="Private Based Moer holder profile for Based Ape Punks ownership, Moe Academy progress, achievements and future holder utilities.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="/shared.css">
+<style>
+.profile-hero{padding:85px 0 35px;text-align:center}.profile-hero h1{font-size:clamp(48px,7vw,84px);line-height:.92;margin:18px 0}.passport{max-width:980px;margin:20px auto 100px}.profile-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:18px}.profile-card{padding:25px}.profile-card h3{margin:0 0 15px}.wallet-id{font-family:monospace;color:#9db7ff;word-break:break-all}.stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.stat{padding:17px;border:1px solid #293249;border-radius:12px;background:#0b0f18}.stat strong{display:block;font-size:26px}.stat span{color:#76829b;font-size:11px}.achievement{padding:12px 0;border-bottom:1px solid #252c3d}.achievement:last-child{border-bottom:0}.locked-text{color:#626e87}.profile-gate{text-align:center;padding:45px}.title-badge{display:inline-flex;padding:7px 11px;border:1px solid rgba(0,82,255,.35);border-radius:999px;background:rgba(0,82,255,.09);color:#9ab6ff;font-size:11px;font-weight:900}@media(max-width:800px){.profile-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div id="globalHeader"></div>
+<main>
+<section class="profile-hero"><div class="container"><div class="section-label">PRIVATE HOLDER PROFILE</div><h1>MOERVERSE <span class="blue">PASSPORT.</span></h1><p class="muted">Your holder identity, Academy progress, achievements and future Moerverse access in one place.</p></div></section>
+<section><div class="container passport">
+<div class="card profile-gate" data-holder-lock><h2>CONNECT YOUR HOLDER WALLET</h2><p>Based Ape Punks ownership is checked on Base. Profiles are private by default.</p><button class="button site-wallet-button" type="button">CONNECT WALLET</button></div>
+<div data-holder-content hidden>
+<div class="profile-grid">
+<div class="card profile-card"><div class="title-badge">BASED APE PUNKS HOLDER</div><h3 style="margin-top:16px">Holder Identity</h3><div class="wallet-id" id="profileWallet">Connected wallet</div><p>Future versions will show owned Based Ape Punks and optional profile customization without exposing private information by default.</p></div>
+<div class="card profile-card"><h3>Academy Overview</h3><div class="stat-grid"><div class="stat"><strong id="lessonsDone">0</strong><span>LESSONS COMPLETED</span></div><div class="stat"><strong id="examsPassed">0</strong><span>EXAMS PASSED</span></div><div class="stat"><strong id="averageScore">—</strong><span>AVERAGE SCORE</span></div><div class="stat"><strong id="currentTitle">Initiate</strong><span>CURRENT TITLE</span></div></div></div>
+<div class="card profile-card"><h3>Achievement Path</h3><div class="achievement">◇ Market Structure Initiate</div><div class="achievement locked-text">◇ Risk Navigator — locked</div><div class="achievement locked-text">◇ Setup Analyst — locked</div><div class="achievement locked-text">◇ Moe AI Scholar — locked</div><div class="achievement locked-text">◇ Moerverse Market Analyst — locked</div></div>
+<div class="card profile-card"><h3>Learning Tracks</h3><p>Market Foundations</p><div class="progress-bar"><span style="width:0%"></span></div><p>Risk & Execution</p><div class="progress-bar"><span style="width:0%"></span></div><p>Strategies</p><div class="progress-bar"><span style="width:0%"></span></div><p>Moe AI</p><div class="progress-bar"><span style="width:0%"></span></div><p>Base & Onchain</p><div class="progress-bar"><span style="width:0%"></span></div></div>
+</div>
+</div>
+</div></section>
+</main>
+<div id="globalFooter"></div>
+<script src="/shared.js"></script>
+<script>window.addEventListener('basedmoer:wallet',e=>{const el=document.getElementById('profileWallet');if(el)el.textContent=e.detail.wallet;});document.addEventListener('DOMContentLoaded',()=>{const w=sessionStorage.getItem('basedMoerWallet');if(w&&document.getElementById('profileWallet'))document.getElementById('profileWallet').textContent=w;});</script>
+</body>
+</html>
