@@ -1,0 +1,1 @@
+Collection media and copy must stay in separate opaque panels. Mobile collapses to one column.
