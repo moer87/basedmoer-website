@@ -1,5 +1,6 @@
 (function(){
   const API='https://moe-ai-production.up.railway.app/v1/agent';
+  const EXEC='https://moe-ai-production.up.railway.app/v1/execution';
   const tokenKey='moeAgentSession';
   const $=id=>document.getElementById(id);
   const money=v=>Number(v||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:4});
@@ -8,6 +9,40 @@
   function headers(){const t=token();return t?{'Authorization':'Bearer '+t,'Content-Type':'application/json'}:{'Content-Type':'application/json'}}
   async function json(url,opts={}){const r=await fetch(url,{...opts,headers:{...headers(),...(opts.headers||{})}});const x=await r.json().catch(()=>({}));if(!r.ok)throw new Error(x.detail||x.error||('HTTP '+r.status));return x}
   function state(text,bad=false){const e=$('agentMessage');if(e){e.textContent=text;e.style.color=bad?'#ff8d9b':'#8190ad'}}
+  function ensureExecutionPanel(){
+    if($('baseExecPanel'))return;
+    const panel=$('agentPanel');if(!panel)return;
+    const wrap=document.createElement('section');
+    wrap.id='baseExecPanel';
+    wrap.style.cssText='margin-top:18px;padding:16px;border:1px solid #263149;border-radius:13px;background:#080d15';
+    wrap.innerHTML=`
+      <div style="font-size:10px;font-weight:900;color:#71809e;margin-bottom:8px">BASE EXECUTION READINESS</div>
+      <div id="baseExecStatus" style="font-size:13px;color:#9aa8c4;line-height:1.6">Checking Base shadow routes...</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+        <button id="baseExecCheck" class="button secondary" type="button">CHECK BASE ROUTES</button>
+        <button id="basePermissionPlan" class="button secondary" type="button">PREPARE $10 PERMISSION</button>
+      </div>
+      <div id="basePermissionStatus" style="margin-top:10px;font-size:12px;color:#7f8da9;line-height:1.6">No live Spend Permission will be requested until the Moe spender contract passes security gates and is deployed. Signing and revocation will use the official Base Account SDK bundled into the site, not a third-party CDN.</div>`;
+    panel.appendChild(wrap);
+    $('baseExecCheck')?.addEventListener('click',checkExecutionHealth);
+    $('basePermissionPlan')?.addEventListener('click',preparePermission);
+  }
+  async function checkExecutionHealth(){
+    const e=$('baseExecStatus');if(e)e.textContent='Checking Base mainnet routes...';
+    try{
+      const x=await json(EXEC+'/health');
+      const eth=x.checks?.ETHUSDT,btx=x.checks?.BTCUSDT;
+      if(e)e.textContent=`Base ${x.chain_id||8453}: ETH route ${eth?.ok?'OK':'NOT READY'} · BTC/cbBTC route ${btx?.ok?'OK':'NOT READY'} · mode ${x.mode||'SHADOW'}.`;
+    }catch(err){if(e)e.textContent='Base execution health unavailable: '+err.message}
+  }
+  async function preparePermission(){
+    const e=$('basePermissionStatus');if(e)e.textContent='Preparing bounded Base USDC permission plan...';
+    try{
+      const x=await json(EXEC+'/permission-plan',{method:'POST',body:JSON.stringify({allowance_usd:10,period_days:30})});
+      if(!x.ready){if(e)e.textContent='Live permission remains locked: '+(x.message||x.reason||'spender not deployed');return}
+      if(e)e.textContent='Permission plan is ready for $10 USDC, but signing is intentionally disabled until the deployed spender address and final contract audit are verified.';
+    }catch(err){if(e)e.textContent='Permission planning failed safely: '+err.message}
+  }
   function renderAccount(a,positions=[]){
     if(!a)return;
     $('agentMode').textContent=a.mode||'PAPER';
@@ -36,8 +71,10 @@
       const x=await json(API+'/me');
       $('agentAuth').hidden=true;
       $('agentPanel').hidden=false;
+      ensureExecutionPanel();
       renderAccount(x.account,x.positions||[]);
-      state('Moe Agent paper engine connected. Live execution is disabled.');
+      state('Moe Agent shadow engine connected. Live fund execution remains locked.');
+      checkExecutionHealth();
     }catch(e){sessionStorage.removeItem(tokenKey);$('agentAuth').hidden=false;$('agentPanel').hidden=true;state(e.message,true)}
   }
   async function authenticate(){
@@ -60,7 +97,7 @@
     }catch(e){state(e.message,true)}
   }
   async function toggle(enabled){
-    try{const x=await json(API+'/toggle',{method:'POST',body:JSON.stringify({enabled})});state(enabled?'Moe Agent paper mode started.':'Moe Agent stopped.');await load()}catch(e){state(e.message,true)}
+    try{await json(API+'/toggle',{method:'POST',body:JSON.stringify({enabled})});state(enabled?'Moe Agent shadow mode started.':'Moe Agent stopped.');await load()}catch(e){state(e.message,true)}
   }
   document.addEventListener('DOMContentLoaded',()=>{
     $('agentLogin')?.addEventListener('click',authenticate);$('agentSave')?.addEventListener('click',save);$('agentStart')?.addEventListener('click',()=>toggle(true));$('agentStop')?.addEventListener('click',()=>toggle(false));load();setInterval(()=>{if(token())load()},30000)
