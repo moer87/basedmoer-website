@@ -76,4 +76,13 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          ! grep -R -n -E '(SUPABASE_SERVICE_ROLE|PRIVATE_KEY|SEED_PHRASE|DISCORD_WEBHOOK_URL|MOE_AI_API_KEY\s*=\s*["'"'][^"'"']+)' --include='*.js' --include='*.html' --include='*.css' .
+          for term in SUPABASE_SERVICE_ROLE PRIVATE_KEY SEED_PHRASE DISCORD_WEBHOOK_URL; do
+            if grep -R -n -F "$term" --include='*.js' --include='*.html' --include='*.css' .; then
+              echo "Forbidden browser secret marker found: $term"
+              exit 1
+            fi
+          done
+          if grep -R -n -E 'MOE_AI_API_KEY[[:space:]]*=' --include='*.js' --include='*.html' --include='*.css' .; then
+            echo 'Moe AI API key assignment found in browser source'
+            exit 1
+          fi
