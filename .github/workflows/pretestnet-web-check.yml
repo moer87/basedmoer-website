@@ -55,13 +55,29 @@ jobs:
           test -s assets/spaceship-red.png
           test -s assets/spaceship-cyan.png
           test -s assets/base-blockchain-logo.jpg
+          test -s assets/moe-academy-home.png
           grep -q "/assets/basedmoer-token.gif" moer-flip/index.html
           grep -q "data-choice=\"BASED\"" moer-flip/index.html
           grep -q "data-choice=\"MOER\"" moer-flip/index.html
           grep -q "/assets/spaceship-main.png" arcade/arcade.js
+          grep -q "Math.PI/2" arcade/arcade.js
           grep -q "/assets/base-blockchain-logo.jpg" index.html
+          grep -q "/assets/moe-academy-home.png" index.html
+          grep -q "rotate(90deg)" index.html
           ! grep -q "/assets/spaceshipa.gif" arcade/arcade.js
           ! grep -q "ethereum-original.svg" index.html
+      - name: Input controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "KeyW" arcade/arcade.js
+          grep -q "KeyA" arcade/arcade.js
+          grep -q "KeyS" arcade/arcade.js
+          grep -q "KeyD" arcade/arcade.js
+          grep -q "PointerFire" arcade/arcade.js
+          grep -q "pointerdown" arcade/arcade.js
+          grep -q 'data-key="ArrowDown"' arcade/index.html
+          grep -q 'data-key="Space"' arcade/index.html
       - name: Product-state invariants
         shell: bash
         run: |
