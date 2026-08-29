@@ -1,6 +1,7 @@
 name: Website pre-testnet gate
 
 on:
+  workflow_dispatch:
   push:
     branches: [pretestnet-ready]
   pull_request:
