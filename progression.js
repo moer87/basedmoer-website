@@ -1,0 +1,75 @@
+(function(){
+  const API='https://moe-ai-production.up.railway.app';
+  const tokenKey='moeAgentSession';
+  const money=n=>Number(n||0).toLocaleString();
+  function token(){return sessionStorage.getItem(tokenKey)||''}
+  function wallet(){return sessionStorage.getItem('basedMoerWallet')||''}
+  async function req(path,opts={}){
+    const t=token();
+    const r=await fetch(API+path,{...opts,headers:{'Content-Type':'application/json',...(t?{Authorization:'Bearer '+t}:{}),...(opts.headers||{})}});
+    const j=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(j.detail||j.error||('HTTP '+r.status));
+    return j;
+  }
+  async function authenticate(){
+    const w=wallet();
+    if(!w||!window.ethereum)throw new Error('Connect your holder wallet first.');
+    const c=await req('/v1/agent/auth/challenge',{method:'POST',body:JSON.stringify({wallet_address:w})});
+    const signature=await ethereum.request({method:'personal_sign',params:[c.message,w]});
+    const v=await req('/v1/agent/auth/verify',{method:'POST',body:JSON.stringify({wallet_address:w,signature})});
+    sessionStorage.setItem(tokenKey,v.session_token);
+    return v;
+  }
+  function shell(){
+    const passport=document.querySelector('.passport');
+    if(!passport||document.getElementById('moerXpSection'))return;
+    const div=document.createElement('div');
+    div.id='moerXpSection';div.className='profile-section';
+    div.innerHTML=`
+      <div class="section-label">MOERVERSE PROGRESSION</div>
+      <h3>MOER XP & Cosmetics Locker</h3>
+      <p style="color:var(--muted)">MOER XP is non-transferable progression. Earn it through verified Moerverse activity to unlock titles, frames, headers and Arcade ships.</p>
+      <div class="stats-grid" style="margin-top:18px">
+        <div class="stat-card"><span>LIFETIME XP</span><strong id="moerLifetimeXp">—</strong></div>
+        <div class="stat-card"><span>LEVEL</span><strong id="moerLevel">—</strong></div>
+        <div class="stat-card"><span>PROGRESSION TITLE</span><strong id="moerXpTitle" style="font-size:15px">—</strong></div>
+        <div class="stat-card"><span>NEXT LEVEL</span><strong id="moerNextXp">—</strong></div>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:16px">
+        <button class="button" id="moerXpAuth">AUTHENTICATE PASSPORT</button>
+        <button class="button secondary" id="moerXpDaily" hidden>CLAIM DAILY +5 XP</button>
+      </div>
+      <div id="moerXpMessage" style="font-size:11px;color:#8190ad;margin-top:10px"></div>
+      <div id="moerCosmetics" style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:18px"></div>`;
+    const academy=Array.from(passport.querySelectorAll('.profile-section')).find(x=>x.textContent.includes('ACADEMY ACHIEVEMENTS'));
+    if(academy)passport.insertBefore(div,academy);else passport.appendChild(div);
+    document.getElementById('moerXpAuth').onclick=async()=>{try{msg('Signing proves wallet ownership only.');await authenticate();await load()}catch(e){msg(e.message,true)}};
+    document.getElementById('moerXpDaily').onclick=async()=>{try{const x=await req('/v1/progression/daily-claim',{method:'POST',body:'{}'});msg(x.message);render(x.progression)}catch(e){msg(e.message,true)}};
+  }
+  function msg(t,bad=false){const e=document.getElementById('moerXpMessage');if(e){e.textContent=t;e.style.color=bad?'#ff8d9b':'#8190ad'}}
+  function render(p){
+    document.getElementById('moerLifetimeXp').textContent=money(p.lifetime_xp)+' XP';
+    document.getElementById('moerLevel').textContent=p.level;
+    document.getElementById('moerXpTitle').textContent=p.title;
+    document.getElementById('moerNextXp').textContent=p.next_level_xp?money(p.next_level_xp)+' XP':'MAX';
+    document.getElementById('moerXpAuth').hidden=true;
+    document.getElementById('moerXpDaily').hidden=false;
+    const equipped=p.equipped||{};
+    document.getElementById('moerCosmetics').innerHTML=(p.catalog||[]).map(c=>{
+      const active=equipped[c.type]===c.id;
+      return `<div style="padding:14px;border:1px solid ${c.unlocked?'#3157a8':'#293146'};border-radius:12px;background:#0a0f18;opacity:${c.unlocked?1:.45}">
+        <div style="font-size:9px;color:#74819b;font-weight:900">${c.type.toUpperCase()} • ${c.xp_required} XP</div>
+        <strong style="display:block;margin:7px 0 10px">${c.name}</strong>
+        <button class="nft-choice" data-equip="${c.id}" ${c.unlocked?'':'disabled'}>${active?'EQUIPPED':c.unlocked?'EQUIP':'LOCKED'}</button>
+      </div>`
+    }).join('');
+    document.querySelectorAll('[data-equip]').forEach(b=>b.onclick=async()=>{try{const x=await req('/v1/progression/equip',{method:'POST',body:JSON.stringify({cosmetic_id:b.dataset.equip})});render(x.progression);msg('Cosmetic equipped to your Passport.')}catch(e){msg(e.message,true)}})
+  }
+  async function load(){
+    if(!wallet()){msg('Connect your holder wallet first.');return}
+    if(!token()){msg('Authenticate once to activate server-backed XP and cosmetics.');return}
+    try{const x=await req('/v1/progression/me');render(x.progression);msg('Passport progression synced.')}catch(e){if(/session/i.test(e.message)){sessionStorage.removeItem(tokenKey)}msg(e.message,true)}
+  }
+  document.addEventListener('DOMContentLoaded',()=>{if(!location.pathname.startsWith('/profile/'))return;shell();setTimeout(load,500)});
+  window.addEventListener('basedmoer:wallet',()=>setTimeout(load,200));
+})();
