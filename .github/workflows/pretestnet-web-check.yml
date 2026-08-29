@@ -1,0 +1,78 @@
+name: Website pre-testnet gate
+
+on:
+  push:
+    branches: [pretestnet-ready]
+  pull_request:
+    paths:
+      - '**/*.html'
+      - '**/*.js'
+      - '**/*.css'
+      - 'assets/**'
+      - '.github/workflows/pretestnet-web-check.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  web-static:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --check shared.js
+          node --check agent.js
+          node --check progression.js
+          node --check academy-xp.js
+          node --check radar-xp.js
+          node --check arcade/arcade.js
+          node --check academy/academy.js
+          node --check live/radar-weekly.js
+      - name: Required route files
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f index.html
+          test -f moerverse/index.html
+          test -f live/index.html
+          test -f academy/index.html
+          test -f moer-flip/index.html
+          test -f arcade/index.html
+          test -f profile/index.html
+      - name: Original artwork invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s assets/basedmoer-token.gif
+          test -s assets/spaceship-main.png
+          test -s assets/spaceship-red.png
+          test -s assets/spaceship-cyan.png
+          test -s assets/base-blockchain-logo.jpg
+          grep -q "/assets/basedmoer-token.gif" moer-flip/index.html
+          grep -q "data-choice=\"BASED\"" moer-flip/index.html
+          grep -q "data-choice=\"MOER\"" moer-flip/index.html
+          grep -q "/assets/spaceship-main.png" arcade/arcade.js
+          grep -q "/assets/base-blockchain-logo.jpg" index.html
+          ! grep -q "/assets/spaceshipa.gif" arcade/arcade.js
+          ! grep -q "ethereum-original.svg" index.html
+      - name: Product-state invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "MOE AGENT v0.2" live/index.html
+          grep -q "LIVE FUNDS LOCKED" live/index.html
+          grep -q "preview=holder" shared.js
+          grep -q "DISCOVERY ONLY" live/radar-weekly.js
+          grep -q "NO XP SAVED" arcade/arcade.js
+          grep -q "preview only, no XP saved" moer-flip/index.html
+      - name: No accidental browser secrets
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! grep -R -n -E '(SUPABASE_SERVICE_ROLE|PRIVATE_KEY|SEED_PHRASE|DISCORD_WEBHOOK_URL|MOE_AI_API_KEY\s*=\s*["'"'][^"'"']+)' --include='*.js' --include='*.html' --include='*.css' .
