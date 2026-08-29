@@ -1,0 +1,53 @@
+name: Apply original art to pretestnet staging
+
+on:
+  push:
+    branches: [pretestnet-ready]
+    paths:
+      - '.github/workflows/apply-pretestnet-original-art.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: pretestnet-ready
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Wire exact original assets and local wallet mark
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          arcade = Path('arcade/arcade.js')
+          text = arcade.read_text()
+          text = text.replace("const originalShip=new Image();let originalShipReady=false;originalShip.onload=()=>originalShipReady=true;originalShip.onerror=()=>originalShipReady=false;originalShip.src='/assets/spaceshipa.gif';", "const shipImages={main:new Image(),red:new Image(),cyan:new Image()};let originalShipReady=false;shipImages.main.onload=()=>originalShipReady=true;shipImages.main.onerror=()=>originalShipReady=false;shipImages.main.src='/assets/spaceship-main.png';shipImages.red.src='/assets/spaceship-red.png';shipImages.cyan.src='/assets/spaceship-cyan.png';")
+          old = "function drawPlayer(){ctx.save();if(player.invuln>0&&Math.floor(player.invuln*12)%2===0)ctx.globalAlpha=.35;if(originalShipReady){ctx.drawImage(originalShip,Math.round(player.x-8),Math.round(player.y-8),80,64)}else drawFallbackShip(player.x,player.y);if(rapid>0||spread>0){ctx.globalAlpha=.55;ctx.strokeStyle=rapid>0?'#5affd3':'#b98cff';ctx.lineWidth=2;ctx.strokeRect(Math.round(player.x-5),Math.round(player.y-5),74,56)}ctx.restore()}"
+          new = "function drawPlayer(){ctx.save();if(player.invuln>0&&Math.floor(player.invuln*12)%2===0)ctx.globalAlpha=.35;const skin=localStorage.getItem('moerArcadeShip')||'';const art=skin==='ship_void_runner'?shipImages.red:skin==='ship_moe_scout'?shipImages.cyan:shipImages.main;if(originalShipReady&&art.complete&&art.naturalWidth){ctx.imageSmoothingEnabled=false;ctx.drawImage(art,Math.round(player.x-10),Math.round(player.y-13),84,84)}else drawFallbackShip(player.x,player.y);if(rapid>0||spread>0){ctx.globalAlpha=.55;ctx.strokeStyle=rapid>0?'#5affd3':'#b98cff';ctx.lineWidth=2;ctx.strokeRect(Math.round(player.x-5),Math.round(player.y-5),74,56)}ctx.restore()}"
+          if old not in text:
+              raise SystemExit('drawPlayer source changed; refusing unsafe patch')
+          text = text.replace(old, new)
+          arcade.write_text(text)
+
+          home = Path('index.html')
+          text = home.read_text()
+          text = text.replace('<div class="tech-icon" aria-label="Base"><span class="base-square" title="Base"></span></div><strong>Base</strong>', '<div class="tech-icon" aria-label="Base blockchain"><img src="/assets/base-blockchain-logo.jpg" alt="Base blockchain" style="width:54px;height:54px;object-fit:contain;border-radius:8px"></div><strong>Base</strong>')
+          text = text.replace('<div class="tech-icon"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/ethereum/ethereum-original.svg" alt="Ethereum wallet technology"></div><strong>Wallet Access</strong>', '<div class="tech-icon" aria-label="Wallet access"><svg width="54" height="54" viewBox="0 0 54 54" role="img" aria-label="Signed wallet access" xmlns="http://www.w3.org/2000/svg"><rect x="5" y="11" width="44" height="33" rx="7" fill="#0b1424" stroke="#5f8cff" stroke-width="3"/><path d="M10 18h30a5 5 0 0 1 5 5v16" fill="none" stroke="#9db8ff" stroke-width="3"/><rect x="31" y="25" width="18" height="12" rx="5" fill="#0052ff"/><circle cx="39" cy="31" r="2" fill="white"/><path d="M13 27l7 7 13-15" fill="none" stroke="#62f5ba" stroke-width="3" stroke-linecap="square"/></svg></div><strong>Wallet Access</strong>')
+          home.write_text(text)
+          PY
+      - name: Commit staging wiring and remove helper workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'moer-pretestnet-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add arcade/arcade.js index.html
+          git rm .github/workflows/apply-pretestnet-original-art.yml
+          git commit -m 'Use original spaceship and Base artwork in pretestnet UI'
+          git push origin HEAD:pretestnet-ready
