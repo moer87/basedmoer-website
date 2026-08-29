@@ -1,0 +1,50 @@
+name: Align Moe Agent staging UI
+
+on:
+  push:
+    branches: [pretestnet-ready]
+    paths:
+      - '.github/workflows/align-agent-ui.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  align:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: pretestnet-ready
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Update stale Agent labels
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          p=Path('live/index.html')
+          s=p.read_text()
+          replacements={
+            '<div class="section-label">MOE AGENT v0.1</div>':'<div class="section-label">MOE AGENT v0.2 • BASE SHADOW</div>',
+            '<h2 id="agentTitle">PAPER EXECUTION CONSOLE</h2>':'<h2 id="agentTitle">BASE SHADOW EXECUTION CONSOLE</h2>',
+            'The first execution layer for Moe AI. Authenticate with your holder wallet, set a paper balance and strict risk limits, then let the agent consume only versioned Moe Scanner v3.1 signals. No wallet funds are moved in this mode.':'Moe Agent v0.2 consumes only versioned Moe Scanner v3.1 signals, requests real read-only Base routes, applies execution safety gates, and records paper/shadow outcomes. No wallet funds are moved in this mode.',
+            '<span class="agent-badge">LIVE FUNDS DISABLED</span>':'<span class="agent-badge">LIVE FUNDS LOCKED</span>',
+            'Paper v0.1 currently follows only LONG signals so its behavior matches a future Base spot-swap architecture. Short execution will remain disabled until a specific audited Base perpetual venue and separate risk policy are selected.':'Shadow v0.2 currently follows only LONG signals so its behavior matches the Base spot-swap architecture. Short execution remains disabled until a specific reviewed venue and a separate risk policy are selected.'
+          }
+          for old,new in replacements.items():
+              if old not in s:
+                  raise SystemExit('expected Live label not found: '+old[:60])
+              s=s.replace(old,new)
+          p.write_text(s)
+          PY
+      - name: Commit and remove helper
+        shell: bash
+        run: |
+          git config user.name 'moer-pretestnet-bot'
+          git config user.email 'actions@users.noreply.github.com'
+          git add live/index.html
+          git rm .github/workflows/align-agent-ui.yml
+          git commit -m 'Align Live console with Moe Agent v0.2 Base shadow mode'
+          git push origin HEAD:pretestnet-ready
