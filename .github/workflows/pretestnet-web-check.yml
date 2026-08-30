@@ -62,9 +62,9 @@ jobs:
           grep -q "/assets/spaceship-main.png" arcade/arcade.js
           grep -q "Math.PI/2" arcade/arcade.js
           grep -q "/assets/base-blockchain-logo.jpg" index.html
-          grep -q "/assets/moe-academy-home.png" index.html
-          grep -q "rotate(90deg)" index.html
-          ! grep -q "/assets/spaceshipa.gif" arcade/arcade.js
+          grep -q "/assets/academy.gif" index.html
+          grep -q "/assets/arcade.gif" index.html
+          grep -q "/assets/moer-flip.gif" index.html
           ! grep -q "ethereum-original.svg" index.html
       - name: Input controls
         shell: bash
@@ -86,8 +86,12 @@ jobs:
           grep -q "LIVE FUNDS LOCKED" live/index.html
           grep -q "preview=holder" shared.js
           grep -q "DISCOVERY ONLY" live/radar-weekly.js
+          grep -q "/v1/radar/preview" live/radar-weekly.js
           grep -q "NO XP SAVED" arcade/arcade.js
           grep -q "preview only, no XP saved" moer-flip/index.html
+          grep -q "Moer Academy" index.html
+          grep -q "Moer Flip Game" index.html
+          grep -q "MOER ACADEMY v3" academy/index.html
       - name: No accidental browser secrets
         shell: bash
         run: |
