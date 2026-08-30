@@ -1,33 +1,56 @@
 (function(){
   const API='https://moe-ai-production.up.railway.app';
-  const preview=new URLSearchParams(location.search).get('preview')==='holder';
   const token=()=>sessionStorage.getItem('moeAgentSession')||'';
-  function esc(v){return String(v??'—').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}
-  function pct(v){if(v==null)return '—';const n=Number(v);return `${n>0?'+':''}${n.toFixed(2)}%`}
-  function delta(v){if(v==null)return '—';const n=Number(v);return `${n>0?'+':''}${n.toFixed(1)}`}
-  async function req(){
+  const esc=v=>String(v??'—').replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+  const pct=v=>v==null?'—':`${Number(v)>0?'+':''}${Number(v).toFixed(2)}%`;
+  const usd=v=>v==null?'—':Number(v).toLocaleString(undefined,{style:'currency',currency:'USD',maximumFractionDigits:Number(v)>=1000?0:2});
+  const delta=v=>v==null?'—':`${Number(v)>0?'+':''}${Number(v).toFixed(1)}`;
+  const when=v=>{const d=new Date(v);return Number.isNaN(d.getTime())?'—':d.toLocaleString()};
+
+  async function json(path,headers={}){const r=await fetch(API+path,{cache:'no-store',headers});const j=await r.json().catch(()=>({}));if(!r.ok)throw new Error(j.detail||j.error||`HTTP ${r.status}`);return j}
+  async function getFeed(){
     const t=token();
-    const r=await fetch(API+'/v1/radar/weekly?min_score=40&limit=20',{cache:'no-store',headers:t?{Authorization:'Bearer '+t}:{}});
-    const j=await r.json().catch(()=>({}));
-    if(!r.ok)throw new Error(j.detail||j.error||`HTTP ${r.status}`);
-    return j;
+    if(t) return json('/v1/radar/weekly?min_score=40&limit=16',{Authorization:'Bearer '+t});
+    try{return await json('/v1/radar/preview?min_score=40&limit=12')}
+    catch(e){const status=await json('/v1/radar/status');return {...status,data:[],preview_endpoint_pending:true}}
   }
-  function demo(){return {data:[
-    {chain:'Base',symbol:'DEMO-A',stage:'EARLY_SETUP',radar_score:78,score_delta_7d:9,price_change_7d_pct:6.2,liquidity_change_7d_pct:11.3,market_cap_change_7d_pct:5.7,weekly_status:'IMPROVING',risk_flags:[],observations_7d:26,security_validated:false,holder_intelligence_validated:false},
-    {chain:'Solana',symbol:'DEMO-B',stage:'COMPRESSION',radar_score:66,score_delta_7d:2,price_change_7d_pct:-3.4,liquidity_change_7d_pct:4.1,market_cap_change_7d_pct:-2.8,weekly_status:'STABLE',risk_flags:['discovery_only'],observations_7d:19,security_validated:false,holder_intelligence_validated:false},
-    {chain:'Base',symbol:'DEMO-C',stage:'REJECT',radar_score:42,score_delta_7d:-14,price_change_7d_pct:-21.2,liquidity_change_7d_pct:-30.5,market_cap_change_7d_pct:-19.0,weekly_status:'REJECTED',risk_flags:['example_security_flag'],observations_7d:31,security_validated:false,holder_intelligence_validated:false}
-  ]}}
-  function row(x){const flags=(x.risk_flags||[]).slice(0,2).join(', ')||'none';return `<div class="radar-week-row"><div><strong>${esc(x.symbol)}</strong><span>${esc(x.chain||x.chain_id)} • ${esc(x.stage)}</span></div><div><b>${esc(x.radar_score)}</b><span>${delta(x.score_delta_7d)} score</span></div><div><b>${pct(x.price_change_7d_pct)}</b><span>price 7d</span></div><div><b>${pct(x.liquidity_change_7d_pct)}</b><span>liquidity 7d</span></div><div><b>${esc(x.weekly_status)}</b><span>${esc(x.observations_7d)} observations</span></div><div><b>${x.security_validated?'SECURITY ✓':'SECURITY ?'}</b><span>${esc(flags)}</span></div></div>`}
+  function row(x){
+    const flags=(x.risk_flags||[]).filter(f=>f!=='discovery_only').slice(0,2);
+    const validation=x.security_validated?'SECURITY VERIFIED':(x.holder_intelligence_validated?'HOLDERS VERIFIED':'CORE RESEARCH');
+    return `<article class="radar-card">
+      <div class="radar-token"><strong>${esc(x.symbol)}</strong><span>${esc(x.chain||x.chain_id)} • ${esc(x.stage||'TRACKING')}</span></div>
+      <div class="radar-score"><b>${esc(x.radar_score)}</b><span>RADAR SCORE</span></div>
+      <div><b>${delta(x.score_delta_7d)}</b><span>7D SCORE</span></div>
+      <div><b>${pct(x.price_change_7d_pct)}</b><span>7D PRICE</span></div>
+      <div><b>${pct(x.liquidity_change_7d_pct)}</b><span>7D LIQUIDITY</span></div>
+      <div><b>${usd(x.liquidity_usd)}</b><span>LIQUIDITY</span></div>
+      <div class="radar-state"><b>${esc(x.weekly_status)}</b><span>${esc(x.observations_7d)} observations</span></div>
+      <div class="radar-risk"><b>${validation}</b><span>${flags.length?esc(flags.join(' • ')):'No hard risk flag in current core scan'}</span></div>
+    </article>`
+  }
   function shell(){
     if(document.getElementById('weeklyRadarPanel'))return;
-    const agent=document.querySelector('.agent-shell'); if(!agent)return;
-    const panel=document.createElement('section');panel.id='weeklyRadarPanel';panel.className='weekly-radar-shell';
-    panel.innerHTML=`<div class="weekly-radar-head"><div><div class="section-label">MOE TOKEN RADAR • 7-DAY TRACKER</div><h2>WEEKLY SIGNAL DRIFT.</h2><p>Tracks how discovery candidates change across seven days: Radar score, price, liquidity, market cap, structure and risk flags. This is a research tracker, not a trade recommendation or execution feed.</p></div><button class="button secondary" id="weeklyRadarRefresh">REFRESH 7D</button></div><div class="weekly-radar-warning" id="weeklyRadarWarning">DISCOVERY ONLY • EXECUTION FEED DISABLED</div><div class="weekly-radar-grid-head"><span>TOKEN</span><span>RADAR</span><span>PRICE</span><span>LIQUIDITY</span><span>WEEKLY STATE</span><span>RISK / VALIDATION</span></div><div id="weeklyRadarRows"><div class="loading">Loading weekly Radar history…</div></div>`;
+    const agent=document.querySelector('.agent-shell');if(!agent)return;
+    const panel=document.createElement('section');panel.id='weeklyRadarPanel';panel.className='radar-shell';
+    panel.innerHTML=`<div class="radar-top"><div><div class="section-label">MOE TOKEN RADAR • LIVE WEEKLY DISCOVERY</div><h2>7-DAY TOKEN WATCH.</h2><p>Separate from Moe Scanner. Radar follows emerging Base and Solana tokens across structure, liquidity, market cap, volume and risk. It never feeds Moe Agent in the current build.</p></div><button class="button secondary" id="weeklyRadarRefresh">REFRESH RADAR</button></div>
+      <div class="radar-live-strip"><div><span>CORE RADAR</span><strong id="radarCore">CHECKING</strong></div><div><span>NETWORKS</span><strong>BASE + SOLANA</strong></div><div><span>CADENCE</span><strong>HOURLY</strong></div><div><span>LAST SCAN</span><strong id="radarUpdated">—</strong></div></div>
+      <div id="radarProviderNote" class="radar-provider-note">Checking intelligence providers…</div>
+      <div id="weeklyRadarRows"><div class="loading">Connecting to live Token Radar…</div></div>`;
     agent.parentNode.insertBefore(panel,agent);
-    const style=document.createElement('style');style.textContent=`.weekly-radar-shell{margin:24px 0;padding:24px;border:1px solid #342f68;border-radius:22px;background:radial-gradient(circle at 15% 0,rgba(0,180,255,.11),transparent 34%),radial-gradient(circle at 85% 0,rgba(152,61,255,.12),transparent 32%),#070b14;overflow:hidden}.weekly-radar-head{display:flex;justify-content:space-between;gap:18px;align-items:flex-start}.weekly-radar-head h2{margin:6px 0}.weekly-radar-head p{margin:0;max-width:780px;color:#8794b0;line-height:1.6}.weekly-radar-warning{margin:16px 0;padding:9px 12px;border:1px solid #314a73;background:#081426;color:#7fcfff;font-size:9px;font-weight:1000;letter-spacing:.08em}.weekly-radar-grid-head,.radar-week-row{display:grid;grid-template-columns:1.15fr .7fr .75fr .8fr 1fr 1.2fr;gap:10px;align-items:center}.weekly-radar-grid-head{padding:9px 12px;color:#667897;font-size:8px;font-weight:1000;border-bottom:1px solid #25314a}.radar-week-row{padding:13px 12px;border-bottom:1px solid #1b263b;background:linear-gradient(90deg,rgba(0,82,255,.035),rgba(105,40,180,.025));font-size:11px}.radar-week-row strong,.radar-week-row b{display:block;color:#dbe7ff}.radar-week-row span{display:block;margin-top:4px;color:#71819e;font-size:9px;white-space:normal}.radar-preview-note{padding:12px;color:#c9b7ff;font-size:10px;border:1px dashed #59447a;background:#140d20}@media(max-width:900px){.weekly-radar-grid-head{display:none}.radar-week-row{grid-template-columns:1fr 1fr 1fr}.weekly-radar-head{flex-direction:column}}@media(max-width:560px){.radar-week-row{grid-template-columns:1fr 1fr}}`;
-    document.head.appendChild(style);
-    document.getElementById('weeklyRadarRefresh').onclick=load;
+    const style=document.createElement('style');style.textContent=`
+      .radar-shell{margin:28px 0;padding:26px;border:1px solid #28395c;border-radius:22px;background:radial-gradient(circle at 10% 0,rgba(0,82,255,.12),transparent 30%),radial-gradient(circle at 95% 0,rgba(126,54,210,.12),transparent 30%),#080d16;overflow:hidden}.radar-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}.radar-top h2{margin:6px 0 8px;font-size:32px}.radar-top p{margin:0;max-width:790px;color:#8997b4;line-height:1.65}.radar-live-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0 10px}.radar-live-strip>div{padding:13px;border:1px solid #26344c;border-radius:12px;background:#090f1a}.radar-live-strip span{display:block;color:#697996;font-size:8px;font-weight:1000;margin-bottom:6px}.radar-live-strip strong{font-size:13px}.radar-provider-note{margin-bottom:14px;padding:10px 12px;border-left:3px solid #4f78ff;background:#0a1220;color:#91a0bc;font-size:11px;line-height:1.5}.radar-card{display:grid;grid-template-columns:1.25fr .7fr .7fr .75fr .8fr .9fr 1fr 1.35fr;gap:10px;align-items:center;padding:15px 13px;border-top:1px solid #1f2b42;background:linear-gradient(90deg,rgba(0,82,255,.03),rgba(125,55,205,.025))}.radar-card b,.radar-card strong{display:block;color:#eef4ff}.radar-card span{display:block;margin-top:4px;color:#71819e;font-size:8px;line-height:1.35}.radar-token strong{font-size:15px}.radar-score b{font-size:20px;color:#77a0ff}.radar-state b{color:#a7c2ff}.radar-risk b{font-size:9px;color:#9ee9c1}.radar-empty{padding:28px;border:1px dashed #33435d;border-radius:14px;color:#8795ae;text-align:center;line-height:1.6}.radar-live{color:#68f49b!important}.radar-warn{color:#ffd96b!important}@media(max-width:1050px){.radar-card{grid-template-columns:repeat(4,1fr)}.radar-live-strip{grid-template-columns:1fr 1fr}}@media(max-width:650px){.radar-top{flex-direction:column}.radar-card{grid-template-columns:1fr 1fr}.radar-live-strip{grid-template-columns:1fr 1fr}.radar-shell{padding:18px}}`;
+    document.head.appendChild(style);document.getElementById('weeklyRadarRefresh').onclick=load;
   }
-  async function load(){const area=document.getElementById('weeklyRadarRows');if(!area)return;area.innerHTML='<div class="loading">Scanning seven-day history…</div>';try{const x=preview&&!token()?demo():await req();const data=x.data||[];area.innerHTML=(preview&&!token()?'<div class="radar-preview-note">CREATOR PREVIEW: sample rows only. Real weekly data requires a signed holder session.</div>':'')+(data.length?data.map(row).join(''):'<div class="loading">No seven-day candidates yet.</div>')}catch(e){area.innerHTML=`<div class="loading">WEEKLY RADAR UNAVAILABLE — ${esc(e.message)}</div>`}}
-  document.addEventListener('DOMContentLoaded',()=>{if(!location.pathname.startsWith('/live/'))return;shell();setTimeout(load,600)});
+  async function load(){
+    const area=document.getElementById('weeklyRadarRows');if(!area)return;area.innerHTML='<div class="loading">Refreshing live Radar…</div>';
+    try{
+      const x=await getFeed(),data=x.data||[],providers=x.providers||{};
+      radarCore.textContent=x.core_radar_live===false?'NO DATA':'LIVE';radarCore.className=x.core_radar_live===false?'radar-warn':'radar-live';radarUpdated.textContent=when(x.latest_update||data[0]?.latest_observed);
+      const on=Object.entries(providers).filter(([,v])=>v).map(([k])=>k.toUpperCase()),off=Object.entries(providers).filter(([,v])=>!v).map(([k])=>k.toUpperCase());
+      radarProviderNote.textContent=off.length?`Core market Radar is live. Advanced intelligence pending credentials: ${off.join(', ')}.${on.length?' Active: '+on.join(', ')+'.':''}`:'Core Radar and advanced intelligence providers are active.';
+      if(data.length)area.innerHTML=data.map(row).join('');
+      else area.innerHTML=`<div class="radar-empty"><strong>CORE TOKEN RADAR IS LIVE</strong><br>${x.preview_endpoint_pending?'The current production API exposes live status but still keeps candidate rows holder-authenticated. The staging backend now contains a sanitized real-data preview endpoint; no fake DEMO rows are shown here.':'No candidates currently meet the selected minimum score.'}</div>`;
+    }catch(e){area.innerHTML=`<div class="radar-empty">TOKEN RADAR STATUS UNAVAILABLE — ${esc(e.message)}</div>`}
+  }
+  document.addEventListener('DOMContentLoaded',()=>{if(!location.pathname.startsWith('/live/'))return;shell();setTimeout(load,500)});
 })();
