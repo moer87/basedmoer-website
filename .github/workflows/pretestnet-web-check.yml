@@ -46,25 +46,35 @@ jobs:
           test -f moer-flip/index.html
           test -f arcade/index.html
           test -f profile/index.html
+          test -f docs/index.html
+          test -f status/index.html
       - name: Original artwork invariants
         shell: bash
         run: |
           set -euo pipefail
+          test -s assets/bald-moe-promo.gif
+          test -s assets/ape-punks.gif
+          test -s assets/moe-ai.mp4
+          test -s assets/moerverse-preview.png
           test -s assets/basedmoer-token.gif
           test -s assets/spaceship-main.png
           test -s assets/spaceship-red.png
           test -s assets/spaceship-cyan.png
           test -s assets/base-blockchain-logo.jpg
           test -s assets/moe-academy-home.png
+          grep -q "/assets/bald-moe-promo.gif" index.html
+          grep -q "/assets/moerverse-preview.png" index.html
+          grep -q "/assets/ape-punks.gif" index.html
+          grep -q "/assets/moe-ai.mp4" index.html
+          grep -q "/assets/moe-academy-home.png" index.html
+          grep -q "/assets/spaceship-main.png" index.html
+          grep -q "/assets/basedmoer-token.gif" index.html
           grep -q "/assets/basedmoer-token.gif" moer-flip/index.html
           grep -q "data-choice=\"BASED\"" moer-flip/index.html
           grep -q "data-choice=\"MOER\"" moer-flip/index.html
           grep -q "/assets/spaceship-main.png" arcade/arcade.js
           grep -q "Math.PI/2" arcade/arcade.js
           grep -q "/assets/base-blockchain-logo.jpg" index.html
-          grep -q "/assets/academy.gif" index.html
-          grep -q "/assets/arcade.gif" index.html
-          grep -q "/assets/moer-flip.gif" index.html
           ! grep -q "ethereum-original.svg" index.html
       - name: Input controls
         shell: bash
@@ -92,6 +102,9 @@ jobs:
           grep -q "Moer Academy" index.html
           grep -q "Moer Flip Game" index.html
           grep -q "MOER ACADEMY v3" academy/index.html
+          grep -q "@base-org/account@2.5.10" base-login.js
+          grep -q "requestSpendPermission" base-account.js
+          grep -q "requestRevoke" base-account.js
       - name: No accidental browser secrets
         shell: bash
         run: |
