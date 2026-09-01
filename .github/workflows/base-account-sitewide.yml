@@ -1,0 +1,48 @@
+name: Site-wide Base Account gate
+
+on:
+  pull_request:
+    paths:
+      - 'shared.js'
+      - 'base-login.js'
+      - 'base-account.js'
+      - '.github/workflows/base-account-sitewide.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  base-account-sitewide:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Parse wallet scripts
+        run: |
+          node --check shared.js
+          node --check base-login.js
+      - name: Enforce Base Account-first holder connection
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'import("/base-login.js")' shared.js
+          grep -q 'connectBaseAccount' shared.js
+          grep -q 'restoreBaseAccount' base-login.js
+          grep -q 'createBaseAccountSDK' base-login.js
+          grep -q 'appChainIds: \[BASE_CHAIN_ID\]' base-login.js
+          grep -q 'Base Account unavailable; trying injected wallet fallback' shared.js
+          grep -q 'basedMoerWalletSource' shared.js
+          grep -q 'eth_call' shared.js
+          grep -q 'base-rpc.publicnode.com' shared.js
+          ! grep -q 'No compatible Ethereum wallet was detected' shared.js
+      - name: Preserve holder and Agent boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q '0x5CafB7C0181fEd5b6d62AA331699989861c27AE7' shared.js
+          grep -q 'basedmoer:wallet' shared.js
+          grep -q 'moeAgentSession' shared.js
+          grep -q 'data-holder-content' shared.js
+          grep -q 'data-holder-lock' shared.js
