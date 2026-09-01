@@ -11,7 +11,7 @@ REQUIRED_PAGES = [
 REQUIRED_ASSETS = [
     'assets/based-moer-logo.jpg','assets/bald-moe-promo.gif','assets/ape-punks.gif',
     'assets/moe-ai.mp4','assets/basedmoer-token.gif','assets/moerverse-preview.png',
-    'assets/academy.gif','assets/arcade.gif','assets/moer-flip.gif','assets/spaceship-main.png'
+    'assets/academy-video.mp4','assets/arcade-video.mp4','assets/moer-flip-video.mp4','assets/spaceship-main.png'
 ]
 IGNORE_PREFIXES = ('http://','https://','mailto:','tel:','data:','javascript:','#')
 
@@ -58,9 +58,13 @@ def main():
         '/assets/bald-moe-promo.gif','PIXEL ART. ONCHAIN INTELLIGENCE.',
         'MEET THE MOERVERSE.','/assets/moerverse-preview.png','/assets/ape-punks.gif',
         '/assets/moe-ai.mp4','OWN THE NFT. ENTER THE EXPERIENCE.',
-        '/assets/academy.gif','/assets/arcade.gif','/assets/moer-flip.gif'
+        '/assets/academy-video.mp4','/assets/arcade-video.mp4','/assets/moer-flip-video.mp4',
+        'autoplay muted loop playsinline'
     ]:
         if marker not in home: errors.append(f'visual master invariant missing from homepage: {marker}')
+
+    for old in ['/assets/academy.gif','/assets/arcade.gif','/assets/moer-flip.gif']:
+        if old in home: errors.append(f'old GIF homepage preview still referenced: {old}')
 
     anomaly=(ROOT/'arcade/anomaly-preview.html').read_text(encoding='utf-8')
     for marker in ['ANOMALY DROP','PULL ANOMALY CORE','DEMO ONLY','/arcade/anomaly-preview.js']:
