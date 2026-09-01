@@ -67,7 +67,7 @@ def main():
     home = (ROOT / 'index.html').read_text(encoding='utf-8')
     for marker in (
         'aspect-ratio:1/1',
-        '.experience-media>video{display:block;width:100%;height:100%;object-fit:contain}',
+        '.experience-media>img,.experience-media>video{display:block;width:100%;height:100%;object-fit:contain',
         'autoplay muted loop playsinline preload="metadata"',
     ):
         if marker not in home:
