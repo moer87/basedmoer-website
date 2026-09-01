@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <meta name="description" content="Official Based Moer project documentation: Moerverse, Moer AI, Scanner, Token Radar, Agent, holder products, Base architecture, safety and testnet release process.">
+  <title>Based Moer Docs — Product, Architecture & Testnet</title>
+  <link rel="stylesheet" href="/shared.css">
+  <style>
+    .docs-hero{padding:72px 0 34px}.docs-hero h1{font-size:clamp(42px,7vw,78px);line-height:.95;margin:12px 0 18px}.docs-hero p{max-width:820px;color:#aab6cf;font-size:18px;line-height:1.7}.release-chip{display:inline-flex;padding:7px 10px;border:1px solid #3156a8;border-radius:999px;color:#8fb1ff;font-size:10px;font-weight:900;letter-spacing:.08em}.docs-layout{display:grid;grid-template-columns:250px minmax(0,1fr);gap:34px;padding:18px 0 80px}.docs-nav{position:sticky;top:92px;align-self:start;padding:18px;border:1px solid #26344d;border-radius:16px;background:#0c1422}.docs-nav strong{display:block;margin-bottom:10px}.docs-nav a{display:block;padding:8px 0;color:#8e9bb5;font-size:13px}.docs-nav a:hover{color:#fff}.docs-main{min-width:0}.doc-section{padding:28px 0;border-bottom:1px solid #1d283c}.doc-section:first-child{padding-top:0}.doc-section h2{font-size:clamp(28px,4vw,42px);margin:0 0 12px}.doc-section h3{margin:24px 0 8px}.doc-section p,.doc-section li{color:#aab6cf;line-height:1.75}.doc-section ul{padding-left:20px}.map{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:16px}.map-card{padding:17px;border:1px solid #28364e;border-radius:14px;background:#0b121f}.map-card strong{display:block;margin-bottom:5px}.map-card span{color:#8795af;font-size:12px;line-height:1.55}.callout{padding:18px;border-left:3px solid #527cff;background:#0a1120;border-radius:0 12px 12px 0;color:#aebbd2;line-height:1.7;margin:18px 0}.flow{padding:18px;border:1px solid #293852;border-radius:14px;background:#080e18;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#a9bbdf;line-height:1.9;overflow:auto}.table{width:100%;border-collapse:collapse;margin-top:14px}.table th,.table td{padding:12px;border-bottom:1px solid #253149;text-align:left;vertical-align:top}.table th{color:#7e8cac;font-size:10px;letter-spacing:.08em}.status-ready{color:#79eca6}.status-build{color:#8fb1ff}.status-gate{color:#ffd27f}@media(max-width:820px){.docs-layout{grid-template-columns:1fr}.docs-nav{position:static}.map{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<div id="globalHeader"></div>
+<main>
+  <section class="docs-hero"><div class="container">
+    <span class="release-chip">PRE-TESTNET RELEASE CANDIDATE • SEPTEMBER 2026</span>
+    <h1>BASED MOER<br><span class="blue">DOCUMENTATION.</span></h1>
+    <p>Based Moer is a pixel-first onchain ecosystem built around original IP, holder experiences and proprietary market intelligence. These docs define what the product is, how the major systems connect, what is already built, and the safety gates required before testnet and public launch.</p>
+    <div class="actions"><a class="btn btn-primary" href="/status/">VIEW RELEASE STATUS</a><a class="btn" href="/">BACK TO WEBSITE</a></div>
+  </div></section>
+  <div class="container docs-layout">
+    <aside class="docs-nav"><strong>DOCUMENTATION</strong><a href="#overview">Overview</a><a href="#products">Product Map</a><a href="#intelligence">Moer Intelligence</a><a href="#agent">Moer Agent</a><a href="#access">Access & Identity</a><a href="#safety">Safety Architecture</a><a href="#testnet">Testnet Plan</a><a href="#release">Release Process</a><a href="#principles">Project Principles</a></aside>
+    <article class="docs-main">
+      <section id="overview" class="doc-section"><h2>1. Overview</h2><p><strong>Based Moer</strong> combines the Moerverse pixel-art IP with Moer AI, NFT-gated experiences, education, games and Base-native infrastructure. The project is designed as one connected ecosystem rather than a collection of unrelated tools.</p><div class="callout"><strong>Core architecture:</strong> Moer owns the intelligence, strategy, safety rules, product experience and identity. Base provides secure onchain account, permission and execution infrastructure underneath it wherever technically sensible.</div></section>
+      <section id="products" class="doc-section"><h2>2. Product Map</h2><div class="map">
+        <div class="map-card"><strong>Moerverse</strong><span>Story/IP layer connecting characters, collections, products and holder experiences.</span></div>
+        <div class="map-card"><strong>Based Ape Punks</strong><span>Current Base NFT access collection and animated Moerverse travelers.</span></div>
+        <div class="map-card"><strong>Bald Moe</strong><span>Genesis character and hand-drawn 1/1 identity/lore collection.</span></div>
+        <div class="map-card"><strong>Moer Scanner v3.1</strong><span>Versioned proprietary setup intelligence and signal lifecycle.</span></div>
+        <div class="map-card"><strong>Moer Token Radar</strong><span>Rolling discovery and research for emerging tokens and Base-native intelligence.</span></div>
+        <div class="map-card"><strong>Moer Agent</strong><span>Risk-controlled paper/shadow agent designed to execute only Moer-approved decisions.</span></div>
+        <div class="map-card"><strong>Moer Academy</strong><span>24-module education system with progress and XP synchronization.</span></div>
+        <div class="map-card"><strong>Arcade + Moer Flip</strong><span>Holder games and progression experiences inside the Moerverse.</span></div>
+        <div class="map-card"><strong>Passport / Profile / XP</strong><span>Holder identity and progression layer for future unlocks, cosmetics and access.</span></div>
+        <div class="map-card"><strong>Base App Surface</strong><span>Prepared distribution path for Base Account-first access and future Base ecosystem discovery.</span></div>
+      </div></section>
+      <section id="intelligence" class="doc-section"><h2>3. Moer Intelligence</h2><h3>Scanner</h3><p>Moer Scanner remains the project’s proprietary decision engine. External wallet, Base or Coinbase tooling must not replace its strategy version, confidence thresholds, setup validity, signal lifecycle or risk logic.</p><h3>Token Radar</h3><p>Radar discovers and studies assets using market, liquidity, security, holder and Base-native observations. New research inputs cannot affect production score simply because they look interesting.</p><div class="flow">collect → measure → fixed-horizon forward test → qualification → time-split out-of-sample validation → human review → explicit scoring change</div><p>Current research families include DEX/liquidity state, holder/concentration changes, aggregate ERC-20 transfer flow and Flashblocks market context. All remain zero-weight until proven and separately approved.</p></section>
+      <section id="agent" class="doc-section"><h2>4. Moer Agent</h2><p>Moer Agent is the controlled action layer. The intended flow is:</p><div class="flow">Moer Scanner decision → Moer risk policy → user permission check → managed operator policy → reviewed execution adapter → Base</div><p>AgentKit/CDP may provide execution plumbing. They do not become Moer’s trading brain. Generic arbitrary transfer, swap or deployment actions are intentionally excluded from the production design.</p></section>
+      <section id="access" class="doc-section"><h2>5. Access & Identity</h2><table class="table"><thead><tr><th>SYSTEM</th><th>ROLE</th><th>PRE-TESTNET STATE</th></tr></thead><tbody>
+        <tr><td>Base Account</td><td>Primary account/login provider</td><td class="status-ready">Integrated on staging</td></tr>
+        <tr><td>Holder verification</td><td>Checks eligible access NFT ownership</td><td class="status-ready">Working read-only</td></tr>
+        <tr><td>Spend Permissions</td><td>Bounded token / allowance / period authorization</td><td class="status-build">Lifecycle built; execution locked</td></tr>
+        <tr><td>Sub Accounts</td><td>Future isolated Moer Agent account boundary</td><td class="status-build">Read-only prototype</td></tr>
+        <tr><td>Passport / XP</td><td>Progression and holder identity</td><td class="status-build">Product layer active/in development</td></tr>
+      </tbody></table></section>
+      <section id="safety" class="doc-section"><h2>6. Safety Architecture</h2><ul><li>Live-fund execution remains disabled before testnet.</li><li>Execution spender starts paused and is Base-chain locked.</li><li>Single-spend limits and approved routes/assets are enforced.</li><li>Emergency permission revocation and permanent disable paths exist.</li><li>Raw operator private keys are prohibited by the managed-operator design.</li><li>Foundry, Python invariants and Slither are part of the pre-testnet gate.</li><li>Radar research features cannot silently write production scores.</li></ul><div class="callout">Passing compilation or backtests does not grant deployment permission. Deployment is a separate release state.</div></section>
+      <section id="testnet" class="doc-section"><h2>7. Testnet Plan</h2><p>Base Sepolia is the project’s full-system rehearsal before public launch. The planned sequence is:</p><ol><li>Run final website/API/security release audit.</li><li>Confirm Base Sepolia infrastructure and test assets.</li><li>Deploy the testnet-only execution spender after explicit approval.</li><li>Create/review bounded test permission.</li><li>Quote and simulate the approved route.</li><li>Execute with test assets only.</li><li>Verify output receipt and lifecycle tracking.</li><li>Test reverse path where supported.</li><li>Revoke permission and confirm the revoked state.</li><li>Run failure/negative controls and document results.</li></ol><p>No mainnet transition occurs automatically after a successful Sepolia test.</p></section>
+      <section id="release" class="doc-section"><h2>8. Release Process</h2><table class="table"><thead><tr><th>STAGE</th><th>GOAL</th><th>STATE</th></tr></thead><tbody>
+        <tr><td>Pre-testnet</td><td>Working website + paper/shadow ecosystem + security gates</td><td class="status-build">Current</td></tr>
+        <tr><td>Base Sepolia</td><td>Full execution rehearsal with test assets</td><td class="status-gate">Explicit approval gate</td></tr>
+        <tr><td>Launch preparation</td><td>Official domain, Discord, LaunchMyNFT, launch media</td><td class="status-gate">After testnet</td></tr>
+        <tr><td>Holder launch</td><td>Public holder access to approved production features</td><td class="status-gate">After release review</td></tr>
+        <tr><td>Mainnet Agent</td><td>Any real-fund execution</td><td class="status-gate">Separate later security gate</td></tr>
+      </tbody></table></section>
+      <section id="principles" class="doc-section"><h2>9. Project Principles</h2><ul><li><strong>Pixel first:</strong> technology supports the art and Moerverse rather than replacing it.</li><li><strong>Moer decides:</strong> proprietary intelligence remains the decision authority.</li><li><strong>Prove before weighting:</strong> research does not become production logic without evidence.</li><li><strong>Permission before execution:</strong> users retain explicit, bounded authorization control.</li><li><strong>Fail closed:</strong> missing providers, mismatched accounts or unsafe states stop the action.</li><li><strong>Testnet before launch:</strong> public rollout follows a complete rehearsal, not the other way around.</li></ul></section>
+    </article>
+  </div>
+</main>
+<div id="globalFooter"></div>
+<script src="/shared.js"></script>
+</body>
+</html>
