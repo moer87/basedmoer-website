@@ -3,7 +3,7 @@ name: Website pre-testnet gate
 on:
   workflow_dispatch:
   push:
-    branches: [pretestnet-ready]
+    branches: [pretestnet-ready, final-website-working-5]
   pull_request:
     paths:
       - '**/*.html'
@@ -33,6 +33,7 @@ jobs:
           node --check academy-xp.js
           node --check radar-xp.js
           node --check arcade/arcade.js
+          node --check arcade/event-demo.js
           node --check academy/academy.js
           node --check live/radar-weekly.js
       - name: Required route files
@@ -45,7 +46,9 @@ jobs:
           test -f academy/index.html
           test -f moer-flip/index.html
           test -f arcade/index.html
+          test -f arcade/event-preview.html
           test -f profile/index.html
+          test -f profile/legend-preview.html
           test -f docs/index.html
           test -f status/index.html
       - name: Original artwork invariants
@@ -56,19 +59,21 @@ jobs:
           test -s assets/ape-punks.gif
           test -s assets/moe-ai.mp4
           test -s assets/moerverse-preview.png
+          test -s assets/academy.gif
+          test -s assets/arcade.gif
+          test -s assets/moer-flip.gif
           test -s assets/basedmoer-token.gif
           test -s assets/spaceship-main.png
           test -s assets/spaceship-red.png
           test -s assets/spaceship-cyan.png
           test -s assets/base-blockchain-logo.jpg
-          test -s assets/moe-academy-home.png
           grep -q "/assets/bald-moe-promo.gif" index.html
           grep -q "/assets/moerverse-preview.png" index.html
           grep -q "/assets/ape-punks.gif" index.html
           grep -q "/assets/moe-ai.mp4" index.html
-          grep -q "/assets/moe-academy-home.png" index.html
-          grep -q "/assets/spaceship-main.png" index.html
-          grep -q "/assets/basedmoer-token.gif" index.html
+          grep -q "/assets/academy.gif" index.html
+          grep -q "/assets/arcade.gif" index.html
+          grep -q "/assets/moer-flip.gif" index.html
           grep -q "/assets/basedmoer-token.gif" moer-flip/index.html
           grep -q "data-choice=\"BASED\"" moer-flip/index.html
           grep -q "data-choice=\"MOER\"" moer-flip/index.html
