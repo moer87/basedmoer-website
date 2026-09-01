@@ -34,6 +34,7 @@ jobs:
           node --check radar-xp.js
           node --check arcade/arcade.js
           node --check arcade/event-demo.js
+          node --check arcade/anomaly-preview.js
           node --check academy/academy.js
           node --check live/radar-weekly.js
       - name: Required route files
@@ -47,6 +48,7 @@ jobs:
           test -f moer-flip/index.html
           test -f arcade/index.html
           test -f arcade/event-preview.html
+          test -f arcade/anomaly-preview.html
           test -f profile/index.html
           test -f profile/legend-preview.html
           test -f docs/index.html
@@ -78,6 +80,7 @@ jobs:
           grep -q "data-choice=\"BASED\"" moer-flip/index.html
           grep -q "data-choice=\"MOER\"" moer-flip/index.html
           grep -q "/assets/spaceship-main.png" arcade/arcade.js
+          grep -q "/assets/spaceship-main.png" arcade/anomaly-preview.html
           grep -q "Math.PI/2" arcade/arcade.js
           grep -q "/assets/base-blockchain-logo.jpg" index.html
           ! grep -q "ethereum-original.svg" index.html
@@ -103,6 +106,7 @@ jobs:
           grep -q "DISCOVERY ONLY" live/radar-weekly.js
           grep -q "/v1/radar/preview" live/radar-weekly.js
           grep -q "NO XP SAVED" arcade/arcade.js
+          grep -q "DEMO ONLY" arcade/anomaly-preview.html
           grep -q "preview only, no XP saved" moer-flip/index.html
           grep -q "Moer Academy" index.html
           grep -q "Moer Flip Game" index.html
