@@ -5,7 +5,7 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PAGES = [
     'index.html','moerverse/index.html','live/index.html','academy/index.html',
-    'arcade/index.html','arcade/event-preview.html','moer-flip/index.html',
+    'arcade/index.html','arcade/event-preview.html','arcade/anomaly-preview.html','moer-flip/index.html',
     'profile/index.html','profile/legend-preview.html','docs/index.html','status/index.html'
 ]
 REQUIRED_ASSETS = [
@@ -61,6 +61,10 @@ def main():
         '/assets/academy.gif','/assets/arcade.gif','/assets/moer-flip.gif'
     ]:
         if marker not in home: errors.append(f'visual master invariant missing from homepage: {marker}')
+
+    anomaly=(ROOT/'arcade/anomaly-preview.html').read_text(encoding='utf-8')
+    for marker in ['ANOMALY DROP','PULL ANOMALY CORE','DEMO ONLY','/arcade/anomaly-preview.js']:
+        if marker not in anomaly: errors.append(f'anomaly preview invariant missing: {marker}')
 
     if errors:
         print('\n'.join('ERROR: '+e for e in errors)); return 1
