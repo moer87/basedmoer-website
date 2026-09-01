@@ -1,6 +1,5 @@
 from pathlib import Path
 from html.parser import HTMLParser
-from urllib.parse import urlparse
 import sys
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -11,7 +10,8 @@ REQUIRED_PAGES = [
 ]
 REQUIRED_ASSETS = [
     'assets/based-moer-logo.jpg','assets/bald-moe-promo.gif','assets/ape-punks.gif',
-    'assets/moe-ai.mp4','assets/basedmoer-token.gif','assets/moerverse-preview.png'
+    'assets/moe-ai.mp4','assets/basedmoer-token.gif','assets/moerverse-preview.png',
+    'assets/moe-academy-home.png','assets/spaceship-main.png'
 ]
 IGNORE_PREFIXES = ('http://','https://','mailto:','tel:','data:','javascript:','#')
 
@@ -27,12 +27,8 @@ class Collector(HTMLParser):
 def resolve(page: Path, ref: str):
     clean=ref.split('?',1)[0].split('#',1)[0]
     if not clean or clean.startswith(IGNORE_PREFIXES): return None
-    if clean.startswith('/'):
-        target=ROOT/clean.lstrip('/')
-    else:
-        target=page.parent/clean
-    if clean.endswith('/'):
-        target=target/'index.html'
+    target=ROOT/clean.lstrip('/') if clean.startswith('/') else page.parent/clean
+    if clean.endswith('/'): target=target/'index.html'
     return target
 
 def main():
@@ -52,18 +48,15 @@ def main():
             if target is not None and not target.exists():
                 errors.append(f'{page.relative_to(ROOT)} broken {key}: {ref}')
         text=page.read_text(encoding='utf-8')
-        if '<meta name="viewport"' not in text:
-            errors.append(f'{page.relative_to(ROOT)} missing viewport')
-        if '<title>' not in text:
-            errors.append(f'{page.relative_to(ROOT)} missing title')
+        if '<meta name="viewport"' not in text: errors.append(f'{page.relative_to(ROOT)} missing viewport')
+        if '<title>' not in text: errors.append(f'{page.relative_to(ROOT)} missing title')
 
-    # Visual-master invariants: these must never be silently replaced again.
     home=(ROOT/'index.html').read_text(encoding='utf-8')
     for marker in [
         '/assets/bald-moe-promo.gif','PIXEL ART. ONCHAIN INTELLIGENCE.',
         'MEET THE MOERVERSE.','/assets/moerverse-preview.png','/assets/ape-punks.gif',
         '/assets/moe-ai.mp4','OWN THE NFT. ENTER THE EXPERIENCE.',
-        '/assets/academy.gif','/assets/arcade.gif','/assets/moer-flip.gif'
+        '/assets/moe-academy-home.png','/assets/spaceship-main.png','/assets/basedmoer-token.gif'
     ]:
         if marker not in home: errors.append(f'visual master invariant missing from homepage: {marker}')
 
