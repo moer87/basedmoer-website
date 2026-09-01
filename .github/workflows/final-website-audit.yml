@@ -27,4 +27,7 @@ jobs:
           grep -q "requestSpendPermission" base-account.js
           grep -q "requestRevoke" base-account.js
           grep -qi "execution remains locked" base-account.js
-          ! grep -R -nE '(PRIVATE_KEY|seed phrase|mnemonic)' --include='*.js' --include='*.html' .
+          if grep -R -nE '(PRIVATE_KEY|SEED_PHRASE|MNEMONIC|SUPABASE_SERVICE_ROLE|DISCORD_WEBHOOK_URL)[[:space:]]*[:=]' --include='*.js' --include='*.html' .; then
+            echo 'Credential-like assignment found in browser source'
+            exit 1
+          fi
