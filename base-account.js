@@ -125,15 +125,37 @@ async function revokeRememberedPermission(){
   message(`Revocation submitted (${String(hash).slice(0,10)}…). Execution remains locked. Use SYNC after confirmation.`);
   return hash;
 }
+async function inspectSubAccounts(){
+  const parent=wallet();
+  if(!parent)throw new Error('Connect the holder wallet first.');
+  const prototype=await api('/sub-accounts/prototype');
+  if(prototype?.context?.creation_enabled!==false||prototype?.context?.execution_enabled!==false){
+    throw new Error('Sub Account prototype did not report its safety locks. Refusing to continue.');
+  }
+  await connectExpectedAccount(parent);
+  message('Reading Base Account sub-account inventory. No sub account will be created.');
+  const result=await provider.request({
+    method:'wallet_getSubAccounts',
+    params:[{account:parent,domain:window.location.origin}],
+  });
+  const subAccounts=Array.isArray(result?.subAccounts)?result.subAccounts:[];
+  const verified=await api('/sub-accounts/validate-inventory',{
+    method:'POST',
+    body:JSON.stringify({parent_account:parent,sub_accounts:jsonSafe(subAccounts)}),
+  });
+  message(`Sub Account prototype: ${verified.count} linked sub account${verified.count===1?'':'s'} found. Creation, funding and execution remain disabled; the reviewed Moer spender stays the execution boundary.`);
+  return verified;
+}
 function addControls(){
   const panel=document.getElementById('baseExecPanel');
   if(!panel||document.getElementById('basePermissionSync'))return;
   const controls=document.createElement('div');
   controls.style.cssText='display:flex;gap:10px;flex-wrap:wrap;margin-top:10px';
-  controls.innerHTML='<button id="basePermissionSync" class="button secondary" type="button">SYNC BASE PERMISSION</button><button id="basePermissionRevoke" class="button secondary" type="button">REVOKE BASE PERMISSION</button>';
+  controls.innerHTML='<button id="basePermissionSync" class="button secondary" type="button">SYNC BASE PERMISSION</button><button id="basePermissionRevoke" class="button secondary" type="button">REVOKE BASE PERMISSION</button><button id="baseSubAccountInspect" class="button secondary" type="button">CHECK SUB ACCOUNTS</button>';
   panel.appendChild(controls);
   document.getElementById('basePermissionSync')?.addEventListener('click',()=>syncRememberedPermission().catch(e=>message(e.message,true)));
   document.getElementById('basePermissionRevoke')?.addEventListener('click',()=>revokeRememberedPermission().catch(e=>message(e.message,true)));
+  document.getElementById('baseSubAccountInspect')?.addEventListener('click',()=>inspectSubAccounts().catch(e=>message(e.message,true)));
 }
 
 window.MoerBaseAccount={
@@ -141,6 +163,7 @@ window.MoerBaseAccount={
   signPreparedPermission,
   syncRememberedPermission,
   revokeRememberedPermission,
+  inspectSubAccounts,
 };
 
 document.addEventListener('DOMContentLoaded',()=>{

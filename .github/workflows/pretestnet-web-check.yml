@@ -107,6 +107,18 @@ jobs:
           grep -q "x.execution_enabled!==false" agent.js
           grep -q "REQUEST \$10 BASE PERMISSION" agent.js
           ! grep -q "prepareSpendCallData" base-account.js
+      - name: Base Sub Account prototype invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "wallet_getSubAccounts" base-account.js
+          grep -q "/sub-accounts/prototype" base-account.js
+          grep -q "/sub-accounts/validate-inventory" base-account.js
+          grep -q "CHECK SUB ACCOUNTS" base-account.js
+          grep -q "creation_enabled!==false" base-account.js
+          grep -q "execution_enabled!==false" base-account.js
+          ! grep -q "wallet_addSubAccount" base-account.js
+          ! grep -q "wallet_sendCalls" base-account.js
       - name: No accidental browser secrets
         shell: bash
         run: |
