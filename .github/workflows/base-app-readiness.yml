@@ -1,0 +1,50 @@
+name: Base standard web app readiness
+
+on:
+  pull_request:
+    paths:
+      - 'index.html'
+      - 'base-account.js'
+      - 'api/base-app-readiness.js'
+      - 'base-app-registration.json'
+      - 'vercel.json'
+      - '.github/workflows/base-app-readiness.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  standard-web-app:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate static configuration
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8')); console.log('vercel.json valid')"
+          node -e "JSON.parse(require('fs').readFileSync('base-app-registration.json','utf8')); console.log('base-app-registration.json valid')"
+      - name: Compile serverless readiness endpoint
+        run: node --check api/base-app-readiness.js
+      - name: Enforce current Base App architecture
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -f base-account.js
+          grep -q 'BASE_STANDARD_WEB_APP_READINESS' api/base-app-readiness.js
+          grep -q 'legacy_farcaster_manifest_required: false' api/base-app-readiness.js
+          grep -q 'legacy_minikit_required: false' api/base-app-readiness.js
+          grep -q 'BASE_APP_ID' api/base-app-readiness.js
+          test ! -f api/miniapp-manifest.js
+          ! grep -R -n -E 'MiniKit|@coinbase/onchainkit/minikit|sdk\.actions\.ready' --include='*.js' --include='*.html' .
+          ! grep -q 'farcaster.json' vercel.json
+      - name: Keep registration ID explicit
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -q 'base:app_id' index.html; then
+            ! grep -q -E 'base:app_id[^>]*(PLACEHOLDER|YOUR_APP_ID|TODO)' index.html
+          else
+            echo 'Base Dashboard app ID not hardcoded yet; registration gate remains open.'
+          fi
