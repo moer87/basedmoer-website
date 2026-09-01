@@ -4,11 +4,59 @@
   const tokenKey='moeAgentSession';
   const $=id=>document.getElementById(id);
   const money=v=>Number(v||0).toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:4});
-  function wallet(){return sessionStorage.getItem('basedMoerWallet')||''}
+  function wallet(){return (sessionStorage.getItem('basedMoerWallet')||'').toLowerCase()}
+  function walletSource(){return sessionStorage.getItem('basedMoerWalletSource')||''}
   function token(){return sessionStorage.getItem(tokenKey)||''}
   function headers(){const t=token();return t?{'Authorization':'Bearer '+t,'Content-Type':'application/json'}:{'Content-Type':'application/json'}}
   async function json(url,opts={}){const r=await fetch(url,{...opts,headers:{...headers(),...(opts.headers||{})}});const x=await r.json().catch(()=>({}));if(!r.ok)throw new Error(x.detail||x.error||('HTTP '+r.status));return x}
   function state(text,bad=false){const e=$('agentMessage');if(e){e.textContent=text;e.style.color=bad?'#ff8d9b':'#8190ad'}}
+  function messageHex(text){return '0x'+Array.from(new TextEncoder().encode(String(text||'')),b=>b.toString(16).padStart(2,'0')).join('')}
+  function sameAccount(a,b){return String(a||'').toLowerCase()===String(b||'').toLowerCase()}
+  async function baseAccountProvider(){
+    if(!window.MoerBaseAccount?.provider){await import('/base-account.js')}
+    const provider=window.MoerBaseAccount?.provider;
+    if(!provider?.request)throw new Error('Base Account provider is unavailable.');
+    return provider;
+  }
+  async function providerAccount(provider,promptIfMissing=false){
+    let accounts=await provider.request({method:'eth_accounts'}).catch(()=>[]);
+    if(!accounts?.[0]&&promptIfMissing)accounts=await provider.request({method:'eth_requestAccounts'});
+    return String(accounts?.[0]||'').toLowerCase();
+  }
+  async function signingProvider(expectedWallet){
+    const source=walletSource();
+    if(source==='base_account'){
+      const provider=await baseAccountProvider();
+      const connected=await providerAccount(provider,true);
+      if(!sameAccount(connected,expectedWallet))throw new Error('Base Account does not match the holder wallet. Authentication was cancelled.');
+      return {provider,source:'base_account'};
+    }
+    if(source==='injected_wallet'){
+      if(!window.ethereum?.request)throw new Error('The injected wallet used for holder access is no longer available.');
+      const connected=await providerAccount(window.ethereum,false);
+      if(!sameAccount(connected,expectedWallet))throw new Error('Injected wallet does not match the holder wallet. Authentication was cancelled.');
+      return {provider:window.ethereum,source:'injected_wallet'};
+    }
+
+    // Backward compatibility for browser sessions created before wallet-source tracking existed.
+    try{
+      const provider=await baseAccountProvider();
+      const connected=await providerAccount(provider,false);
+      if(sameAccount(connected,expectedWallet))return {provider,source:'base_account'};
+    }catch{}
+    if(window.ethereum?.request){
+      const connected=await providerAccount(window.ethereum,false);
+      if(sameAccount(connected,expectedWallet))return {provider:window.ethereum,source:'injected_wallet'};
+    }
+    throw new Error('Reconnect your holder wallet before authenticating Moer Agent.');
+  }
+  async function signAgentChallenge(message,expectedWallet){
+    const signing=await signingProvider(expectedWallet);
+    const data=signing.source==='base_account'?messageHex(message):message;
+    const signature=await signing.provider.request({method:'personal_sign',params:[data,expectedWallet]});
+    if(!/^0x[0-9a-f]+$/i.test(String(signature||'')))throw new Error('Wallet returned an invalid signature.');
+    return {signature,source:signing.source};
+  }
   function ensureExecutionPanel(){
     if($('baseExecPanel'))return;
     const panel=$('agentPanel');if(!panel)return;
@@ -42,6 +90,7 @@
       const x=await json(EXEC+'/permission-plan',{method:'POST',body:JSON.stringify({allowance_usd:10,period_days:30})});
       if(!x.ready){if(e)e.textContent='Live permission remains locked: '+(x.message||x.reason||'spender not deployed');return}
       if(x.execution_enabled!==false)throw new Error('Permission endpoint did not report execution as locked. Refusing to continue.');
+      if(!window.MoerBaseAccount?.signPreparedPermission){await import('/base-account.js')}
       if(!window.MoerBaseAccount?.signPreparedPermission){if(e)e.textContent='Base Account module is not available. No permission was requested.';return}
       if(e)e.textContent='Bounded plan verified. Opening Base Account for your review...';
       await window.MoerBaseAccount.signPreparedPermission(x);
@@ -64,13 +113,11 @@
     $('agentStop').disabled=!a.enabled;
     $('agentSave').disabled=!!a.enabled;
     const area=$('agentPositions');
-    if(area){
-      area.innerHTML=positions.length?positions.slice(0,20).map(p=>`<div class="agent-pos"><strong>${p.symbol}</strong><span>${p.status}</span><span>$${money(p.notional)}</span><span>${Number(p.pnl_usd||0)>=0?'+':''}$${money(p.pnl_usd)}</span></div>`).join(''):'<div class="agent-empty">No paper positions yet.</div>';
-    }
+    if(area){area.innerHTML=positions.length?positions.slice(0,20).map(p=>`<div class="agent-pos"><strong>${p.symbol}</strong><span>${p.status}</span><span>$${money(p.notional)}</span><span>${Number(p.pnl_usd||0)>=0?'+':''}$${money(p.pnl_usd)}</span></div>`).join(''):'<div class="agent-empty">No paper positions yet.</div>'}
   }
   async function load(){
     if(!wallet()){state('Connect your holder wallet first.',true);return}
-    if(!token()){state('Authenticate Moer Agent with a wallet signature. This does not authorize a transaction.');$('agentAuth').hidden=false;return}
+    if(!token()){state('Authenticate Moer Agent with a wallet signature. This proves wallet ownership only and does not authorize a transaction.');$('agentAuth').hidden=false;return}
     try{
       const x=await json(API+'/me');
       $('agentAuth').hidden=true;
@@ -83,14 +130,15 @@
   }
   async function authenticate(){
     const w=wallet();if(!w){state('Connect your holder wallet first.',true);return}
-    if(!window.ethereum){state('No compatible wallet provider detected.',true);return}
     try{
       state('Creating secure holder challenge...');
       const c=await json(API+'/auth/challenge',{method:'POST',body:JSON.stringify({wallet_address:w})});
-      const sig=await ethereum.request({method:'personal_sign',params:[c.message,w]});
-      const v=await json(API+'/auth/verify',{method:'POST',body:JSON.stringify({wallet_address:w,signature:sig})});
+      if(!sameAccount(c.wallet_address,w))throw new Error('Server challenge wallet does not match the connected holder wallet.');
+      state(walletSource()==='base_account'?'Opening Base Account for login signature...':'Opening wallet for login signature...');
+      const signed=await signAgentChallenge(c.message,w);
+      const v=await json(API+'/auth/verify',{method:'POST',body:JSON.stringify({wallet_address:w,signature:signed.signature})});
       sessionStorage.setItem(tokenKey,v.session_token);
-      state('Authenticated.');
+      state(`Authenticated with ${signed.source==='base_account'?'Base Account':'wallet'} signature. No transaction permission was granted.`);
       await load();
     }catch(e){state(e.message,true)}
   }
@@ -100,13 +148,11 @@
       const x=await json(API+'/config',{method:'POST',body:JSON.stringify(body)});renderAccount(x.account,[]);state('Paper risk settings saved.')
     }catch(e){state(e.message,true)}
   }
-  async function toggle(enabled){
-    try{await json(API+'/toggle',{method:'POST',body:JSON.stringify({enabled})});state(enabled?'Moer Agent shadow mode started.':'Moer Agent stopped.');await load()}catch(e){state(e.message,true)}
-  }
+  async function toggle(enabled){try{await json(API+'/toggle',{method:'POST',body:JSON.stringify({enabled})});state(enabled?'Moer Agent shadow mode started.':'Moer Agent stopped.');await load()}catch(e){state(e.message,true)}}
   document.addEventListener('DOMContentLoaded',()=>{
     $('agentLogin')?.addEventListener('click',authenticate);$('agentSave')?.addEventListener('click',save);$('agentStart')?.addEventListener('click',()=>toggle(true));$('agentStop')?.addEventListener('click',()=>toggle(false));load();setInterval(()=>{if(token())load()},30000)
   });
   window.addEventListener('basedmoer:wallet',()=>{sessionStorage.removeItem(tokenKey);sessionStorage.removeItem('moeBasePermission');setTimeout(load,100)});
 })();
 
-import('/base-account.js').catch(err=>console.warn('Base Account staging module unavailable:',err));
+import('/base-account.js').catch(err=>console.warn('Base Account module unavailable:',err));
