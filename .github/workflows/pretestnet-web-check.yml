@@ -82,7 +82,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          grep -q "MOE AGENT v0.2" live/index.html
+          grep -q "MOER AGENT v0.2" live/index.html
           grep -q "LIVE FUNDS LOCKED" live/index.html
           grep -q "preview=holder" shared.js
           grep -q "DISCOVERY ONLY" live/radar-weekly.js
@@ -103,6 +103,6 @@ jobs:
             fi
           done
           if grep -R -n -E 'MOE_AI_API_KEY[[:space:]]*=' --include='*.js' --include='*.html' --include='*.css' .; then
-            echo 'Moe AI API key assignment found in browser source'
+            echo 'Moer AI API key assignment found in browser source'
             exit 1
           fi
