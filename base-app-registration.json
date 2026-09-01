@@ -1,0 +1,20 @@
+{
+  "registration_mode": "BASE_DASHBOARD_STANDARD_WEB_APP",
+  "production_url": "https://basedmoer.com",
+  "name": "Based Moer",
+  "tagline": "Pixel Art. Onchain Intelligence.",
+  "description": "An artist-built onchain universe on Base connecting original pixel art, Based Ape Punks, Moe AI intelligence, Token Radar, education and interactive holder experiences.",
+  "category": "social",
+  "icon": "https://basedmoer.com/assets/based-moer-logo.jpg",
+  "hero_image": "https://basedmoer.com/assets/moerverse-preview.png",
+  "screenshots": ["https://basedmoer.com/assets/moerverse-preview.png"],
+  "base_account": {"client_file": "/base-account.js", "enabled": true},
+  "registration": {
+    "dashboard_url": "https://dashboard.base.org/register",
+    "app_id_required": true,
+    "homepage_meta_required_after_registration": "base:app_id",
+    "app_id": null,
+    "status": "AWAITING_BASE_DASHBOARD_APP_ID"
+  },
+  "legacy": {"farcaster_manifest_required": false, "minikit_required": false}
+}

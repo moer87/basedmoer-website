@@ -1,0 +1,7 @@
+{
+  "source": "basedmoer-token.gif",
+  "frame_count": 12,
+  "based_frame": 0,
+  "moer_frame": 6,
+  "method": "face-on area filter; BASED selected by Base-blue dominance; MOER selected as the maximally distinct face-on original frame"
+}
