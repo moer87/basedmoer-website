@@ -6,6 +6,7 @@ on:
       - 'index.html'
       - 'base-account.js'
       - 'api/base-app-readiness.js'
+      - 'base-app-registration.json'
       - 'vercel.json'
       - '.github/workflows/base-app-readiness.yml'
 
@@ -20,8 +21,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-      - name: Validate Vercel configuration
-        run: node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8')); console.log('vercel.json valid')"
+      - name: Validate static configuration
+        run: |
+          node -e "JSON.parse(require('fs').readFileSync('vercel.json','utf8')); console.log('vercel.json valid')"
+          node -e "JSON.parse(require('fs').readFileSync('base-app-registration.json','utf8')); console.log('base-app-registration.json valid')"
       - name: Compile serverless readiness endpoint
         run: node --check api/base-app-readiness.js
       - name: Enforce current Base App architecture
@@ -40,7 +43,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if grep -q '<meta[^>]*name=["'"']base:app_id["'"']' index.html; then
+          if grep -q 'base:app_id' index.html; then
             ! grep -q -E 'base:app_id[^>]*(PLACEHOLDER|YOUR_APP_ID|TODO)' index.html
           else
             echo 'Base Dashboard app ID not hardcoded yet; registration gate remains open.'
