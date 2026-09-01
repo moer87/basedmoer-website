@@ -26,5 +26,5 @@ jobs:
           grep -q "@base-org/account@2.5.10" base-login.js
           grep -q "requestSpendPermission" base-account.js
           grep -q "requestRevoke" base-account.js
-          grep -q "execution remains" base-account.js
+          grep -qi "execution remains locked" base-account.js
           ! grep -R -nE '(PRIVATE_KEY|seed phrase|mnemonic)' --include='*.js' --include='*.html' .
