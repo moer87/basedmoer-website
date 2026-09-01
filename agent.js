@@ -66,14 +66,14 @@
   }
   async function load(){
     if(!wallet()){state('Connect your holder wallet first.',true);return}
-    if(!token()){state('Authenticate Moe Agent with a wallet signature. This does not authorize a transaction.');$('agentAuth').hidden=false;return}
+    if(!token()){state('Authenticate Moer Agent with a wallet signature. This does not authorize a transaction.');$('agentAuth').hidden=false;return}
     try{
       const x=await json(API+'/me');
       $('agentAuth').hidden=true;
       $('agentPanel').hidden=false;
       ensureExecutionPanel();
       renderAccount(x.account,x.positions||[]);
-      state('Moe Agent shadow engine connected. Live fund execution remains locked.');
+      state('Moer Agent shadow engine connected. Live fund execution remains locked.');
       checkExecutionHealth();
     }catch(e){sessionStorage.removeItem(tokenKey);$('agentAuth').hidden=false;$('agentPanel').hidden=true;state(e.message,true)}
   }
@@ -97,7 +97,7 @@
     }catch(e){state(e.message,true)}
   }
   async function toggle(enabled){
-    try{await json(API+'/toggle',{method:'POST',body:JSON.stringify({enabled})});state(enabled?'Moe Agent shadow mode started.':'Moe Agent stopped.');await load()}catch(e){state(e.message,true)}
+    try{await json(API+'/toggle',{method:'POST',body:JSON.stringify({enabled})});state(enabled?'Moer Agent shadow mode started.':'Moer Agent stopped.');await load()}catch(e){state(e.message,true)}
   }
   document.addEventListener('DOMContentLoaded',()=>{
     $('agentLogin')?.addEventListener('click',authenticate);$('agentSave')?.addEventListener('click',save);$('agentStart')?.addEventListener('click',()=>toggle(true));$('agentStop')?.addEventListener('click',()=>toggle(false));load();setInterval(()=>{if(token())load()},30000)

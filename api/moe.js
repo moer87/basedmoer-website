@@ -30,7 +30,7 @@ async function handler(
     ){
 
       throw new Error(
-        "Moe AI health check failed"
+        "Moer AI health check failed"
       );
 
     }
@@ -182,7 +182,7 @@ async function handler(
       ok:true,
 
       service:
-        "Moe AI",
+        "Moer AI",
 
       source,
 
@@ -208,7 +208,7 @@ async function handler(
   catch(error){
 
     console.error(
-      "Moe AI proxy error:",
+      "Moer AI proxy error:",
       error
     );
 
@@ -220,7 +220,7 @@ async function handler(
 
       error:
         error.message ||
-        "Unable to contact Moe AI"
+        "Unable to contact Moer AI"
 
     });
 
