@@ -1,0 +1,39 @@
+name: Release candidate website audit
+
+on:
+  pull_request:
+    branches: [pretestnet-ready]
+    paths:
+      - '**/*.html'
+      - '**/*.js'
+      - '**/*.css'
+      - 'assets/**'
+      - 'vercel.json'
+      - 'robots.txt'
+      - 'sitemap.xml'
+      - 'scripts/site_audit.py'
+      - '.github/workflows/release-candidate-audit.yml'
+  push:
+    branches: [pretestnet-release-polish]
+
+permissions:
+  contents: read
+
+jobs:
+  site-audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Run full static-site audit
+        run: python scripts/site_audit.py
+      - name: Enforce pre-testnet launch order
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q 'TESTNET FIRST. LAUNCH SECOND.' index.html
+          grep -q 'PRE-TESTNET RELEASE CANDIDATE' docs/index.html
+          grep -q 'CURRENT STAGE: PRE-TESTNET' status/index.html
+          ! grep -R -n 'MINT BASED APE PUNKS' index.html live/index.html
