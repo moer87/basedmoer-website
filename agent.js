@@ -108,3 +108,5 @@
   });
   window.addEventListener('basedmoer:wallet',()=>{sessionStorage.removeItem(tokenKey);sessionStorage.removeItem('moeBasePermission');setTimeout(load,100)});
 })();
+
+import('/base-account.js').catch(err=>console.warn('Base Account staging module unavailable:',err));
