@@ -61,9 +61,11 @@ def local_target_exists(raw: str) -> bool:
         return True
     if not path.startswith("/"):
         return True
+
     relative = path.lstrip("/")
     if not relative:
-        relative = "index.html"
+        return (ROOT / "index.html").exists()
+
     target = ROOT / relative
     if path.endswith("/"):
         target = target / "index.html"
