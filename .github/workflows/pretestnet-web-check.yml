@@ -29,6 +29,7 @@ jobs:
           set -euo pipefail
           node --check shared.js
           node --check agent.js
+          node --check base-account.js
           node --check progression.js
           node --check academy-xp.js
           node --check radar-xp.js
@@ -92,6 +93,20 @@ jobs:
           grep -q "Moer Academy" index.html
           grep -q "Moer Flip Game" index.html
           grep -q "MOER ACADEMY v3" academy/index.html
+      - name: Base Account permission invariants
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -q "@base-org/account@2.5.10" base-account.js
+          grep -q "requestSpendPermission" base-account.js
+          grep -q "fetchPermission" base-account.js
+          grep -q "getPermissionStatus" base-account.js
+          grep -q "requestRevoke" base-account.js
+          grep -q "periodInDays" base-account.js
+          grep -q "BigInt(req.allowance)" base-account.js
+          grep -q "x.execution_enabled!==false" agent.js
+          grep -q "REQUEST \$10 BASE PERMISSION" agent.js
+          ! grep -q "prepareSpendCallData" base-account.js
       - name: No accidental browser secrets
         shell: bash
         run: |

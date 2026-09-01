@@ -16,13 +16,13 @@
     wrap.id='baseExecPanel';
     wrap.style.cssText='margin-top:18px;padding:16px;border:1px solid #263149;border-radius:13px;background:#080d15';
     wrap.innerHTML=`
-      <div style="font-size:10px;font-weight:900;color:#71809e;margin-bottom:8px">BASE EXECUTION READINESS</div>
+      <div style="font-size:10px;font-weight:900;color:#71809e;margin-bottom:8px">BASE-NATIVE EXECUTION READINESS</div>
       <div id="baseExecStatus" style="font-size:13px;color:#9aa8c4;line-height:1.6">Checking Base shadow routes...</div>
       <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
         <button id="baseExecCheck" class="button secondary" type="button">CHECK BASE ROUTES</button>
-        <button id="basePermissionPlan" class="button secondary" type="button">PREPARE $10 PERMISSION</button>
+        <button id="basePermissionPlan" class="button secondary" type="button">REQUEST $10 BASE PERMISSION</button>
       </div>
-      <div id="basePermissionStatus" style="margin-top:10px;font-size:12px;color:#7f8da9;line-height:1.6">No live Spend Permission will be requested until the Moe spender contract passes security gates and is deployed. Signing and revocation will use the official Base Account SDK bundled into the site, not a third-party CDN.</div>`;
+      <div id="basePermissionStatus" style="margin-top:10px;font-size:12px;color:#7f8da9;line-height:1.6">Base Account Spend Permission support is wired for bounded USDC permissions, status checks and user revocation. The Moer spender and live execution remain separately locked behind security gates.</div>`;
     panel.appendChild(wrap);
     $('baseExecCheck')?.addEventListener('click',checkExecutionHealth);
     $('basePermissionPlan')?.addEventListener('click',preparePermission);
@@ -32,16 +32,20 @@
     try{
       const x=await json(EXEC+'/health');
       const eth=x.checks?.ETHUSDT,btx=x.checks?.BTCUSDT;
-      if(e)e.textContent=`Base ${x.chain_id||8453}: ETH route ${eth?.ok?'OK':'NOT READY'} · BTC/cbBTC route ${btx?.ok?'OK':'NOT READY'} · mode ${x.mode||'SHADOW'}.`;
+      const native=x.base_native?.ok?'FLASHBLOCKS READY':'FLASHBLOCKS CONTEXT NOT READY';
+      if(e)e.textContent=`Base ${x.chain_id||8453}: ETH route ${eth?.ok?'OK':'NOT READY'} · BTC/cbBTC route ${btx?.ok?'OK':'NOT READY'} · ${native} · mode ${x.mode||'SHADOW'}.`;
     }catch(err){if(e)e.textContent='Base execution health unavailable: '+err.message}
   }
   async function preparePermission(){
-    const e=$('basePermissionStatus');if(e)e.textContent='Preparing bounded Base USDC permission plan...';
+    const e=$('basePermissionStatus');if(e)e.textContent='Building a server-bounded $10 USDC permission plan...';
     try{
       const x=await json(EXEC+'/permission-plan',{method:'POST',body:JSON.stringify({allowance_usd:10,period_days:30})});
       if(!x.ready){if(e)e.textContent='Live permission remains locked: '+(x.message||x.reason||'spender not deployed');return}
-      if(e)e.textContent='Permission plan is ready for $10 USDC, but signing is intentionally disabled until the deployed spender address and final contract audit are verified.';
-    }catch(err){if(e)e.textContent='Permission planning failed safely: '+err.message}
+      if(x.execution_enabled!==false)throw new Error('Permission endpoint did not report execution as locked. Refusing to continue.');
+      if(!window.MoerBaseAccount?.signPreparedPermission){if(e)e.textContent='Base Account module is not available. No permission was requested.';return}
+      if(e)e.textContent='Bounded plan verified. Opening Base Account for your review...';
+      await window.MoerBaseAccount.signPreparedPermission(x);
+    }catch(err){if(e){e.textContent='Permission request failed safely: '+err.message;e.style.color='#ff8d9b'}}
   }
   function renderAccount(a,positions=[]){
     if(!a)return;
@@ -102,5 +106,7 @@
   document.addEventListener('DOMContentLoaded',()=>{
     $('agentLogin')?.addEventListener('click',authenticate);$('agentSave')?.addEventListener('click',save);$('agentStart')?.addEventListener('click',()=>toggle(true));$('agentStop')?.addEventListener('click',()=>toggle(false));load();setInterval(()=>{if(token())load()},30000)
   });
-  window.addEventListener('basedmoer:wallet',()=>{sessionStorage.removeItem(tokenKey);setTimeout(load,100)});
+  window.addEventListener('basedmoer:wallet',()=>{sessionStorage.removeItem(tokenKey);sessionStorage.removeItem('moeBasePermission');setTimeout(load,100)});
 })();
+
+import('/base-account.js').catch(err=>console.warn('Base Account staging module unavailable:',err));
