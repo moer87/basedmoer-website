@@ -19,6 +19,8 @@ jobs:
           python-version: '3.11'
       - name: Verify every page, internal reference and locked visual master
         run: python scripts/final_site_audit.py
+      - name: Verify phone compatibility across every public and demo page
+        run: python scripts/mobile_site_audit.py
       - name: Verify Base Account integration remains non-custodial
         shell: bash
         run: |
