@@ -47,12 +47,9 @@ def main():
         if 'width=device-width' not in text:
             errors.append(f'{rel}: viewport does not use device width')
 
-        # Images/videos/canvases should rely on shared responsive safeguards or local responsive CSS.
         if re.search(r'<(?:img|video|canvas)\b', text) and '/shared.css' not in text:
             errors.append(f'{rel}: media page missing shared responsive stylesheet')
 
-        # Prevent the most common accidental fixed page widths. Wide data rows are allowed only
-        # when a horizontal-scrolling wrapper is present on the same page.
         fixed = [int(x) for x in re.findall(r'min-width\s*:\s*(\d+)px', text)]
         if any(v > 760 for v in fixed) and not any(k in text for k in ('overflow-x:auto', 'table-wrap', 'overflow:auto')):
             errors.append(f'{rel}: fixed desktop min-width without mobile scroll container')
@@ -68,9 +65,13 @@ def main():
                 errors.append(f'{rel}: mobile invariant missing: {marker}')
 
     home = (ROOT / 'index.html').read_text(encoding='utf-8')
-    for marker in ('aspect-ratio:1/1', '.experience-media>img{display:block;width:100%;height:100%;object-fit:contain}'):
+    for marker in (
+        'aspect-ratio:1/1',
+        '.experience-media>video{display:block;width:100%;height:100%;object-fit:contain}',
+        'autoplay muted loop playsinline preload="metadata"',
+    ):
         if marker not in home:
-            errors.append(f'homepage GIF fitting invariant missing: {marker}')
+            errors.append(f'homepage MP4 fitting/mobile invariant missing: {marker}')
 
     radar = (ROOT / 'live' / 'radar-weekly.js').read_text(encoding='utf-8')
     if '@media(max-width:650px)' not in radar or '.radar-card{grid-template-columns:1fr 1fr}' not in radar:
