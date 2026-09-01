@@ -61,9 +61,9 @@ jobs:
           test -s assets/ape-punks.gif
           test -s assets/moe-ai.mp4
           test -s assets/moerverse-preview.png
-          test -s assets/academy.gif
-          test -s assets/arcade.gif
-          test -s assets/moer-flip.gif
+          test -s assets/academy-video.mp4
+          test -s assets/arcade-video.mp4
+          test -s assets/moer-flip-video.mp4
           test -s assets/basedmoer-token.gif
           test -s assets/spaceship-main.png
           test -s assets/spaceship-red.png
@@ -73,9 +73,13 @@ jobs:
           grep -q "/assets/moerverse-preview.png" index.html
           grep -q "/assets/ape-punks.gif" index.html
           grep -q "/assets/moe-ai.mp4" index.html
-          grep -q "/assets/academy.gif" index.html
-          grep -q "/assets/arcade.gif" index.html
-          grep -q "/assets/moer-flip.gif" index.html
+          grep -q "/assets/academy-video.mp4" index.html
+          grep -q "/assets/arcade-video.mp4" index.html
+          grep -q "/assets/moer-flip-video.mp4" index.html
+          grep -q "autoplay muted loop playsinline" index.html
+          ! grep -q "/assets/academy.gif" index.html
+          ! grep -q "/assets/arcade.gif" index.html
+          ! grep -q "/assets/moer-flip.gif" index.html
           grep -q "/assets/basedmoer-token.gif" moer-flip/index.html
           grep -q "data-choice=\"BASED\"" moer-flip/index.html
           grep -q "data-choice=\"MOER\"" moer-flip/index.html
