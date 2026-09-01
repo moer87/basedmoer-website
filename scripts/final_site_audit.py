@@ -5,13 +5,13 @@ import sys
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PAGES = [
     'index.html','moerverse/index.html','live/index.html','academy/index.html',
-    'arcade/index.html','moer-flip/index.html','profile/index.html',
-    'docs/index.html','status/index.html'
+    'arcade/index.html','arcade/event-preview.html','moer-flip/index.html',
+    'profile/index.html','profile/legend-preview.html','docs/index.html','status/index.html'
 ]
 REQUIRED_ASSETS = [
     'assets/based-moer-logo.jpg','assets/bald-moe-promo.gif','assets/ape-punks.gif',
     'assets/moe-ai.mp4','assets/basedmoer-token.gif','assets/moerverse-preview.png',
-    'assets/moe-academy-home.png','assets/spaceship-main.png'
+    'assets/academy.gif','assets/arcade.gif','assets/moer-flip.gif','assets/spaceship-main.png'
 ]
 IGNORE_PREFIXES = ('http://','https://','mailto:','tel:','data:','javascript:','#')
 
@@ -36,7 +36,9 @@ def main():
     for rel in REQUIRED_PAGES:
         if not (ROOT/rel).is_file(): errors.append(f'missing required page: {rel}')
     for rel in REQUIRED_ASSETS:
-        if not (ROOT/rel).is_file(): errors.append(f'missing required asset: {rel}')
+        path=ROOT/rel
+        if not path.is_file(): errors.append(f'missing required asset: {rel}')
+        elif path.stat().st_size <= 0: errors.append(f'empty required asset: {rel}')
 
     for page in ROOT.rglob('*.html'):
         parser=Collector()
@@ -56,7 +58,7 @@ def main():
         '/assets/bald-moe-promo.gif','PIXEL ART. ONCHAIN INTELLIGENCE.',
         'MEET THE MOERVERSE.','/assets/moerverse-preview.png','/assets/ape-punks.gif',
         '/assets/moe-ai.mp4','OWN THE NFT. ENTER THE EXPERIENCE.',
-        '/assets/moe-academy-home.png','/assets/spaceship-main.png','/assets/basedmoer-token.gif'
+        '/assets/academy.gif','/assets/arcade.gif','/assets/moer-flip.gif'
     ]:
         if marker not in home: errors.append(f'visual master invariant missing from homepage: {marker}')
 
