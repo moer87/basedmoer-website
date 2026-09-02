@@ -5,12 +5,6 @@ on:
   push:
     branches: [pretestnet-ready, final-website-working-5]
   pull_request:
-    paths:
-      - '**/*.html'
-      - '**/*.js'
-      - '**/*.css'
-      - 'assets/**'
-      - '.github/workflows/pretestnet-web-check.yml'
 
 permissions:
   contents: read
