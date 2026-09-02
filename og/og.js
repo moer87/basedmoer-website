@@ -15,6 +15,7 @@
   function loadTurnstile(siteKey) {
     if (!siteKey) {
       closed.hidden = false;
+      form.hidden = true;
       closed.textContent = 'OG applications are being prepared. Captcha verification is not configured yet.';
       return;
     }
@@ -66,10 +67,8 @@
       setStatus('Enter a valid Base/EVM wallet address.', 'error');
       return;
     }
-    if (!xHandle && !discord) {
-      setStatus('Enter either your X handle or your Discord username.', 'error');
-      return;
-    }
+    // Social identity is intentionally not required client-side. The backend first
+    // checks PAPC ownership; only non-PAPC applicants are required to provide X or Discord.
     if (!captchaToken) {
       setStatus('Please complete the captcha.', 'error');
       return;
@@ -95,7 +94,7 @@
       form.reset();
       captchaToken = '';
       if (window.turnstile) window.turnstile.reset();
-      setStatus('Application received. We will verify either your X follow or Discord membership before OG approval.', 'ok');
+      setStatus(data.message || (data.status === 'approved' ? 'OG access approved.' : 'Application received.'), 'ok');
     } catch (error) {
       setStatus(error.message || 'Unable to submit the application.', 'error');
       if (window.turnstile) window.turnstile.reset();

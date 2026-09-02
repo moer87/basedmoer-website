@@ -31,6 +31,7 @@ jobs:
           node --check arcade/anomaly-preview.js
           node --check academy/academy.js
           node --check live/radar-weekly.js
+          node --check og/og.js
       - name: Required route files
         shell: bash
         run: |
@@ -39,6 +40,8 @@ jobs:
           test -f moerverse/index.html
           test -f live/index.html
           test -f academy/index.html
+          test -f og/index.html
+          test -f og/og.js
           test -f moer-flip/index.html
           test -f arcade/index.html
           test -f arcade/event-preview.html
@@ -55,6 +58,7 @@ jobs:
           test -s assets/ape-punks.gif
           test -s assets/moe-ai.mp4
           test -s assets/moerverse-preview.png
+          test -s assets/based-moer-social.png
           test -s assets/academy-video.mp4
           test -s assets/arcade-video.mp4
           test -s assets/moer-flip-video.mp4
@@ -70,6 +74,7 @@ jobs:
           grep -q "/assets/academy-video.mp4" index.html
           grep -q "/assets/arcade-video.mp4" index.html
           grep -q "/assets/moer-flip-video.mp4" index.html
+          grep -q "/assets/based-moer-social.png" index.html
           grep -q "autoplay muted loop playsinline" index.html
           ! grep -q "/assets/academy.gif" index.html
           ! grep -q "/assets/arcade.gif" index.html
@@ -109,6 +114,10 @@ jobs:
           grep -q "Moer Academy" index.html
           grep -q "Moer Flip Game" index.html
           grep -q "MOER ACADEMY v3" academy/index.html
+          grep -q "OG ACCESS" og/index.html
+          grep -q "Polygon Ape Punks Club" og/index.html
+          grep -q "0.003 ETH" og/index.html
+          grep -q "0.005 ETH" og/index.html
           grep -q "@base-org/account@2.5.10" base-login.js
           grep -q "requestSpendPermission" base-account.js
           grep -q "requestRevoke" base-account.js

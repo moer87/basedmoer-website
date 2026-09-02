@@ -4,13 +4,13 @@ import sys
 
 ROOT = Path(__file__).resolve().parents[1]
 REQUIRED_PAGES = [
-    'index.html','moerverse/index.html','live/index.html','academy/index.html',
+    'index.html','moerverse/index.html','live/index.html','academy/index.html','og/index.html',
     'arcade/index.html','arcade/event-preview.html','arcade/anomaly-preview.html','moer-flip/index.html',
     'profile/index.html','profile/legend-preview.html','docs/index.html','status/index.html'
 ]
 REQUIRED_ASSETS = [
     'assets/based-moer-logo.jpg','assets/bald-moe-promo.gif','assets/ape-punks.gif',
-    'assets/moe-ai.mp4','assets/basedmoer-token.gif','assets/moerverse-preview.png',
+    'assets/moe-ai.mp4','assets/basedmoer-token.gif','assets/moerverse-preview.png','assets/based-moer-social.png',
     'assets/academy-video.mp4','assets/arcade-video.mp4','assets/moer-flip-video.mp4','assets/spaceship-main.png'
 ]
 IGNORE_PREFIXES = ('http://','https://','mailto:','tel:','data:','javascript:','#')
@@ -59,7 +59,7 @@ def main():
         'MEET THE MOERVERSE.','/assets/moerverse-preview.png','/assets/ape-punks.gif',
         '/assets/moe-ai.mp4','OWN THE NFT. ENTER THE EXPERIENCE.',
         '/assets/academy-video.mp4','/assets/arcade-video.mp4','/assets/moer-flip-video.mp4',
-        'autoplay muted loop playsinline'
+        '/assets/based-moer-social.png','autoplay muted loop playsinline'
     ]:
         if marker not in home: errors.append(f'visual master invariant missing from homepage: {marker}')
 
@@ -69,6 +69,10 @@ def main():
     anomaly=(ROOT/'arcade/anomaly-preview.html').read_text(encoding='utf-8')
     for marker in ['ANOMALY DROP','PULL ANOMALY CORE','DEMO ONLY','/arcade/anomaly-preview.js']:
         if marker not in anomaly: errors.append(f'anomaly preview invariant missing: {marker}')
+
+    og=(ROOT/'og/index.html').read_text(encoding='utf-8')
+    for marker in ['OG ACCESS','0.003 ETH','0.005 ETH','Polygon Ape Punks Club','/og/og.js']:
+        if marker not in og: errors.append(f'OG access invariant missing: {marker}')
 
     if errors:
         print('\n'.join('ERROR: '+e for e in errors)); return 1
