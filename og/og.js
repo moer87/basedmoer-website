@@ -66,8 +66,8 @@
       setStatus('Enter a valid Base/EVM wallet address.', 'error');
       return;
     }
-    if (!xHandle || !discord) {
-      setStatus('X and Discord usernames are required.', 'error');
+    if (!xHandle && !discord) {
+      setStatus('Enter either your X handle or your Discord username.', 'error');
       return;
     }
     if (!captchaToken) {
@@ -95,7 +95,7 @@
       form.reset();
       captchaToken = '';
       if (window.turnstile) window.turnstile.reset();
-      setStatus('Application received. We will verify X/Discord membership before OG approval.', 'ok');
+      setStatus('Application received. We will verify either your X follow or Discord membership before OG approval.', 'ok');
     } catch (error) {
       setStatus(error.message || 'Unable to submit the application.', 'error');
       if (window.turnstile) window.turnstile.reset();
