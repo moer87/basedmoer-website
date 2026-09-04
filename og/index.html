@@ -12,7 +12,7 @@
   <meta property="og:type" content="website">
   <link rel="stylesheet" href="/shared.css">
   <style>
-    .og-wrap{max-width:760px;margin:0 auto;padding:72px 20px 90px}.og-hero{text-align:center;margin-bottom:30px}.og-hero h1{font-size:clamp(36px,7vw,68px);margin:8px 0 12px}.og-hero p{max-width:650px;margin:0 auto}.og-card{background:#0d1524;border:1px solid #26344d;border-radius:20px;padding:24px}.og-note{padding:14px 16px;border:1px solid #26344d;border-radius:12px;background:#09111e;margin-bottom:20px;font-size:14px;line-height:1.55}.og-form{display:grid;gap:17px}.field{display:grid;gap:7px}.field label{font-weight:800;font-size:13px}.field input{width:100%;box-sizing:border-box;background:#070d17;border:1px solid #33415d;border-radius:10px;color:#fff;padding:13px 14px;font:inherit}.field small{color:#8090ab;line-height:1.5}.optional{color:#8090ab;font-weight:500}.hidden-field{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.submit-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:4px}.status{font-size:14px;line-height:1.5}.status.error{color:#ff9a9a}.status.ok{color:#92e2b4}.privacy{margin-top:18px;color:#7f8ca7;font-size:12px;line-height:1.65}.closed{padding:20px;text-align:center;border:1px dashed #44516b;border-radius:14px}.price-line{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:13px;font-weight:900}.price-line span{padding:8px 11px;border:1px solid #26344d;border-radius:999px;background:#0a1220}@media(max-width:600px){.og-card{padding:18px}.og-wrap{padding-top:48px}}
+    .og-wrap{max-width:760px;margin:0 auto;padding:64px 20px 90px}.og-hero{text-align:center;margin-bottom:34px}.og-hero h1{font-size:clamp(36px,7vw,68px);line-height:1.05;margin:10px 0 16px}.og-hero p{max-width:650px;margin:0 auto;line-height:1.7}.og-card{background:#0d1524;border:1px solid #26344d;border-radius:20px;padding:28px}.og-note{line-height:1.7}.og-note{padding:14px 16px;border:1px solid #26344d;border-radius:12px;background:#09111e;margin-bottom:20px;font-size:14px;line-height:1.55}.og-form{display:grid;gap:17px}.field{display:grid;gap:7px}.field label{font-weight:800;font-size:13px}.field input{width:100%;box-sizing:border-box;background:#070d17;border:1px solid #33415d;border-radius:10px;color:#fff;padding:13px 14px;font:inherit}.field small{color:#8090ab;line-height:1.5}.optional{color:#8090ab;font-weight:500}.hidden-field{position:absolute;left:-10000px;width:1px;height:1px;overflow:hidden}.submit-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:4px}.status{font-size:14px;line-height:1.5}.status.error{color:#ff9a9a}.status.ok{color:#92e2b4}.privacy{margin-top:18px;color:#7f8ca7;font-size:12px;line-height:1.65}.closed{padding:20px;text-align:center;border:1px dashed #44516b;border-radius:14px}.price-line{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:18px;font-size:13px;font-weight:900}.price-line span{padding:8px 11px;border:1px solid #26344d;border-radius:999px;background:#0a1220}@media(max-width:600px){.og-card{padding:18px}.og-wrap{padding-top:48px}}
   </style>
 </head>
 <body>
@@ -21,23 +21,23 @@
     <section class="og-hero">
       <span class="eyebrow">BASED APE PUNKS</span>
       <h1>OG ACCESS</h1>
-      <p>The public application gateway for the Based Ape Punks OG list. Polygon Ape Punks Club snapshot holders are already included; other community members may submit a Base/EVM wallet for review.</p>
+      <p>A public application page for Based Ape Punks OG access. Polygon Ape Punks Club snapshot holders are already included; other community members may submit a Base/EVM wallet for review.</p>
       <div class="price-line"><span>PLANNED OG PRICE · 0.003 ETH</span><span>PLANNED PUBLIC PRICE · 0.005 ETH</span><span>MINT PAUSED</span></div>
     </section>
 
     <section class="og-card">
-      <div class="og-note"><strong>How it works:</strong> your Base/EVM wallet is always required. Wallets in the completed Polygon Ape Punks Club holder snapshot are already approved. Other applicants should provide either an X handle <em>or</em> Discord username so one Based Moer community connection can be reviewed. Submitting an application does not guarantee approval, mint access, allocation or timing.</div>
+      <div class="og-note"><strong>How it works:</strong> A Base/EVM wallet is required for every application. Wallets in the completed Polygon Ape Punks Club holder snapshot are already approved. Other applicants should provide either an X handle <em>or</em> a Discord username so one Based Moer community connection can be reviewed. An application does not guarantee approval, mint access, an allocation or a launch date.</div>
       <div id="ogClosed" class="closed" hidden>OG applications are not open yet. Existing community members are being recorded first so early supporters are not missed.</div>
       <form id="ogForm" class="og-form" novalidate hidden>
         <div class="field">
-          <label for="xHandle">X handle <span class="optional">(optional for PAPC holders; otherwise X or Discord)</span></label>
+          <label for="xHandle">X handle <span class="optional">(optional for PAPC holders; otherwise provide X or Discord)</span></label>
           <input id="xHandle" name="x_handle" type="text" maxlength="64" autocomplete="off" placeholder="@yourhandle">
           <small>For non-PAPC applicants, provide X or Discord so we can verify one Based Moer community connection.</small>
         </div>
         <div class="field">
           <label for="discordUsername">Discord username <span class="optional">(optional for PAPC holders; otherwise X or Discord)</span></label>
           <input id="discordUsername" name="discord_username" type="text" maxlength="64" autocomplete="off" placeholder="your Discord username">
-          <small>You never need to provide both X and Discord.</small>
+          <small>You only need to provide one of these two identifiers.</small>
         </div>
         <div class="field">
           <label for="walletAddress">Base / EVM wallet address</label>
@@ -51,7 +51,7 @@
           <div id="formStatus" class="status" role="status" aria-live="polite"></div>
         </div>
       </form>
-      <p class="privacy">Purpose limitation: the submitted wallet and optional social username(s) are collected only for Based Ape Punks OG-access review and list administration. They are not a newsletter signup and are not intended for unrelated marketing or sale to third parties. The public mint remains paused until the separate holder-release review is complete.</p>
+      <p class="privacy">The submitted wallet and optional social identifier are used only to review and administer Based Ape Punks OG access. They are not used for newsletter signup, unrelated marketing or sale to third parties. Never submit a seed phrase, private key or transaction signature. The public mint remains paused until the separate holder-release review is complete.</p>
     </section>
   </main>
   <div id="globalFooter"></div>
