@@ -1,7 +1,7 @@
 (function(){
   const API='https://moe-ai-production.up.railway.app';
   const tokenKey='moeAgentSession';
-  const preview=new URLSearchParams(location.search).get('preview')==='holder';
+  const preview=location.hostname.endsWith('.vercel.app')&&new URLSearchParams(location.search).get('preview')==='holder';
   const money=n=>Number(n||0).toLocaleString();
   function token(){return sessionStorage.getItem(tokenKey)||''}
   function wallet(){return sessionStorage.getItem('basedMoerWallet')||''}
