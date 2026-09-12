@@ -1,5 +1,5 @@
 (function(){
-const preview=new URLSearchParams(location.search).get('preview')==='holder';
+const preview=location.hostname.endsWith('.vercel.app')&&new URLSearchParams(location.search).get('preview')==='holder';
 const STORAGE='moeAcademyV3';
 const TRACKS=[
 {id:'foundations',name:'Market Foundations',summary:'Read price as a sequence of auctions, swings and regimes before applying any setup.',modules:[
