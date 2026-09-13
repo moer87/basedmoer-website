@@ -1,5 +1,5 @@
 (function(){
-const currentPath=location.pathname,CONTRACT="0x7b66f898b9b2ea6bc8d058f509b014be076b574b",BASE_CHAIN_ID="0x2105",HOLDER_PAGES=["/live/","/academy/","/moer-flip/","/arcade/","/profile/"],READ_RPCS=["https://base-rpc.publicnode.com","https://mainnet.base.org"],preview=location.hostname.endsWith(".vercel.app")&&new URLSearchParams(location.search).get("preview")==="holder";
+const currentPath=location.pathname,CONTRACT="0x7b66F898B9B2Ea6BC8d058F509B014Be076b574b",BASE_CHAIN_ID="0x2105",HOLDER_PAGES=["/live/","/academy/","/moer-flip/","/arcade/","/profile/"],READ_RPCS=["https://base-rpc.publicnode.com","https://mainnet.base.org"],preview=location.hostname.endsWith(".vercel.app")&&new URLSearchParams(location.search).get("preview")==="holder";
 let wallet=null,walletSource=null,isHolder=preview;
 function active(p){return p==="/"?(currentPath==="/"?"active":""):currentPath.startsWith(p)?"active":""}
 function shortAddress(a){return a?`${a.slice(0,6)}…${a.slice(-4)}`:"CONNECT WALLET"}
