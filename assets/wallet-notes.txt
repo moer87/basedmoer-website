@@ -1,2 +1,2 @@
-Based Ape Punks holder contract: 0x5CafB7C0181fEd5b6d62AA331699989861c27AE7
+Based Moer - Ape Punks holder contract: 0x7b66F898B9B2Ea6BC8d058F509B014Be076b574b
 Base chain id: 8453
