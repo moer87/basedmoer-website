@@ -71,7 +71,7 @@ def main():
         if marker not in anomaly: errors.append(f'anomaly preview invariant missing: {marker}')
 
     og=(ROOT/'og/index.html').read_text(encoding='utf-8')
-    for marker in ['OG ACCESS','0.003 ETH','0.005 ETH','Polygon Ape Punks Club','/og/og.js']:
+    for marker in ['OG ACCESS','OG MINT · FREE','Polygon Ape Punks Club','/og/og.js']:
         if marker not in og: errors.append(f'OG access invariant missing: {marker}')
 
     if errors:
