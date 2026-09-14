@@ -116,8 +116,8 @@ jobs:
           grep -q "MOER ACADEMY v3" academy/index.html
           grep -q "OG ACCESS" og/index.html
           grep -q "Polygon Ape Punks Club" og/index.html
-          grep -q "0.003 ETH" og/index.html
-          grep -q "0.005 ETH" og/index.html
+          grep -q "OG MINT · FREE" og/index.html
+          ! grep -Eqi "0\\.003 ETH|0\\.005 ETH|0\\.0007 ETH|PLANNED PUBLIC PRICE|TEAM MINT|DEV MINT" og/index.html
           grep -q "@base-org/account@2.5.10" base-login.js
           grep -q "requestSpendPermission" base-account.js
           grep -q "requestRevoke" base-account.js
