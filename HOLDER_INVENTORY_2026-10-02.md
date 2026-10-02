@@ -60,3 +60,9 @@ These changes resolve browser cross-wallet contamination and automatic retry sup
 Independent review by scanner_build identified additional Passport races. Follow-up guards authenticate challenge/sign/verify before storing session, prevents stale /me errors clearing a new session, guards daily/equip rendering and errors, and resets XP/cosmetics/Flip on wallet events. Shared wallet connect clears prior session/permission/ship on address changes. Deferred-promise regressions added; current total 15 passing tests. Authentication remains injected-only until source-aware login work is separately integrated.
 
 Independent second review by scanner_build passed the reported Passport race corrections. Remaining preexisting overlapping connection/disconnect holder-RPC race is outside this patch; generation fencing should be reviewed later. Final regression count: 15 passed.
+
+## Connection generation fencing
+
+Follow-up shared.js now gives connect and restore attempts generation IDs. Wallet/source/holder state is committed only after ownership lookup completes and the generation is still current. Disconnect and new connect invalidate older attempts immediately, clear session/permission/ship state and holder visibility, and dispatch the disconnected wallet event. Stale attempts cannot restore wallet state, overwrite a new token, show obsolete alerts, or initiate injected fallback after cancellation. Injected wallet chain switching also checks generation before proceeding.
+
+New tests/wallet_generation.test.cjs exercises deferred ownership RPCs for disconnect, overlapping connects, pending restore, and restore superseded by new connect. Final suite: 19 Node tests passed. This is local connection fencing, not RPC reliability or real-holder acceptance evidence.
