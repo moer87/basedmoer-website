@@ -66,3 +66,9 @@ Independent second review by scanner_build passed the reported Passport race cor
 Follow-up shared.js now gives connect and restore attempts generation IDs. Wallet/source/holder state is committed only after ownership lookup completes and the generation is still current. Disconnect and new connect invalidate older attempts immediately, clear session/permission/ship state and holder visibility, and dispatch the disconnected wallet event. Stale attempts cannot restore wallet state, overwrite a new token, show obsolete alerts, or initiate injected fallback after cancellation. Injected wallet chain switching also checks generation before proceeding.
 
 New tests/wallet_generation.test.cjs exercises deferred ownership RPCs for disconnect, overlapping connects, pending restore, and restore superseded by new connect. Final suite: 19 Node tests passed. This is local connection fencing, not RPC reliability or real-holder acceptance evidence.
+
+## Failed restoration cleanup
+
+Restore synchronously hides holder access and removes stored holder flag, bearer session, permission state and ship state before any async provider/RPC check. Saved wallet/source remain only as retry preferences. Invalid saved addresses, missing/mismatched provider accounts or confirmed zero NFT ownership clear those preferences too. Transient provider/RPC exceptions retain the retry preference but never retain session authority. Only successful current-generation matching-wallet ownership verification can restore the captured previous bearer token; consumer wallet-event handlers may require authentication again. Backend must independently verify token/eligibility.
+
+All preference cleanup and session restoration are generation fenced. Tests verify an obsolete failed restore cannot erase a newly connected wallet/token, alongside RPC failure, account absence and zero ownership. Current suite: 23 passing Node tests. No authenticated production interaction.
