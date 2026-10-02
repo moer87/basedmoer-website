@@ -1,6 +1,6 @@
 (function(){
 const preview=location.hostname.endsWith('.vercel.app')&&new URLSearchParams(location.search).get('preview')==='holder';
-const STORAGE='moeAcademyV3';
+
 const TRACKS=[
 {id:'foundations',name:'Market Foundations',summary:'Read price as a sequence of auctions, swings and regimes before applying any setup.',modules:[
 {title:'01 — Price, Timeframes & Market Structure',body:`<p><strong>Market structure</strong> is a consistent description of meaningful swing highs and swing lows on a chosen timeframe. An uptrend is commonly described as a sequence of higher swing highs and higher swing lows; a downtrend as lower swing highs and lower swing lows. A range forms when price repeatedly trades between boundaries without persistent directional structure.</p><p>The same asset can be bullish on the daily chart and bearish on a 15-minute chart. That is not a contradiction: each timeframe compresses different information. Always state the timeframe and the swing definition before labeling structure.</p><h4>Key rule</h4><p>Structure is descriptive, not predictive. A higher high does not guarantee another higher high.</p>`,practice:'Open one liquid market on 1D, 4H and 15m. Mark the last five meaningful swings on each and write one sentence describing each timeframe.',q:'Which statement is correct?',a:['Market structure depends on timeframe and swing definition','A higher high guarantees continuation','All timeframes must show the same trend'],correct:0,visual:'structure'},
@@ -38,8 +38,8 @@ const TRACKS=[
 
 const TOTAL=TRACKS.reduce((n,t)=>n+t.modules.length,0);
 let active=TRACKS[0].id;
-function state(){try{return JSON.parse(localStorage.getItem(STORAGE))||{completed:{},scores:{}}}catch{return{completed:{},scores:{}}}}
-function save(s){localStorage.setItem(STORAGE,JSON.stringify(s));}
+function state(){return window.MoerAcademyState.read()}
+function save(s){window.MoerAcademyState.write(s)}
 function idFor(ti,mi){return TRACKS[ti].id+'-'+(mi+1)}
 function visual(kind){
  const base='<svg viewBox="0 0 720 250" role="img" aria-label="Educational diagram"><rect width="720" height="250" rx="14" fill="#07101d"/><g stroke="#162944" stroke-width="1">'+[50,100,150,200].map(y=>`<path d="M0 ${y}H720"/>`).join('')+'</g>';
@@ -86,5 +86,8 @@ function render(){
  document.querySelectorAll('.quiz-submit').forEach(b=>b.onclick=()=>submit(b.dataset.id,Number(b.dataset.correct)));
 }
 function submit(id,correct){const picked=document.querySelector(`input[name="q-${id}"]:checked`),out=document.getElementById('result-'+id);if(!picked){out.hidden=false;out.className='quiz-result fail';out.textContent='Choose an answer first.';return}const ok=Number(picked.value)===correct,score=ok?100:0;out.hidden=false;out.className='quiz-result '+(ok?'pass':'fail');out.textContent=ok?'Correct — module completed at 100%.':'Not correct yet. Review the lesson and try again.';if(ok){const s=state();s.completed[id]=true;s.scores[id]=Math.max(s.scores[id]||0,score);save(s);setTimeout(render,350)}}
+window.addEventListener('basedmoer:wallet',()=>render());
+window.addEventListener('moer:academy-restored',()=>render());
 document.addEventListener('DOMContentLoaded',()=>{document.getElementById('academyMode').textContent=preview?'CREATOR PREVIEW — QUIZZES WORK, XP SYNC DISABLED':'HOLDER ACADEMY';render()});
 })();
+
