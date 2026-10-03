@@ -22,7 +22,7 @@
       if(!s||s.verified!==true||typeof s.wallet!=='string'||!/^0x[a-f0-9]{40}$/i.test(s.wallet)||typeof s.token!=='string'||!s.token||s.token.length>4096||/[\x00-\x20\x7f]/.test(s.token))fail('AUTH_REQUIRED');
       return {wallet:s.wallet.toLowerCase(),token:s.token};
     }
-    async function request(path,method='GET',body){
+    async function request(path,method='GET',body,maxResponseBytes=1048576){
       if(!enabled||disposed)fail('DISABLED');
       const start=session(),version=generation,controller=new AbortController();controllers.add(controller);
       let timer;const deadline=new Promise((_,reject)=>{timer=setTimeout(()=>{controller.abort();reject(new ClientError('TIMEOUT'));},timeoutMs);});
@@ -37,7 +37,7 @@
         if(!/^application\/json(?:;|$)/i.test(response.headers.get('content-type')||''))fail('INVALID_RESPONSE');
         if(!response.body||typeof response.body.getReader!=='function')fail('INVALID_RESPONSE');
         const reader=response.body.getReader(),chunks=[];let bytes=0;
-        try{while(true){if(!current())fail('STALE_CONTEXT');const part=await bounded(reader.read());if(!current())fail('STALE_CONTEXT');if(part.done)break;if(!(part.value instanceof Uint8Array))fail('INVALID_RESPONSE');bytes+=part.value.byteLength;if(bytes>1048576){controller.abort();fail('RESPONSE_TOO_LARGE');}chunks.push(part.value);}}
+        try{while(true){if(!current())fail('STALE_CONTEXT');const part=await bounded(reader.read());if(!current())fail('STALE_CONTEXT');if(part.done)break;if(!(part.value instanceof Uint8Array))fail('INVALID_RESPONSE');bytes+=part.value.byteLength;if(bytes>maxResponseBytes){controller.abort();fail('RESPONSE_TOO_LARGE');}chunks.push(part.value);}}
         catch(error){try{const pending=reader.cancel();pending?.catch?.(()=>{});}catch{}throw error;}
         finally{try{reader.releaseLock();}catch{}}
         const joined=new Uint8Array(bytes);let offset=0;for(const chunk of chunks){joined.set(chunk,offset);offset+=chunk.byteLength;}
@@ -54,7 +54,14 @@
       if(!s||Object.keys(s).sort().join(',')!=='condition,entity'||!e||Object.keys(e).sort().join(',')!=='identity,kind,network'||e.kind!=='market'||e.network!=='kraken'||!pairs.has(e.identity)||!c||Object.keys(c).sort().join(',')!=='field,operator,unit,value'||c.field!=='price'||!['gte','lte'].includes(c.operator)||c.unit!=='USD'||typeof c.value!=='number'||!Number.isFinite(c.value)||c.value<0||c.value>1e18)fail('INVALID_WATCH');
       return request('/v1/intelligence/watches','POST',payload);
     }
-    return Object.freeze({createWatch:watch,getWatch:value=>request('/v1/intelligence/watches/'+id(value)),cancelWatch:value=>request('/v1/intelligence/watches/'+id(value)+'/cancel','POST'),getNotification:value=>request('/v1/intelligence/notifications/'+id(value)),acknowledgeNotification:value=>request('/v1/intelligence/notifications/'+id(value)+'/ack','POST'),listNotifications:({limit=20,beforeId}={})=>{if(!Number.isInteger(limit)||limit<1||limit>100)fail('INVALID_LIMIT');return request('/v1/intelligence/notifications?limit='+limit+(beforeId?'&before_id='+id(beforeId):''));},invalidate,dispose:()=>{disposed=true;invalidate();eventTarget?.removeEventListener('basedmoer:wallet',invalidate);}});
+    function review(payload){
+      if(!payload||typeof payload!=='object'||Array.isArray(payload)||Object.keys(payload).sort().join(',')!=='intent,records'||payload.intent!=='review_records'||!Array.isArray(payload.records)||payload.records.length<1||payload.records.length>8)fail('INVALID_REVIEW');
+      const seen=new Set();
+      for(const row of payload.records){if(!row||typeof row!=='object'||Array.isArray(row)||Object.keys(row).sort().join(',')!=='product,record_id'||!['scanner','radar_signal','radar_candidate'].includes(row.product)||typeof row.record_id!=='string'||!/^[A-Za-z0-9_-]{1,128}$/.test(row.record_id))fail('INVALID_REVIEW');const key=row.product+':'+row.record_id;if(seen.has(key))fail('INVALID_REVIEW');seen.add(key);}
+      const copy=JSON.parse(JSON.stringify(payload));if(new TextEncoder().encode(JSON.stringify(copy)).byteLength>4096)fail('INVALID_REVIEW');
+      return request('/v1/intelligence/review','POST',copy,131072);
+    }
+    return Object.freeze({reviewRecords:review,createWatch:watch,getWatch:value=>request('/v1/intelligence/watches/'+id(value)),cancelWatch:value=>request('/v1/intelligence/watches/'+id(value)+'/cancel','POST'),getNotification:value=>request('/v1/intelligence/notifications/'+id(value)),acknowledgeNotification:value=>request('/v1/intelligence/notifications/'+id(value)+'/ack','POST'),listNotifications:({limit=20,beforeId}={})=>{if(!Number.isInteger(limit)||limit<1||limit>100)fail('INVALID_LIMIT');return request('/v1/intelligence/notifications?limit='+limit+(beforeId?'&before_id='+id(beforeId):''));},invalidate,dispose:()=>{disposed=true;invalidate();eventTarget?.removeEventListener('basedmoer:wallet',invalidate);}});
   }
   return Object.freeze({createClient,ClientError});
 });

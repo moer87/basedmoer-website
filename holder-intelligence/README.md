@@ -14,6 +14,14 @@ No production page loads these new files. No actual signatures, production API w
 
 ## Pilot audience configuration
 
-The checked-in configuration explicitly requests `loginProofVersion: 'moer-staging-eoa-v1'` while retaining `enabled: false`, `apiOrigin: null` and `audience: null`. To prepare a reviewed pilot acceptance deployment, configure an approved HTTPS API origin and set the trusted `audience` to exactly that canonical origin. Never derive it from `location`, a challenge response or storage, and never configure the legacy proof as a pilot fallback. `page.js` passes these fields directly to the session coordinator; it does not guess them.
+The enabled pilot page refuses missing, empty, unknown or legacy proof versions; generic session legacy compatibility is not a page fallback. The checked-in configuration explicitly requests `loginProofVersion: 'moer-staging-eoa-v1'` while retaining `enabled: false`, `apiOrigin: null` and `audience: null`. To prepare a reviewed pilot acceptance deployment, configure an approved HTTPS API origin and set the trusted `audience` to exactly that canonical origin. Never derive it from `location`, a challenge response or storage, and never configure the legacy proof as a pilot fallback. `page.js` passes these fields directly to the session coordinator; it does not guess them.
 
 The backend's versioned `Moe AI Staging Login v1` template, `issued_at` and proof/audience echoes must match the coordinator contract described in `HOLDER_INTELLIGENCE_CLIENT.md`. The unchanged production legacy client option exists for explicit legacy integrations, not pilot audience binding. The reviewed pilot must use its isolated local session bridge. Hosted configuration is still disabled, so these changes alone do not perform a holder login or write state.
+
+## Moe AI evidence review slice
+
+The page includes a deterministic review form for 1–8 authorized record references, one `product record_id` per line. Supported products are `scanner`, `radar_signal` and `radar_candidate`. It displays supplied-record coverage, facts, literal source citations/timestamps, abstention/missingness and source limitations. A complete review describes explainability of those records only. It supplies no market-wide ranking, calibrated probability or trade authorization and saves no conversation memory.
+
+The client request remains bound to the current holder session and live chosen provider. Disconnect/access denial clears the form and results; stale responses cannot render across wallet replacement. The page remains disabled until the same reviewed scoped-auth API is configured. The new `/v1/intelligence/review` route must be available in that isolated application; there is no production fallback or added model provider.
+
+New module tests validate Scanner/Radar results, unknown/missing records, exact request binding, coverage integrity, citation chronology, schema/byte limits and text-only rendering. The page tests include current-session denial and disconnect while a review is pending. Synthetic fixtures in tests are clearly labeled and do not appear in the shipped page.

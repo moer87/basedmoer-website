@@ -10,7 +10,7 @@ try{
       return {signature,source:chosen.source};
     },
     prepareProvider:()=>signingProvider(connectedWallet()),
-    sessionModule:window.MoerHolderSession,clientModule:window.MoerHolderIntelligence
+    sessionModule:window.MoerHolderSession,clientModule:window.MoerHolderIntelligence,reviewModule:window.MoerHolderReview
   });
 }catch{
   document.getElementById('pageStatus').textContent='This room needs a reviewed release configuration before it can be used.';
