@@ -25,3 +25,9 @@ The page includes a deterministic review form for 1–8 authorized record refere
 The client request remains bound to the current holder session and live chosen provider. Disconnect/access denial clears the form and results; stale responses cannot render across wallet replacement. The page remains disabled until the same reviewed scoped-auth API is configured. The new `/v1/intelligence/review` route must be available in that isolated application; there is no production fallback or added model provider.
 
 New module tests validate Scanner/Radar results, unknown/missing records, exact request binding, coverage integrity, citation chronology, schema/byte limits and text-only rendering. The page tests include current-session denial and disconnect while a review is pending. Synthetic fixtures in tests are clearly labeled and do not appear in the shipped page.
+
+## Discover references before reviewing
+
+Holders can explicitly load up to 20 recent source-row references for Scanner, Radar signals or Radar candidates. Each row shows its exact product/record ID, any source display label and any stored row timestamp, with evidence not evaluated. Labels do not establish native identity; row timestamps do not establish provider observation or freshness. Loading a list does not trigger a review automatically.
+
+Checkbox selection fills the existing manual reference form. Up to eight exact references can be selected, preserving valid manual references across products. Source lists and selections clear on authority loss, and controls from an older listing cannot change the new one. The list remains authenticated approved shared-holder data, not private account discovery, free-text search or opportunity ranking. Unknown/malformed responses fail closed. The disabled release configuration and scoped pilot login remain unchanged.

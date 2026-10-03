@@ -47,6 +47,13 @@ function validate(data,requested){
  const conclusion=counts.explained+' of '+requested.length+' requested records have explainable evidence. '+counts.abstained+' abstained; '+counts.unavailable+' unavailable; '+counts.tool_errors+' tool errors.';
  if(data.disposition!==disposition||data.conclusion!==conclusion)fail();return data;
 }
+function validateListing(data,product,limit){
+ if(!['scanner','radar_signal','radar_candidate'].includes(product)||!Number.isInteger(limit)||limit<1||limit>20)fail();
+ exact(data,['schema_version','product','records','requested_limit','scope','ordering','completeness','limitations']);
+ if(data.schema_version!=='moer.record-list.v1'||data.product!==product||data.requested_limit!==limit||data.scope!=='approved_shared_holder_records'||data.ordering!=='recorded_row_time_desc_id_desc'||data.completeness!=='bounded_listing_not_market_coverage'||!Array.isArray(data.records)||data.records.length>limit)fail();codes(data.limitations);
+ const seen=new Set();for(const row of data.records){exact(row,['product','record_id','time_semantics','evidence_state'],['display_label','recorded_at']);references([{product:row.product,record_id:row.record_id}]);if(row.product!==product||seen.has(row.record_id)||row.time_semantics!=='recorded_row_time_not_provider_observation'||row.evidence_state!=='not_evaluated')fail();seen.add(row.record_id);if(row.display_label!==undefined)label(row.display_label);if(row.recorded_at!==undefined)timestamp(row.recorded_at);}
+ return data;
+}
 function render(document,container,data){
  container.replaceChildren();const add=(parent,tag,text,className)=>{const node=document.createElement(tag);node.textContent=text;if(className)node.className=className;parent.appendChild(node);return node;};
  add(container,'p',data.conclusion,'review-summary');add(container,'p','Scope: only your '+data.coverage.requested+' supplied records. As of '+data.as_of+'. No market-wide ranking, probability or trade authorization.');
@@ -58,5 +65,5 @@ function render(document,container,data){
  }
  add(container,'p','Review limits: '+data.limitations.map(c=>c.replaceAll('_',' ')).join('; ')+'. This review is not saved as conversation memory.');
 }
-return Object.freeze({parseReferences,validate,render});
+return Object.freeze({parseReferences,validate,validateListing,render});
 });

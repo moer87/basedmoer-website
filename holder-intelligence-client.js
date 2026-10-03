@@ -61,7 +61,11 @@
       const copy=JSON.parse(JSON.stringify(payload));if(new TextEncoder().encode(JSON.stringify(copy)).byteLength>4096)fail('INVALID_REVIEW');
       return request('/v1/intelligence/review','POST',copy,131072);
     }
-    return Object.freeze({reviewRecords:review,createWatch:watch,getWatch:value=>request('/v1/intelligence/watches/'+id(value)),cancelWatch:value=>request('/v1/intelligence/watches/'+id(value)+'/cancel','POST'),getNotification:value=>request('/v1/intelligence/notifications/'+id(value)),acknowledgeNotification:value=>request('/v1/intelligence/notifications/'+id(value)+'/ack','POST'),listNotifications:({limit=20,beforeId}={})=>{if(!Number.isInteger(limit)||limit<1||limit>100)fail('INVALID_LIMIT');return request('/v1/intelligence/notifications?limit='+limit+(beforeId?'&before_id='+id(beforeId):''));},invalidate,dispose:()=>{disposed=true;invalidate();eventTarget?.removeEventListener('basedmoer:wallet',invalidate);}});
+    function listRecords({product,limit=20}={}){
+      if(!['scanner','radar_signal','radar_candidate'].includes(product)||!Number.isInteger(limit)||limit<1||limit>20)fail('INVALID_RECORD_LIST');
+      return request('/v1/intelligence/records?product='+product+'&limit='+limit,'GET',undefined,65536);
+    }
+    return Object.freeze({listRecords,reviewRecords:review,createWatch:watch,getWatch:value=>request('/v1/intelligence/watches/'+id(value)),cancelWatch:value=>request('/v1/intelligence/watches/'+id(value)+'/cancel','POST'),getNotification:value=>request('/v1/intelligence/notifications/'+id(value)),acknowledgeNotification:value=>request('/v1/intelligence/notifications/'+id(value)+'/ack','POST'),listNotifications:({limit=20,beforeId}={})=>{if(!Number.isInteger(limit)||limit<1||limit>100)fail('INVALID_LIMIT');return request('/v1/intelligence/notifications?limit='+limit+(beforeId?'&before_id='+id(beforeId):''));},invalidate,dispose:()=>{disposed=true;invalidate();eventTarget?.removeEventListener('basedmoer:wallet',invalidate);}});
   }
   return Object.freeze({createClient,ClientError});
 });
