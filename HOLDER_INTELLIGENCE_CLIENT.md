@@ -51,3 +51,26 @@ The legacy backend `/v1/agent/auth/challenge` and `/verify` are **not read-only*
 Coordinator validation follows the inspected backend contract: exact Base login message template and nonce, matching challenge wallet, positive holder balance, future timezone-aware challenge expiry within 12 minutes, 65-byte EOA signature, matching `account.wallet_address` in verification, URL-safe session token and future session expiry within 25 hours. Unknown templates or response variants fail closed and need reviewed contract updates. The current backend verification uses EOA signature recovery; this does not add smart-account/ERC-1271 verification support.
 
 A 60-second total deadline covers login fetches, response streams and waiting for the signer (configurable up to 120 seconds). A timeout cannot dismiss an already opened wallet prompt, but late signatures cannot trigger verification or gain local authority. Responses cap at 64 KiB UTF-8 bytes and reject malformed UTF-8. Every phase checks the wallet and event generation; A→B→A events cannot resurrect an obsolete flow. Integrators must emit invalidation for every authority change, including provider account/chain events; mere periodic reads cannot detect an unreported A→B→A transition. Server holder checks remain authoritative on subsequent protected requests.
+
+## Versioned pilot proof
+
+The session coordinator preserves the legacy production login as the default `loginProofVersion: 'legacy-production-v1'` with `audience: null`. It does not infer or silently fall back between login protocols. The research release configuration explicitly selects `loginProofVersion: 'moer-staging-eoa-v1'`, remains disabled, and leaves its audience unset until review.
+
+When enabled, the pilot option requires a trusted configured canonical HTTPS `audience` identical to the configured API origin. Canonical spelling excludes trailing slash, explicit default `:443`, credentials, paths, query and fragment. The expected audience never comes from the challenge response, page URL, storage, headers or provider. Both challenge and verification must echo `login_proof_version: 'moer-staging-eoa-v1'` and the same configured audience. The exact signed template is:
+
+```text
+Based Moer — Moe AI Staging Login v1
+
+Wallet: {lowercase wallet}
+Chain: Base (8453)
+Audience: {configured HTTPS API origin}
+Nonce: {32 lowercase hex characters}
+Issued At: {server ISO timestamp}
+Expires: {server ISO timestamp}
+
+Signing proves wallet ownership for this staging audience. It does not authorize a trade or transfer funds.
+```
+
+The challenge's timezone-aware `issued_at` field must match the signed message, be no more than 30 seconds ahead of the local clock, and no more than 12 minutes old. Expiry must follow issuance within 12 minutes and remain in the future. Missing, downgraded or mismatched proof metadata fails before signing; verification metadata mismatch prevents storing local authority. Browser clock checks are a conservative UI guard; backend signature recovery, nonce consumption, holder checks, expiry and audience-scoped session storage remain authoritative.
+
+This protocol protects the isolated pilot relying party. It does not change the legacy production Agent auth routes, enable the research page or prove a real wallet/provider journey. The pilot's same-origin login bridge must be deployed and configured separately before an enabled browser acceptance run.
